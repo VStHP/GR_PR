@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GraduationProject</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'introduce', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'introduce', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <div id="page-container">
+      <%= render "layouts/layout_introduce/header" %>
+      <%= yield %>
+      <%= render "layouts/layout_introduce/footer" %>
+    </div>
+
+    <!-- Scroll to top link, initialized in js/app.js - scrollToTop() -->
+    <a href="#" id="to-top"><i class="fa fa-angle-up"></i></a>
+  </body>
+</html>

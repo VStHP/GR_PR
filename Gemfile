@@ -6,6 +6,11 @@ git_source(:github) do |repo_name|
 end
 
 
+gem "pry-rails"
+gem "jquery-rails"
+gem "faker", :git => "git://github.com/stympy/faker.git", :branch => "master"
+gem "bootstrap-datepicker-rails"
+gem "bootstrap-sass", "3.3.7"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use mysql as the database for Active Record
