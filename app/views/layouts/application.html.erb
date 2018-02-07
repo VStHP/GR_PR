@@ -3,12 +3,33 @@
   <head>
     <title>GraduationProject</title>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
   </head>
-
   <body>
-    <%= yield %>
+    <div id="page-wrapper">
+      <!-- Preloader functionality (initialized in js/app.js) - pageLoading() -->
+      <%= render "layouts/layout_primary/preloader" %>
+      <!-- END Preloader -->
+      <div id="page-container" class="sidebar-partial sidebar-visible-lg sidebar-no-animations">
+        <!-- Alternative Sidebar -->
+        <%= render "layouts/layout_primary/sidebar_alt" %>
+        <!-- END Alternative Sidebar -->
+        <!-- Main Sidebar -->
+        <%= render "layouts/layout_primary/sidebar" %>
+        <!-- END Main Sidebar -->
+        <div id="main-container">
+          <!-- Header -->
+          <%= render "layouts/layout_primary/header" %>
+          <!-- END Header -->
+          <!-- Page content -->
+          <div id="page-content">
+            <%= yield %>
+          </div>
+          <!-- END Page Content -->
+          <!-- Footer -->
+          <%= render "layouts/layout_primary/footer" %>
+          <!-- END Footer -->
+    </div>
   </body>
 </html>
