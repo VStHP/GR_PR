@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get "introduce/home", to: "test_template#home"
+  get "/about", to: "test_templatee2#about", as: "about"
+  root "test_templatee2#home"
 end

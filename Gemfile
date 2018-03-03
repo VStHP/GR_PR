@@ -6,6 +6,11 @@ git_source(:github) do |repo_name|
 end
 
 
+gem "pry-rails"
+gem "jquery-rails"
+gem "faker", :git => "git://github.com/stympy/faker.git", :branch => "master"
+gem "bootstrap-datepicker-rails"
+gem "bootstrap-sass", "3.3.7"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use mysql as the database for Active Record
@@ -22,7 +27,9 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
+gem 'jquery-turbolinks'
 gem 'turbolinks', '~> 5'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production

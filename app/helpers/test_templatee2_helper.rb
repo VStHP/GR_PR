@@ -1,0 +1,2 @@
+module TestTemplatee2Helper
+end
