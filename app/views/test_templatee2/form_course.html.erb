@@ -1,0 +1,141 @@
+<div class="content-header">
+  <div class="header-section">
+    <h1>
+      <i class="gi gi-notes_2"></i>Form General Elements
+      <br>
+        <small>Clean and professional forms for your UI!</small>
+    </h1>
+  </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+  <li>Forms</li>
+  <li>
+    <a href="">General</a>
+  </li>
+</ul>
+<!-- END Forms General Header -->
+<div class="row">
+  <div class="col-md-6">
+    <div class="block">
+      <div class="block-title">
+        <h2><strong>Form Course</strong> Create</h2>
+      </div>
+      <form id="basic-wizard" action="page_forms_validation.html" method="post" class="form-horizontal form-bordered">
+        <div id="first" class="step">
+          <div class="wizard-steps">
+            <div class="row">
+              <div class="col-xs-6 active">
+                <span>1. Vital</span>
+              </div>
+              <div class="col-xs-6">
+                <span>2. Advance</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="val_id">Course ID <span class="text-danger">*</span></label>
+            <div class="col-md-8">
+              <div class="input-group">
+                <input type="text" id="val_id" name="val_id" class="form-control"
+                  placeholder="Course's id..">
+                <span class="input-group-addon"><i class="gi gi-asterisk"></i></span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="val_name">Name <span class="text-danger">*</span></label>
+            <div class="col-md-8">
+              <div class="input-group">
+                <input type="text" id="val_name" name="val_name" class="form-control"
+                  placeholder="Your username..">
+                <span class="input-group-addon"><i class="gi gi-asterisk"></i></span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="val_program">Program <span class="text-danger">*</span></label>
+            <div class="col-md-8">
+              <div class="input-group">
+                <input type="text" id="val_program" name="val_program" class="form-control"
+                  placeholder="Program..">
+                <span class="input-group-addon"><i class="gi gi-asterisk"></i></span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="val_standard">Training Standard <span class="text-danger">*</span></label>
+            <div class="col-md-8">
+              <div class="input-group">
+                <input type="text" id="val_standard" name="val_standard" class="form-control"
+                  placeholder="Training Standard..">
+                <span class="input-group-addon"><i class="gi gi-asterisk"></i></span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="val_datestart">Date Start <span class="text-danger">*</span></label>
+            <div class="col-md-8">
+              <input type="text" id="val_datestart" name="val_datestart"
+                class="form-control input-datepicker" data-date-format="dd-mm-yyyy" placeholder="dd-mm-yyyy">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="val_owner">Owner <span class="text-danger">*</span></label>
+            <div class="col-md-8">
+              <select id="val_owner" name="val_owner" class="select-chosen"
+                data-placeholder="Choose an Owner" style="width: 250px;">
+                <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
+                <option value="United States">United States</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="Afghanistan">Afghanistan</option>
+                <option value="Aland Islands">Aland Islands</option>
+                <option value="Albania">Albania</option>
+                <option value="Algeria">Algeria</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div id="second" class="step">
+          <div class="wizard-steps">
+            <div class="row">
+              <div class="col-xs-6 done">
+                <span><i class="fa fa-check"></i></span>
+              </div>
+              <div class="col-xs-6 active">
+                <span>2. Advance</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="val_description">Description </label>
+            <div class="col-md-8">
+              <textarea id="val_description" name="val_description" rows="9" class="form-control"
+                placeholder="Description.."></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="val_banner">Banner </label>
+            <div class="col-md-8">
+              <input type="file" name="val_banner" id="val_banner">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="val_avatar">Avatar </label>
+            <div class="col-md-8">
+              <input type="file" name="val_avatar" id="val_avatar">
+            </div>
+          </div>
+        </div>
+        <!-- Form Buttons -->
+        <div class="form-group form-actions">
+          <div class="col-md-8 col-md-offset-4">
+            <input type="reset" class="btn btn-sm btn-warning" id="back" value="Back">
+            <input type="submit" class="btn btn-sm btn-primary" id="next" value="Next">
+          </div>
+        </div>
+        <!-- END Form Buttons -->
+      </form>
+    </div>
+  </div>
+</div>
+<script>$(function(){ FormsWizard.init(); });</script>
