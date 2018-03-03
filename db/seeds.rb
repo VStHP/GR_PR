@@ -4,4 +4,10 @@
 # Examples:
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# #   Character.create(name: 'Luke', movie: movies.first)
+# User.create!(name: "Admin", email: "admin@gmail.com", password: "123123",
+#      password_confirmation: "123123", gender: 0, date_start: Time.zone.today-20,
+#      university: "DUY TAN UNIVERSITY",program: "Manage of IT stCompany Education", permission: 2)
+User.create!(name: "Duong Ngoc Tam", email: "ngoctam3096@gmail.com", password: "123123",
+     password_confirmation: "123123", gender: 0, date_start: Time.zone.today-20,
+     university: "DUY TAN UNIVERSITY",program: "Manage of IT stCompany Education", permission: 2)

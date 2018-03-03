@@ -64,8 +64,8 @@ body :-ms-input-placeholder {
     top: 50%;
     left: 25%;
     width: 50%;
-    height: 400px;
-    margin-top: -200px;
+    /*height: 400px;*/
+    margin-top: -300px;
     border-radius: 4px;
     box-shadow: 0px 0px 15px 8px #fff;
     overflow: hidden;
@@ -76,7 +76,7 @@ body :-ms-input-placeholder {
   max-width: 600px;
   margin: 0 auto;
   padding: 80px 0;
-  height: 400px;
+  /*height: 400px;*/
   text-align: center;
   color: white;
 }
