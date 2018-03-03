@@ -84,18 +84,18 @@
             <i class="fa fa-user fa-fw pull-right"></i>Profile
           </a>
           <!-- Opens the user settings modal that can be found at the bottom of each page (page_footer.html in PHP version) -->
-          <a href="#modal-user-settings" data-toggle="modal">
+          <%= link_to edit_user_registration_path, data: {toggle: "modal"} do %>
             <i class="fa fa-cog fa-fw pull-right"></i>Settings
-          </a>
+          <% end %>
         </li>
         <li class="divider"></li>
         <li>
           <a href="page_ready_lock_screen.html">
             <i class="fa fa-lock fa-fw pull-right"></i> Lock Account
           </a>
-          <a href="login.html">
+          <%= link_to destroy_user_session_path, method: :delete do %>
             <i class="fa fa-ban fa-fw pull-right"></i> Logout
-          </a>
+          <% end %>
         </li>
         <li class="dropdown-header text-center">Activity</li>
         <li>

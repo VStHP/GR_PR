@@ -9,13 +9,10 @@
     <%= javascript_include_tag "introduce" %>
   </head>
   <body>
-    <div id="page-container">
-      <%= render "layouts/layout_introduce/header" %>
-      <%= yield %>
-      <%= render "layouts/layout_introduce/footer" %>
+    <<div id="login-background">
+      <img src="/as.jpg" alt="Login Background" class="animation-pulseSlow" style="width: 95%;">
     </div>
-
-    <!-- Scroll to top link, initialized in js/app.js - scrollToTop() -->
+    <%= yield %>
     <a href="#" id="to-top"><i class="fa fa-angle-up"></i></a>
   </body>
 </html>

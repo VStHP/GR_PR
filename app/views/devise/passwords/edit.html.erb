@@ -1,0 +1,40 @@
+<div class="wrapper-login" id="login-prime" style="display: block;">
+  <div class="container-login">
+    <%= link_to root_path, class: "cancel-login" do %><i class="fa fa-close"></i><% end %>
+    <h1>Change your password</h1>
+    <%= form_for resource, as: resource_name, url: password_path(resource_name),
+      html: {method: :put, class: "form-login"} do |f| %>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-success">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+            <i class="fa fa-close" aria-hidden="true"></i>
+          </button>
+          <hr class="message-inner-separator">
+          <p><%= message %></p>
+        </div>
+      <% end %>
+      <%= f.hidden_field :reset_password_token %>
+      <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+      <% end %>
+      <%= f.password_field :password, placeholder: "New password ..", class: "input-login" %>
+      <%= f.password_field :password_confirmation, placeholder: "Confirm new password ..", class: "input-login" %>
+      <%= f.submit "Change my password", class: "button-login" %>
+      <br>
+      <%= link_to "Log in", new_session_path(resource_name) %><br />
+    <% end %>
+  </div>
+
+  <ul class="bg-bubbles">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</div>

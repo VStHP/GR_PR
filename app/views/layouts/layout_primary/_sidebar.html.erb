@@ -18,7 +18,7 @@
             <img src="avatar.jpg" alt="avatar">
           </a>
         </div>
-        <div class="sidebar-user-name">John Doe</div>
+        <div class="sidebar-user-name"><%= current_user.name if user_signed_in? %></div>
         <div class="sidebar-user-links">
           <a href="page_ready_user_profile.html" data-toggle="tooltip" data-placement="bottom" title="Profile">
             <i class="gi gi-user"></i>
@@ -26,12 +26,12 @@
           <a href="page_ready_inbox.html" data-toggle="tooltip" data-placement="bottom" title="Messages">
             <i class="gi gi-envelope"></i>
           </a>
-          <a href="#modal-user-settings" data-toggle="modal" class="enable-tooltip" data-placement="bottom" title="Settings">
+          <%= link_to edit_user_registration_path, class: "enable-tooltip", title: "Settings", data: {toggle: "modal", placement: "bottom"} do %>
             <i class="gi gi-cogwheel"></i>
-          </a>
-          <a href="login.html" data-toggle="tooltip" data-placement="bottom" title="Logout">
+          <% end %>
+          <%= link_to destroy_user_session_path, method: :delete, data: {toggle: "tooltip", placement: "bottom"}, title: "Logout" do %>
             <i class="gi gi-exit"></i>
-          </a>
+          <% end %>
         </div>
       </div>
       <!-- END User Info -->
@@ -42,87 +42,85 @@
         <li class="active"><a href="javascript:void(0)" class="themed-background-dark-default themed-border-default" data-theme="default" data-toggle="tooltip" title="Default Blue"></a></li>
       -->
         <li>
-          <a href="javascript:void(0)" class="themed-background-dark-night themed-border-night" data-theme="assets/css/themes/night.css" data-toggle="tooltip" title="Night"></a>
+          <a href="javascript:void(0)" class="themed-background-dark-night themed-border-night" data-theme="../../assets/css/themes/night.css" data-toggle="tooltip" title="Night"></a>
         </li>
         <li>
-          <a href="javascript:void(0)" class="themed-background-dark-amethyst themed-border-amethyst" data-theme="assets/css/themes/amethyst.css" data-toggle="tooltip" title="Amethyst"></a>
+          <a href="javascript:void(0)" class="themed-background-dark-amethyst themed-border-amethyst" data-theme="../../assets/css/themes/amethyst.css" data-toggle="tooltip" title="Amethyst"></a>
         </li>
         <li>
-          <a href="javascript:void(0)" class="themed-background-dark-modern themed-border-modern" data-theme="assets/css/themes/modern.css" data-toggle="tooltip" title="Modern"></a>
+          <a href="javascript:void(0)" class="themed-background-dark-modern themed-border-modern" data-theme="../../assets/css/themes/modern.css" data-toggle="tooltip" title="Modern"></a>
         </li>
         <li>
-          <a href="javascript:void(0)" class="themed-background-dark-autumn themed-border-autumn" data-theme="assets/css/themes/autumn.css" data-toggle="tooltip" title="Autumn"></a>
+          <a href="javascript:void(0)" class="themed-background-dark-autumn themed-border-autumn" data-theme="../../assets/css/themes/autumn.css" data-toggle="tooltip" title="Autumn"></a>
         </li>
         <li>
-          <a href="javascript:void(0)" class="themed-background-dark-flatie themed-border-flatie" data-theme="assets/css/themes/flatie.css" data-toggle="tooltip" title="Flatie"></a>
+          <a href="javascript:void(0)" class="themed-background-dark-flatie themed-border-flatie" data-theme="../../assets/css/themes/flatie.css" data-toggle="tooltip" title="Flatie"></a>
         </li>
         <li>
-          <a href="javascript:void(0)" class="themed-background-dark-spring themed-border-spring" data-theme="assets/css/themes/spring.css" data-toggle="tooltip" title="Spring"></a>
+          <a href="javascript:void(0)" class="themed-background-dark-spring themed-border-spring" data-theme="../../assets/css/themes/spring.css" data-toggle="tooltip" title="Spring"></a>
         </li>
         <li>
-          <a href="javascript:void(0)" class="themed-background-dark-fancy themed-border-fancy" data-theme="assets/css/themes/fancy.css" data-toggle="tooltip" title="Fancy"></a>
+          <a href="javascript:void(0)" class="themed-background-dark-fancy themed-border-fancy" data-theme="../../assets/css/themes/fancy.css" data-toggle="tooltip" title="Fancy"></a>
         </li>
         <li>
-          <a href="javascript:void(0)" class="themed-background-dark-fire themed-border-fire" data-theme="assets/css/themes/fire.css" data-toggle="tooltip" title="Fire"></a>
+          <a href="javascript:void(0)" class="themed-background-dark-fire themed-border-fire" data-theme="../../assets/css/themes/fire.css" data-toggle="tooltip" title="Fire"></a>
         </li>
         <li>
-          <a href="javascript:void(0)" class="themed-background-dark-coral themed-border-coral" data-theme="assets/css/themes/coral.css" data-toggle="tooltip" title="Coral"></a>
+          <a href="javascript:void(0)" class="themed-background-dark-coral themed-border-coral" data-theme="../../assets/css/themes/coral.css" data-toggle="tooltip" title="Coral"></a>
         </li>
         <li>
-          <a href="javascript:void(0)" class="themed-background-dark-lake themed-border-lake" data-theme="assets/css/themes/lake.css" data-toggle="tooltip" title="Lake"></a>
+          <a href="javascript:void(0)" class="themed-background-dark-lake themed-border-lake" data-theme="../../assets/css/themes/lake.css" data-toggle="tooltip" title="Lake"></a>
         </li>
         <li>
-          <a href="javascript:void(0)" class="themed-background-dark-forest themed-border-forest" data-theme="assets/css/themes/forest.css" data-toggle="tooltip" title="Forest"></a>
+          <a href="javascript:void(0)" class="themed-background-dark-forest themed-border-forest" data-theme="../../assets/css/themes/forest.css" data-toggle="tooltip" title="Forest"></a>
         </li>
         <li>
-          <a href="javascript:void(0)" class="themed-background-dark-waterlily themed-border-waterlily" data-theme="assets/css/themes/waterlily.css" data-toggle="tooltip" title="Waterlily"></a>
+          <a href="javascript:void(0)" class="themed-background-dark-waterlily themed-border-waterlily" data-theme="../../assets/css/themes/waterlily.css" data-toggle="tooltip" title="Waterlily"></a>
         </li>
         <li>
-          <a href="javascript:void(0)" class="themed-background-dark-emerald themed-border-emerald" data-theme="assets/css/themes/emerald.css" data-toggle="tooltip" title="Emerald"></a>
+          <a href="javascript:void(0)" class="themed-background-dark-emerald themed-border-emerald" data-theme="../../assets/css/themes/emerald.css" data-toggle="tooltip" title="Emerald"></a>
         </li>
         <li>
-          <a href="javascript:void(0)" class="themed-background-dark-blackberry themed-border-blackberry" data-theme="assets/css/themes/blackberry.css" data-toggle="tooltip" title="Blackberry"></a>
+          <a href="javascript:void(0)" class="themed-background-dark-blackberry themed-border-blackberry" data-theme="../../assets/css/themes/blackberry.css" data-toggle="tooltip" title="Blackberry"></a>
         </li>
       </ul>
       <!-- END Theme Colors -->
       <!-- Sidebar Navigation -->
       <ul class="sidebar-nav">
         <li>
-          <a href="index.html" class=" active">
+          <%= link_to root_path, class:"active" do %>
             <i class="gi gi-stopwatch sidebar-nav-icon"></i>
-            <span class="sidebar-nav-mini-hide">Dashboard</span>
-          </a>
+            <span class="sidebar-nav-mini-hide">Table Data</span>
+          <% end %>
         </li>
         <li>
           <%= link_to about_path do %>
               <i class="gi gi-leaf sidebar-nav-icon"></i>
-            <span class="sidebar-nav-mini-hide">Dashboard 2</span>
+            <span class="sidebar-nav-mini-hide">Block Course</span>
           <% end %>
         </li>
         <li>
           <a href="#" class="sidebar-nav-menu">
             <i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
-            <i class="gi gi-shopping_cart sidebar-nav-icon"></i>
-            <span class="sidebar-nav-mini-hide">eCommerce</span>
+            <i class="gi gi-brush sidebar-nav-icon"></i>
+            <span class="sidebar-nav-mini-hide">Form Pages</span>
           </a>
           <ul>
             <li>
-              <a href="page_ecom_dashboard.html">Dashboard</a>
+              <a href="#" class="sidebar-nav-submenu">
+                <i class="fa fa-angle-left sidebar-nav-indicator"></i>Courses
+              </a>
+              <ul>
+                <li>
+                  <%= link_to "NEW", form_course_path %>
+                </li>
+                <li>
+                  <%= link_to "EDIT", form_course_edit_path %>
+                </li>
+              </ul>
             </li>
             <li>
-              <a href="page_ecom_orders.html">Orders</a>
-            </li>
-            <li>
-              <a href="page_ecom_order_view.html">Order View</a>
-            </li>
-            <li>
-              <a href="page_ecom_products.html">Products</a>
-            </li>
-            <li>
-              <a href="page_ecom_product_edit.html">Product Edit</a>
-            </li>
-            <li>
-              <a href="page_ecom_customer_view.html">Customer View</a>
+              <a href="page_ready_search_results.html">Search Results (4)</a>
             </li>
           </ul>
         </li>
