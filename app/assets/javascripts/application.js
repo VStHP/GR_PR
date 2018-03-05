@@ -13,3 +13,19 @@
 //= require jquery.min
 //= require rails-ujs
 //= require_tree ../../../vendor/assets/javascripts/primary
+
+var btnFilterClick = function() {
+  return {
+    init: function() {
+      var btnContainer = document.getElementById("btn-filter-container");
+      var btns = btnContainer.getElementsByClassName("btn-filter");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function() {
+          var current = document.getElementsByClassName("btn-filter active");
+          current[0].className = current[0].className.replace(" active", "");
+          this.className += " active";
+        });
+      }
+    }
+  };
+}();

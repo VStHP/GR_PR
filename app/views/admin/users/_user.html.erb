@@ -1,0 +1,18 @@
+<tr>
+  <td class="text-center">
+    <a href="javascript:void(0)" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-default">
+      <i class="fa fa-pencil"></i>
+    </a>
+  </td>
+  <td class="text-center">
+    <img src="/avatar.jpg" alt="avatar" class="img-circle">
+  </td>
+  <td>
+    <a href="javascript:void(0)"><%= user.name %></a>
+  </td>
+  <td><%= user.email %></td>
+  <td><%= user.program %></td>
+  <td class="<%= user.permission %>">
+    <span class="label label-<%= define_color_permission user %> " style="text-transform: capitalize;"><%= user.permission %></span>
+  </td>
+</tr>

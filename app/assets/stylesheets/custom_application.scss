@@ -1,0 +1,21 @@
+.btn-filter {
+  border: none;
+  outline: none;
+  padding: 8px 16px;
+  background-color: #f1f1f1;
+  cursor: pointer;
+
+}
+
+/* Add a light grey background on mouse-over */
+.btn-filter:hover {
+  background-color: #ddd;
+  text-decoration: none;
+}
+
+/* Add a dark background to the active button */
+.btn-filter.active {
+  background-color: #666;
+  color: white;
+  text-decoration: none;
+}

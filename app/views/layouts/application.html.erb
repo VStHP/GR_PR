@@ -7,6 +7,17 @@
     <%= javascript_include_tag 'application' %>
   </head>
   <body>
+    <script type="text/javascript">
+      <% flash.each do |message_type, message| %>
+        <% if message_type == "success" %>
+          alertify.success('<%= message %>');
+       <% elsif message_type == "danger" %>
+          alertify.error('<%= message %>');
+        <% else %>
+          alertify.notice('<%= message %>');
+        <% end %>
+      <% end %>
+    </script>
     <div id="page-wrapper">
       <!-- Preloader functionality (initialized in js/app.js) - pageLoading() -->
       <%= render "layouts/layout_primary/preloader" %>
@@ -33,3 +44,13 @@
     </div>
   </body>
 </html>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.datepick').datepicker( {
+      todayHighlight: true,
+      orientation: 'auto top',
+      format: 'dd/mm/yyyy',
+      startView: 'year'
+    });
+  });
+</script>
