@@ -124,21 +124,23 @@
             </li>
           </ul>
         </li>
-        <li>
-          <a href="#" class="sidebar-nav-menu">
-            <i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
-            <i class="gi gi-brush sidebar-nav-icon"></i>
-            <span class="sidebar-nav-mini-hide">Quản lý tài khoản</span>
-          </a>
-          <ul>
-            <li>
-              <%= link_to "Danh sách tài khoản", admin_users_path %>
-            </li>
-            <li>
-              <%= link_to "Tạo tài khoản", new_admin_user_path %>
-            </li>
-          </ul>
-        </li>
+        <% if can? :manage, User %>
+          <li>
+            <a href="#" class="sidebar-nav-menu">
+              <i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+              <i class="gi gi-brush sidebar-nav-icon"></i>
+              <span class="sidebar-nav-mini-hide">Quản lý tài khoản</span>
+            </a>
+            <ul>
+              <li>
+                <%= link_to "Danh sách tài khoản", admin_users_path %>
+              </li>
+              <li>
+                <%= link_to "Tạo tài khoản", new_admin_user_path %>
+              </li>
+            </ul>
+          </li>
+        <% end %>
         <li class="sidebar-header">
           <span class="sidebar-header-options clearfix">
             <a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings">
