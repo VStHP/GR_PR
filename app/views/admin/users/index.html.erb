@@ -38,6 +38,24 @@
         <%= render partial: "user", collection: @users, as: :user %>
       </tbody>
     </table>
+    <div style="float: left;">
+      Download CSV:
+      <%= link_to "Tất cả", admin_user_export_path(format: "csv", type: "all") %> |
+      <%= link_to "Trainers", admin_user_export_path(format: "csv", type: "trainer") %> |
+      <%= link_to "Trainees", admin_user_export_path(format: "csv", type: "trainee") %> |
+      <%= link_to "Admins", admin_user_export_path(format: "csv", type: "admin") %>
+      <br>Download Excel:
+      <%= link_to "Tất cả", admin_user_export_path(format: "xls", type: "all") %> |
+      <%= link_to "Trainers", admin_user_export_path(format: "xls", type: "trainer") %> |
+      <%= link_to "Trainees", admin_user_export_path(format: "xls", type: "trainee") %> |
+      <%= link_to "Admins", admin_user_export_path(format: "xls", type: "admin") %>
+    </div>
+    <div style="float: right;">
+      <%= form_tag admin_user_import_path, style: "float: right;", multipart: true do %>
+        <%= file_field_tag :file, style: "float: left;", class: "btn" %>
+        <%= submit_tag "Import", style: "float: right;", class: "btn btn-primary" %>
+      <% end %>
+    </div>
   </div>
 </div>
 <script>

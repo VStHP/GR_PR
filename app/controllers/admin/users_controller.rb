@@ -1,8 +1,6 @@
 class Admin::UsersController < ApplicationController
-  before_action :set_user, except: [:index, :new]
+  before_action :set_user, except: [:index, :new, :export, :import]
 
-  # GET /users
-  # GET /users.json
   def index
     if params[:type] == "block"
       @users = User.filter_by_block
@@ -11,22 +9,14 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  # GET /users/1
-  # GET /users/1.json
-  def show
-  end
+  def show; end
 
-  # GET /users/new
   def new
     @user = User.new
   end
 
-  # GET /users/1/edit
-  def edit
-  end
+  def edit; end
 
-  # POST /users
-  # POST /users.json
   def create
     set_password_default
     @user = User.new user_params
@@ -39,8 +29,6 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
   def update
     if @user.update_attributes user_params
       @mes_success = "Cập nhật hồ sơ thành công"
@@ -49,8 +37,6 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
   def destroy
     @user.destroy
     respond_to do |format|
@@ -75,37 +61,57 @@ class Admin::UsersController < ApplicationController
     end
   end
 
+  def export
+    if params[:type] == "all"
+      @users = User.all
+    else
+      @users = User.filter_by params[:type]
+    end
+    respond_to do |format|
+      format.csv { send_data @users.to_csv }
+      format.xls
+    end
+  end
+
+  def import
+    User.import params[:file]
+    flash[:success] = "Nhập người dùng từ file thành công"
+    redirect_back fallback_location: root_path
+  end
+
   private
-    def set_user
-      @user = User.find_by id: params[:id]
-      return if @user
-      flash[:errors] = "Không tìm thấy tài khoản phù hợp"
-      redirect_to root_path
-    end
 
-    def user_params
-      params.require(:user).permit :name, :email, :password, :password_confirmation, :permission,
-        :gender, :birthday, :phone, :university, :program
-    end
+  def set_user
+    @user = User.find_by id: params[:id]
+    return if @user
+    flash[:errors] = "Không tìm thấy tài khoản phù hợp"
+    redirect_to root_path
+  end
 
-    def avatar_params
-      params.require(:user).permit :avatar
-    end
+  def user_params
+    params.require(:user).permit :name, :email, :password, :password_confirmation, :permission,
+      :gender, :birthday, :phone, :university, :program
+  end
 
-    def set_password_default
-      params[:user][:password] = "123123"
-      params[:user][:password_confirmation] = "123123"
-    end
+  def avatar_params
+    params.require(:user).permit :avatar
+  end
 
-    def do_change_status user, status
-      if user.update_attributes status: status
-        if status == "block"
-          @mes_success = "#{user.name} đã bị khóa"
-        else
-          @mes_success = "#{user.name} đã được mở khóa"
-        end
+  def set_password_default
+    params[:user][:password] = "123123"
+    params[:user][:password_confirmation] = "123123"
+  end
+
+  def do_change_status user, status
+    if user.update_attributes status: status
+      if status == "block"
+        @mes_success = "#{user.name} đã bị khóa"
       else
-        @mes_danger = "CẢNH BÁO! Không thể thay đổi trạng thái tài khoản"
+        @mes_success = "#{user.name} đã được mở khóa"
       end
+    else
+      @mes_danger = "CẢNH BÁO! Không thể thay đổi trạng thái tài khoản"
     end
+  end
+
 end

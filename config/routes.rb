@@ -17,6 +17,8 @@ Rails.application.routes.draw do
       get "profiles/:id", to: "users#show", as: :profiles
       patch "user/status/:id", to: "users#change_status_user", as: :change_status_user
       patch  "user/avatar/:id", to: "users#change_avatar", as: :change_avatar
+      get "users/export/:type", to: "users#export", as: :user_export
+      post "users/import", to: "users#import", as: :user_import
     end
     resources :users, except: %i(show)
   end

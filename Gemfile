@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem "roo-xls"
+gem "roo"
 gem "carrierwave"
 gem "mini_magick"
 gem "devise"
