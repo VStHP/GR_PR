@@ -14,8 +14,8 @@
       <!-- User Info -->
       <div class="sidebar-section sidebar-user clearfix sidebar-nav-mini-hide">
         <div class="sidebar-user-avatar">
-          <a href="page_ready_user_profile.html">
-            <img src="avatar.jpg" alt="avatar">
+          <a href="page_ready_user_profile.html" id="avatar_sidebar">
+            <%= image_tag current_user.avatar.url %>
           </a>
         </div>
         <div class="sidebar-user-name"><%= current_user.name if user_signed_in? %></div>
@@ -42,13 +42,13 @@
         <li class="active"><a href="javascript:void(0)" class="themed-background-dark-default themed-border-default" data-theme="default" data-toggle="tooltip" title="Default Blue"></a></li>
       -->
         <li>
-          <a href="javascript:void(0)" class="themed-background-dark-night themed-border-night" data-theme="../../assets/css/themes/night.css" data-toggle="tooltip" title="Night"></a>
+          <a href="javascript:void(0)" class="themed-background-dark-night themed-border-night" data-theme="assets/css/themes/night.css" data-toggle="tooltip" title="Night"></a>
         </li>
         <li>
-          <a href="javascript:void(0)" class="themed-background-dark-amethyst themed-border-amethyst" data-theme="../../assets/css/themes/amethyst.css" data-toggle="tooltip" title="Amethyst"></a>
+          <a href="javascript:void(0)" class="themed-background-dark-amethyst themed-border-amethyst" data-theme="assets/css/themes/amethyst.css" data-toggle="tooltip" title="Amethyst"></a>
         </li>
         <li>
-          <a href="javascript:void(0)" class="themed-background-dark-modern themed-border-modern" data-theme="../../assets/css/themes/modern.css" data-toggle="tooltip" title="Modern"></a>
+          <a href="javascript:void(0)" class="themed-background-dark-modern themed-border-modern" data-theme="assets/css/themes/modern.css" data-toggle="tooltip" title="Modern"></a>
         </li>
         <li>
           <a href="javascript:void(0)" class="themed-background-dark-autumn themed-border-autumn" data-theme="../../assets/css/themes/autumn.css" data-toggle="tooltip" title="Autumn"></a>

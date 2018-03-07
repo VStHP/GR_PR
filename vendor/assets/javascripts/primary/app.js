@@ -559,7 +559,6 @@ var App = function() {
         $('a', colorList).click(function(e){
             // Get theme name
             theme = $(this).data('theme');
-
             $('li', colorList).removeClass('active');
             $(this).parent('li').addClass('active');
 
@@ -572,7 +571,7 @@ var App = function() {
                 if (themeLink.length) {
                     themeLink.attr('href', theme);
                 } else {
-                    $('link[href="/assets/primary/themes.self-3a82613f9129af6f2027b07c00222d8d34f6e2a7439292406ec2bbc1cf5c5e60.css?body=1"]').before('<link id="theme-link" rel="stylesheet" href="' + theme + '">');
+                    $('link[href="assets/primary/themes.self-3a82613f9129af6f2027b07c00222d8d34f6e2a7439292406ec2bbc1cf5c5e60.css?body=1"]').before('<link id="theme-link" rel="stylesheet" href="' + theme + '">');
                     themeLink = $('#theme-link');
                 }
             }

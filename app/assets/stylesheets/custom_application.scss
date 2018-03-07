@@ -19,3 +19,153 @@
   color: white;
   text-decoration: none;
 }
+/* CSS for profile */
+.box {
+  padding: 15px;
+}
+.box {
+  position: relative;
+  border-radius: 3px;
+  background: #ffffff;
+  border-top: 3px solid #d2d6de;
+  margin-bottom: 20px;
+  width: 100%;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+.box-body {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  padding: 10px;
+}
+.box-header:before, .box-body:before, .box-footer:before, .box-header:after, .box-body:after, .box-footer:after {
+  content: " ";
+  display: table;
+}
+.avatar-container {
+  height: 150px;
+  line-height: 0;
+  position: relative;
+  width: 100%;
+}
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table;
+}
+.avatar-container .avatar-size {
+  height: 100%;
+  margin: 0 auto;
+  width: 150px;
+}
+.img-circle {
+  border-radius: 50%;
+}
+.img-responsive {
+  display: block;
+  width: 100% \9;
+  max-width: 100%;
+  height: auto;
+}
+img {
+  vertical-align: middle;
+}
+img {
+  border: 0;
+}
+.avatar-container .upload-btn-overlay {
+  background: #000;
+  bottom: 0;
+  color: #fff;
+  display: none;
+  line-height: 35px;
+  opacity: .2;
+  position: absolute;
+  transition: opacity .13s ease-out;
+  width: 100%;
+  z-index: 1;
+}
+.text-center {
+  text-align: center;
+}
+.profile-username {
+  font-size: 21px;
+  margin-top: 5px;
+}
+.text-muted {
+  color: #777777;
+}
+.nav-tabs-custom {
+  margin-bottom: 20px;
+  background: #fff;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  border-radius: 3px;
+}
+.nav-tabs-custom>.nav-tabs {
+  margin: 0;
+  border-bottom-color: #f4f4f4;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.nav-tabs {
+  border-bottom: 1px solid #ddd;
+}
+.nav {
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+}
+.nav-tabs-custom>.tab-content {
+  background: #fff;
+  padding: 10px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.tab-content>.active {
+  display: block;
+}
+.profile-container {
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+.tab-content>.tab-pane {
+  display: none;
+}
+.avatar-container:hover .upload-btn-overlay {
+  display: block;
+}
+.avatar-container:hover .upload-btn-overlay:hover {
+  cursor: pointer;
+  opacity: .7;
+}
+.nav-tabs-custom>.nav-tabs>li.active {
+  border-top-color: #3c8dbc;
+}
+.nav-tabs-custom>.nav-tabs>li {
+  border-top: 3px solid transparent;
+  margin-bottom: -2px;
+  margin-right: 5px;
+}
+.nav-tabs-custom>.nav-tabs>li.active>a {
+  border-top-color: transparent;
+  border-left-color: #f4f4f4;
+  border-right-color: #f4f4f4;
+}
+.nav-tabs-custom>.nav-tabs>li.active>a, .nav-tabs-custom>.nav-tabs>li.active:hover>a {
+  background-color: #fff;
+  color: #444;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+  color: #555555;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;
+  cursor: default;
+}
+.cog-profile{
+  font-size: 16px;
+  position: absolute;
+  top: -4px;
+  right: 0px;
+}
+/* finish CSS profile */
