@@ -1,0 +1,95 @@
+<%= form_for @user, method: :post, url: admin_users_path, html: {class: "form-horizontal form-bordered"} do |f| %>
+  <div class="col-md-6">
+    <div class="block">
+      <div class="block-title">
+        <h2>
+          <strong>Thông tin cần thiết</strong>
+        </h2>
+      </div>
+      <div class="form-group <%= check_errors @user, :name %>">
+        <label class="col-md-3 control-label" for="user_name">Name <span class="text-danger">*</span></label>
+        <div class="col-md-9">
+          <%= f.text_field :name, class: "form-control", placeholder: "Nhập tên người dùng .." %>
+          <span class="help-block"><%= show_errors @user, :name, "name" %></span>
+        </div>
+      </div>
+      <div class="form-group <%= check_errors @user, :email %>">
+        <label class="col-md-3 control-label" for="user_email">Email <span class="text-danger">*</span></label>
+        <div class="col-md-9">
+          <%= f.email_field :email, class: "form-control", placeholder: "Nhập email tài khoản .." %>
+          <span class="help-block"><%= show_errors @user, :email, "email" %></span>
+        </div>
+      </div>
+      <div class="form-group <%= check_errors @user, :password %>">
+        <label class="col-md-3 control-label" for="user_password">Password <span class="text-danger">*</span></label>
+        <div class="col-md-9">
+          <%= f.text_field :password, class: "form-control", value: "123123", disabled: true %>
+          <span class="help-block">Mật khẩu mặc định là 123123</span>
+        </div>
+      </div>
+
+      <div class="form-group <%= check_errors @user, :permission %>">
+        <label class="col-md-3 control-label" for="user_permission">Permission <span class="text-danger">*</span></label>
+        <div class="col-md-9">
+          <%= f.select :permission, [['Trainer', 'trainer'], ['Trainee', 'trainee']], {}, {class: "form-control"} %>
+          <span class="help-block">Phân quyền tài khoản là bắt buộc</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="block">
+      <div class="block-title">
+        <h2>
+          <strong>Thông tin bổ sung</strong>
+        </h2>
+      </div>
+      <div class="form-group <%= check_errors @user, :gender %>">
+        <label class="col-md-3 control-label">Gender</label>
+          <div class="col-md-9">
+            <label class="radio-inline" for="user_gender_male">
+              <%= f.radio_button :gender, "male", :checked => true %> Nam
+            </label>
+            <label class="radio-inline" for="user_gender_female">
+              <%= f.radio_button :gender, "female" %> Nữ
+            </label>
+          </div>
+      </div>
+      <div class="form-group <%= check_errors @user, :birthday %>">
+        <label class="col-md-3 control-label" for="user_birthday">Birthday </label>
+        <div class="col-md-9">
+          <%= f.text_field :birthday, data: {provide: "datepicker"}, class: "datepick form-control" %>
+          <span class="help-block"><%= show_errors @user, :birthday, "birthday" %></span>
+        </div>
+      </div>
+      <div class="form-group <%= check_errors @user, :phone %>">
+        <label class="col-md-3 control-label" for="user_phone">Phone </label>
+        <div class="col-md-9">
+          <%= f.text_field :phone, class: "form-control", placeholder: "Nhập số điện thoại .." %>
+          <span class="help-block"><%= show_errors @user, :phone, "phone" %></span>
+        </div>
+      </div>
+      <div class="form-group <%= check_errors @user, :university %>">
+        <label class="col-md-3 control-label" for="user_university">University </label>
+        <div class="col-md-9">
+          <%= f.text_field :university, class: "form-control", placeholder: "Nhập trường đại học .." %>
+          <span class="help-block"><%= show_errors @user, :university, "university" %></span>
+        </div>
+      </div>
+      <div class="form-group <%= check_errors @user, :program %>">
+        <label class="col-md-3 control-label" for="user_program">Program </label>
+        <div class="col-md-9">
+          <%= f.text_field :program, class: "form-control", placeholder: "Nhập chương trình tham gia .." %>
+          <span class="help-block"><%= show_errors @user, :program, "program" %></span>
+        </div>
+      </div>
+
+      <div class="form-group form-actions">
+        <div class="col-md-9 col-md-oét-3">
+          <%= f.submit "Submit", class: "btn btn-sm btn-primary" %>
+          <%= submit_tag("reset", {name: "reset", id: "reset", type: "reset", class: "btn btn-sm btn-warning"}) %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

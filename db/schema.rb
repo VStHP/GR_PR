@@ -17,9 +17,10 @@ ActiveRecord::Schema.define(version: 20180301175449) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.integer "gender"
+    t.date "birthday"
+    t.string "phone"
     t.string "university"
     t.string "program"
-    t.date "date_start"
     t.string "avatar"
     t.integer "permission", default: 0, null: false
     t.integer "status", default: 0, null: false

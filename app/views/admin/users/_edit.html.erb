@@ -1,0 +1,69 @@
+<%= javascript_include_tag "date_format" %>
+<%= form_for @user, method: :patch, url: admin_user_path,
+  html: {class: "form-horizontal form-bordered", id: "edit_user_form"}, remote: true do |f| %>
+  <div class="form-group <%= check_errors @user, :name %>">
+    <label class="col-md-3 control-label" for="user_name">Name <span class="text-danger">*</span></label>
+    <div class="col-md-9">
+      <%= f.text_field :name, class: "form-control", placeholder: "Nhập tên người dùng ..", required: true %>
+      <span class="text-danger" id="name-error"><%= show_errors @user, :name, "name" %></span>
+    </div>
+  </div>
+  <div class="form-group <%= check_errors @user, :email %>">
+    <label class="col-md-3 control-label" for="user_email">Email <span class="text-danger">*</span></label>
+    <div class="col-md-9">
+      <%= f.email_field :email, class: "form-control", placeholder: "Nhập email tài khoản ..", disabled: true %>
+      <span class="text-danger"><%= show_errors @user, :email, "email" %></span>
+    </div>
+  </div>
+  <div class="form-group <%= check_errors @user, :gender %>">
+    <label class="col-md-3 control-label">Gender</label>
+      <div class="col-md-9">
+        <label class="radio-inline" for="user_gender_male">
+          <%= f.radio_button :gender, "male", :checked => true %> Nam
+        </label>
+        <label class="radio-inline" for="user_gender_female">
+          <%= f.radio_button :gender, "female" %> Nữ
+        </label>
+      </div>
+  </div>
+  <div class="form-group <%= check_errors @user, :phone %>">
+    <label class="col-md-3 control-label" for="user_phone">Phone </label>
+    <div class="col-md-9">
+      <%= f.number_field :phone, class: "form-control", placeholder: "Nhập số điện thoại .." %>
+      <span class=" text-danger" id="phone-error"><%= show_errors @user, :phone, "phone" %></span>
+    </div>
+  </div>
+  <div class="form-group <%= check_errors @user, :birthday %>">
+    <label class="col-md-3 control-label" for="user_birthday">Birthday </label>
+    <div class="col-md-9">
+      <% if @user.birthday %>
+        <%= f.text_field :birthday, data: {provide: "datepicker"}, class: "datepick form-control",
+          value: @user.birthday.strftime(t "date_format") %>
+      <% else %>
+        <%= f.text_field :birthday, data: {provide: "datepicker"}, class: "datepick form-control" %>
+      <% end %>
+      <span class="text-danger" id="birthday-error"><%= show_errors @user, :birthday, "birthday" %></span>
+    </div>
+  </div>
+  <div class="form-group <%= check_errors @user, :university %>">
+    <label class="col-md-3 control-label" for="user_university">University </label>
+    <div class="col-md-9">
+      <%= f.text_field :university, class: "form-control", placeholder: "Nhập trường đại học .." %>
+      <span class="text-danger" id="university-error"><%= show_errors @user, :university, "university" %></span>
+    </div>
+  </div>
+  <div class="form-group <%= check_errors @user, :program %>">
+    <label class="col-md-3 control-label" for="user_program">Program </label>
+    <div class="col-md-9">
+      <%= f.text_field :program, class: "form-control", placeholder: "Nhập chương trình tham gia .." %>
+      <span class="text-danger" id="program-error"><%= show_errors @user, :program, "program" %></span>
+    </div>
+  </div>
+  <div class="form-group form-actions">
+    <div class="col-md-9 col-md-oét-3">
+      <%= f.submit "Submit", class: "btn btn-sm btn-primary" %>
+      <%= submit_tag("Reset", {name: "reset", id: "reset", type: "reset", class: "btn btn-sm btn-warning"}) %>
+      <button type="button" class="btn btn-sm btn-danger" id="edit_profile_cancle">Cancle</button>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,15 @@
+<% if @user.errors.any? %>
+  alertify.error('<%= @mes_danger %>');
+  $('#name-error').text('<%= @user.errors[:name][0] %>');
+  $('#phone-error').text('<%= @user.errors[:phone][0] %>');
+  $('#birthday-error').text('<%= @user.errors[:birthday][0] %>');
+  $('#university-error').text('<%= @user.errors[:university][0] %>');
+  $('#program-error').text('<%= @user.errors[:program][0] %>');
+<% else %>
+  <% if @mes_success %>
+    $('#profile-content').html('<%= j render "component/profile_component/main_box_profile" %>');
+    $('.profile-username').text('<%= @user.name %>');
+    $('.text-muted').html('<p class="text-muted text-center"><b>Email </b><%= @user.email %><br><b>Phone </b><%= @user.phone %><br></p>');
+    alertify.success('<%= @mes_success %>');
+  <% end %>
+<% end %>

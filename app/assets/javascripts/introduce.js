@@ -14,7 +14,7 @@
 //= require rails-ujs
 //= require jquery.turbolinks
 //= require_tree ../../../vendor/assets/javascripts/introduce
-
+//= require_tree ../../../node_modules/alertify/src
 
 
 

@@ -1,0 +1,12 @@
+<% if @mes_success %>
+  <% define_title_status @user %>
+  $('.status_user_<%= @user.id %>').html('<%= link_to admin_change_status_user_path(@user), method: :patch, title: @title, class: @a_class, remote: true do%><i class="fa fa-<%= @i_class %>"></i><% end %>');
+  <% if @user.block? %>
+    $('.row_user_<%= @user.id %>').addClass('danger');
+  <% else %>
+    $('.row_user_<%= @user.id %>').removeClass('danger');
+  <% end %>
+  alertify.success('<%= @mes_success %>');
+<% elsif @mes_danger %>
+  alertify.danger('<%= @mes_danger %>');
+<% end %>

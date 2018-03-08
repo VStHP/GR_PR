@@ -31,3 +31,4 @@
 
 en:
   hello: "Hello world"
+  date_format: "%d/%m/%Y"

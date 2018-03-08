@@ -1,0 +1,22 @@
+<tr class="row_user_<%= user.id %> <%= "danger" if user.block? %>">
+  <td class="text-center status_user_<%= user.id %>">
+    <% unless current_user_here? user %>
+      <% define_title_status user %>
+      <%= link_to admin_change_status_user_path(user), method: :patch, title: @title,
+        class: @a_class, remote: true do%>
+        <i class="fa fa-<%= @i_class %>"></i>
+      <% end %>
+    <% end %>
+  </td>
+  <td class="text-center">
+    <img src="/avatar.jpg" alt="avatar" class="img-circle">
+  </td>
+  <td>
+    <%= link_to user.name, admin_profiles_path(user) %>
+  </td>
+  <td><%= user.email %></td>
+  <td><%= user.program %></td>
+  <td class="<%= user.permission %>">
+    <span class="label label-<%= define_color_permission user %> " style="text-transform: capitalize;"><%= user.permission %></span>
+  </td>
+</tr>

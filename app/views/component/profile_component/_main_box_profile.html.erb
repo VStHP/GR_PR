@@ -1,0 +1,102 @@
+<div class="nav-tabs-custom">
+  <div class="nav nav-tabs nav-user">
+    <li class="active"><a href="#profile" data-toggle="tab">Hồ sơ</a></li>
+  </div>
+  <div class="tab-content">
+    <div class=" profile-container clearfix active">
+      <div class="col-md-6">
+        <div class="box" id="main-profile-1">
+          <%= link_to edit_admin_user_path(@user), class: "cog-profile", remote: true do %>
+            <i class="fa fa-cog"></i>
+          <% end %>
+          <table class="table table-user-information">
+            <tbody>
+              <tr>
+                <td>Họ tên</td>
+                <td><%= @user.name %></td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td><%= @user.email %></td>
+              </tr>
+              <tr>
+                <td>Giới tính</td>
+                <td><%= @user.gender %></td>
+              </tr>
+              <tr>
+                <td>Ngày sinh</td>
+                <td><%= @user.birthday %></td>
+              </tr>
+              <tr>
+                <td>Đại học</td>
+                <td><%= @user.university %></td>
+              </tr>
+              <tr>
+                <td>Chương trình</td>
+                <td><%= @user.program %></td>
+              </tr>
+              <tr>
+                <td>Bắt đầu thực tập</td>
+                <td><%= @user.created_at %></td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <td>Mô tả</td>
+                <td>
+                  <p></p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="box">
+          <table class="table table-user-information">
+            <tbody>
+              <tr>
+                <td>Name</td>
+                <td>Dương Ngọc Tâm</td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td>ngoctam3096@gmail.com</td>
+              </tr>
+              <tr>
+                <td>University</td>
+                <td>Duy Tan University</td>
+              </tr>
+              <tr>
+                <td>Working days / week</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <td>Status</td>
+                <td>In Progress</td>
+              </tr>
+              <tr>
+                <td>Graduation</td>
+                <td>2018-01-31</td>
+              </tr>
+              <tr>
+                <td>Ready for project</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Start training date</td>
+                <td>2017-09-05</td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <td>Description</td>
+                <td>
+                  <p></p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
