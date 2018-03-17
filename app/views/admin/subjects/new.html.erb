@@ -1,0 +1,28 @@
+<% provide :url_path, admin_subjects_path %>
+<div class="content-header">
+  <div class="header-section">
+    <h1>
+      <i class="gi gi-notes_2"></i>Form General Elements
+      <br>
+        <small>Clean and professional forms for your UI!</small>
+    </h1>
+  </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+  <li>Forms</li>
+  <li>
+    <a href="">General</a>
+  </li>
+</ul>
+<!-- END Forms General Header -->
+<div class="row">
+  <div class="col-md-6">
+    <div class="block">
+      <div class="block-title">
+        <h2><strong>MÔN HỌC</strong> Khởi tạo</h2>
+      </div>
+      <%= render "form" %>
+    </div>
+  </div>
+</div>
+<script>$(function(){ FormsWizard.init(); });</script>

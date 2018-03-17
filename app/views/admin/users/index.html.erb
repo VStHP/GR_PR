@@ -24,7 +24,7 @@
     <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
       <thead>
         <tr>
-          <th class="text-center">#</th>
+          <th class="text-center">ID</th>
           <th class="text-center">
             <i class="gi gi-user"></i>
           </th>
@@ -32,12 +32,15 @@
           <th>Email</th>
           <th>Program</th>
           <th>Permission</th>
+          <th class="text-center">##</th>
         </tr>
       </thead>
       <tbody>
         <%= render partial: "user", collection: @users, as: :user %>
       </tbody>
     </table>
+  </div>
+  <div class="table-responsive">
     <div style="float: left;">
       Download CSV:
       <%= link_to "Tất cả", admin_user_export_path(format: "csv", type: "all") %> |
@@ -59,6 +62,6 @@
   </div>
 </div>
 <script>
-  $(function(){ TablesDatatables.init(); });
+  $(function(){ TablesUsers.init(); });
   $(function(){ btnFilterClick.init(); });
 </script>

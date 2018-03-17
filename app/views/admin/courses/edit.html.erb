@@ -1,0 +1,94 @@
+<% provide :url_path, admin_course_path %>
+<% provide :class_class, "has-warning" %>
+<div class="content-header">
+  <div class="header-section">
+    <h1>
+      <i class="gi gi-notes_2"></i>Form General Elements
+      <br>
+        <small>Clean and professional forms for your UI!</small>
+    </h1>
+  </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+  <li>Forms</li>
+  <li>
+    <a href="">General</a>
+  </li>
+</ul>
+<!-- END Forms General Header -->
+<div class="row">
+  <div class="col-md-6">
+    <div class="block">
+      <div class="block-title">
+        <h2><strong>Form Course</strong> Create</h2>
+      </div>
+      <%= render "form" %>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="block">
+      <div class="block-title">
+        <h2><strong>Course</strong> Extends</h2>
+      </div>
+      <form id="basic-wizard" action="page_forms_validation.html" method="post" class="form-horizontal form-bordered">
+        <div class="step">
+          <div class="wizard-steps">
+            <div class="row">
+              <div class="col-xs-6 active">
+                <span>3. Extends</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="val_subjects">Subjects </label>
+            <div class="col-md-8">
+              <select id="val_subjects" name="val_subjects" class="select-chosen"
+                data-placeholder="Choose subjects.." style="width: 250px;" multiple>
+                <option value="United States">United States</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="Afghanistan">Afghanistan</option>
+                <option value="Aland Islands">Aland Islands</option>
+                <option value="Albania">Albania</option>
+                <option value="Algeria">Algeria</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="val_trainers">Trainers </label>
+            <div class="col-md-8">
+              <select id="val_trainers" name="val_trainers" class="select-chosen"
+                data-placeholder="Choose subjects.." style="width: 250px;" multiple>
+                <option value="United States">United States</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="Afghanistan">Afghanistan</option>
+                <option value="Aland Islands">Aland Islands</option>
+                <option value="Albania">Albania</option>
+                <option value="Algeria">Algeria</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="val_trainees">Trainees </label>
+            <div class="col-md-8">
+              <select id="val_trainees" name="val_trainees" class="select-chosen"
+                data-placeholder="Choose subjects.." style="width: 250px;" multiple>
+                <option value="United States">United States</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="Afghanistan">Afghanistan</option>
+                <option value="Aland Islands">Aland Islands</option>
+                <option value="Albania">Albania</option>
+                <option value="Algeria">Algeria</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group form-actions">
+            <div class="col-md-8 col-md-offset-4">
+              <input type="reset" class="btn btn-sm btn-warning" id="back" value="Reset">
+              <input type="submit" class="btn btn-sm btn-primary" id="next" value="Save">
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+<script>$(function(){ FormsWizard.init(); });</script>

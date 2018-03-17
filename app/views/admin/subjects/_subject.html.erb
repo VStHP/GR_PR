@@ -1,0 +1,23 @@
+<% define_color_status_subject subject %>
+<tr class="<%= @color %> row_subject_<%= subject.id %>">
+  <td class="text-center"><%= subject.id %></td>
+  <td><%= link_to subject.name, admin_subject_path(subject) %></td>
+  <td><%= subject.day_on_learn %></td>
+  <td><%= subject.description %></td>
+  <td><%= subject.tasks.count %></td>
+  <td class="status_banner">
+    <span class="label label-<%= @class %> " style="text-transform: capitalize;"><%= t "subjects.status.#{subject.status}" %></span>
+  </td>
+  <td class="text-center">
+    <div class="btn-group">
+      <%= link_to edit_admin_subject_path(subject), class: "btn btn-xs btn-default",
+        data: {toggle: "tooltip"}, title: "Edit" do %>
+        <i class="fa fa-pencil"></i>
+      <% end %>
+      <%= link_to admin_change_status_subject_path(subject), method: :patch, class: "btn btn-xs btn-#{@class}",
+        data: {confirm: "Bạn chắc chắn muốn khóa / mở khóa môn học này?"}, title: @title, remote: true do %>
+        <i class="fa fa-<%= @icon %>"></i>
+      <% end %>
+    </div>
+  </td>
+</tr>

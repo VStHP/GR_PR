@@ -10,7 +10,78 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180301175449) do
+ActiveRecord::Schema.define(version: 20180317151649) do
+
+  create_table "course_subjects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "course_id"
+    t.string "subject_id"
+    t.integer "status", default: 0
+    t.date "date_start"
+    t.date "date_end"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_course_subjects_on_course_id"
+    t.index ["subject_id"], name: "index_course_subjects_on_subject_id"
+  end
+
+  create_table "course_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "course_id"
+    t.bigint "user_id"
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_course_users_on_course_id"
+    t.index ["user_id"], name: "index_course_users_on_user_id"
+  end
+
+  create_table "courses", id: :string, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name", null: false
+    t.bigint "user_id"
+    t.string "program"
+    t.string "banner"
+    t.string "avatar"
+    t.date "date_start"
+    t.date "date_end"
+    t.integer "status", default: 0
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "language"
+    t.index ["user_id"], name: "index_courses_on_user_id"
+  end
+
+  create_table "links", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.string "link"
+    t.text "description"
+    t.bigint "task_id"
+    t.string "subject_id"
+    t.string "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_links_on_course_id"
+    t.index ["subject_id"], name: "index_links_on_subject_id"
+    t.index ["task_id"], name: "index_links_on_task_id"
+  end
+
+  create_table "subjects", id: :string, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.integer "day_on_learn"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "status", default: 0
+  end
+
+  create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.text "description"
+    t.string "youtube_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "subject_id"
+    t.index ["subject_id"], name: "index_tasks_on_subject_id"
+  end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
@@ -38,4 +109,13 @@ ActiveRecord::Schema.define(version: 20180301175449) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "course_subjects", "courses"
+  add_foreign_key "course_subjects", "subjects"
+  add_foreign_key "course_users", "courses"
+  add_foreign_key "course_users", "users"
+  add_foreign_key "courses", "users"
+  add_foreign_key "links", "courses"
+  add_foreign_key "links", "subjects"
+  add_foreign_key "links", "tasks"
+  add_foreign_key "tasks", "subjects"
 end

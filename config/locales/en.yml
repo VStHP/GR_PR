@@ -32,3 +32,13 @@
 en:
   hello: "Hello world"
   date_format: "%d/%m/%Y"
+  courses:
+    status:
+      init: "Khởi tạo"
+      in_progress: "Đang chạy"
+      finish: "Kết thúc"
+      block: "Bị khóa"
+  subjects:
+    status:
+      active: "Sẵn sàng"
+      block: "Bị khóa"

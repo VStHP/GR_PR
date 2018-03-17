@@ -1,0 +1,43 @@
+<div class="content-header">
+  <div class="header-section">
+    <h1>
+      <i class="fa fa-table"></i>Datatables
+      <br>
+        <small>HTML tables can become fully dynamic with cool features!</small>
+    </h1>
+  </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+  <li>Tables</li>
+  <li><a href="">Datatables</a></li>
+</ul>
+<div class="block full">
+  <div class="block-title" id="btn-filter-container">
+    <h2><strong>Môn Học</strong></h2>
+    <%= link_to "Tất cả", admin_subjects_path,class: "btn-filter active", remote: true %>
+    <%= link_to "Đã khóa", admin_subjects_path(type: "block"),class: "btn-filter", remote: true %>
+  </div>
+  <div class="table-responsive" id="table-content">
+    <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+      <thead>
+        <tr>
+          <th class="text-center">ID</th>
+          <th>Name</th>
+          <th>Days on learn</th>
+          <th>Description</th>
+          <th>Number of Task</th>
+          <th>Status</th>
+          <th class="text-center">##</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: "subject", collection: @subjects, as: :subject %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script>
+  $(function(){ TablesSubjects.init(); });
+  $(function(){ btnFilterClick.init(); });
+</script>
+

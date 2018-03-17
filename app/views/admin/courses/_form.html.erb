@@ -1,0 +1,152 @@
+<%= form_for @course, url: yield(:url_path), html: {id: "basic-wizard", class: "form-horizontal form-bordered" } do |f| %>
+  <div id="first" class="step <%= yield :class_class %>">
+    <div class="wizard-steps">
+      <div class="row">
+        <div class="col-xs-6 active">
+          <span>1. Vital</span>
+        </div>
+        <div class="col-xs-6">
+          <span>2. Advance</span>
+        </div>
+      </div>
+    </div>
+    <% if @course.init? %>
+      <div class="form-group <%= check_errors @course, :id %>">
+        <label class="col-md-3 control-label" for="course_id">Course ID <span class="text-danger">*</span></label>
+        <div class="col-md-9">
+          <%= f.text_field :id, class: "form-control", placeholder: "" %>
+          <span class="help-block">Mã khóa học quy định từ 4-20 kí tự</span>
+          <span class="text-danger"><%= show_errors @course, :id, "id" %></span>
+        </div>
+      </div>
+      <div class="form-group <%= check_errors @course, :name %>">
+        <label class="col-md-3 control-label" for="course_name">Name <span class="text-danger">*</span></label>
+        <div class="col-md-9">
+        <%= f.text_field :name, class: "form-control" %>
+        <span class="text-danger"><%= show_errors @course, :name, "name" %></span>
+        </div>
+      </div>
+      <div class="form-group <%= check_errors @course, :program %>">
+        <label class="col-md-3 control-label" for="course_program">Program <span class="text-danger">*</span></label>
+        <div class="col-md-9">
+        <%= f.text_field :program, class: "form-control", placeholder: "", disabled: true %>
+        <span class="text-danger"><%= show_errors @course, :program, "program" %></span>
+        </div>
+      </div>
+      <div class="form-group <%= check_errors @course, :language %>">
+        <label class="col-md-3 control-label" for="course_language">Language <span class="text-danger">*</span></label>
+        <div class="col-md-9">
+        <%= f.text_field :language, class: "form-control", placeholder: "",disabled: true %>
+        <span class="text-danger"><%= show_errors @course, :language, "language" %></span>
+        </div>
+      </div>
+      <div class="form-group <%= check_errors @course, :date_start %>">
+        <label class="col-md-3 control-label" for="course_date_start">Date Start <span class="text-danger">*</span></label>
+        <div class="col-md-9">
+          <% if @course.date_start %>
+            <%= f.text_field :date_start, data: {provide: "datepicker"}, class: "datepick form-control",
+              value: @course.date_start.strftime(t "date_format") %>
+          <% else %>
+            <%= f.text_field :date_start, data: {provide: "datepicker"}, class: "datepick form-control" %>
+          <% end %>
+        <span class="text-danger"><%= show_errors @course, :date_start, "date_start" %></span>
+        </div>
+      </div>
+      <div class="form-group <%= check_errors @course, :user_id %>">
+        <label class="col-md-3 control-label" for="course_user_id">Owner <span class="text-danger">*</span></label>
+        <div class="col-md-9">
+          <%= select "course", "user_id", @trainers.map {|trainer| [trainer.name, trainer.id]}, {}, class: "select-chosen" %>
+          <span class="text-danger"><%= show_errors @course, :user_id, "user_id" %></span>
+        </div>
+      </div>
+    <% else %>
+      <div class="form-group <%= check_errors @course, :id %>">
+        <label class="col-md-3 control-label" for="course_id">Course ID <span class="text-danger">*</span></label>
+        <div class="col-md-9">
+          <%= f.label :id, class: "form-control", value: @course.id %>
+          <span class="help-block">Chỉ có thể chỉnh sửa khi khóa học chưa bắt đầu</span>
+        </div>
+      </div>
+      <div class="form-group <%= check_errors @course, :name %>">
+        <label class="col-md-3 control-label" for="course_name">Name <span class="text-danger">*</span></label>
+        <div class="col-md-9">
+        <%= f.label :name, class: "form-control", value: @course.name %>
+        <span class="help-block">Chỉ có thể chỉnh sửa khi khóa học chưa bắt đầu</span>
+        </div>
+      </div>
+      <div class="form-group <%= check_errors @course, :program %>">
+        <label class="col-md-3 control-label" for="course_program">Program <span class="text-danger">*</span></label>
+        <div class="col-md-9">
+        <%= f.label :program, class: "form-control", value: @course.program %>
+        <span class="help-block">Chỉ có thể chỉnh sửa khi khóa học chưa bắt đầu</span>
+        </div>
+      </div>
+      <div class="form-group <%= check_errors @course, :language %>">
+        <label class="col-md-3 control-label" for="course_language">Language <span class="text-danger">*</span></label>
+        <div class="col-md-9">
+        <%= f.label :language, class: "form-control", value: @course.language %>
+        <span class="help-block">Chỉ có thể chỉnh sửa khi khóa học chưa bắt đầu</span>
+        </div>
+      </div>
+      <div class="form-group <%= check_errors @course, :date_start %>">
+        <label class="col-md-3 control-label" for="course_date_start">Date Start <span class="text-danger">*</span></label>
+        <div class="col-md-9">
+        <%= f.label :date_start, class: "form-control", value: @course.date_start %>
+        <span class="help-block">Chỉ có thể chỉnh sửa khi khóa học chưa bắt đầu</span>
+        </div>
+      </div>
+      <div class="form-group <%= check_errors @course, :user_id %>">
+        <label class="col-md-3 control-label" for="course_user_id">Owner <span class="text-danger">*</span></label>
+        <div class="col-md-9">
+          <%= f.label :user_id, class: "form-control", value: @course.user.name %>
+          <span class="help-block">Chỉ có thể chỉnh sửa khi khóa học chưa bắt đầu</span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div id="second" class="step">
+    <div class="wizard-steps">
+      <div class="row">
+        <div class="col-xs-6 done">
+          <span><i class="fa fa-check"></i></span>
+        </div>
+        <div class="col-xs-6 active">
+          <span>2. Advance</span>
+        </div>
+      </div>
+    </div>
+    <div class="form-group <%= check_errors @course, :description %>">
+      <label class="col-md-3 control-label" for="course_description">Description</label>
+      <div class="col-md-9">
+      <%= f.text_area :description, class: "form-control", placeholder: "", rows: 9 %>
+      <span class="text-danger"><%= show_errors @course, :description, "description" %></span>
+      </div>
+    </div>
+    <div class="form-group <%= check_errors @course, :banner %>">
+      <label class="col-md-3 control-label" for="val_banner">Banner </label>
+      <div class="col-md-9">
+        <%= f.file_field :banner, id: "bannerCourse" %>
+        <%= image_tag(@course.banner.url, class: "img-responsive", style: "height: 100px;", id: "banner_image_course") %>
+        <span class="text-danger"><%= show_errors @course, :banner, "banner" %></span>
+        <span class="help-block">Đề xuất sử dụng ảnh kích thước 1000x150 để có trải nghiệm tốt nhất</span>
+      </div>
+    </div>
+    <div class="form-group <%= check_errors @course, :avatar %>">
+      <label class="col-md-3 control-label" for="val_avatar">Avatar </label>
+      <div class="col-md-9">
+        <%= f.file_field :avatar, id: "avatarCourse" %>
+        <%= image_tag(@course.avatar.url, class: "img-responsive", style: "height: 100px;", id: "avatar_image_course") %>
+        <span class="text-danger"><%= show_errors @course, :avatar, "avatar" %></span>
+        <span class="help-block">Đề xuất sử dụng ảnh kích thước 64x64 để có trải nghiệm tốt nhất</span>
+      </div>
+    </div>
+  </div>
+  <!-- Form Buttons -->
+  <div class="form-group form-actions">
+    <div class="col-md-8 col-md-offset-4">
+      <input type="reset" class="btn btn-sm btn-warning" id="back" value="Back">
+      <input type="submit" class="btn btn-sm btn-primary" id="next" value="Next">
+    </div>
+  </div>
+  <!-- END Form Buttons -->
+<% end %>

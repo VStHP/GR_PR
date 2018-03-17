@@ -21,6 +21,11 @@ Rails.application.routes.draw do
       post "users/import", to: "users#import", as: :user_import
     end
     resources :users, except: %i(show)
+    resources :courses
+    patch "course/status/:id", to: "courses#change_status", as: :change_status_course
+    resources :subjects
+    patch "subject/status/:id", to: "subjects#change_status", as: :change_status_subject
+    resources :tasks
   end
 
   get "/about", to: "test_templatee2#about", as: "about"

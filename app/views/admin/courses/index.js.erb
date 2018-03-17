@@ -1,0 +1,2 @@
+$("#table-content").html("<table id='example-datatable' class='table table-vcenter table-condensed table-bordered'><thead><tr><th class='text-center'>ID</th><th>Name</th><th>Program</th><th>Language</th><th>Date Start</th><th>End Start</th><th>Status</th><th class='text-center'>#</th></tr></thead><tbody><%= j render partial: 'course', collection: @courses, as: :course %></tbody></table>");
+$(function(){ TablesCourses.init(); });

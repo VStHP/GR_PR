@@ -88,7 +88,7 @@
       <!-- Sidebar Navigation -->
       <ul class="sidebar-nav">
         <li>
-          <%= link_to root_path, class:"active" do %>
+          <%= link_to root_path do %>
             <i class="gi gi-stopwatch sidebar-nav-icon"></i>
             <span class="sidebar-nav-mini-hide">Table Data</span>
           <% end %>
@@ -137,6 +137,40 @@
               </li>
               <li>
                 <%= link_to "Tạo tài khoản", new_admin_user_path %>
+              </li>
+            </ul>
+          </li>
+        <% end %>
+        <% if can? :manage, Course %>
+          <li>
+            <a href="#" class="sidebar-nav-menu">
+              <i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+              <i class="gi gi-brush sidebar-nav-icon"></i>
+              <span class="sidebar-nav-mini-hide">Quản lý khóa học</span>
+            </a>
+            <ul>
+              <li>
+                <%= link_to "Danh sách khóa học", admin_courses_path %>
+              </li>
+              <li>
+                <%= link_to "Tạo khóa học", new_admin_course_path %>
+              </li>
+            </ul>
+          </li>
+        <% end %>
+        <% if can? :manage, Subject %>
+          <li>
+            <a href="#" class="sidebar-nav-menu">
+              <i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+              <i class="gi gi-brush sidebar-nav-icon"></i>
+              <span class="sidebar-nav-mini-hide">Quản lý môn học</span>
+            </a>
+            <ul>
+              <li>
+                <%= link_to "Danh sách môn học", admin_subjects_path %>
+              </li>
+              <li>
+                <%= link_to "Tạo môn học", new_admin_subject_path %>
               </li>
             </ul>
           </li>

@@ -12,6 +12,7 @@
 //
 //= require jquery.min
 //= require rails-ujs
+//= require cocoon
 //= require date_format
 //= require_tree ../../../vendor/assets/javascripts/primary
 //= require_tree ../../../node_modules/alertify/src

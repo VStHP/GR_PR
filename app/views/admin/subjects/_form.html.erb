@@ -1,0 +1,77 @@
+<%= form_for @subject, url: yield(:url_path), html: {id: "basic-wizard", class: "form-horizontal form-bordered" } do |f| %>
+  <div id="first" class="step <%= yield :class_class %>">
+    <div class="wizard-steps">
+      <div class="row">
+        <div class="col-xs-6 active">
+          <span>1. Vital</span>
+        </div>
+        <div class="col-xs-6">
+          <span>2. Advance</span>
+        </div>
+      </div>
+    </div>
+    <%= render "shared/error_messages", object: @subject %>
+    <div class="form-group <%= check_errors @subject, :id %>">
+      <label class="col-md-3 control-label" for="subject_id">Mã môn học <span class="text-danger">*</span></label>
+      <div class="col-md-9">
+        <%= f.text_field :id, class: "form-control", placeholder: "" %>
+        <span class="help-block">Mã khóa học quy định từ 4-10 kí tự</span>
+        <span class="text-danger"><%= show_errors @subject, :id, "id" %></span>
+      </div>
+    </div>
+    <div class="form-group <%= check_errors @subject, :name %>">
+      <label class="col-md-3 control-label" for="subject_name">Tên môn học <span class="text-danger">*</span></label>
+      <div class="col-md-9">
+      <%= f.text_field :name, class: "form-control" %>
+      <span class="text-danger"><%= show_errors @subject, :name, "name" %></span>
+      </div>
+    </div>
+    <div class="form-group <%= check_errors @subject, :day_on_learn %>">
+      <label class="col-md-3 control-label" for="subject_language">Số ngày học tối đa <span class="text-danger">*</span></label>
+      <div class="col-md-9">
+      <%= f.number_field :day_on_learn, class: "form-control", min: 1 %>
+      <span class="text-danger"><%= show_errors @subject, :day_on_learn, "day_on_learn" %></span>
+      </div>
+    </div>
+
+  </div>
+  <div id="second" class="step">
+    <div class="wizard-steps">
+      <div class="row">
+        <div class="col-xs-6 done">
+          <span><i class="fa fa-check"></i></span>
+        </div>
+        <div class="col-xs-6 active">
+          <span>2. Advance</span>
+        </div>
+      </div>
+    </div>
+    <div class="form-group <%= check_errors @subject, :description %>">
+      <label class="col-md-3 control-label" for="subject_program">Mô tả</label>
+      <div class="col-md-9">
+      <%= f.text_area :description, rows: 6, class: "form-control", placeholder: "" %>
+      <span class="text-danger"><%= show_errors @subject, :description, "program" %></span>
+      </div>
+    </div>
+    <%= f.fields_for :links do |link| %>
+      <%= render 'link_fields', f: link %>
+    <% end %>
+    <div class="form-group form-actions">
+      <%= link_to_add_association 'Thêm liên kết', f, :links, class: "btn btn-success " %>
+    </div>
+    <%= f.fields_for :tasks do |task| %>
+      <%= render 'task_fields', f: task %>
+    <% end %>
+    <div class="form-group form-actions">
+      <%= link_to_add_association 'Thêm chương', f, :tasks, class: "btn btn-success " %>
+    </div>
+  </div>
+  <!-- Form Buttons -->
+  <div class="form-group form-actions">
+    <div class="col-md-8 col-md-offset-4">
+      <input type="reset" class="btn btn-sm btn-warning" id="back" value="Back">
+      <input type="submit" class="btn btn-sm btn-primary" id="next" value="Next">
+    </div>
+  </div>
+  <!-- END Form Buttons -->
+<% end %>

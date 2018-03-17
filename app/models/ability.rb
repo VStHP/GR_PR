@@ -7,6 +7,8 @@ class Ability
       case user.permission
       when "admin"
         permission_admin
+      when "trainer"
+        permission_trainer
       else
         permission_user user
       end
@@ -19,8 +21,14 @@ class Ability
     can :manage, :all
   end
 
+  def permission_trainer
+    can :manage, %i(subject task)
+    can :show, User
+    can :update, User, id: user.id
+  end
+
   def permission_user user
-    can :read, User
+    can :show, User
     can :update, User, id: user.id
   end
   # def undefine_user
