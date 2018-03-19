@@ -26,6 +26,9 @@ Rails.application.routes.draw do
     resources :subjects
     patch "subject/status/:id", to: "subjects#change_status", as: :change_status_subject
     resources :tasks
+    get "course/:course_id/subject/:subject_id", to: "course_subjects#show", as: :show_subject_course
+    get "course/:course_id/subject/:subject_id/:status", to: "course_subjects#update", as: :update_status_cs
+    resources :course_users
   end
 
   get "/about", to: "test_templatee2#about", as: "about"

@@ -17,4 +17,14 @@ module Admin::CoursesHelper
       @title = "CLICK để mở khóa học"
     end
   end
+
+  def warning_edit course
+    "has-warning" unless course.init?
+  end
+
+  def define_time_course subject
+    time = 0
+    subject.each {|s| time = time + s[:day_on_learn] }
+    time
+  end
 end

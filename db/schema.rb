@@ -10,16 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180317151649) do
+ActiveRecord::Schema.define(version: 20180319035126) do
 
   create_table "course_subjects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "course_id"
     t.string "subject_id"
     t.integer "status", default: 0
-    t.date "date_start"
-    t.date "date_end"
+    t.datetime "date_start"
+    t.datetime "date_end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["course_id", "subject_id"], name: "index_course_subjects_on_course_id_and_subject_id", unique: true
     t.index ["course_id"], name: "index_course_subjects_on_course_id"
     t.index ["subject_id"], name: "index_course_subjects_on_subject_id"
   end
@@ -30,6 +31,7 @@ ActiveRecord::Schema.define(version: 20180317151649) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["course_id", "user_id"], name: "index_course_users_on_course_id_and_user_id", unique: true
     t.index ["course_id"], name: "index_course_users_on_course_id"
     t.index ["user_id"], name: "index_course_users_on_user_id"
   end
@@ -40,8 +42,8 @@ ActiveRecord::Schema.define(version: 20180317151649) do
     t.string "program"
     t.string "banner"
     t.string "avatar"
-    t.date "date_start"
-    t.date "date_end"
+    t.datetime "date_start"
+    t.datetime "date_end"
     t.integer "status", default: 0
     t.text "description"
     t.datetime "created_at", null: false
@@ -71,6 +73,7 @@ ActiveRecord::Schema.define(version: 20180317151649) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
+    t.string "avatar"
   end
 
   create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

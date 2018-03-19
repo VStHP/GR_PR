@@ -42,3 +42,9 @@ en:
     status:
       active: "Sẵn sàng"
       block: "Bị khóa"
+  course_subjects:
+    status:
+      init: "Sẵn sàng"
+      in_progress: "Đang thực hiện"
+      finish: "Kết thúc"
+      block: "Bị khóa"

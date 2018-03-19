@@ -26,7 +26,10 @@ class Admin::SubjectsController < ApplicationController
 
   def edit; end
 
-  def show; end
+  def show
+    @courses = @subject.courses
+    @tasks = @subject.tasks
+  end
 
   def update
     if @subject.update_attributes params_subject

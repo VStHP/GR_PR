@@ -1,3 +1,7 @@
+.alertify-notifier.ajs-bottom {
+    top: 40px;
+    font-size: 15px;
+}
 .btn-filter {
   border: none;
   outline: none;
@@ -66,6 +70,10 @@
   width: 100% \9;
   max-width: 100%;
   height: auto;
+}
+.img-member {
+  width: 40px;
+  height: 40px;
 }
 img {
   vertical-align: middle;
@@ -224,4 +232,239 @@ img {
 }
 .ship-info-ic:hover::before {
   display: block;
+}
+.course-container {
+    max-width: 100%;
+    padding-left: 7px;
+    padding-right: 14px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+}
+  .timeline {
+    position: relative;
+    margin: 0 0 30px 0;
+    padding: 0;
+    list-style: none;
+}
+.timeline > li {
+    position: relative;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+.start_date_label {
+    background-color: #04b404 !important;
+    font-size: 100% !important;
+}
+.timeline-label {
+    font-weight: 600;
+    margin-bottom: 15px;
+    padding: 5px;
+    padding-bottom: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    position: relative;
+    z-index: 2;
+}
+.subject-timeline {
+    position: relative;
+    padding-left: 55px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.subject-status-box {
+    border: 0;
+    box-sizing: border-box;
+    display: block;
+    font: inherit;
+    font-size: 100%;
+    padding: 10px 0px;
+    vertical-align: baseline;
+    word-break: break-word;
+    color: #000000;
+}
+.corner-ribbon {
+    background: #e43;
+    color: #f0f0f0;
+    font-weight: bold;
+    letter-spacing: 1px;
+    line-height: 20px;
+    position: absolute;
+    text-align: center;
+    top: 30px;
+    right: -43px;
+    -webkit-transform: rotate(45deg);
+    /* transform: rotate(90deg); */
+    width: 180px;
+}
+.div-status {
+    position: relative;
+    float: left;
+    font-size: 0;
+    height: 100%;
+    left: -26px;
+    margin-top: 45px;
+    width: 15px;
+}
+.div-status .status-init {
+    background-color: #58fa82;
+    border: 3px solid #04b404;
+}
+.div-status .status {
+    border-radius: 100%;
+    height: 25px;
+    position: absolute;
+    width: 25px;
+    left: -8px;
+}
+.subject-body {
+    background-color: #ffffff;
+    border: 1px solid #D9D9D9;
+    border-radius: 5px;
+    box-shadow: 0 2px 1px #ccc;
+    margin: 5px;
+    margin-right: 0;
+    min-height: 100px;
+    padding: 5px 2px;
+    transition: all .3s;
+}
+.col-list-subjects .subject-image {
+    float: left;
+    height: 100px;
+    width: 15%;
+}
+.col-list-subjects .subject-image img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+}
+.col-list-subjects .infor {
+    float: right;
+    width: 82%;
+    color: #000;
+}
+.subject-name {
+  color: #21abc7;
+  font-size: 20px;
+  font-weight: 300;
+  margin: 4px 0;
+  margin-right: 40px;
+}
+.td-subject-description {
+    color: #404040;
+    word-break: word-breaking;
+    width: 90%;
+}
+.timeline-end-icon {
+    left: 19px !important;
+}
+.bg-gray {
+    color: #000;
+    background-color: #d2d6de !important;
+}
+.timeline:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #ddd;
+    left: 31px;
+    margin: 0;
+    border-radius: 2px;
+}
+.timeline>li>.fa, .timeline>li>.glyphicon, .timeline>li>.ion {
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+    line-height: 30px;
+    position: absolute;
+    color: #666;
+    background: #d2d6de;
+    border-radius: 50%;
+    text-align: center;
+    left: 18px;
+    top: 0;
+}
+.subject-body:hover {
+  box-shadow: 3px 6px 3px #adadad;
+}
+.end_date_label {
+    background-color: #fb6e52 !important;
+    margin-left: 46px !important;
+}
+.end_date_label::before {
+    border: solid transparent;
+    border-right-color: #fb6e52 !important;
+    border-width: 6px;
+    content: ' ';
+    height: 0;
+    margin-top: -6px;
+    pointer-events: none;
+    position: absolute;
+    right: 100%;
+    top: 15px;
+    width: 0;
+}
+.img-cs{
+  width: 64px;
+  height: 64px;
+}
+.title .subject-status {
+  display: inline-block;
+  padding-top: 20px;
+  vertical-align: top;
+}
+.title .status {
+  border-radius: 30px;
+  color: #fff;
+  font-size: 18px;
+  margin-bottom: 2px;
+  padding: 5px 30px;
+}
+.title .init {
+  background: rgba(70, 212, 123, 0.62);
+}
+  .detail .info {
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.detail .border-right {
+    border-right: 1px solid #ddd;
+}
+.assignment-item {
+  box-shadow: 0 1px 1px 1px #dfdfdf;
+  &:hover {
+    box-shadow: 0 1px 1px 1px #8a8989;
+  }
+}
+.content-describe {
+  display: none;
+  background: #f9f9f9;
+  div {
+    word-wrap: break-word;
+  }
+}
+.table{
+    table-layout: fixed;
+}
+td{
+    word-wrap:break-word
+}
+
+/* Lien quan toi trang thai*/
+.init-background-color {
+    background-color: #6ad2eb !important;
+}
+.in_progress-background-color {
+    background-color: #f7be64 !important;
+}
+.finish-background-color {
+    background-color: #5cb50d !important;
+}
+.block-background-color {
+    background-color: #999 !important;
 }

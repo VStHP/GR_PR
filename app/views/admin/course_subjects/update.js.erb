@@ -1,0 +1,18 @@
+<% if @mes_success.present? %>
+  alertify.success('<%= @mes_success %>');
+  <% if @course_subject.in_progress? %>
+    $('#status_<%= @course_subject.id %>').html('<%= link_to admin_update_status_cs_path(course_id: @course.id, subject_id: @subject.id, status: "finish"), class: "btn btn-xs btn-success", remote: true do %><i class="fa fa-check"></i> Kết thúc<% end %>');
+    $('#bg-stt-<%= @course_subject.id %>').removeClass('init-background-color');
+    $('#bg-stt-<%= @course_subject.id %>').addClass('in_progress-background-color');
+    $('.start_<%= @course_subject.id %>').show();
+    $('.start_<%= @course_subject.id %>').text('<%= @course_subject.date_start.to_date %>');
+  <% elsif @course_subject.finish? %>
+    $('#status_<%= @course_subject.id %>').hide();
+    $('#bg-stt-<%= @course_subject.id %>').removeClass('in_progress-background-color');
+    $('#bg-stt-<%= @course_subject.id %>').addClass('finish-background-color');
+    $('.end_<%= @course_subject.id %>').show();
+    $('.end_<%= @course_subject.id %>').text('<%= @course_subject.date_end.to_date %>');
+  <% end %>
+<% else %>
+  alertify.error('<%= @mes_error %>');
+<% end %>

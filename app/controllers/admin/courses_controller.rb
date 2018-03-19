@@ -3,11 +3,13 @@ class Admin::CoursesController < ApplicationController
   before_action :set_course, only: %i(change_status)
 
   def new
-    @course = Course.new
     @trainers = User.filter_by "trainer"
+    @trainees = User.trainees
+    @subjects = Subject.all
   end
 
   def create
+    binding.pry
     @course = Course.new params_course
     if @course.save
       flash[:success] = "Tạo khóa học thành công! Bây giờ hãy thêm Môn học và tài khoản cho khóa học."
@@ -15,6 +17,8 @@ class Admin::CoursesController < ApplicationController
     else
       flash[:danger] = "CẢNH BÁO! Thất bại, hãy thử lại."
       @trainers = User.filter_by "trainer"
+      @trainees = User.trainees
+      @subjects = Subject.all
       render :new
     end
   end
@@ -45,6 +49,8 @@ class Admin::CoursesController < ApplicationController
 
   def edit
     @trainers = User.filter_by "trainer"
+    @trainees = User.filter_by "trainee"
+    @subjects = Subject.all
   end
 
   def update
@@ -58,6 +64,13 @@ class Admin::CoursesController < ApplicationController
     end
   end
 
+  def show
+    @course_subjects = @course.course_subjects
+    @subjects = @course.subjects
+    @trainers = @course.users.trainers
+    @trainees = @course.users.trainees
+  end
+
   private
 
   def set_course
@@ -68,8 +81,9 @@ class Admin::CoursesController < ApplicationController
   end
 
   def params_course
-    params.require(:course).permit :id, :name, :description, :user_id, :date_start,
-      :language, :banner, :avatar, :program
+    pr = params[:course].permit :id, :name, :description, :user_id, :date_start,
+      :language, :banner, :avatar, :program, links_attributes: [:id, :name, :link, :description,:course_id, :_destroy]
+    pr.merge subject_ids: params[:course][:subject_ids], user_ids: params[:course][:user_ids]
   end
 
   def do_change_status course, status

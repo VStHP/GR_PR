@@ -1,0 +1,17 @@
+<table class="table table-vcenter assignment-item">
+  <thead>
+    <tr class="active">
+      <th colspan="2"><%= task.name.capitalize %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= task.description %></td>
+      <td class="text-right">
+        <button class="btn btn-xs btn-danger open_y" data-toggle="tooltip" title=""
+          data-original-title="View video!" value="<%= task.youtube_url %>">
+          <i class="fa fa-caret-square-o-right"></i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>

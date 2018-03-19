@@ -21,6 +21,8 @@ class User < ApplicationRecord
   scope :filter_by, ->(type){where permission: type if type}
   scope :filter_by_active, -> {where status: "active"}
   scope :filter_by_block, -> {where status: "block"}
+  scope :trainers, -> {where permission: "trainer"}
+  scope :trainees,-> {where permission: "trainee"}
   enum permission: [:trainee, :trainer, :admin]
   enum gender: [:male, :female]
   enum status: [:active, :block]

@@ -4,8 +4,8 @@
   <td><%= link_to course.name, admin_course_path(course) %></td>
   <td><%= course.program %></td>
   <td><%= course.language %></td>
-  <td><%= course.date_start %></td>
-  <td><%= course.date_end %></td>
+  <td><%= course.date_start.to_date %></td>
+  <td><%= course.date_end.to_date if course.date_end? %></td>
   <td class="status_banner">
     <span class="label label-<%= @color %>"><%= t "courses.status.#{course.status}" %></span>
   </td>
