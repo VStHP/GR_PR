@@ -9,8 +9,8 @@
       id="bg-stt-<%= course_subject.id %>">
       <%= t "course_subjects.status.#{course_subject.status}" %>
     </div>
-    <div class="div-status" title="Init">
-      <em class="status status-init"></em>
+    <div class="div-status em-stt<%= course_subject.id %>" title="<%= t "course_subjects.status.#{course_subject.status}" %>">
+      <em class="status status-<%= course_subject.status %>"></em>
     </div>
     <div class="subject-body clearfix">
       <div class="subject-image">

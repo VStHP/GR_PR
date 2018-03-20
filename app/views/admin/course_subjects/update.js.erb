@@ -6,12 +6,16 @@
     $('#bg-stt-<%= @course_subject.id %>').addClass('in_progress-background-color');
     $('.start_<%= @course_subject.id %>').show();
     $('.start_<%= @course_subject.id %>').text('<%= @course_subject.date_start.to_date %>');
+    $('.em-stt<%= @course_subject.id %>').html('<em class="status status-in_progress"></em>');
+    $('.em-stt<%= @course_subject.id %>').prop('title', '<%= t "course_subjects.status.#{@course_subject.status}" %>');
   <% elsif @course_subject.finish? %>
     $('#status_<%= @course_subject.id %>').hide();
     $('#bg-stt-<%= @course_subject.id %>').removeClass('in_progress-background-color');
     $('#bg-stt-<%= @course_subject.id %>').addClass('finish-background-color');
     $('.end_<%= @course_subject.id %>').show();
     $('.end_<%= @course_subject.id %>').text('<%= @course_subject.date_end.to_date %>');
+    $('.em-stt<%= @course_subject.id %>').html('<em class="status status-finish"></em>');
+    $('.em-stt<%= @course_subject.id %>').prop('title', '<%= t "course_subjects.status.#{@course_subject.status}" %>');
   <% end %>
 <% else %>
   alertify.error('<%= @mes_error %>');

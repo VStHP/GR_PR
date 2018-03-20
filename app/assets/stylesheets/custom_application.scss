@@ -254,7 +254,7 @@ img {
     overflow: hidden;
 }
 .start_date_label {
-    background-color: #04b404 !important;
+    background-color: #6ad2eb !important;
     font-size: 100% !important;
 }
 .timeline-label {
@@ -310,8 +310,20 @@ img {
     width: 15px;
 }
 .div-status .status-init {
-    background-color: #58fa82;
-    border: 3px solid #04b404;
+    background-color: #6ad2eb;
+    border: 3px solid #00aed8;
+}
+.div-status .status-in_progress {
+    background-color: #f7df64;
+    border: 3px solid #e6ab04;
+}
+.div-status .status-finish {
+    background-color: #83e42d;
+    border: 3px solid #5cb50d;
+}
+.div-status .status-block {
+    background-color: #dcdcdc;
+    border: 3px solid #a5a5a5;
 }
 .div-status .status {
     border-radius: 100%;
