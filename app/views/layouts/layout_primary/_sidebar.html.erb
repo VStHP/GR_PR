@@ -20,9 +20,8 @@
         </div>
         <div class="sidebar-user-name"><%= current_user.name if user_signed_in? %></div>
         <div class="sidebar-user-links">
-          <a href="page_ready_user_profile.html" data-toggle="tooltip" data-placement="bottom" title="Profile">
-            <i class="gi gi-user"></i>
-          </a>
+          <%= link_to profiles_path(id: current_user.id), title: "Profile", data: {toggle: "tooltip",
+            placement: "bottom"} do %><i class="gi gi-user"></i><% end %>
           <a href="page_ready_inbox.html" data-toggle="tooltip" data-placement="bottom" title="Messages">
             <i class="gi gi-envelope"></i>
           </a>
@@ -100,46 +99,36 @@
           <% end %>
         </li>
         <li>
-          <a href="#" class="sidebar-nav-menu">
-            <i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
-            <i class="gi gi-brush sidebar-nav-icon"></i>
-            <span class="sidebar-nav-mini-hide">Form Pages</span>
-          </a>
-          <ul>
+          <%= link_to trainer_courses_path do %>
+            <i class="gi gi-leaf sidebar-nav-icon"></i>
+            <span class="sidebar-nav-mini-hide">Khóa học</span>
+          <% end %>
+        </li>
+        <% if can? :read, User %>
+          <% if can? :manage, User %>
             <li>
-              <a href="#" class="sidebar-nav-submenu">
-                <i class="fa fa-angle-left sidebar-nav-indicator"></i>Courses
+              <a href="#" class="sidebar-nav-menu">
+                <i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+                <i class="gi gi-brush sidebar-nav-icon"></i>
+                <span class="sidebar-nav-mini-hide">Quản lý tài khoản</span>
               </a>
               <ul>
                 <li>
-                  <%= link_to "NEW", form_course_path %>
+                  <%= link_to "Danh sách tài khoản", admin_users_path %>
                 </li>
                 <li>
-                  <%= link_to "EDIT", form_course_edit_path %>
+                  <%= link_to "Tạo tài khoản", new_admin_user_path %>
                 </li>
               </ul>
             </li>
+           <% else %>
             <li>
-              <a href="page_ready_search_results.html">Search Results (4)</a>
+              <%= link_to trainer_users_path do %>
+                  <i class="gi gi-leaf sidebar-nav-icon"></i>
+                <span class="sidebar-nav-mini-hide">Danh sách tài khoản</span>
+              <% end %>
             </li>
-          </ul>
-        </li>
-        <% if can? :manage, User %>
-          <li>
-            <a href="#" class="sidebar-nav-menu">
-              <i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
-              <i class="gi gi-brush sidebar-nav-icon"></i>
-              <span class="sidebar-nav-mini-hide">Quản lý tài khoản</span>
-            </a>
-            <ul>
-              <li>
-                <%= link_to "Danh sách tài khoản", admin_users_path %>
-              </li>
-              <li>
-                <%= link_to "Tạo tài khoản", new_admin_user_path %>
-              </li>
-            </ul>
-          </li>
+           <% end %>
         <% end %>
         <% if can? :manage, Course %>
           <li>

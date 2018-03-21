@@ -59,7 +59,7 @@ class Admin::SubjectsController < ApplicationController
   end
 
   def params_subject
-    params.require(:subject).permit( :id, :name, :description, :day_on_learn,
+    params.require(:subject).permit( :id, :name, :description, :day_on_learn, :avatar,
       links_attributes: [:id, :name, :link, :description,:subject_id, :_destroy],
       tasks_attributes: [:id, :name, :description, :subject_id, :_destroy, :youtube_url])
   end

@@ -1,0 +1,45 @@
+<div class="content-header">
+  <div class="header-section">
+    <h1>
+      <i class="fa fa-table"></i>Datatables
+      <br>
+        <small>HTML tables can become fully dynamic with cool features!</small>
+    </h1>
+  </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+  <li>Tables</li>
+  <li><a href="">Datatables</a></li>
+</ul>
+<div class="block full">
+  <div class="block-title" id="btn-filter-container">
+    <h2><strong>Tài Khoản</strong></h2>
+    <%= link_to "Hướng dẫn", trainer_users_path,class: "btn-filter  active", remote: true %>
+    <%= link_to "Thực tập sinh", trainer_users_path(type: "trainee"),class: "btn-filter", remote: true %>
+    <%= link_to "Đã khóa", trainer_users_path(type: "block"),class: "btn-filter", remote: true %>
+  </div>
+  <div class="table-responsive" id="table-content">
+    <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+      <thead>
+        <tr>
+          <th class="text-center">ID</th>
+          <th class="text-center">
+            <i class="gi gi-user"></i>
+          </th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Program</th>
+          <th>Join Date</th>
+          <th>Permission</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: "user", collection: @users, as: :user %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script>
+  $(function(){ TablesUsers.init(); });
+  $(function(){ btnFilterClick.init(); });
+</script>

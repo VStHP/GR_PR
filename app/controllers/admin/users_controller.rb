@@ -54,14 +54,6 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  def change_avatar
-    if @user.update_attributes avatar_params
-      @mes_success = "Update avatar successfully!"
-    else
-      @mes_danger = "Update avatar failed!"
-    end
-  end
-
   def export
     if params[:type] == "all"
       @users = User.all
@@ -92,10 +84,6 @@ class Admin::UsersController < ApplicationController
   def user_params
     params.require(:user).permit :name, :email, :password, :password_confirmation, :permission,
       :gender, :birthday, :phone, :university, :program
-  end
-
-  def avatar_params
-    params.require(:user).permit :avatar
   end
 
   def set_password_default

@@ -1,9 +1,12 @@
 <% define_color_status_subject subject %>
 <tr class="<%= @color %> row_subject_<%= subject.id %>">
   <td class="text-center"><%= subject.id %></td>
+  <td class="text-center">
+    <%= image_tag subject.avatar.url, class: "image_tag",
+      style: "width: 64px; hight: 64px; border-radius: 32px;" %>
+  </td>
   <td><%= link_to subject.name, admin_subject_path(subject) %></td>
   <td><%= subject.day_on_learn %></td>
-  <td><%= subject.description %></td>
   <td><%= subject.tasks.count %></td>
   <td class="status_banner">
     <span class="label label-<%= @class %> " style="text-transform: capitalize;"><%= t "subjects.status.#{subject.status}" %></span>

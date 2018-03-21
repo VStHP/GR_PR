@@ -23,5 +23,25 @@ module Admin::CourseSubjectsHelper
       @icon_status = "fa fa-check"
       @text = " Kết thúc"
     end
+    if current_user.admin?
+      @link = admin_update_status_cs_path(course_id: params[:id], subject_id: @subject.id)
+    elsif current_user.trainer?
+      @link = trainer_course_subject_path(course_id: params[:id], subject_id: @subject.id)
+    else
+      @link = course_subject_path(course_id: params[:id], subject_id: @subject.id)
+    end
+  end
+
+  def define_more_show_course_subject cs, subject, course
+    if current_user.admin?
+      @link_to_edit_subject = edit_admin_subject_path(subject)
+      @link_to_course = admin_course_path(course)
+    elsif current_user.trainer?
+      @link_to_edit_subject = edit_admin_subject_path(subject)
+      @link_to_course = course_path(course)
+    else
+      @link_to_edit_subject =edit_admin_subject_path(subject)
+      @link_to_course = mycourse_path(course)
+    end
   end
 end

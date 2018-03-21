@@ -18,6 +18,6 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-every :day, at: "6:00am" do
+every :day, at: ["6:00am", "12:00pm", "6:00pm"] do
   rake "cron_active_course"
 end

@@ -18,7 +18,7 @@
           <%= image_tag @course.banner.url, class: "widget-background ", alt: "background" %>
 
           <h3 class="widget-content widget-content-image widget-content-light">
-            <%= link_to @course.name.capitalize, admin_courses_path(@course) %><br>
+            <%= link_to @course.name.capitalize, "#", class: "main-title" %><br>
             <small><%= @course.program.capitalize %></small>
           </h3>
         </div>
@@ -54,15 +54,15 @@
         <h2><strong>Khóa học</strong> Thông tin</h2>
       </div>
       <div class="block-section">
-        <table class="table table-borderless table-striped table-vcenter">
+        <table class="table table-borderless table-striped table-vcenter table-fixed">
           <tbody>
             <tr>
               <% @owner = User.find(@course.user_id) %>
               <td class="text-right" style="width: 30%;">
-                <%= image_tag @owner.avatar.url, class: "img-circle" %>
+                <%= image_tag @owner.avatar.url, class: "img-circle", style: "width: 64px; height: 64px;" %>
               </td>
               <td>
-                <%= link_to admin_users_path(@owner) do %>
+                <%= link_to profiles_path(@owner) do %>
                   <strong><%= @owner.name %></strong>
                 <% end %><br><em>Chủ nhiệm khóa học</em></td>
             </tr>

@@ -81,6 +81,19 @@ $(document).ready(function(){
 
     reader.readAsDataURL(selectedFile);
   });
+  $('#avatarSubject').on('change',function(){
+    var selectedFile = event.target.files[0];
+    var reader = new FileReader();
+
+    var imgtag = document.getElementById('avatar_image_subject');
+    imgtag.title = selectedFile.name;
+
+    reader.onload = function(event) {
+      imgtag.src = event.target.result;
+    };
+
+    reader.readAsDataURL(selectedFile);
+  });
 });
 
 $(document).on('click', '.show-trainer', function(){

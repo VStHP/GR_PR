@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_many :courses
   has_many :course_users
+  has_many :courses_join, through: :course_users, source: 'course'
+  has_many :course_subjects, through: :courses
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: {maximum: 250},

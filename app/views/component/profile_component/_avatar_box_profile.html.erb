@@ -3,22 +3,24 @@
     <div class="box-body box-profile">
       <div class="avatar-container clearfix">
         <%= show_avatar_for @user %>
-        <div class="upload-btn-overlay clearfix">
-          <div class="row">
-            <div class="col-md-12">
-              <%= form_for @user, url: admin_change_avatar_path(@user.id), method: :patch,
-                html: {class: "avt_form"}, remote: true do |f| %>
-                <%= f.file_field :avatar, id: "avatarUser", class: "form-control" %>
-                <%= f.submit "Save", class: "btn btn-primary" %>
-              <% end %>
+        <% if can? :update, @user %>
+          <div class="upload-btn-overlay clearfix">
+            <div class="row">
+              <div class="col-md-12">
+                <%= form_for @user, url: change_avatar_path(@user.id), method: :patch,
+                  html: {class: "avt_form"}, remote: true do |f| %>
+                  <%= f.file_field :avatar, id: "avatarUser", class: "form-control" %>
+                  <%= f.submit "Save", class: "btn btn-primary" %>
+                <% end %>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
       </div>
       <h3 class="profile-username text-center"><%= @user.name %></h3>
       <p class="text-muted text-center">
-        <b>Email </b><%= @user.email %><br>
-        <b>Phone </b><%= @user.phone %><br>
+        <b>Email </b><br><%= @user.email %><br>
+        <b>Phone </b><br><%= @user.phone %><br>
       </p>
     </div>
   </div>

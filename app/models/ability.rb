@@ -8,7 +8,7 @@ class Ability
       when "admin"
         permission_admin
       when "trainer"
-        permission_trainer
+        permission_trainer user
       else
         permission_user user
       end
@@ -21,15 +21,21 @@ class Ability
     can :manage, :all
   end
 
-  def permission_trainer
-    can :manage, %i(subject task)
-    can :show, User
-    can :update, User, id: user.id
+  def permission_trainer user
+    can :manage, [ Subject, Task, Link ]
+    can :read, User
+    can :read, Course, id: user.courses_join.pluck(:id)
+    can [:update, :read], Course, user_id: user.id
+    can :read, CourseSubject, course_id: user.courses_join.pluck(:id)
+    can :manage, CourseSubject, course_id: user.courses.pluck(:id)
+    can %i(update change_avatar), user
   end
 
   def permission_user user
     can :show, User
-    can :update, User, id: user.id
+    can %i(update change_avatar), user
+    can :read, Course, id: user.courses_join.pluck(:id)
+    can :read, CourseSubject, course_id: user.courses_join.pluck(:id)
   end
   # def undefine_user
   #   can :create, Apply

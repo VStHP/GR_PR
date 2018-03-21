@@ -1,5 +1,6 @@
 class Admin::CoursesController < ApplicationController
   load_and_authorize_resource param_method: :params_course
+  before_action :allow_admin, only: :index
   before_action :set_course, only: %i(change_status)
 
   def new

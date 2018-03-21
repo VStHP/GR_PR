@@ -18,7 +18,7 @@
       </div>
       <div class="infor">
         <div>
-          <%= link_to admin_show_subject_course_path(course_id: @course.id, subject_id: @subject.id) do %>
+          <%= link_to @link do %>
             <span class="subject-name"><%= @subject.name %></span>
           <% end %>
           <br>
@@ -27,13 +27,15 @@
         <div class="td-subject-description">
           <%= @subject.description %>
           <hr>
-          <div id="status_<%= course_subject.id %>">
-            <% unless course_subject.finish? %>
-              <%= link_to admin_update_status_cs_path(course_id: params[:id],
-              subject_id: @subject.id, status: @next_status), class: @class_status, remote: true do %>
-              <i class="<%= @icon_status %>"></i><%= @text %><% end %>
-            <% end %>
-          </div>
+          <% if can? :manage, course_subject %>
+            <div id="status_<%= course_subject.id %>">
+              <% unless course_subject.finish? %>
+                <%= link_to admin_update_status_cs_path(course_id: params[:id],
+                subject_id: @subject.id, status: @next_status), class: @class_status, remote: true do %>
+                <i class="<%= @icon_status %>"></i><%= @text %><% end %>
+              <% end %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>

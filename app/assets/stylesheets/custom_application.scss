@@ -351,7 +351,6 @@ img {
 .col-list-subjects .subject-image img {
     height: 100%;
     width: 100%;
-    border-radius: 50%;
 }
 .col-list-subjects .infor {
     float: right;
@@ -363,7 +362,7 @@ img {
   font-size: 20px;
   font-weight: 300;
   margin: 4px 0;
-  margin-right: 40px;
+  margin-right: 75px;
 }
 .td-subject-description {
     color: #404040;
@@ -460,13 +459,22 @@ img {
     word-wrap: break-word;
   }
 }
-.table{
-    table-layout: fixed;
-}
+
 td{
     word-wrap:break-word
 }
-
+.table-fixed{
+    table-layout: fixed;
+}
+.course-block-info {
+  background: #eee;
+}
+.widget-content .main-title {
+  font-weight: 600;
+}
+.widget-main small {
+  color: #0048a7;
+}
 /* Lien quan toi trang thai*/
 .init-background-color {
     background-color: #6ad2eb !important;

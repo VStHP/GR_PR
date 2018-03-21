@@ -1,6 +1,6 @@
 <tr>
   <td>
-    <%= link_to user.name, admin_profiles_path(id: user.id) %>
+    <%= link_to user.name, profiles_path(id: user.id) %>
   </td>
   <td class="text-center" style="width: 72px;">
     <%= image_tag user.avatar.url, class: "img-member img-circle img-responsive" %>

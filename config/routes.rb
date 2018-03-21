@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+
   authenticated :user do
     root "test_templatee2#home"
   end
@@ -10,13 +12,12 @@ Rails.application.routes.draw do
     delete "/logout", to: "devises/sessions#destroy", as: :destroy_user_session
     get "/users/edit", to: "devise/registrations#edit", as: :edit_user_registration
     put "/users", to: "devise/registrations#update", as: :user_registration
-
+    get "profiles/:id", to: "users#show", as: :profiles
+    patch  "user/avatar/:id", to: "users#change_avatar", as: :change_avatar
   end
   namespace :admin do
     as :user do
-      get "profiles/:id", to: "users#show", as: :profiles
       patch "user/status/:id", to: "users#change_status_user", as: :change_status_user
-      patch  "user/avatar/:id", to: "users#change_avatar", as: :change_avatar
       get "users/export/:type", to: "users#export", as: :user_export
       post "users/import", to: "users#import", as: :user_import
     end
@@ -30,6 +31,14 @@ Rails.application.routes.draw do
     get "course/:course_id/subject/:subject_id/:status", to: "course_subjects#update", as: :update_status_cs
     resources :course_users
   end
+
+  namespace :trainer do
+    resources :users, only: :index
+    resources :courses, only: :index
+  end
+
+  get "course/:id", to: "admin/courses#show", as: :course
+  get "course/:course_id/subject/:subject_id", to: "admin/course_subjects#show", as: :trainer_course_subject
 
   get "/about", to: "test_templatee2#about", as: "about"
   get "/form/course", to: "test_templatee2#form_course", as: "form_course"

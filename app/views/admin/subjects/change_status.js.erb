@@ -6,7 +6,7 @@
     $('.row_subject_<%= @subject.id %>').addClass('danger');
     alertify.log('<%= @mes_success %>');
   <% else %>
-    $('.row_subject_<%= @subject.id %>').removeClass('danger').addClass('info');
+    $('.row_subject_<%= @subject.id %>').removeClass('danger');
     alertify.success('<%= @mes_success %>');
   <% end %>
 <% elsif @mes_danger %>

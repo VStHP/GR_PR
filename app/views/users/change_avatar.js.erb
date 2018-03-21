@@ -1,0 +1,9 @@
+<% if @mes_success.present? %>
+  alertify.success('<%= @mes_success %>');
+  <% if current_user_here? @user %>
+    $('#avatar_sidebar').html('<%= j image_tag @user.avatar.url %>');
+    $('#avatar_header').html('<%= j image_tag @user.avatar.url %><i class="fa fa-angle-down"></i>');
+  <% end %>
+<% else %>
+  alertify.error('<%= @mes_danger %>');
+<% end %>
