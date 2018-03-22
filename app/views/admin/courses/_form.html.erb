@@ -184,7 +184,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="col-md-3 control-label" for="course_subject_subject_id">Subjects </label>
+      <label class="col-md-3 control-label" for="course_subject_subject_id">Trainees </label>
       <div class="col-md-9">
         <%= select_tag "course[user_ids][]",
           options_from_collection_for_select( @trainees, :id, :name, @course.users.trainees.ids ),

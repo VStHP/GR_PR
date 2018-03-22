@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180319035126) do
+ActiveRecord::Schema.define(version: 20180321153800) do
 
   create_table "course_subjects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "course_id"
@@ -23,6 +23,19 @@ ActiveRecord::Schema.define(version: 20180319035126) do
     t.index ["course_id", "subject_id"], name: "index_course_subjects_on_course_id_and_subject_id", unique: true
     t.index ["course_id"], name: "index_course_subjects_on_course_id"
     t.index ["subject_id"], name: "index_course_subjects_on_subject_id"
+  end
+
+  create_table "course_user_tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "course_user_id"
+    t.bigint "task_id"
+    t.integer "status", default: 0
+    t.datetime "date_start"
+    t.datetime "date_end"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_user_id", "task_id"], name: "index_course_user_tasks_on_course_user_id_and_task_id", unique: true
+    t.index ["course_user_id"], name: "index_course_user_tasks_on_course_user_id"
+    t.index ["task_id"], name: "index_course_user_tasks_on_task_id"
   end
 
   create_table "course_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -114,6 +127,8 @@ ActiveRecord::Schema.define(version: 20180319035126) do
 
   add_foreign_key "course_subjects", "courses"
   add_foreign_key "course_subjects", "subjects"
+  add_foreign_key "course_user_tasks", "course_users", on_delete: :cascade
+  add_foreign_key "course_user_tasks", "tasks", on_delete: :cascade
   add_foreign_key "course_users", "courses"
   add_foreign_key "course_users", "users"
   add_foreign_key "courses", "users"

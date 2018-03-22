@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
-
   authenticated :user do
-    root "test_templatee2#home"
+    root "main#index"
   end
   root "introduce#index"
   devise_for :users, skip: %i(sessions registrations), controllers: {passwords: "devises/passwords"}
@@ -39,6 +38,10 @@ Rails.application.routes.draw do
 
   get "course/:id", to: "admin/courses#show", as: :course
   get "course/:course_id/subject/:subject_id", to: "admin/course_subjects#show", as: :trainer_course_subject
+
+  get "mycourses", to: "trainee/courses#index", as: :mycourses
+  get "mycourse/:id", to: "admin/courses#show", as: :mycourse
+  get "mycourse/:course_id/subject/:subject_id", to: "admin/course_subjects#show", as: :course_subject
 
   get "/about", to: "test_templatee2#about", as: "about"
   get "/form/course", to: "test_templatee2#form_course", as: "form_course"

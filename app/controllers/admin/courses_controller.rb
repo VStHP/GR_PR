@@ -2,6 +2,8 @@ class Admin::CoursesController < ApplicationController
   load_and_authorize_resource param_method: :params_course
   before_action :allow_admin, only: :index
   before_action :set_course, only: %i(change_status)
+  after_action :add_course_user_task, only: :create
+  after_action :modify_course_user_task, only: :update
 
   def new
     @trainers = User.filter_by "trainer"
@@ -10,11 +12,9 @@ class Admin::CoursesController < ApplicationController
   end
 
   def create
-    binding.pry
-    @course = Course.new params_course
     if @course.save
-      flash[:success] = "Tạo khóa học thành công! Bây giờ hãy thêm Môn học và tài khoản cho khóa học."
-      redirect_to edit_admin_course_path @course.id
+      flash[:success] = "Tạo khóa học thành công!"
+      redirect_to admin_course_path @course
     else
       flash[:danger] = "CẢNH BÁO! Thất bại, hãy thử lại."
       @trainers = User.filter_by "trainer"
@@ -96,6 +96,50 @@ class Admin::CoursesController < ApplicationController
       end
     else
       @mes_danger = "CẢNH BÁO! Không thể thay đổi trạng thái khóa học"
+    end
+  end
+
+  def add_course_user_task
+    @course.course_users.each do |course_user|
+      Task.in_subject_ids(params[:course][:subject_ids]).each do |task|
+        course_user.course_user_tasks.create task_id: task.id
+      end
+    end
+  end
+
+  def modify_course_user_task
+    @subject_ids_new = @course.subject_ids
+    if @course.course_subjects.present?
+      @subject_ids_old = @course.course_users.first.tasks.pluck(:subject_id)
+    else
+      @subject_ids_old = []
+    end
+    if (@subject_ids_new-@subject_ids_old).present?
+      (@subject_ids_new-@subject_ids_old).each do |subject_id|
+        Subject.find(subject_id).tasks.each do |task|
+          @course.course_users.each do |cu|
+            cu.course_user_tasks.create! task_id: task.id
+          end
+        end
+      end
+    end
+    if (@subject_ids_old-@subject_ids_new).present?
+      (@subject_ids_old-@subject_ids_new).each do |subject_id|
+        Subject.find(subject_id).tasks.each do |task|
+          task.course_user_tasks.delete_all
+        end
+      end
+    end
+    @course.course_users.each do |cu|
+      if cu.id_previously_changed?
+        if (@subject_ids_old&@subject_ids_new).present?
+          (@subject_ids_old&@subject_ids_new).each do |subject_id|
+            Subject.find(subject_id).tasks.each do |task|
+              cu.course_user_tasks.create! task_id: task.id
+            end
+          end
+        end
+      end
     end
   end
 end

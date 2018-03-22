@@ -24,7 +24,7 @@ module Admin::CourseSubjectsHelper
       @text = " Kết thúc"
     end
     if current_user.admin?
-      @link = admin_update_status_cs_path(course_id: params[:id], subject_id: @subject.id)
+      @link = admin_show_subject_course_path(course_id: params[:id], subject_id: @subject.id)
     elsif current_user.trainer?
       @link = trainer_course_subject_path(course_id: params[:id], subject_id: @subject.id)
     else

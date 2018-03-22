@@ -1,0 +1,49 @@
+<div class="col-md-4">
+  <div class="widget">
+    <div class="widget-advanced widget-advanced-alt">
+      <div class="widget-header text-left">
+        <!-- For best results use an image with at least 150 pixels in height (with the width relative to how big your widget will be!) - Here I'm using a 1000x150 pixels image -->
+        <%= image_tag course.banner.url, class: "widget-background", alt: "background" %>
+        <h4 class="widget-content widget-content-image widget-content-light clearfix">
+          <%= link_to mycourse_path(course), class: "pull-right" do %>
+            <%= image_tag  course.avatar.url, class: "widget-image img-circle", alt: "avatar" %>
+          <% end %>
+          <%= link_to course.name.titleize, mycourse_path(course), class: "themed-color-default main-title" %>
+          <br>
+          <small><%= course.program.capitalize %></small>
+        </h4>
+      </div>
+      <div class="widget-main course-block-info">
+        <div class="row text-center animation-fadeIn">
+          <div class="col-xs-4">
+            <h3>
+              <a href="javascript:void(0)" class="themed-color-default">
+                <strong><%= course.subjects.length %></strong>
+              </a>
+              <br>
+                <small>Môn học</small>
+            </h3>
+          </div>
+          <div class="col-xs-4">
+            <h3>
+              <a href="javascript:void(0)" class="themed-color-default">
+                <strong><%= course.users.trainers.length %></strong>
+              </a>
+              <br>
+                <small>Hướng dẫn</small>
+            </h3>
+          </div>
+          <div class="col-xs-4">
+            <h3>
+              <a href="javascript:void(0)" class="themed-color-default">
+                <strong><%= course.users.trainees.length %></strong>
+              </a>
+              <br>
+                <small>Thực tập sinh</small>
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

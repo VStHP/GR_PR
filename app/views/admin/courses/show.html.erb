@@ -45,12 +45,14 @@
   <div class="col-md-4">
     <div class="block">
       <div class="block-title">
-        <div class="block-options pull-right">
-          <%= link_to edit_admin_course_path(@course), class: "btn btn-alt btn-sm btn-default",
-            data: {toggle: "tooltip"}, title: "Cài đặt!" do %>
-            <i class="fa fa-cog"></i>
-          <% end %>
-        </div>
+        <% if can? :update, @course %>
+          <div class="block-options pull-right">
+            <%= link_to edit_admin_course_path(@course), class: "btn btn-alt btn-sm btn-default",
+              data: {toggle: "tooltip"}, title: "Cài đặt!" do %>
+              <i class="fa fa-cog"></i>
+            <% end %>
+          </div>
+        <% end %>
         <h2><strong>Khóa học</strong> Thông tin</h2>
       </div>
       <div class="block-section">

@@ -57,13 +57,13 @@
 
 #Course database
   Course.create! id: "RB-B1-2018", name: "Thực tập lập trình Ruby on Rails khóa 1 - 2018", program: "Phát triển website",
-    language: "Ruby", date_start: "20/3/2018", user_id: User.filter_by("trainer").sample.id
+    language: "Ruby", date_start: Faker::Date.forward(90), user_id: User.filter_by("trainer").sample.id
   Course.create! id: "PHP-B2-2018", name: "Thực tập lập trình Laravel khóa 2 - 2018", program: "Phát triển website",
-    language: "PHP", date_start: "20/5/2018", user_id: User.filter_by("trainer").sample.id
+    language: "PHP", date_start: Faker::Date.forward(90), user_id: User.filter_by("trainer").sample.id
   Course.create! id: "ANDROID-B3-2018", name: "Thực tập lập trình Android khóa 3 - 2018", program: "Phát triển ứng dụng di động",
-    language: "Android", date_start: "20/7/2018", user_id: User.filter_by("trainer").sample.id
+    language: "Android", date_start: Faker::Date.forward(90), user_id: User.filter_by("trainer").sample.id
   Course.create! id: "RB-B4-2018", name: "Thực tập lập trình Ruby on Rails khóa 4 - 2018", program: "Phát triển website",
-    language: "Ruby", date_start: "20/8/2018", user_id: User.filter_by("trainer").sample.id
+    language: "Ruby", date_start: Faker::Date.forward(90), user_id: User.filter_by("trainer").sample.id
 
 #Subejct database
   Subject.create! id: "GIT-BASE", name: "Sử dụng Git cơ bản trong công việc", day_on_learn: 4, description: "Some detail about git and github"

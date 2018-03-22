@@ -10,11 +10,6 @@
   <li><a href="">Datatables</a></li>
 </ul>
 <div class="block full">
-  <div class="block-title" id="btn-filter-container">
-    <h2><strong>Tài Khoản</strong></h2>
-    <%= link_to "Của tôi", trainer_courses_path,class: "btn-filter active", remote: true %>
-    <%= link_to "Tham gia", trainer_courses_path(type: "join"),class: "btn-filter ", remote: true %>
-  </div>
   <div class="row" id="course-content">
     <%= render @courses %>
   </div>

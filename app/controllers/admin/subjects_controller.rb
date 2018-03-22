@@ -1,5 +1,6 @@
 class Admin::SubjectsController < ApplicationController
   load_and_authorize_resource param_method: :params_subject
+  after_action :add_course_user_task, only: :update
   def index
     if params[:type]
       @subjects = Subject.filter_block
@@ -73,6 +74,16 @@ class Admin::SubjectsController < ApplicationController
       end
     else
       @mes_danger = "CẢNH BÁO! Không thể thay đổi trạng thái khóa học"
+    end
+  end
+
+  def add_course_user_task
+    @subject.tasks.each do |task|
+      if task.id_previously_changed?
+        @subject.course_users.each do |cu|
+          cu.course_user_tasks.create! task_id: task.id
+        end
+      end
     end
   end
 end

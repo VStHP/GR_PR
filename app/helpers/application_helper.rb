@@ -8,13 +8,15 @@ module ApplicationHelper
     "has-error" if object.errors.messages[name_attribute].present?
   end
 
-  # def define_more_link_sidebar
-  #   if current_user.admin?
+  def define_more_link_sidebar
+    if current_user.trainer?
+      @link_courses = trainer_courses_path
   #     @link_to_subjects = admin_subjects_path
   #     @link_to_new_subject = new_admin_subject_path
-  #   else
+    else
+      @link_courses = mycourses_path
   #     @link_to_subjects = trainer_subjects_path
   #     @link_to_new_subject = new_trainer_subject_path
-  #   end
-  # end
+    end
+  end
 end

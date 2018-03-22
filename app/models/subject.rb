@@ -3,6 +3,7 @@ class Subject < ApplicationRecord
   has_many :links
   has_many :course_subjects
   has_many :courses, through: :course_subjects
+  has_many :course_users, through: :courses
 
   validates :id, length: {minimum: 4, maximum: 10}, presence: true, uniqueness: {case_sensitive: false}
   validates :name, length: {maximum: 250}, presence: true, uniqueness: {case_sensitive: false}
