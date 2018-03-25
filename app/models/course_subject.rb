@@ -5,7 +5,7 @@ class CourseSubject < ApplicationRecord
   validates :course_id, uniqueness: { scope: :subject_id }
 
   scope :in_progress, -> {where status: "in_progress"}
-  default_scope ->{order(date_start: :desc)}
+  default_scope ->{order(date_start: :asc)}
 
   enum status: [:init, :in_progress, :finish, :block]
 end

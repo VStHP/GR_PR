@@ -18,6 +18,7 @@ class Ability
   private
 
   def permission_admin
+    cannot [:read, :update], CourseUserTask
     can :manage, :all
   end
 
@@ -36,6 +37,7 @@ class Ability
     can %i(update change_avatar), user
     can :read, Course, id: user.courses_join.pluck(:id)
     can :read, CourseSubject, course_id: user.courses_join.pluck(:id)
+    can :update, CourseUserTask, id: user.course_user_tasks.pluck(:id)
   end
   # def undefine_user
   #   can :create, Apply

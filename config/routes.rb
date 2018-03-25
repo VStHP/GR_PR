@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   get "mycourses", to: "trainee/courses#index", as: :mycourses
   get "mycourse/:id", to: "admin/courses#show", as: :mycourse
   get "mycourse/:course_id/subject/:subject_id", to: "admin/course_subjects#show", as: :course_subject
+  get "report/progress/:id/:status", to: "trainee/course_user_tasks#update", as: :report_progress
 
   get "/about", to: "test_templatee2#about", as: "about"
   get "/form/course", to: "test_templatee2#form_course", as: "form_course"

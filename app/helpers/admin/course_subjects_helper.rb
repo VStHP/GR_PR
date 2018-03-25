@@ -43,5 +43,23 @@ module Admin::CourseSubjectsHelper
       @link_to_edit_subject =edit_admin_subject_path(subject)
       @link_to_course = mycourse_path(course)
     end
+    define_data_chart subject, course
+  end
+
+  def define_data_chart subject, course
+    @data = course.course_user_tasks.of_task_ids(subject.task_ids).finish.chart_data
+    course_users = course.course_users.trainees
+    course_users.each do |course_user|
+      exist = :false
+      @data.each do |x|
+        if course_user.id == x[0]
+          x[0] = course_user.user.name.upcase
+          exist = :true
+        end
+      end
+      if exist == :false
+        @data << [course_user.user.name.upcase, 0]
+      end
+    end
   end
 end

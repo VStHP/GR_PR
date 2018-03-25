@@ -20,7 +20,7 @@
               <tr class="info">
                 <td>Mô tả &amp; Tài liệu liên quan</td>
                 <td class="text-right">
-                  <a href="javascript:void(0)" class="btn btn-xs btn-default show-describe">Show More..</a>
+                  <a href="javascript:void(0)" class="btn btn-xs btn-default show-describe">Xem thêm..</a>
                 </td>
               </tr>
             </thead>
@@ -44,70 +44,19 @@
             </tbody>
           </table>
           <hr>
-          <table class="table table-vcenter assignment-item">
-            <thead>
-              <tr class="active">
-                <th>Git and command</th>
-                <th class="text-right">
-                  <a href="page_ready_elearning_course_lesson.html" class="btn btn-xs btn-success" data-toggle="tooltip" title="" data-original-title="Done!">
-                    <i class="fa fa-check"></i>
-                  </a>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>What is HTML? This is description of task.</td>
-                <td class="text-right">
-                  <button class="btn btn-xs btn-danger open_y" data-toggle="tooltip" title=""
-                    data-original-title="View video!" value="oIoSxZnCL7U">
-                    <i class="fa fa-caret-square-o-right"></i></button>
-                </td>
-              </tr>
-              <tr class="detail">
-                <td class="border-right">
-                  <i class="fa fa-calendar"></i>
-                  Started at: 12/09/2017 08:19 am
-                </td>
-                <td>
-                  <i class="fa fa-calendar"></i>
-                  Finish at: 12/09/2017 08:19 am
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <table class="table table-vcenter assignment-item">
-            <thead>
-              <tr class="active">
-                <th>Git and command</th>
-                <th class="text-right">
-                  <a href="page_ready_elearning_course_lesson.html" class="btn btn-xs btn-success" data-toggle="tooltip" title="" data-original-title="Done!">
-                    <i class="fa fa-check"></i>
-                  </a>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>What is HTML? This is description of task.</td>
-                <td class="text-right">
-                  <button class="btn btn-xs btn-danger open_y" data-toggle="tooltip" title=""
-                    data-original-title="View video!" value="6lWPkHeLYfU">
-                    <i class="fa fa-caret-square-o-right"></i></button>
-                </td>
-              </tr>
-              <tr class="detail">
-                <td class="border-right">
-                  <i class="fa fa-calendar"></i>
-                  Started at: 12/09/2017 08:19 am
-                </td>
-                <td>
-                  <i class="fa fa-calendar"></i>
-                  Finish at: 12/09/2017 08:19 am
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div id="chart-content">
+            <%= column_chart @data, max: @tasks.length,
+              title: "Biểu đồ hoàn thành chương của môn học",
+              colors: ['brown'],
+              library: {
+                tooltip: {
+                  pointFormat: 'Số chương: <b>{point.y}</b>'
+                }
+              }
+            %>
+          </div>
+          <hr>
+          <%= render partial: "component/course_component/show_task", collection: @tasks, as: :task %>
         </div>
       </div>
     </div>
@@ -159,7 +108,7 @@
         </tbody>
       </table>
       <div class="text-center div-trainer">
-        <a href="javascript:void(0)" class="btn btn-xs btn-default show-trainer">Show More..</a>
+        <a href="javascript:void(0)" class="btn btn-xs btn-default show-trainer">Xem thêm..</a>
       </div>
     </div>
     <div class="block">
@@ -174,7 +123,7 @@
         </tbody>
       </table>
       <div class="text-center">
-        <a href="javascript:void(0)" class="btn btn-xs btn-default show-trainee">Show More..</a>
+        <a href="javascript:void(0)" class="btn btn-xs btn-default show-trainee">Xem thêm..</a>
       </div>
     </div>
   </div>

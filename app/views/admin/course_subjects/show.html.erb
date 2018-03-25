@@ -1,14 +1,16 @@
+<% provide :title, @subject.name %>
 <div class="content-header">
   <div class="header-section">
     <h1>
-      <i class="fa fa-globe"></i>Intro to <strong>HTML5</strong><br><small>15 Lessons</small>
+      <i class="fa fa-globe"></i><%= @subject.name.upcase %><br>
+      <small><%= @subject.tasks.length %> Chương</small>
     </h1>
   </div>
 </div>
 <ul class="breadcrumb breadcrumb-top">
-  <li>Pages</li>
-  <li>e-Learning</li>
-  <li><a href="">Intro to HTML5</a></li>
+  <li>Khóa học</li>
+  <li><%= @course_subject.course.name.capitalize %></li>
+  <li><a href=""><%= @subject.name.capitalize %></a></li>
 </ul>
 <%= render partial: "component/course_component/show_subject",
   local: {subject: @subject, course_subject: @course_subject} %>

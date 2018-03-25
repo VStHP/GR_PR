@@ -475,6 +475,15 @@ td{
 .widget-main small {
   color: #0048a7;
 }
+.name-active{
+  color: #2eb4d9;
+}
+.task-active {
+  box-shadow: 0 1px 6px 2px #ff938e !important;
+}
+.task-finish {
+  box-shadow: 0 1px 2px 0px #1dc322 !important;
+}
 /* Lien quan toi trang thai*/
 .init-background-color {
     background-color: #6ad2eb !important;

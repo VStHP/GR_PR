@@ -1,0 +1,40 @@
+<% define_course_user_task(task) if current_user.trainee? %>
+<table class="table table-vcenter assignment-item <%= @cll %>"
+  id="<%= @course_user_task.id if @course_user_task.present? %>">
+  <thead>
+    <tr class="active">
+      <th class="name"><%= task.name.capitalize %></th>
+      <th class="action text-right">
+        <% if current_user.trainee? %>
+          <%= link_to @url, class: @class, title: @tt do %>
+            <i class="<%= @icon %>"></i><%= @text %>
+          <% end %>
+        <% end %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= task.description.capitalize if task.description.present? %></td>
+      <td class="text-right">
+        <% if task.youtube_url.present? %>
+          <button class="btn btn-xs btn-danger open_y" data-toggle="tooltip" title=""
+            data-original-title="Xem video!" value="<%= task.youtube_url %>">
+            <i class="fa fa-caret-square-o-right"></i></button>
+        <% end %>
+      </td>
+    </tr>
+    <% if current_user.trainee? %>
+      <tr class="detail">
+        <td class="border-right date_start">
+          <i class="fa fa-calendar"></i>
+          Bắt đầu lúc: <%= @course_user_task.date_start %>
+        </td>
+        <td class=" date_end">
+          <i class="fa fa-calendar"></i>
+          Kết thúc lúc: <%= @course_user_task.date_end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

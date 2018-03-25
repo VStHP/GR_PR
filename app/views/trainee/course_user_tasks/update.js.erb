@@ -1,0 +1,17 @@
+<% if @mes_success.present? %>
+  <% if @course_user_task.in_progress? %>
+    $('#<%= @course_user_task.id %>').addClass('task-active');
+    $('#<%= @course_user_task.id %> thead tr .name').addClass('name-active');
+    $('#<%= @course_user_task.id %> thead tr .action').html('<%= link_to report_progress_path(id: @course_user_task.id, status: "finish"), class: "btn btn-xs btn-danger", title: "Nhấn để kết thúc chương", remote: true do %><i class="fa fa-flag"></i> Kết thúc<% end %>');
+    $('#<%= @course_user_task.id %> .date_start').html('<i class="fa fa-calendar"></i>Bắt đầu lúc: <%= @course_user_task.date_start %>');
+  <% elsif @course_user_task.finish? %>
+    $('#<%= @course_user_task.id %>').removeClass('task-active').addClass('task-finish');
+    $('#<%= @course_user_task.id %> thead tr .name').removeClass('name-active');
+    $('#<%= @course_user_task.id %> thead tr .action').html('<%= link_to "#", class: "btn btn-xs btn-success", title: "Hoàn thành!", remote: true do %><i class="fa fa-check"></i><% end %>');
+    $('#<%= @course_user_task.id %> .date_end').html('<i class="fa fa-calendar"></i>Kết thúc lúc: <%= @course_user_task.date_end %>');
+    <% define_data_chart @subject, @course %>
+  <% end %>
+  alertify.success('<%= @mes_success %>');
+<% else %>
+  alertify.error('<%= @mes_danger %>');
+<% end %>

@@ -1,14 +1,15 @@
+<% provide :title, @subject.name %>
 <div class="content-header">
   <div class="header-section">
     <h1>
-      <i class="fa fa-globe"></i>Intro to <strong>HTML5</strong><br><small>15 Lessons</small>
+      <i class="fa fa-globe"></i><%= @subject.name.upcase %><br>
+      <small><%= @subject.tasks.length %> Chương</small>
     </h1>
   </div>
 </div>
 <ul class="breadcrumb breadcrumb-top">
-  <li>Pages</li>
-  <li>e-Learning</li>
-  <li><a href="">Intro to HTML5</a></li>
+  <li>Môn học</li>
+  <li><a href=""><%= @subject.name.capitalize %></a></li>
 </ul>
 <div class="row">
   <div class="col-md-8">
@@ -28,7 +29,7 @@
               <tr class="info">
                 <td>Mô tả &amp; Tài liệu liên quan</td>
                 <td class="text-right">
-                  <a href="javascript:void(0)" class="btn btn-xs btn-default show-describe">Show More..</a>
+                  <a href="javascript:void(0)" class="btn btn-xs btn-default show-describe">Xem thêm..</a>
                 </td>
               </tr>
             </thead>
@@ -106,7 +107,7 @@
         </tbody>
       </table>
       <div class="text-center div-course">
-        <a href="javascript:void(0)" class="btn btn-xs btn-default show-course">Show More..</a>
+        <a href="javascript:void(0)" class="btn btn-xs btn-default show-course">Xem thêm..</a>
       </div>
     </div>
   </div>

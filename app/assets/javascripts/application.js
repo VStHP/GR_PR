@@ -100,40 +100,40 @@ $(document).on('click', '.show-trainer', function(){
   if($('.table-trainer tbody tr:nth-child(5)').css('display') == 'none')
   {
     $('.table-trainer tbody tr:gt(3)').show();
-    $(this).text('Hide More..');
+    $(this).text('Ẩn bớt..');
   }else{
     $('.table-trainer tbody tr:gt(3)').hide();
-    $(this).text('Show More..');
+    $(this).text('Xem thêm..');
   }
 });
 $(document).on('click', '.show-trainee', function(){
   if($('.table-trainee tbody tr:nth-child(5)').css('display') == 'none')
   {
     $('.table-trainee tbody tr:gt(3)').show();
-    $(this).text('Hide More..');
+    $(this).text('Ẩn bớt..');
   }else{
     $('.table-trainee tbody tr:gt(3)').hide();
-    $(this).text('Show More..');
+    $(this).text('Xem thêm..');
   }
 });
 $(document).on('click', '.show-course', function(){
   if($('.table-course tbody tr:nth-child(5)').css('display') == 'none')
   {
     $('.table-course tbody tr:gt(3)').show();
-    $(this).text('Hide More..');
+    $(this).text('Ẩn bớt..');
   }else{
     $('.table-course tbody tr:gt(3)').hide();
-    $(this).text('Show More..');
+    $(this).text('Xem thêm..');
   }
 });
 $(document).on('click','.show-describe', function(){
   if($('#sb-describe').css('display') == 'none')
   {
     $('#sb-describe').show();
-    $(this).text('Hide More..');
+    $(this).text('Ẩn bớt..');
   }else{
     $('#sb-describe').hide();
-    $(this).text('Show More..');
+    $(this).text('Xem thêm..');
   }
 })
 $(document).on('click','.open_y', function(){

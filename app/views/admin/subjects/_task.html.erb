@@ -8,9 +8,11 @@
     <tr>
       <td><%= task.description %></td>
       <td class="text-right">
-        <button class="btn btn-xs btn-danger open_y" data-toggle="tooltip" title=""
-          data-original-title="View video!" value="<%= task.youtube_url %>">
-          <i class="fa fa-caret-square-o-right"></i></button>
+        <% if task.youtube_url.present? %>
+          <button class="btn btn-xs btn-danger open_y" data-toggle="tooltip" title=""
+            data-original-title="View video!" value="<%= task.youtube_url %>">
+            <i class="fa fa-caret-square-o-right"></i></button>
+        <% end %>
       </td>
     </tr>
   </tbody>

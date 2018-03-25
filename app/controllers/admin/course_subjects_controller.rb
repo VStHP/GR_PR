@@ -6,6 +6,7 @@ class Admin::CourseSubjectsController < ApplicationController
   def show
     authorize! :show, @course_subject
     @subject = @course_subject.subject
+    @tasks = @subject.tasks
   end
 
   def update
@@ -43,6 +44,6 @@ class Admin::CourseSubjectsController < ApplicationController
   def check_allow_update_status
     return if @course.in_progress? && @course.course_subjects.in_progress.blank?
     return if @course.in_progress? && @course_subject.in_progress?
-    @mes_error = "Không thể thay đổi trạng thái môn học này khi chưa hoàn thành môn học kia."
+    @mes_error = "Chỉ áp dụng khi khóa học đang bắt đầu và không có môn học nào đang tiến hành."
   end
 end

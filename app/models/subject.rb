@@ -1,5 +1,6 @@
 class Subject < ApplicationRecord
   has_many :tasks
+  has_many :course_user_tasks, through: :tasks
   has_many :links
   has_many :course_subjects
   has_many :courses, through: :course_subjects
