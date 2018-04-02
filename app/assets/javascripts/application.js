@@ -140,3 +140,21 @@ $(document).on('click','.open_y', function(){
   var link = $(this).val();
   alertify.YoutubeDialog(link).set({frameless:false});
 })
+$(document).on('click','.form-title .link', function(){
+  if($('.link_fields').css('display') == 'none'){
+    $('.link_fields').show(1000);
+    $('.form-title .link').html('<i class="fa fa-minus-square"></i> Danh sách liên kết bổ sung');
+  }else{
+    $('.link_fields').hide(1000);
+    $('.form-title .link').html('<i class="fa fa-plus-square"></i> Danh sách liên kết bổ sung');
+  }
+});
+$(document).on('click','.form-title .task', function(){
+  if($('.task_fields').css('display') == 'none'){
+    $('.task_fields').show(1000);
+    $('.form-title .task').html('<i class="fa fa-minus-square"></i> Danh sách chương của môn học');
+  }else{
+    $('.task_fields').hide(1000);
+    $('.form-title .task').html('<i class="fa fa-plus-square"></i> Danh sách chương của môn học');
+  }
+  });

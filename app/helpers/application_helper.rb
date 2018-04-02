@@ -29,8 +29,8 @@ module ApplicationHelper
     end
   end
 
-  def define_course_user_task task
-    @course_user_task = current_user.course_user_tasks.of_task(task)[0]
+  def define_course_user_task task, course_id
+    @course_user_task = current_user.course_users.find_by(course_id: course_id).course_user_tasks.of_task(task)[0]
     case @course_user_task.status
     when "init"
       @cll = ""

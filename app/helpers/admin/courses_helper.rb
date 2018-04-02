@@ -18,8 +18,12 @@ module Admin::CoursesHelper
     end
   end
 
-  def warning_edit course
+  def warning_edit_class course
     "has-warning" unless course.init?
+  end
+
+  def warning_edit_message course
+    "Lưu ý: Khóa học đã được kích hoạt, hãy cẩn thận khi chỉnh sửa!" unless course.init?
   end
 
   def define_time_course subject

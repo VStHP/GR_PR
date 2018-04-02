@@ -1,5 +1,6 @@
 <% provide :url_path, admin_course_path %>
-<% provide :class_class, warning_edit(@course) %>
+<% provide :class_class, warning_edit_class(@course) %>
+<% provide :warning, warning_edit_message(@course) %>
 <% provide :title, @course.name %>
 <div class="content-header">
   <div class="header-section">

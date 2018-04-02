@@ -3,48 +3,48 @@
     <div class="wizard-steps">
       <div class="row">
         <div class="col-xs-4 active">
-          <span>1. Vital</span>
+          <span>1. Quan trọng</span>
         </div>
         <div class="col-xs-4">
-          <span>2. Advance</span>
+          <span>2. Bổ sung</span>
         </div>
         <div class="col-xs-4">
-          <span>3. References</span>
+          <span>3. Liên kết</span>
         </div>
       </div>
     </div>
     <% if @course.init? %>
       <div class="form-group <%= check_errors @course, :id %>">
-        <label class="col-md-3 control-label" for="course_id">Course ID <span class="text-danger">*</span></label>
+        <label class="col-md-3 control-label" for="course_id">ID Khóa học <span class="text-danger">*</span></label>
         <div class="col-md-9">
-          <%= f.text_field :id, class: "form-control", placeholder: "" %>
-          <span class="help-block">Mã khóa học quy định từ 4-20 kí tự</span>
+          <%= f.text_field :id, class: "form-control", data: {toggle: "tooltip"},
+            title: "ID khóa học quy định từ 4-20 kí tự", placeholder: "Nhập ID khóa học", autofocus: true %>
           <span class="text-danger"><%= show_errors @course, :id, "id" %></span>
         </div>
       </div>
       <div class="form-group <%= check_errors @course, :name %>">
-        <label class="col-md-3 control-label" for="course_name">Name <span class="text-danger">*</span></label>
+        <label class="col-md-3 control-label" for="course_name">Tên <span class="text-danger">*</span></label>
         <div class="col-md-9">
         <%= f.text_field :name, class: "form-control" %>
         <span class="text-danger"><%= show_errors @course, :name, "name" %></span>
         </div>
       </div>
       <div class="form-group <%= check_errors @course, :program %>">
-        <label class="col-md-3 control-label" for="course_program">Program <span class="text-danger">*</span></label>
+        <label class="col-md-3 control-label" for="course_program">Chương trình <span class="text-danger">*</span></label>
         <div class="col-md-9">
         <%= f.text_field :program, class: "form-control", placeholder: "", disabled: true %>
         <span class="text-danger"><%= show_errors @course, :program, "program" %></span>
         </div>
       </div>
       <div class="form-group <%= check_errors @course, :language %>">
-        <label class="col-md-3 control-label" for="course_language">Language <span class="text-danger">*</span></label>
+        <label class="col-md-3 control-label" for="course_language">Ngôn ngữ <span class="text-danger">*</span></label>
         <div class="col-md-9">
         <%= f.text_field :language, class: "form-control", placeholder: "",disabled: true %>
         <span class="text-danger"><%= show_errors @course, :language, "language" %></span>
         </div>
       </div>
       <div class="form-group <%= check_errors @course, :date_start %>">
-        <label class="col-md-3 control-label" for="course_date_start">Date Start <span class="text-danger">*</span></label>
+        <label class="col-md-3 control-label" for="course_date_start">Ngày bắt đầu <span class="text-danger">*</span></label>
         <div class="col-md-9">
           <% if @course.date_start %>
             <%= f.text_field :date_start, data: {provide: "datepicker"}, class: "datepick form-control",
@@ -56,7 +56,8 @@
         </div>
       </div>
       <div class="form-group <%= check_errors @course, :user_id %>">
-        <label class="col-md-3 control-label" for="course_user_id">Owner <span class="text-danger">*</span></label>
+        <label class="col-md-3 control-label" for="course_user_id">Chủ nhiệm <span class="text-danger">*</span>
+        </label>
         <div class="col-md-9">
           <%= select "course", "user_id", @trainers.map {|trainer| [trainer.name, trainer.id]}, {}, class: "select-chosen" %>
           <span class="text-danger"><%= show_errors @course, :user_id, "user_id" %></span>
@@ -64,48 +65,59 @@
       </div>
     <% else %>
       <div class="form-group <%= check_errors @course, :id %>">
-        <label class="col-md-3 control-label" for="course_id">Course ID <span class="text-danger">*</span></label>
+        <label class="col-md-3 control-label" for="course_id">ID Khóa học <span class="text-danger">*</span></label>
         <div class="col-md-9">
           <%= f.label :id, class: "form-control", value: @course.id %>
           <span class="help-block">Chỉ có thể chỉnh sửa khi khóa học chưa bắt đầu</span>
         </div>
       </div>
       <div class="form-group <%= check_errors @course, :name %>">
-        <label class="col-md-3 control-label" for="course_name">Name <span class="text-danger">*</span></label>
+        <label class="col-md-3 control-label" for="course_name">Tên <span class="text-danger">*</span></label>
         <div class="col-md-9">
         <%= f.label :name, class: "form-control", value: @course.name %>
         <span class="help-block">Chỉ có thể chỉnh sửa khi khóa học chưa bắt đầu</span>
         </div>
       </div>
       <div class="form-group <%= check_errors @course, :program %>">
-        <label class="col-md-3 control-label" for="course_program">Program <span class="text-danger">*</span></label>
+        <label class="col-md-3 control-label" for="course_program">Chương trình <span class="text-danger">*</span></label>
         <div class="col-md-9">
         <%= f.label :program, class: "form-control", value: @course.program %>
         <span class="help-block">Chỉ có thể chỉnh sửa khi khóa học chưa bắt đầu</span>
         </div>
       </div>
       <div class="form-group <%= check_errors @course, :language %>">
-        <label class="col-md-3 control-label" for="course_language">Language <span class="text-danger">*</span></label>
+        <label class="col-md-3 control-label" for="course_language">Ngôn ngữ <span class="text-danger">*</span></label>
         <div class="col-md-9">
         <%= f.label :language, class: "form-control", value: @course.language %>
         <span class="help-block">Chỉ có thể chỉnh sửa khi khóa học chưa bắt đầu</span>
         </div>
       </div>
       <div class="form-group <%= check_errors @course, :date_start %>">
-        <label class="col-md-3 control-label" for="course_date_start">Date Start <span class="text-danger">*</span></label>
+        <label class="col-md-3 control-label" for="course_date_start">Ngày bắt đầu <span class="text-danger">*</span></label>
         <div class="col-md-9">
         <%= f.label :date_start, class: "form-control", value: @course.date_start %>
         <span class="help-block">Chỉ có thể chỉnh sửa khi khóa học chưa bắt đầu</span>
         </div>
       </div>
       <div class="form-group <%= check_errors @course, :user_id %>">
-        <label class="col-md-3 control-label" for="course_user_id">Owner <span class="text-danger">*</span></label>
+        <label class="col-md-3 control-label" for="course_user_id">Chủ nhiệm <span class="text-danger">*</span>
+        </label>
         <div class="col-md-9">
-          <%= f.label :user_id, class: "form-control", value: @course.user.name %>
-          <span class="help-block">Chỉ có thể chỉnh sửa khi khóa học chưa bắt đầu</span>
+          <% if can? :manage, @course %>
+            <%= select "course", "user_id", @trainers.map {|trainer| [trainer.name, trainer.id]}, {},
+              class: "select-chosen" %>
+            <span class="text-danger"><%= show_errors @course, :user_id, "user_id" %></span>
+          <% else %>
+            <%= f.label :user_id, class: "form-control", value: @course.user.name %>
+            <span class="help-block">Chỉ có thể chỉnh sửa khi khóa học chưa bắt đầu</span>
+          <% end %>
         </div>
       </div>
     <% end %>
+    <div class="text-right" style="padding-right: 20px">
+      <label class="control-label "><span class="text-danger">*</span> Thuộc tính bắt buộc</label><br>
+      <label class="control-label "><%= yield :warning %></label>
+    </div>
   </div>
   <div id="second" class="step">
     <div class="wizard-steps">
@@ -114,15 +126,15 @@
           <span><i class="fa fa-check"></i></span>
         </div>
         <div class="col-xs-4 active">
-          <span>2. Advance</span>
+          <span>2. Bổ sung</span>
         </div>
         <div class="col-xs-4">
-          <span>3. References</span>
+          <span>3. Liên kết</span>
         </div>
       </div>
     </div>
     <div class="form-group <%= check_errors @course, :description %>">
-      <label class="col-md-3 control-label" for="course_description">Description</label>
+      <label class="col-md-3 control-label" for="course_description">Mô tả</label>
       <div class="col-md-9">
       <%= f.text_area :description, class: "form-control", placeholder: "", rows: 9 %>
       <span class="text-danger"><%= show_errors @course, :description, "description" %></span>
@@ -157,18 +169,23 @@
           <span><i class="fa fa-check"></i></span>
         </div>
         <div class="col-xs-4 active">
-          <span>3. References</span>
+          <span>3. Liên kết</span>
         </div>
       </div>
+    </div>
+    <div class="form-title">
+      <a class="btn btn-sm btn-default btn-title link">
+        <i class="fa fa-plus-square"></i> Danh sách liên kết bổ sung
+      </a>
     </div>
     <%= f.fields_for :links do |link| %>
       <%= render 'link_fields', f: link %>
     <% end %>
-    <div class="form-group form-actions">
-      <%= link_to_add_association 'Thêm liên kết', f, :links, class: "btn btn-success " %>
+    <div class="form-group form-actions text-right link_fields">
+      <%= link_to_add_association 'Thêm liên kết mô tả', f, :links, class: "btn btn-sm btn-success " %>
     </div>
     <div class="form-group">
-      <label class="col-md-3 control-label" for="course_subject_subject_id">Subjects </label>
+      <label class="col-md-3 control-label" for="course_subject_subject_id">Môn học trong khóa </label>
       <div class="col-md-9">
         <%= select_tag "course[subject_ids][]",
           options_from_collection_for_select( @subjects, :id, :name, @course.subjects.ids ),
@@ -176,7 +193,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="col-md-3 control-label" for="course_subject_subject_id">Trainers </label>
+      <label class="col-md-3 control-label" for="course_subject_subject_id">Người hướng dẫn của khóa </label>
       <div class="col-md-9">
         <%= select_tag "course[user_ids][]",
           options_from_collection_for_select( @trainers, :id, :name, @course.users.trainers.ids ),
@@ -184,7 +201,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="col-md-3 control-label" for="course_subject_subject_id">Trainees </label>
+      <label class="col-md-3 control-label" for="course_subject_subject_id">Thực tập sinh của khóa </label>
       <div class="col-md-9">
         <%= select_tag "course[user_ids][]",
           options_from_collection_for_select( @trainees, :id, :name, @course.users.trainees.ids ),

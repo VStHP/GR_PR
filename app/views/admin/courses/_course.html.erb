@@ -9,6 +9,7 @@
   <td class="status_banner">
     <span class="label label-<%= @color %>"><%= t "courses.status.#{course.status}" %></span>
   </td>
+  <td><%= link_to course.user.name, profiles_path(course.user) %></td>
   <td class="text-center">
     <div class="btn-group">
       <%= link_to edit_admin_course_path(course), class: "btn btn-xs btn-default",

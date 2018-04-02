@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">ID</Data></Cell>
+        <Cell><Data ss:Type="String">NAME</Data></Cell>
+        <Cell><Data ss:Type="String">USER_ID</Data></Cell>
+        <Cell><Data ss:Type="String">PROGRAM</Data></Cell>
+        <Cell><Data ss:Type="String">LANGUAGE</Data></Cell>
+        <Cell><Data ss:Type="String">STATUS</Data></Cell>
+        <Cell><Data ss:Type="String">DATE_START</Data></Cell>
+        <Cell><Data ss:Type="String">DATE_END</Data></Cell>
+        <Cell><Data ss:Type="String">DESCRIPTION</Data></Cell>
+      </Row>
+      <% @courses.each do |course| %>
+        <Row>
+          <Cell><Data ss:Type="String"><%= course.id %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= course.name %></Data></Cell>
+          <Cell><Data ss:Type="Number"><%= course.user_id %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= course.program %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= course.language %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= course.status %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= course.date_start %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= course.date_end %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= course.description %></Data></Cell>
+        </Row>
+      <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

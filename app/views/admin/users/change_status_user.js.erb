@@ -1,9 +1,12 @@
 <% if @mes_success %>
   <% define_title_status @user %>
-  $('.status_user_<%= @user.id %>').html('<%= link_to admin_change_status_user_path(@user), method: :patch, title: @title, class: @a_class, remote: true do%><i class="fa fa-<%= @i_class %>"></i><% end %>');
+  $('.status_user_<%= @user.id %>').html('<%= link_to admin_change_status_user_path(@user), method: :patch, title: @title, class: @a_class, data: {confirm: "Bạn chắc chắn muốn khóa/mỏ khóa tài khoản này?"}, remote: true do%><i class="fa fa-<%= @i_class %>"></i><% end %>');
   <% if @user.block? %>
     $('.row_user_<%= @user.id %>').addClass('danger');
-    alertify.log('<%= @mes_success %>');
+    alertify.error('<%= @mes_success %>');
+    <% if @user.courses.filter_by("init").present? or @user.courses.filter_by("in_progress").present? %>
+       alertify.warning("Cảnh báo! Tài khoản này là chủ nhiệm của 1 khóa học đang chờ hoặc đang thực hiện");
+    <% end %>
   <% else %>
     $('.row_user_<%= @user.id %>').removeClass('danger');
     alertify.success('<%= @mes_success %>');

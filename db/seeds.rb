@@ -23,13 +23,13 @@
        university: "ĐH Duy Tân, Đà Nẵng",program: "Quản lý bộ phận phát triển nhân lực Công Ty IT stCompany", permission: 'trainer')
   User.create!(name: "Bùi Duy Phương", email: "buiduyphuong95@gmail.com", password: "123123",
        password_confirmation: "123123", gender: 'male', birthday: "20/11/1995", phone: "01235451476",
-       university: "ĐH Duy Tân, Đà Nẵng",program: "Thực tập sinh Công Ty IT stCompany", permission: 'trainee')
+       university: "ĐH Duy Tân, Đà Nẵng",program: "Thực tập nâng cao", permission: 'trainee')
   array_dh = [ 'ĐH Duy Tân','ĐH Bách Khoa Đà Nẵng', 'CĐ Công Nghệ', 'ĐH Kinh Tế Đà Nẵng', 'ĐH Sư Phạm Đà Nẵng' ]
   last_name = [ 'Dương', 'Nguyễn', 'Lê', 'Phạm', 'Trần', 'Phan' ]
   mid_name1 = [ '', 'Thị', '' ]
   mid_name2 = "Ngọc"
   first_name = [ 'Tú', 'Tình', 'Tâm', 'Phương', 'Hưng', 'Phúc', 'Đạt', 'Linh', 'Trang', 'Nguyên' ]
-  arr_program = [ 'Trainer bộ phận phát triển nhân lực Công Ty IT stCompany', 'Thực tập sinh Công Ty IT stCompany' ]
+  arr_program = [ 'Trainer bộ phận phát triển nhân lực Công Ty IT stCompany', 'Thực tập lập trình website' ]
   1.upto(15) do |x|
     name = last_name.sample + ' ' + mid_name1.sample + ' ' + mid_name2 + ' ' +first_name.sample
     if name.include? "Thị" then gender = "female" else gender = "male" end

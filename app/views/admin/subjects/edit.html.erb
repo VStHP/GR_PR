@@ -1,4 +1,6 @@
 <% provide :url_path, admin_subject_path %>
+<% provide :class_class, warning_edit_class(@subject) %>
+<% provide :warning, warning_edit_message(@subject) %>
 <% provide :title, @subject.name %>
 <div class="content-header">
   <div class="header-section">

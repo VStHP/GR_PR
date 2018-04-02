@@ -1,4 +1,4 @@
-<% define_course_user_task(task) if current_user.trainee? %>
+<% define_course_user_task(task, params[:course_id]) if current_user.trainee? %>
 <table class="table table-vcenter assignment-item <%= @cll %>"
   id="<%= @course_user_task.id if @course_user_task.present? %>">
   <thead>

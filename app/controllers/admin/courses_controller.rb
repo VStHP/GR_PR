@@ -1,9 +1,9 @@
 class Admin::CoursesController < ApplicationController
   load_and_authorize_resource param_method: :params_course
   before_action :allow_admin, only: :index
-  before_action :set_course, only: %i(change_status)
-  after_action :add_course_user_task, only: :create
+  before_action :set_course, only: %i(change_status export_course)
   after_action :modify_course_user_task, only: :update
+  after_action :check_and_active_course, only: %i(create update)
 
   def new
     @trainers = User.filter_by "trainer"
@@ -14,6 +14,7 @@ class Admin::CoursesController < ApplicationController
   def create
     if @course.save
       flash[:success] = "Tạo khóa học thành công!"
+      add_course_user_task
       redirect_to admin_course_path @course
     else
       flash[:danger] = "CẢNH BÁO! Thất bại, hãy thử lại."
@@ -33,7 +34,11 @@ class Admin::CoursesController < ApplicationController
   end
 
   def index
-    @courses = Course.filter_by params[:type]
+    if params[:type].present?
+      @courses = Course.filter_by params[:type]
+    else
+      @courses = Course.filter_by "init"
+    end
   end
 
   def destroy
@@ -72,12 +77,40 @@ class Admin::CoursesController < ApplicationController
     @trainees = @course.users.trainees
   end
 
+  def export
+    if params[:type] == "all"
+      @courses = Course.all
+    else
+      @courses = Course.filter_by params[:type]
+    end
+    respond_to do |format|
+      format.csv { send_data @courses.to_csv }
+      format.xls
+    end
+  end
+
+  def export_course
+    @course_subjects = @course.course_subjects
+    @subjects = @course.subjects
+    @trainers = @course.users.trainers
+    @trainees = @course.users.trainees
+    respond_to do |format|
+      format.xls
+    end
+  end
+
+  def import
+    Course.import params[:file]
+    flash[:success] = "Nhập khóa học từ file thành công"
+    redirect_back fallback_location: root_path
+  end
+
   private
 
   def set_course
     @course = Course.find_by id: params[:id]
     return if @course
-    flash[:errors] = "Không tìm thấy khóa học phù hợp"
+    flash[:danger] = "Không tìm thấy khóa học phù hợp"
     redirect_to root_path
   end
 
@@ -139,6 +172,16 @@ class Admin::CoursesController < ApplicationController
             end
           end
         end
+      end
+    end
+  end
+
+  def check_and_active_course
+    if @course.init? and @course.date_start.to_date == Time.zone.today
+      if @course.update_attributes status: "in_progress"
+        flash[:success] = "Kích hoạt khóa học #{@course.name} thành công."
+      else
+        flash[:danger] = "Kích hoạt khóa học #{@course.name} thất bại."
       end
     end
   end

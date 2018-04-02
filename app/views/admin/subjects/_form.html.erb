@@ -1,42 +1,47 @@
-<%= form_for @subject, url: yield(:url_path), html: {id: "basic-wizard", class: "form-horizontal form-bordered" } do |f| %>
+<%= form_for @subject, url: yield(:url_path), html: {id: "basic-wizard",
+  class: "form-horizontal form-bordered" } do |f| %>
   <div id="first" class="step <%= yield :class_class %>">
     <div class="wizard-steps">
       <div class="row">
         <div class="col-xs-4 active">
-          <span>1. Vital</span>
+          <span>1. Quan trọng</span>
         </div>
         <div class="col-xs-4">
-          <span>2. Advance</span>
+          <span>2. Bổ sung</span>
         </div>
         <div class="col-xs-4">
-          <span>3. References</span>
+          <span>3. Liên kết</span>
         </div>
       </div>
     </div>
     <%= render "shared/error_messages", object: @subject %>
     <div class="form-group <%= check_errors @subject, :id %>">
-      <label class="col-md-3 control-label" for="subject_id">Mã môn học <span class="text-danger">*</span></label>
+      <label class="col-md-3 control-label" for="subject_id">ID môn học <span class="text-danger">*</span></label>
       <div class="col-md-9">
-        <%= f.text_field :id, class: "form-control", placeholder: "" %>
-        <span class="help-block">Mã khóa học quy định từ 4-10 kí tự</span>
+        <%= f.text_field :id, class: "form-control", data: {toggle: "tooltip"},
+            title: "ID môn học quy định từ 4-20 kí tự", placeholder: "Nhập ID môn học..", autofocus: true %>
         <span class="text-danger"><%= show_errors @subject, :id, "id" %></span>
       </div>
     </div>
     <div class="form-group <%= check_errors @subject, :name %>">
       <label class="col-md-3 control-label" for="subject_name">Tên môn học <span class="text-danger">*</span></label>
       <div class="col-md-9">
-      <%= f.text_field :name, class: "form-control" %>
+      <%= f.text_field :name, class: "form-control", placeholder: "Nhập tên môn học.." %>
       <span class="text-danger"><%= show_errors @subject, :name, "name" %></span>
       </div>
     </div>
     <div class="form-group <%= check_errors @subject, :day_on_learn %>">
-      <label class="col-md-3 control-label" for="subject_language">Số ngày học tối đa <span class="text-danger">*</span></label>
+      <label class="col-md-3 control-label" for="subject_language">Số ngày học <span class="text-danger">*</span></label>
       <div class="col-md-9">
-      <%= f.number_field :day_on_learn, class: "form-control", min: 1 %>
+      <%= f.number_field :day_on_learn, class: "form-control", min: 1, data: {toggle: "tooltip"},
+            title: "Số ngày học tối thiểu là 1", placeholder: "Nhập sô ngày học.." %>
       <span class="text-danger"><%= show_errors @subject, :day_on_learn, "day_on_learn" %></span>
       </div>
     </div>
-
+    <div class="text-right" style="padding-right: 20px">
+      <label class="control-label "><span class="text-danger">*</span> Thuộc tính bắt buộc</label><br>
+      <label class="control-label "><%= yield :warning %></label>
+    </div>
   </div>
   <div id="second" class="step">
     <div class="wizard-steps">
@@ -45,10 +50,10 @@
           <span><i class="fa fa-check"></i></span>
         </div>
         <div class="col-xs-4 active">
-          <span>2. Advance</span>
+          <span>2. Bổ sung</span>
         </div>
         <div class="col-xs-4">
-          <span>3. References</span>
+          <span>3. Liên kết</span>
         </div>
       </div>
     </div>
@@ -79,21 +84,31 @@
           <span><i class="fa fa-check"></i></span>
         </div>
         <div class="col-xs-4 active">
-          <span>3. References</span>
+          <span>3. Liên kết</span>
         </div>
       </div>
+    </div>
+    <div class="form-title">
+      <a class="btn btn-sm btn-default btn-title link">
+        <i class="fa fa-plus-square"></i> Danh sách liên kết bổ sung
+      </a>
     </div>
     <%= f.fields_for :links do |link| %>
       <%= render 'link_fields', f: link %>
     <% end %>
-    <div class="form-group form-actions">
-      <%= link_to_add_association 'Thêm liên kết', f, :links, class: "btn btn-success " %>
+    <div class="form-group form-actions text-right link_fields">
+      <%= link_to_add_association 'Thêm liên kết mô tả', f, :links, class: "btn btn-sm btn-success " %>
+    </div>
+    <div class="form-title">
+      <a class="btn btn-sm btn-default btn-title task">
+        <i class="fa fa-plus-square"></i> Danh sách chương của môn học
+      </a>
     </div>
     <%= f.fields_for :tasks do |task| %>
       <%= render 'task_fields', f: task %>
     <% end %>
-    <div class="form-group form-actions">
-      <%= link_to_add_association 'Thêm chương', f, :tasks, class: "btn btn-success " %>
+    <div class="form-group form-actions text-right task_fields">
+      <%= link_to_add_association 'Thêm chương', f, :tasks, class: "btn btn-sm btn-success " %>
     </div>
   </div>
   <!-- Form Buttons -->

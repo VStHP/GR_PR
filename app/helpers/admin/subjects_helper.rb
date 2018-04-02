@@ -12,4 +12,12 @@ module Admin::SubjectsHelper
       @title = "CLICK để mở khóa học"
     end
   end
+
+  def warning_edit_class subject
+    "has-warning" if subject.course_subjects.present?
+  end
+
+  def warning_edit_message subject
+    "Lưu ý: Môn học đã được thêm vào các khóa học, hãy cẩn thận khi chỉnh sửa!" if subject.course_subjects.present?
+  end
 end

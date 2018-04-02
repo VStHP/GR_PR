@@ -59,6 +59,25 @@
     </div>
   </div>
   <div class="col-md-4">
+    <% if can? :manage, @subject %>
+      <div class="block">
+        <!-- About Content -->
+        <div class="block-section">
+          <%= link_to admin_subject_export_subject_path(format: "xls", id: @subject.id),
+            class: "btn btn-lg btn-default btn-block" do %>
+            <i class="fa fa-download"></i> Download files
+          <% end %>
+          <hr>
+          <a href="#" class="btn btn-sm btn-success btn-upload-task">
+            <i class="fa fa-upload"></i> Upload Chương
+          </a>
+          <a href="#" class="btn btn-sm btn-warning btn-upload-link" style="float: right">
+            <i class="fa fa-upload"></i> Upload liên kết
+          </a>
+        </div>
+        <!-- END About Content -->
+      </div>
+    <% end %>
     <div class="block">
       <div class="block-title">
         <div class="block-options pull-right">
@@ -112,4 +131,110 @@
     </div>
   </div>
 </div>
-
+<div class="popup-upload pop-task" tabindex="-1" role="dialog" >
+  <div class="header" >
+    <span class="header-title" >Upload Chương</span>
+    <a class="header-close close-popup btn-xs btn-danger" role="button" >
+      <span class="fa fa-close"></span>
+    </a>
+  </div>
+  <div class="main" scrolltop="0" scrollleft="0">
+    <br><br>
+    <%= form_tag admin_subject_import_task_path, multipart: true do %>
+      <table>
+        <tr>
+          <td>
+            <%= file_field_tag :file, class: "btn" %>
+          </td>
+        </tr>
+        <tr>
+          <td class="EditRecord_Buttons">
+            <%= submit_tag "Import", class: "btn btn-primary" %>
+            <%= button_tag "Cancel", type: :reset, class: "btn btn-danger close-popup",
+              style: "margin-left: 10px" %>
+          </td>
+        </tr>
+      </table>
+      <% end %>
+  </div>
+</div>
+<div class="popup-upload pop-link" tabindex="-1" role="dialog" >
+  <div class="header" >
+    <span class="header-title" >Upload liên kết mô tả</span>
+    <a class="header-close close-popup btn-xs btn-danger" role="button" >
+      <span class="fa fa-close"></span>
+    </a>
+  </div>
+  <div class="main" scrolltop="0" scrollleft="0">
+    <br><br>
+    <%= form_tag admin_subject_import_link_path, multipart: true do %>
+      <table>
+        <tr>
+          <td>
+            <%= file_field_tag :file, class: "btn" %>
+          </td>
+        </tr>
+        <tr>
+          <td class="EditRecord_Buttons">
+            <%= submit_tag "Import", class: "btn btn-primary" %>
+            <%= button_tag "Cancel", type: :reset, class: "btn btn-danger close-popup",
+              style: "margin-left: 10px" %>
+          </td>
+        </tr>
+      </table>
+      <% end %>
+  </div>
+</div>
+<script type="text/javascript">
+  $('.btn-upload-task').on('click',function(){
+    $('.pop-task').show();
+  });
+  $('.btn-upload-link').on('click',function(){
+    $('.pop-link').show();
+  });
+  $(document).on('click', '.close-popup', function(){
+    $('.popup-upload').hide();
+  });
+</script>
+<style type="text/css">
+  .EditRecord_Buttons {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    vertical-align: baseline;
+}
+.popup-upload{
+  display: none;
+  z-index: 4012;
+  outline: 0px;
+  height: 176px;
+  width: 311px;
+  top: 265px;
+  left: 486.5px;
+  box-shadow: rgba(0, 0, 0, 0.5) 4px 4px 2px;
+  position: absolute;
+}
+.popup-upload .header {
+  background: #888;
+  height: 28px;
+}
+.header-title{
+  margin-left: 5px;
+  color: white;
+  font-weight: bold;
+  position: relative;
+  top: 7px;
+  left: 4px
+}
+.header-close {
+  position: absolute;
+  top: 4px;
+  right: 7px;
+}
+.popup-upload .main {
+  text-align: center;
+  width: auto;
+  min-height: 0px;
+  height: 148px;
+  background: #fff;
+}
+</style>

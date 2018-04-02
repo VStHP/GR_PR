@@ -23,8 +23,16 @@ Rails.application.routes.draw do
     resources :users, except: %i(show)
     resources :courses
     patch "course/status/:id", to: "courses#change_status", as: :change_status_course
+    get "courses/export/:type", to: "courses#export", as: :course_export
+    get "courses/export/course/:id", to: "courses#export_course", as: :course_export_course
+    post "courses/import", to: "courses#import", as: :course_import
     resources :subjects
     patch "subject/status/:id", to: "subjects#change_status", as: :change_status_subject
+    get "subjects/export/file", to: "subjects#export", as: :subject_export
+    get "subjects/export/subject/:id", to: "subjects#export_subject", as: :subject_export_subject
+    post "subjects/import", to: "subjects#import", as: :subject_import
+    post "subjects/import/tasks", to: "subjects#import_task", as: :subject_import_task
+    post "subjects/import/links", to: "subjects#import_link", as: :subject_import_link
     resources :tasks
     get "course/:course_id/subject/:subject_id", to: "course_subjects#show", as: :show_subject_course
     get "course/:course_id/subject/:subject_id/:status", to: "course_subjects#update", as: :update_status_cs

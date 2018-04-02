@@ -190,10 +190,22 @@ img {
   font-size: 22px;
 }
 .task_fields {
-  background: #f6ffea;
+  border-left: 4px solid #0012ef !important;
 }
 .link_fields {
-  background: #eaefff;
+  border-left: 4px solid #2eaf05 !important;
+}
+.form-title{
+  border-bottom: 1px dashed #c5cad0;
+}
+.btn-title{
+  font-size: 15px;
+}
+.btn-title:hover{
+  color: orange;
+}
+.btn-title i{
+  font-size: 13px;
 }
 .form-bordered .form-actions {
   margin: 0;

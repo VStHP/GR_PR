@@ -2,6 +2,8 @@ class CourseUserTask < ApplicationRecord
   belongs_to :course_user
   belongs_to :task
 
+  validates :course_user_id, uniqueness: { scope: :task_id }
+
   scope :of_task, ->(task){where task_id: task.id}
   scope :of_task_ids, ->(ids){where("task_id in (?)", ids)}
   scope :of_course_user, ->(id){where course_user_id: id}

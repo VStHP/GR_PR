@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   load_and_authorize_resource
-  before_action :set_user, except: [:index, :new, :export, :import]
+  before_action :set_user, only: :change_status_user
 
   def index
     if params[:type] == "block"
@@ -25,7 +25,7 @@ class Admin::UsersController < ApplicationController
       flash[:success] = "Tạo thành công tài khoản #{@user.permission}:#{@user.name}"
       redirect_to root_path
     else
-      flash[:danger] = "Tạo thất bại tài khoản #{@user.permission}:#{@user.name}"
+      flash[:danger] = "Tạo tài khoản thất bại"
       render :new
     end
   end
@@ -77,7 +77,7 @@ class Admin::UsersController < ApplicationController
   def set_user
     @user = User.find_by id: params[:id]
     return if @user
-    flash[:errors] = "Không tìm thấy tài khoản phù hợp"
+    flash[:danger] = "Không tìm thấy tài khoản phù hợp"
     redirect_to root_path
   end
 

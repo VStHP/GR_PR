@@ -1,6 +1,8 @@
 class Admin::SubjectsController < ApplicationController
   load_and_authorize_resource param_method: :params_subject
   after_action :add_course_user_task, only: :update
+  before_action :set_subject, only: :export_subject
+
   def index
     if params[:type]
       @subjects = Subject.filter_block
@@ -18,10 +20,22 @@ class Admin::SubjectsController < ApplicationController
   def create
     if @subject.save
       flash[:success] = "Tạo môn học thành công"
-      redirect_to root_path
+      redirect_to admin_subjects_path
     else
       flash[:danger] = "CẢNH BÁO! Tạo môn học thất bại"
       render :new
+    end
+  end
+
+  def destroy
+    if @subject.course_subjects.length == 0
+      if @subject.destroy
+        @mes_success = "Xóa môn học thành công"
+      else
+        @mes_danger = "CẢNH BÁO! Xóa môn học thất bại"
+      end
+    else
+      @mes_danger = "CẢNH BÁO! Không thể xóa môn học đã tồn tại trong khóa học"
     end
   end
 
@@ -48,6 +62,40 @@ class Admin::SubjectsController < ApplicationController
     else
       do_change_status @subject, "block"
     end
+  end
+
+  def export
+    @subjects = Subject.all
+    respond_to do |format|
+      format.csv { send_data @subjects.to_csv }
+      format.xls
+    end
+  end
+
+  def export_subject
+    @tasks = @subject.tasks
+    @links = @subject.links
+    respond_to do |format|
+      format.xls
+    end
+  end
+
+  def import
+    Subject.import params[:file]
+    flash[:success] = "Nhập môn học từ file thành công"
+    redirect_back fallback_location: root_path
+  end
+
+  def import_task
+    Subject.import_task params[:file]
+    flash[:success] = "Nhập chương cho môn học từ file thành công"
+    redirect_back fallback_location: root_path
+  end
+
+  def import_link
+    Subject.import_link params[:file]
+    flash[:success] = "Nhập liên kết mô tả cho môn học từ file thành công"
+    redirect_back fallback_location: root_path
   end
 
   private

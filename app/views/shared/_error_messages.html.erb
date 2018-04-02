@@ -4,8 +4,8 @@
       The form contains
       <%= pluralize(object.errors.size, "errors") %>.
       <ul>
-        <% object.errors.full_messages.each do |errors| %>
-          <li><%= errors %></li>
+        <% object.errors.messages.values.each do |errors| %>
+          <li><%= errors[0] %></li>
         <% end %>
       </ul>
     </div>

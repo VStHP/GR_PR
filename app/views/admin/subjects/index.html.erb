@@ -34,6 +34,19 @@
       </tbody>
     </table>
   </div>
+  <div class="table-responsive">
+    <div style="float: left;">
+      Download:
+      <%= link_to "CSV", admin_subject_export_path(format: "csv") %> |
+      <%= link_to "Excel", admin_subject_export_path(format: "xls") %>
+    </div>
+    <div style="float: right;">
+      <%= form_tag admin_subject_import_path, style: "float: right;", multipart: true do %>
+        <%= file_field_tag :file, style: "float: left;", class: "btn" %>
+        <%= submit_tag "Import", style: "float: right;", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
 </div>
 <script>
   $(function(){ TablesSubjects.init(); });

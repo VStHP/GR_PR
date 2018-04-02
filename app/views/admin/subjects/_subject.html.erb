@@ -14,12 +14,20 @@
   <td class="text-center">
     <div class="btn-group">
       <%= link_to edit_admin_subject_path(subject), class: "btn btn-xs btn-default",
-        data: {toggle: "tooltip"}, title: "Edit" do %>
+        data: {toggle: "tooltip"}, title: "Chỉnh sửa" do %>
         <i class="fa fa-pencil"></i>
       <% end %>
-      <%= link_to admin_change_status_subject_path(subject), method: :patch, class: "btn btn-xs btn-#{@class}",
-        data: {confirm: "Bạn chắc chắn muốn khóa / mở khóa môn học này?"}, title: @title, remote: true do %>
-        <i class="fa fa-<%= @icon %>"></i>
+      <% if subject.course_subjects.length == 0 %>
+        <%= link_to admin_subject_path(subject), method: :delete, class: "btn btn-xs btn-danger",
+          data: {toggle: "tooltip", confirm: "Bạn chắc chắn muốn xóa môn học này?"},
+          title: "Xóa", remote: true do %>
+          <i class="fa fa-times"></i>
+        <% end %>
+      <% else %>
+        <%= link_to admin_change_status_subject_path(subject), method: :patch, class: "btn btn-xs btn-#{@class}",
+          dât: {confirm: "Bạn chắc chắn muốn khóa / mở khóa môn học này?"}, title: @title, remote: true do %>
+          <i class="fa fa-<%= @icon %>"></i>
+        <% end %>
       <% end %>
     </div>
   </td>

@@ -4,7 +4,7 @@ class Task < ApplicationRecord
   has_many :course_user_tasks, dependent: :destroy
   has_many :course_users, through: :course_user_tasks
 
-  validates :name, length: {maximum: 250}, presence: true, uniqueness: {case_sensitive: false}
+  validates :name, length: {maximum: 250}, presence: true
   validates :description, length: {maximum: 5000}
   validates :youtube_url, length: {maximum: 250}
 

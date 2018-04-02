@@ -13,8 +13,7 @@
 <div class="block full">
   <div class="block-title" id="btn-filter-container">
     <h2><strong>Khóa Học</strong></h2>
-    <%= link_to "Tất cả", admin_courses_path,class: "btn-filter active", remote: true %>
-    <%= link_to "Khởi tạo", admin_courses_path(type: "init"),class: "btn-filter", remote: true %>
+    <%= link_to "Khởi tạo", admin_courses_path(type: "init"),class: "btn-filter active", remote: true %>
     <%= link_to "Đang tiến hành", admin_courses_path(type: "in_progress"),class: "btn-filter", remote: true %>
     <%= link_to "Kết thúc", admin_courses_path(type: "finish"),class: "btn-filter", remote: true %>
     <%= link_to "Đã khóa", admin_courses_path(type: "block"),class: "btn-filter", remote: true %>
@@ -24,12 +23,13 @@
       <thead>
         <tr>
           <th class="text-center">ID</th>
-          <th>Name</th>
-          <th>Program</th>
-          <th>Language</th>
-          <th>Date Start</th>
-          <th>End Start</th>
-          <th>Status</th>
+          <th>Khóa học</th>
+          <th>Chương trình</th>
+          <th>Ngôn ngữ</th>
+          <th>Bắt đầu</th>
+          <th>Kết thúc</th>
+          <th>Trạng thái</th>
+          <th>Chủ nhiệm</th>
           <th class="text-center">##</th>
         </tr>
       </thead>
@@ -37,6 +37,28 @@
         <%= render partial: "course", collection: @courses, as: :course %>
       </tbody>
     </table>
+  </div>
+  <div class="table-responsive">
+    <div style="float: left;">
+      Download CSV:
+      <%= link_to "Tất cả", admin_course_export_path(format: "csv", type: "all") %> |
+      <%= link_to "Khởi tạo", admin_course_export_path(format: "csv", type: "init") %> |
+      <%= link_to "Đang tiến hành", admin_course_export_path(format: "csv", type: "in_progress") %> |
+      <%= link_to "Kết thúc", admin_course_export_path(format: "csv", type: "finish") %> |
+      <%= link_to "Đã khóa", admin_course_export_path(format: "csv", type: "block") %>
+      <br>Download Excel:
+      <%= link_to "Tất cả", admin_course_export_path(format: "xls", type: "all") %> |
+      <%= link_to "Khởi tạo", admin_course_export_path(format: "xls", type: "init") %> |
+      <%= link_to "Đang tiến hành", admin_course_export_path(format: "xls", type: "in_progress") %> |
+      <%= link_to "Kết thúc", admin_course_export_path(format: "xls", type: "finish") %> |
+      <%= link_to "Đã khóa", admin_course_export_path(format: "xls", type: "block") %>
+    </div>
+    <div style="float: right;">
+      <%= form_tag admin_course_import_path, style: "float: right;", multipart: true do %>
+        <%= file_field_tag :file, style: "float: left;", class: "btn" %>
+        <%= submit_tag "Import", style: "float: right;", class: "btn btn-primary" %>
+      <% end %>
+    </div>
   </div>
 </div>
 <script>

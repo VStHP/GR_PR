@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Chi tiết môn học</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">ID</Data></Cell>
+        <Cell><Data ss:Type="String">NAME</Data></Cell>
+        <Cell><Data ss:Type="String">STATUS</Data></Cell>
+        <Cell><Data ss:Type="String">DAY_ON_LEARN</Data></Cell>
+        <Cell><Data ss:Type="String">DESCRIPTION</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String"><%= @subject.id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= @subject.name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= @subject.status %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= @subject.day_on_learn %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= @subject.description %></Data></Cell>
+      </Row>
+      <Row></Row>
+      <Row>
+        <Cell><Data ss:Type="String">Danh sách chương của môn học</Data></Cell>
+        <Cell></Cell>
+        <Cell></Cell>
+        <Cell></Cell>
+        <Cell><Data ss:Type="String">Tổng số: <%= @tasks.length %> chương</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">ID TASK</Data></Cell>
+        <Cell><Data ss:Type="String">NAME TASK</Data></Cell>
+        <Cell><Data ss:Type="String">YOUTUBE URL</Data></Cell>
+        <Cell><Data ss:Type="String">DESCRIPTION</Data></Cell>
+      </Row>
+      <% @tasks.each do |task| %>
+        <Row>
+          <Cell><Data ss:Type="String"><%= task.id %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= task.name %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= task.youtube_url %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= task.description %></Data></Cell>
+        </Row>
+      <% end %>
+      <Row></Row>
+      <Row>
+        <Cell><Data ss:Type="String">Danh sách liên kết liên quan môn học</Data></Cell>
+        <Cell></Cell>
+        <Cell></Cell>
+        <Cell></Cell>
+        <Cell>
+          <Data ss:Type="String">Tổng số: <%= @links.length %> liên kết</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">ID</Data></Cell>
+        <Cell><Data ss:Type="String">NAME</Data></Cell>
+        <Cell><Data ss:Type="String">LINK</Data></Cell>
+        <Cell><Data ss:Type="String">DESCRIPTION</Data></Cell>
+      </Row>
+      <% @links.each do |link| %>
+        <Row>
+          <Cell><Data ss:Type="Number"><%= link.id %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= link.name %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= link.link %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= link.description %></Data></Cell>
+        </Row>
+      <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

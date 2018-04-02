@@ -16,6 +16,8 @@ class Course < ApplicationRecord
   validates :program, length: {maximum: 250}, presence: true
   validates :language, length: {maximum: 250}, presence: true
   validates :date_start, presence: true
+  # validates :banner, length: {maximum: 250}
+  # validates :avatar, length: {maximum: 250}
   validate :datestart_less_than_today, if: :date_start?
 
   accepts_nested_attributes_for :links, reject_if: :all_blank, allow_destroy: true
@@ -27,6 +29,8 @@ class Course < ApplicationRecord
   mount_uploader :avatar, AvatarCourseUploader
   mount_uploader :banner, BannerCourseUploader
 
+  require 'csv'
+
   def self.cron_active_course
      Course.all.each do |course|
       if course.date_start.today?
@@ -36,6 +40,36 @@ class Course < ApplicationRecord
   end
 
   private
+
+  def self.to_csv(options = {})
+    desired_columns = ["id", "name", "user_id", "program", "language", "status", "date_start", "date_end", "description" ]
+    CSV.generate(options) do |csv|
+      csv << desired_columns
+      all.each do |course|
+        csv << course.attributes.values_at(*desired_columns)
+      end
+    end
+  end
+
+  def self.import(file)
+    spreadsheet = Course.open_spreadsheet(file)
+    header = spreadsheet.row(1).map(&:downcase)
+    (2..spreadsheet.last_row).each do |i|
+      row = Hash[[header, spreadsheet.row(i)].transpose]
+      course = Course.find_by(id: row["id"]) || Course.new()
+      course.attributes = row.to_hash
+      course.save!
+    end
+  end
+
+  def self.open_spreadsheet(file)
+    case File.extname(file.original_filename)
+    when ".csv" then Roo::CSV.new(file.path, file_warning: :ignore)
+    when ".xls" then Roo::Excel.new(file.path, file_warning: :ignore)
+    when ".xlsx" then Roo::Excelx.new(file.path, file_warning: :ignore)
+    else raise "Unknown file"
+    end
+  end
 
   def datestart_less_than_today
     return unless status === "init"

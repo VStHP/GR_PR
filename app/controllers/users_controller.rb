@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find_by id: params[:id]
     return if @user
-    flash[:errors] = "Không tìm thấy tài khoản phù hợp"
+    flash[:danger] = "Không tìm thấy tài khoản phù hợp"
     redirect_to root_path
   end
 

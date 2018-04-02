@@ -48,3 +48,121 @@ en:
       in_progress: "Đang thực hiện"
       finish: "Kết thúc"
       block: "Bị khóa"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              blank: "Họ tên không thể để trống"
+              too_long: "Họ tên không quá 250 kí tự"
+            email:
+              blank: "Email không thể để trống"
+              too_long: "Email không quá 250 kí tự"
+              taken: "Email đã tồn tại"
+            password:
+              blank: "Mật khẩu không thể để trống"
+              too_long: "Mật khẩu không quá 50 kí tự"
+              too_short: "Mật khẩu ít nhất 6 kí tự"
+            university:
+              too_long: "Đại học không quá 250 kí tự"
+            program:
+              too_long: "Chương trình đào tạo không quá 250 kí tự"
+            phone:
+              too_short: "Số điện thoại ít nhất 10 số"
+              too_long: "Số điện thoại không quá 15 số"
+            avatar:
+              too_long: "Tên hình avatar không quá 250 kí tự"
+        course:
+          attributes:
+            id:
+              blank: "ID khóa học không thể để trống"
+              too_short: "ID khóa học ít nhất 4 kí từ"
+              too_long: "ID khóa học không quá 20 kí tự"
+              taken: "ID khóa học đã tồn tại"
+            name:
+              blank: "Tên khóa học không thể để trống"
+              too_long: "Tên khóa học không quá 250 kí tự"
+              taken: "Tên khóa học đã tồn tại"
+            program:
+              blank: "Chương trình không thể để trống"
+              too_long: "Chương trình không quá 250 kí tự"
+            language:
+              blank: "Ngôn ngữ thực tập không thể để trống"
+              too_long: "Ngôn ngữ thực tập không quá 250 kí tự"
+            date_start:
+              blank: "Ngày bắt đầu khóa học không thể để trống"
+            description:
+              too_long: "Mô tả khóa học không quá 5000 kí tự"
+            banner:
+              too_long: "Tên hình banner không quá 250 kí tự"
+            avatar:
+              too_long: "Tên hình avatar không quá 250 kí tự"
+        subject:
+          attributes:
+            id:
+              taken: "ID môn học đã tồn tại"
+              blank: "ID môn học không thể để trống"
+              too_long: "ID môn học không quá 20 kí tự"
+              too_short: "ID môn học ít nhất phải 4 kí tự"
+            name:
+              blank: "Tên môn học không thể để trống"
+              too_long: "Tên môn học không quá 250 kí tự"
+              taken: "Tên môn học đã tồn tại"
+            description:
+              too_long: "Mô tả môn học không quá 5000 kí tự"
+            day_on_learn:
+              blank: "Ngày học không thể để trống"
+              other_than: "Ngày học phải lớn hơn 0"
+            avatar:
+              too_long: "Tên hình avatar không quá 250 kí tự"
+        task:
+          attributes:
+            name:
+              blank: "Đã có lỗi khi thêm chương, hãy kiểm tra! Tên chương không thể để trống"
+              too_long: "Đã có lỗi khi thêm chương, hãy kiểm tra! Tên chương không quá 250 kí tự"
+            description:
+              too_long: "Đã có lỗi khi thêm chương, hãy kiểm tra! Mô tả chương không quá 5000 kí tự"
+            youtube_url:
+              too_long: "Đã có lỗi khi thêm chương, hãy kiểm tra! Link youtube không quá 250 kí tự"
+        link:
+          attributes:
+            name:
+              blank: "Đã có lỗi khi link mô tả, hãy kiểm tra! Tên link mô tả không thể để trống"
+              too_long: "Đã có lỗi khi thêm link mô tả, hãy kiểm tra! Tên link mô tả không quá 250 kí tự"
+            description:
+              too_long: "Đã có lỗi khi thêm link mô tả, hãy kiểm tra! Mô tả của link mô tả không quá 5000 kí tự"
+            link:
+              too_long: "Đã có lỗi khi thêm link mô tả, hãy kiểm tra! Đường link mô tả không quá 250 kí tự"
+              blank: "Đã có lỗi khi thêm link mô tả, hãy kiểm tra! Đường link mô tả không thể để trống"
+        course_subject:
+          attributes:
+            course_id:
+              taken: "Mối quan hệ giữa môn học và khóa học đã tồn tại"
+        course_user:
+          attributes:
+            course_id:
+              taken: "Mối quan hệ giữa tài khoản và khóa học đã tồn tại"
+        course_user_task:
+          attributes:
+            course_user_id:
+              taken: "Mối quan hệ giữa tài khoản trong khóa học và chương môn học đã tồn tại"
+        candidate:
+          attributes:
+            name:
+              blank: "Name can not be blank"
+              too_long: "Name must be less than 250 characters"
+            email:
+              blank: "Email can not be blank"
+              too_long: "Email must be less than 250 characters"
+              invalid: "Email is invalid format"
+            phone:
+              blank: "Phone can not be blank"
+              too_long: "Phone must be less than 15 characters"
+            expected_intern:
+              blank: "Position of internship can not be blank"
+              too_long: "Position of internship must be less than 250 characters"
+            note:
+              too_long: "Message must be less than 5000 characters"
+            cv_url:
+              blank: "CV can not be blank - CV must be a PDF, DOC or DOCX file"

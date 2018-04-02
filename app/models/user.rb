@@ -18,6 +18,7 @@ class User < ApplicationRecord
   validates :university, length: {maximum: 250}
   validates :program, length: {maximum: 250}
   validates :password, presence: true, length: {minimum: 6, maximum: 50}, allow_nil: true
+  validates :avatar, length: {maximum: 250}
   validate :birthdate_less_than_today, if: :birthday?
 
 
@@ -36,8 +37,12 @@ class User < ApplicationRecord
 
   def birthdate_less_than_today
     if birthday.present?
-      errors.add :birthday, "Ngày sinh không hợp lệ" if birthday > Time.zone.today-365
+      errors.add :birthday, "Năm sinh phải nằm trong khoảng 1900 - 2010" if birthday.year < 1900 or birthday.year > 2010
     end
+  end
+
+  def active_for_authentication?
+    super && self.active?
   end
 
   private
