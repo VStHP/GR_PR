@@ -13,15 +13,17 @@ class Admin::CourseSubjectsController < ApplicationController
     authorize! :update, @course_subject
     return if @mes_error.present?
     @subject = @course_subject.subject
-    if @course_subject.update_attributes status: params[:status]
-      if params[:status] == "in_progress"
-        @course_subject.update_attributes date_start: Time.zone.now
+    respond_to do |format|
+      if @course_subject.update_attributes status: params[:status]
+        if params[:status] == "in_progress"
+          @course_subject.update_attributes date_start: Time.zone.now
+        else
+          @course_subject.update_attributes date_end: Time.zone.now
+        end
+        format.js{@mes_success = "Thay đổi trạng thái môn học thành công"}
       else
-        @course_subject.update_attributes date_end: Time.zone.now
+        format.js{@mes_error = "Thay đổi trạng thái môn học thất bại"}
       end
-      @mes_success = "Thay đổi trạng thái môn học thành công"
-    else
-      @mes_error = "Thay đổi trạng thái môn học thất bại"
     end
   end
 

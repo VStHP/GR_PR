@@ -25,7 +25,8 @@
         <% end %>
       <% else %>
         <%= link_to admin_change_status_subject_path(subject), method: :patch, class: "btn btn-xs btn-#{@class}",
-          dât: {confirm: "Bạn chắc chắn muốn khóa / mở khóa môn học này?"}, title: @title, remote: true do %>
+          data: {toggle: "tooltip", confirm: "Bạn chắc chắn muốn khóa / mở khóa môn học này?"},
+          title: @title, remote: true do %>
           <i class="fa fa-<%= @icon %>"></i>
         <% end %>
       <% end %>

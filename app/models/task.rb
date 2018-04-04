@@ -1,6 +1,6 @@
 class Task < ApplicationRecord
   belongs_to :subject
-  has_many :links
+  has_many :links, dependent: :destroy
   has_many :course_user_tasks, dependent: :destroy
   has_many :course_users, through: :course_user_tasks
 

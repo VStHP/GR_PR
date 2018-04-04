@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :courses
-  has_many :course_users
+  has_many :course_users, dependent: :destroy
   has_many :course_user_tasks, through: :course_users
   has_many :courses_join, through: :course_users, source: 'course'
   has_many :course_subjects, through: :courses
@@ -18,8 +18,8 @@ class User < ApplicationRecord
   validates :university, length: {maximum: 250}
   validates :program, length: {maximum: 250}
   validates :password, presence: true, length: {minimum: 6, maximum: 50}, allow_nil: true
-  validates :avatar, length: {maximum: 250}
   validate :birthdate_less_than_today, if: :birthday?
+  validate :file_name_avatar_less_than_250, if: :avatar?
 
 
   scope :filter_by, ->(type){where permission: type if type}
@@ -75,5 +75,9 @@ class User < ApplicationRecord
     when ".xlsx" then Roo::Excelx.new(file.path, file_warning: :ignore)
     else raise "Unknown file"
     end
+  end
+
+  def file_name_avatar_less_than_250
+    errors.add :avatar, "Tên tệp avatar không quá 250 kí tự" if File.basename(avatar.path).length > 100
   end
 end

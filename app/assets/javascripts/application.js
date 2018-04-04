@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery.min
+//= require jquery.turbolinks
 //= require rails-ujs
 //= require cocoon
 //= require date_format
@@ -157,4 +158,7 @@ $(document).on('click','.form-title .task', function(){
     $('.task_fields').hide(1000);
     $('.form-title .task').html('<i class="fa fa-plus-square"></i> Danh sách chương của môn học');
   }
-  });
+});
+$(document).on('click', '.load-spinner', function(){
+  $('.spinner').delay(500).show(0);
+});

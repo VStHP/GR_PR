@@ -28,14 +28,16 @@ class Admin::SubjectsController < ApplicationController
   end
 
   def destroy
-    if @subject.course_subjects.length == 0
-      if @subject.destroy
-        @mes_success = "Xóa môn học thành công"
+    respond_to do |format|
+      if @subject.course_subjects.length == 0
+        if @subject.destroy
+          format.js{@mes_success = "Xóa môn học thành công"}
+        else
+          format.js{@mes_danger = "CẢNH BÁO! Xóa môn học thất bại"}
+        end
       else
-        @mes_danger = "CẢNH BÁO! Xóa môn học thất bại"
+        format.js{@mes_danger = "CẢNH BÁO! Không thể xóa môn học đã tồn tại trong khóa học"}
       end
-    else
-      @mes_danger = "CẢNH BÁO! Không thể xóa môn học đã tồn tại trong khóa học"
     end
   end
 
@@ -57,10 +59,20 @@ class Admin::SubjectsController < ApplicationController
   end
 
   def change_status
-    if @subject.block?
-      do_change_status @subject, "active"
-    else
-      do_change_status @subject, "block"
+    respond_to do |format|
+      if @subject.block?
+        if @subject.update_attribute :status, "active"
+          format.js{@mes_success = "#{@subject.name} đã được mở khóa"}
+        else
+          format.js{@mes_danger = "CẢNH BÁO! Không thể thay đổi trạng thái khóa học"}
+        end
+      else
+        if @subject.update_attribute :status, "block"
+          format.js{@mes_success = "#{@subject.name} đã bị khóa"}
+        else
+          format.js{@mes_danger = "CẢNH BÁO! Không thể thay đổi trạng thái khóa học"}
+        end
+      end
     end
   end
 
@@ -111,18 +123,6 @@ class Admin::SubjectsController < ApplicationController
     params.require(:subject).permit( :id, :name, :description, :day_on_learn, :avatar,
       links_attributes: [:id, :name, :link, :description,:subject_id, :_destroy],
       tasks_attributes: [:id, :name, :description, :subject_id, :_destroy, :youtube_url])
-  end
-
-  def do_change_status subject, status
-    if subject.update_attribute :status, status
-      if status == "block"
-        @mes_success = "#{subject.name} đã bị khóa"
-      else
-        @mes_success = "#{subject.name} đã được mở khóa"
-      end
-    else
-      @mes_danger = "CẢNH BÁO! Không thể thay đổi trạng thái khóa học"
-    end
   end
 
   def add_course_user_task

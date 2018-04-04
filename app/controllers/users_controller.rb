@@ -5,10 +5,12 @@ class UsersController < ApplicationController
   def show; end
 
   def change_avatar
-    if @user.update_attributes avatar_params
-      @mes_success = "Update avatar successfully!"
-    else
-      @mes_danger = "Update avatar failed!"
+    respond_to do |format|
+      if @user.update_attributes avatar_params
+        format.js{@mes_success = "Update avatar successfully!"}
+      else
+        format.js{@mes_danger = "Update avatar failed!"}
+      end
     end
   end
 

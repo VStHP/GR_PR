@@ -1,8 +1,8 @@
 class Subject < ApplicationRecord
-  has_many :tasks
+  has_many :tasks, dependent: :destroy
   has_many :course_user_tasks, through: :tasks
-  has_many :links
-  has_many :course_subjects
+  has_many :links, dependent: :destroy
+  has_many :course_subjects, dependent: :destroy
   has_many :courses, through: :course_subjects
   has_many :course_users, through: :courses
 
@@ -10,7 +10,7 @@ class Subject < ApplicationRecord
   validates :name, presence: true, uniqueness: {case_sensitive: false}, length: {maximum: 250}
   validates :description, length: {maximum: 5000}
   validates :day_on_learn, presence: true, numericality: { other_than: 0 }
-  # validates :avatar, length: {maximum: 250}
+  validate :file_name_avatar_less_than_250, if: :avatar?
 
   scope :filter_block, ->{where status: "block"}
   scope :filter_active, ->{where status: "active"}
@@ -75,6 +75,10 @@ class Subject < ApplicationRecord
     when ".xlsx" then Roo::Excelx.new(file.path, file_warning: :ignore)
     else raise "Unknown file"
     end
+  end
+
+  def file_name_avatar_less_than_250
+    errors.add :avatar, "Tên tệp avatar không quá 250 kí tự" if File.basename(avatar.path).length > 250
   end
 
 end

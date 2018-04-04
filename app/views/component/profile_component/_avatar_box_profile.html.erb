@@ -10,7 +10,7 @@
                 <%= form_for @user, url: change_avatar_path(@user.id), method: :patch,
                   html: {class: "avt_form"}, remote: true do |f| %>
                   <%= f.file_field :avatar, id: "avatarUser", class: "form-control" %>
-                  <%= f.submit "Save", class: "btn btn-primary" %>
+                  <%= f.submit "Save", class: "btn btn-primary load-spinner" %>
                 <% end %>
               </div>
             </div>

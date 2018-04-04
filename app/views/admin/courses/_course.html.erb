@@ -22,8 +22,9 @@
           <i class="fa fa-times"></i>
         <% end %>
       <% elsif !course.finish? %>
-        <%= link_to admin_change_status_course_path(course), method: :patch, class: "btn btn-xs btn-#{@class}",
-         data: {confirm: "Bạn chắc chắn muốn khóa / mở khóa khóa học này?"}, title: @title, remote: true do %>
+        <%= link_to admin_change_status_course_path(course), method: :patch,
+          class: "btn btn-xs btn-#{@class}",
+          data: {confirm: "Bạn chắc chắn muốn khóa / mở khóa khóa học này?"}, title: @title, remote: true do %>
           <i class="fa fa-<%= @icon %>"></i>
         <% end %>
       <% end %>

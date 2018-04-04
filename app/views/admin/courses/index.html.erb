@@ -13,10 +13,16 @@
 <div class="block full">
   <div class="block-title" id="btn-filter-container">
     <h2><strong>Khóa Học</strong></h2>
-    <%= link_to "Khởi tạo", admin_courses_path(type: "init"),class: "btn-filter active", remote: true %>
-    <%= link_to "Đang tiến hành", admin_courses_path(type: "in_progress"),class: "btn-filter", remote: true %>
-    <%= link_to "Kết thúc", admin_courses_path(type: "finish"),class: "btn-filter", remote: true %>
-    <%= link_to "Đã khóa", admin_courses_path(type: "block"),class: "btn-filter", remote: true %>
+    <div class="btn-group btn-group-sm pull-right">
+      <%= link_to "Khởi tạo", admin_courses_path(type: "init"),
+        class: "btn btn-primary btn-filter active", remote: true %>
+      <%= link_to "Đang tiến hành", admin_courses_path(type: "in_progress"),
+        class: "btn btn-primary btn-filter", remote: true %>
+      <%= link_to "Kết thúc", admin_courses_path(type: "finish"),
+        class: "btn btn-primary btn-filter", remote: true %>
+      <%= link_to "Đã khóa", admin_courses_path(type: "block"),
+        class: "btn btn-primary btn-filter", remote: true %>
+    </div>
   </div>
   <div class="table-responsive" id="table-content">
     <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">

@@ -15,4 +15,5 @@
  *= require alertify/default
  *= require alertify/bootstrap
  *= require custom_application
+ *= require spinner
  */

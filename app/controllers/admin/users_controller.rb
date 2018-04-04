@@ -16,14 +16,16 @@ class Admin::UsersController < ApplicationController
     @user = User.new
   end
 
-  def edit; end
+  def edit
+    respond_to { |format| format.js }
+  end
 
   def create
     set_password_default
     @user = User.new user_params
     if @user.save
       flash[:success] = "Tạo thành công tài khoản #{@user.permission}:#{@user.name}"
-      redirect_to root_path
+      redirect_to admin_users_path
     else
       flash[:danger] = "Tạo tài khoản thất bại"
       render :new
@@ -31,18 +33,12 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
-    if @user.update_attributes user_params
-      @mes_success = "Cập nhật hồ sơ thành công"
-    else
-      @mes_danger = "CẢNH BÁO! Cập nhật hồ sơ thất bại"
-    end
-  end
-
-  def destroy
-    @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
+      if @user.update_attributes user_params
+        format.js{@mes_success = "Cập nhật hồ sơ thành công"}
+      else
+        format.js{@mes_danger = "CẢNH BÁO! Cập nhật hồ sơ thất bại"}
+      end
     end
   end
 
@@ -92,14 +88,16 @@ class Admin::UsersController < ApplicationController
   end
 
   def do_change_status user, status
-    if user.update_attributes status: status
-      if status == "block"
-        @mes_success = "#{user.name} đã bị khóa"
+    respond_to do |format|
+      if user.update_attributes status: status
+        if status == "block"
+          format.js{@mes_success = "#{user.name} đã bị khóa"}
+        else
+          format.js{@mes_success = "#{user.name} đã được mở khóa"}
+        end
       else
-        @mes_success = "#{user.name} đã được mở khóa"
+        format.js{@mes_danger = "CẢNH BÁO! Không thể thay đổi trạng thái tài khoản"}
       end
-    else
-      @mes_danger = "CẢNH BÁO! Không thể thay đổi trạng thái tài khoản"
     end
   end
 

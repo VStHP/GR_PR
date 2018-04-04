@@ -12,9 +12,11 @@
 </ul>
 <div class="block full">
   <div class="block-title" id="btn-filter-container">
-    <h2><strong>Tài Khoản</strong></h2>
-    <%= link_to "Của tôi", trainer_courses_path,class: "btn-filter active", remote: true %>
-    <%= link_to "Tham gia", trainer_courses_path(type: "join"),class: "btn-filter ", remote: true %>
+    <h2><strong>Khóa học</strong></h2>
+    <div class="btn-group btn-group-sm pull-right">
+      <%= link_to "Của tôi", trainer_courses_path, class: "btn btn-primary btn-filter active", remote: true %>
+      <%= link_to "Tham gia", trainer_courses_path(type: "join"), class: "btn btn-primary btn-filter", remote: true %>
+    </div>
   </div>
   <div class="row" id="course-content">
     <%= render @courses %>

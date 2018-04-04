@@ -42,14 +42,16 @@ class Admin::CoursesController < ApplicationController
   end
 
   def destroy
-    if @course.init?
-      if @course.destroy
-        @mes_success = "Xóa khóa học thành công"
+    respond_to do |format|
+      if @course.init?
+        if @course.destroy
+          format.js{@mes_success = "Xóa khóa học thành công"}
+        else
+          format.js{@mes_danger = "CẢNH BÁO! Xóa khóa học thất bại"}
+        end
       else
-        @mes_danger = "CẢNH BÁO! Xóa khóa học thất bại"
+        format.js{@mes_danger = "CẢNH BÁO! Không thể xóa khóa học đã bắt đầu"}
       end
-    else
-      @mes_danger = "CẢNH BÁO! Không thể xóa khóa học đã bắt đầu"
     end
   end
 
@@ -121,14 +123,16 @@ class Admin::CoursesController < ApplicationController
   end
 
   def do_change_status course, status
-    if course.update_attribute :status, status
-      if status == "block"
-        @mes_success = "#{course.name} đã bị khóa"
+    respond_to do |format|
+      if course.update_attribute :status, status
+        if status == "block"
+          format.js{@mes_success = "#{course.name} đã bị khóa"}
+        else
+          format.js{@mes_success = "#{course.name} đã được mở khóa"}
+        end
       else
-        @mes_success = "#{course.name} đã được mở khóa"
+        format.js{@mes_danger = "CẢNH BÁO! Không thể thay đổi trạng thái khóa học"}
       end
-    else
-      @mes_danger = "CẢNH BÁO! Không thể thay đổi trạng thái khóa học"
     end
   end
 
@@ -177,6 +181,7 @@ class Admin::CoursesController < ApplicationController
   end
 
   def check_and_active_course
+    return if @course.errors.details.present?
     if @course.init? and @course.date_start.to_date == Time.zone.today
       if @course.update_attributes status: "in_progress"
         flash[:success] = "Kích hoạt khóa học #{@course.name} thành công."

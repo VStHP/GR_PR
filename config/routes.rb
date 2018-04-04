@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       get "users/export/:type", to: "users#export", as: :user_export
       post "users/import", to: "users#import", as: :user_import
     end
-    resources :users, except: %i(show)
+    resources :users, except: %i(show destroy)
     resources :courses
     patch "course/status/:id", to: "courses#change_status", as: :change_status_course
     get "courses/export/:type", to: "courses#export", as: :course_export

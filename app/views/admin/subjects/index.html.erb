@@ -13,8 +13,10 @@
 <div class="block full">
   <div class="block-title" id="btn-filter-container">
     <h2><strong>Môn Học</strong></h2>
-    <%= link_to "Tất cả", admin_subjects_path,class: "btn-filter active", remote: true %>
-    <%= link_to "Đã khóa", admin_subjects_path(type: "block"),class: "btn-filter", remote: true %>
+    <div class="btn-group btn-group-sm pull-right">
+      <%= link_to "Kích hoạt", admin_subjects_path,class: "btn btn-primary btn-filter active", remote: true %>
+      <%= link_to "Đã khóa", admin_subjects_path(type: "block"),class: "btn btn-primary btn-filter", remote: true %>
+    </div>
   </div>
   <div class="table-responsive" id="table-content">
     <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">

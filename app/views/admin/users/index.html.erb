@@ -13,11 +13,14 @@
 <div class="block full">
   <div class="block-title" id="btn-filter-container">
     <h2><strong>Tài Khoản</strong></h2>
-    <%= link_to "Tất cả", admin_users_path,class: "btn-filter active", remote: true %>
-    <%= link_to "Admins", admin_users_path(type: "admin"),class: "btn-filter", remote: true %>
-    <%= link_to "Trainers", admin_users_path(type: "trainer"),class: "btn-filter", remote: true %>
-    <%= link_to "Trainees", admin_users_path(type: "trainee"),class: "btn-filter", remote: true %>
-    <%= link_to "Đã khóa", admin_users_path(type: "block"),class: "btn-filter", remote: true %>
+    <div class="btn-group btn-group-sm pull-right">
+      <%= link_to "Tất cả", admin_users_path,class: "btn btn-primary btn-filter active", remote: true %>
+      <%= link_to "Quản trị", admin_users_path(type: "admin"),class: "btn btn-primary btn-filter", remote: true %>
+      <%= link_to "Hướng dẫn", admin_users_path(type: "trainer"),class: "btn btn-primary btn-filter", remote: true %>
+      <%= link_to "Thực tập sinh", admin_users_path(type: "trainee"),
+        class: "btn btn-primary btn-filter", remote: true %>
+      <%= link_to "Đã khóa", admin_users_path(type: "block"),class: "btn btn-primary btn-filter", remote: true %>
+    </div>
   </div>
   <div class="table-responsive" id="table-content">
     <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">

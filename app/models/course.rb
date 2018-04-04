@@ -3,10 +3,10 @@ class Course < ApplicationRecord
   # attr_accessor :user_ids
 
   belongs_to :user
-  has_many :links
+  has_many :links, dependent: :destroy
   has_many :course_subjects, dependent: :destroy
   has_many :subjects, through: :course_subjects
-  has_many :course_users
+  has_many :course_users, dependent: :destroy
   has_many :course_user_tasks, through: :course_users
   has_many :users, through: :course_users
 
@@ -16,13 +16,14 @@ class Course < ApplicationRecord
   validates :program, length: {maximum: 250}, presence: true
   validates :language, length: {maximum: 250}, presence: true
   validates :date_start, presence: true
-  # validates :banner, length: {maximum: 250}
-  # validates :avatar, length: {maximum: 250}
+  validate :file_name_avatar_less_than_250, if: :avatar?
+  validate :file_name_banner_less_than_250, if: :banner?
   validate :datestart_less_than_today, if: :date_start?
 
   accepts_nested_attributes_for :links, reject_if: :all_blank, allow_destroy: true
 
   scope :filter_by, ->(type){where status: type if type}
+  default_scope ->{order(:date_start)}
 
   enum status: [:init, :in_progress, :finish, :block]
 
@@ -74,5 +75,13 @@ class Course < ApplicationRecord
   def datestart_less_than_today
     return unless status === "init"
     errors.add :date_start, "Ngày bắt đầu không nằm ở quá khứ" if date_start.to_date < Time.zone.today
+  end
+
+  def file_name_avatar_less_than_250
+    errors.add :avatar, "Tên tệp avatar không quá 250 kí tự" if File.basename(avatar.path).length > 100
+  end
+
+  def file_name_banner_less_than_250
+    errors.add :banner, "Tên tệp banner không quá 250 kí tự" if File.basename(banner.path).length > 100
   end
 end

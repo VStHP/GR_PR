@@ -55,35 +55,35 @@
 <section id="registry-div" class="wrapper-intro style3 special">
   <div class="head-section">
     <div class="major">
-      <h2>Register Internship</h2>
-      <p>Please enter the required information!</p>
+      <h2>Đăng ký thực tập</h2>
+      <p>Hãy nhập đầy đủ các thông tin quan trọng dưới đây!</p>
     </div>
   </div>
   <div class="body-section">
     <form action="#" method="post">
       <div class="row uniform">
         <div class="small">
-          <input type="text" name="name" placeholder="Name" class="form-control">
+          <input type="text" name="name" placeholder="Tên" class="form-control">
         </div>
         <div class="small">
           <input type="text" name="email" placeholder="Email" class="form-control">
         </div>
         <div class="small">
-          <input type="text" name="phone" placeholder="Phone" class="form-control">
+          <input type="text" name="phone" placeholder="Số điện thoại" class="form-control">
         </div>
         <div class="small">
-          <input type="text" name="expected_intern" placeholder="Internship's position" class="form-control">
+          <input type="text" name="expected_intern" placeholder="Vị trí thực tập" class="form-control">
         </div>
         <div class="large">
-          <textarea placeholder="Message" rows="6" class="form-control"></textarea>
+          <textarea placeholder="Tin nhắn" rows="6" class="form-control"></textarea>
         </div>
         <div class="large">
-          <label class="text-special">Curriculum Vitae</label>
+          <label class="text-special">Sơ yếu lý lịch</label>
           <span><input type="file" name="cv_url" class="transparent absolute" style="color: #fff"></span>
         </div>
         <div>
           <ul class="actions">
-            <input value="Send Message" class="special-btn" type="submit">
+            <input value="Gửi đăng ký" class="special-btn" type="submit">
           </ul>
         </div>
       </div>
@@ -94,8 +94,8 @@
 <!-- Intro -->
 <section class="site-section site-section-light site-section-top themed-background-dark" id="contact-div">
   <div class="container">
-    <h1 class="text-center animation-slideDown"><i class="fa fa-envelope"></i> <strong>Contact Us</strong></h1>
-    <h2 class="h3 text-center animation-slideUp">We will be happy to answer all your questions and work together!</h2>
+    <h1 class="text-center animation-slideDown"><i class="fa fa-envelope"></i> <strong>Liên hệ chúng tôi</strong></h1>
+    <h2 class="h3 text-center animation-slideUp">Chúng tối rất sẵn lòng để trả lời các câu hỏi và làm việc cùng nhau!</h2>
   </div>
 </section>
 <!-- END Intro -->
@@ -110,27 +110,27 @@
     <div class="row">
       <div class="col-sm-6 col-md-4 site-block">
         <div class="site-block">
-          <h3 class="h2 site-heading"><strong>Company</strong> Inc</h3>
+          <h3 class="h2 site-heading"><strong>Công ty</strong> Tập đoàn</h3>
           <address>
-            Address<br>
-            Town/City<br>
-            Region, Zip/Postal Code<br><br>
+            Địa chỉ<br>
+            Thị trấn/ Thành phố<br>
+            Khu vực, mã Zip/mã bưu điện<br><br>
             <i class="fa fa-phone"></i> (000) 000-0000<br>
             <i class="fa fa-envelope-o"></i> <a href="javascript:void(0)">example@example.com</a>
           </address>
         </div>
         <div class="site-block">
-          <h3 class="h2 site-heading"><strong>About</strong> Us</h3>
+          <h3 class="h2 site-heading"><strong>Về</strong> Chúng tôi</h3>
           <p class="remove-margin">
             In hac habitasse platea dictumst. Proin ac nibh rutrum lectus rhoncus eleifend. Sed porttitor pretium venenatis. Suspendisse potenti. Aliquam quis ligula elit. Aliquam at orci ac neque semper dictum. Sed tincidunt scelerisque ligula, et facilisis nulla hendrerit non. Suspendisse potenti.
           </p>
         </div>
       </div>
       <div class="col-sm-6 col-md-8 site-block">
-        <h3 class="h2 site-heading"><strong>Contact</strong> Form</h3>
+        <h3 class="h2 site-heading"><strong>Liên hệ</strong> Biểu mẫu</h3>
         <form action="contact.html#form-contact" method="post" id="form-contact">
           <div class="form-group">
-            <label for="contact-name">Name</label>
+            <label for="contact-name">Tên của bạn</label>
             <input type="text" id="contact-name" name="contact-name" class="form-control form-control-text input-lg" placeholder="Your name..">
           </div>
           <div class="form-group">
@@ -138,11 +138,11 @@
             <input type="text" id="contact-email" name="contact-email" class="form-control form-control-text input-lg" placeholder="Your email..">
           </div>
           <div class="form-group">
-            <label for="contact-message">Message</label>
+            <label for="contact-message">Nội dung tin nhắn</label>
             <textarea id="contact-message" name="contact-message" rows="10" class="form-control form-control-text input-lg" placeholder="Let us know how we can assist.."></textarea>
           </div>
           <div class="form-group">
-            <button type="submit" class="btn btn-lg btn-primary">Send Message</button>
+            <button type="submit" class="btn btn-lg btn-primary">Gửi Tin nhắn</button>
           </div>
         </form>
       </div>
@@ -153,11 +153,11 @@
 <div class="wrapper-login" id="login-prime">
   <div class="container-login">
     <button id="cancel-button" class="cancel-login"><i class="fa fa-close"></i></button>
-    <h1>Welcome</h1>
+    <h1>Xin chào</h1>
     <%= form_for :user, url: user_session_path(@user), method: :post, :html => {:class => "form-login"} do |f| %>
-      <%= f.email_field :email, placeholder: "Username/Email", class: "input-login" %>
-      <%= f.password_field :password, placeholder: "Password", class: "input-login" %>
-      <%= f.submit "Login", class: "button-login" %>
+      <%= f.email_field :email, placeholder: "Tên đăng nhập hoặc email", class: "input-login" %>
+      <%= f.password_field :password, placeholder: "Mật khẩu", class: "input-login" %>
+      <%= f.submit "Đăng nhập", class: "button-login" %>
     <% end %>
   </div>
 
