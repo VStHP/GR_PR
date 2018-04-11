@@ -42,6 +42,10 @@ en:
     status:
       active: "Sẵn sàng"
       block: "Bị khóa"
+  surveys:
+    status:
+      ready: "Sẵn sàng"
+      block: "Bị khóa"
   course_subjects:
     status:
       init: "Sẵn sàng"
@@ -116,7 +120,7 @@ en:
               other_than: "Ngày học phải lớn hơn 0"
             avatar:
               too_long: "Tên hình avatar không quá 250 kí tự"
-        task:
+        lesson:
           attributes:
             name:
               blank: "Đã có lỗi khi thêm chương, hãy kiểm tra! Tên chương không thể để trống"
@@ -143,7 +147,7 @@ en:
           attributes:
             course_id:
               taken: "Mối quan hệ giữa tài khoản và khóa học đã tồn tại"
-        course_user_task:
+        course_user_lesson:
           attributes:
             course_user_id:
               taken: "Mối quan hệ giữa tài khoản trong khóa học và chương môn học đã tồn tại"

@@ -1,8 +1,8 @@
 class CourseUser < ApplicationRecord
   belongs_to :course
   belongs_to :user
-  has_many :course_user_tasks, dependent: :destroy
-  has_many :tasks, through: :course_user_tasks
+  has_many :course_user_lessons, dependent: :destroy
+  has_many :lessons, through: :course_user_lessons
 
   validates :course_id, uniqueness: { scope: :user_id }
 

@@ -7,7 +7,7 @@ class Course < ApplicationRecord
   has_many :course_subjects, dependent: :destroy
   has_many :subjects, through: :course_subjects
   has_many :course_users, dependent: :destroy
-  has_many :course_user_tasks, through: :course_users
+  has_many :course_user_lessons, through: :course_users
   has_many :users, through: :course_users
 
   validates :id, length: {minimum: 4, maximum: 20}, presence: true, uniqueness: {case_sensitive: false}

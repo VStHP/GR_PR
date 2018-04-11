@@ -45,7 +45,7 @@
         <Cell><Data ss:Type="String">NAME SUBJECT</Data></Cell>
         <Cell><Data ss:Type="String">STATUS</Data></Cell>
         <Cell><Data ss:Type="String">DAY ON LEARN</Data></Cell>
-        <Cell><Data ss:Type="String">TOTAL TASKS</Data></Cell>
+        <Cell><Data ss:Type="String">TOTAL lESSONS</Data></Cell>
         <Cell><Data ss:Type="String">DESCRIPTION</Data></Cell>
       </Row>
       <% @subjects.each do |subject| %>
@@ -54,7 +54,7 @@
           <Cell><Data ss:Type="String"><%= subject.name %></Data></Cell>
           <Cell><Data ss:Type="String"><%= subject.status %></Data></Cell>
           <Cell><Data ss:Type="String"><%= subject.day_on_learn %></Data></Cell>
-          <Cell><Data ss:Type="String"><%= subject.tasks.length %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= subject.lessons.length %></Data></Cell>
           <Cell><Data ss:Type="String"><%= subject.description %></Data></Cell>
         </Row>
       <% end %>

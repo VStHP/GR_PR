@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :courses
   has_many :course_users, dependent: :destroy
-  has_many :course_user_tasks, through: :course_users
+  has_many :course_user_lessons, through: :course_users
   has_many :courses_join, through: :course_users, source: 'course'
   has_many :course_subjects, through: :courses
 

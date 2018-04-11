@@ -18,17 +18,17 @@ class Ability
   private
 
   def permission_admin
-    cannot [:read, :update], CourseUserTask
+    cannot [:read, :update], CourseUserLesson
     can :manage, :all
   end
 
   def permission_trainer user
-    can :manage, [ Subject, Task, Link ]
+    can :manage, [ Subject, lesson, Link, Survey, Question, Answer, CourseUserSurvey ]
+    can :manage, CourseSubject, course_id: user.courses.pluck(:id)
+    can :read, CourseSubject, course_id: user.courses_join.pluck(:id)
     can :read, User
     can :read, Course, id: user.courses_join.pluck(:id)
     can [:update, :read], Course, user_id: user.id
-    can :read, CourseSubject, course_id: user.courses_join.pluck(:id)
-    can :manage, CourseSubject, course_id: user.courses.pluck(:id)
     can %i(update change_avatar), user
   end
 
@@ -37,7 +37,7 @@ class Ability
     can %i(update change_avatar), user
     can :read, Course, id: user.courses_join.pluck(:id)
     can :read, CourseSubject, course_id: user.courses_join.pluck(:id)
-    can :update, CourseUserTask, id: user.course_user_tasks.pluck(:id)
+    can :update, CourseUserLesson, id: user.course_user_lessons.pluck(:id)
   end
   # def undefine_user
   #   can :create, Apply

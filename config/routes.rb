@@ -31,12 +31,15 @@ Rails.application.routes.draw do
     get "subjects/export/file", to: "subjects#export", as: :subject_export
     get "subjects/export/subject/:id", to: "subjects#export_subject", as: :subject_export_subject
     post "subjects/import", to: "subjects#import", as: :subject_import
-    post "subjects/import/tasks", to: "subjects#import_task", as: :subject_import_task
+    post "subjects/import/lessons", to: "subjects#import_lesson", as: :subject_import_lesson
     post "subjects/import/links", to: "subjects#import_link", as: :subject_import_link
-    resources :tasks
+    resources :lessons
     get "course/:course_id/subject/:subject_id", to: "course_subjects#show", as: :show_subject_course
     get "course/:course_id/subject/:subject_id/:status", to: "course_subjects#update", as: :update_status_cs
     resources :course_users
+    resources :surveys
+    get "surveys/reload/lessons/:name", to: "surveys#reload_lesson", as: :reload_lesson
+    patch "survey/status/:id", to: "surveys#change_status", as: :change_status_survey
   end
 
   namespace :trainer do
@@ -50,7 +53,7 @@ Rails.application.routes.draw do
   get "mycourses", to: "trainee/courses#index", as: :mycourses
   get "mycourse/:id", to: "admin/courses#show", as: :mycourse
   get "mycourse/:course_id/subject/:subject_id", to: "admin/course_subjects#show", as: :course_subject
-  get "report/progress/:id/:status", to: "trainee/course_user_tasks#update", as: :report_progress
+  get "report/progress/:id/:status", to: "trainee/course_user_lessons#update", as: :report_progress
 
   get "/about", to: "test_templatee2#about", as: "about"
   get "/form/course", to: "test_templatee2#form_course", as: "form_course"

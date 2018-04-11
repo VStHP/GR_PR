@@ -1,6 +1,6 @@
 class Admin::SubjectsController < ApplicationController
   load_and_authorize_resource param_method: :params_subject
-  after_action :add_course_user_task, only: :update
+  after_action :add_course_user_lesson, only: :update
   before_action :set_subject, only: :export_subject
 
   def index
@@ -13,7 +13,7 @@ class Admin::SubjectsController < ApplicationController
 
   def new
     @subject = Subject.new
-    1.times { @subject.tasks.build}
+    1.times { @subject.lessons.build}
     1.times { @subject.links.build}
   end
 
@@ -22,7 +22,7 @@ class Admin::SubjectsController < ApplicationController
       flash[:success] = "Tạo môn học thành công"
       redirect_to admin_subjects_path
     else
-      flash[:danger] = "CẢNH BÁO! Tạo môn học thất bại"
+      flash[:danger] = "Tạo môn học thất bại"
       render :new
     end
   end
@@ -45,7 +45,7 @@ class Admin::SubjectsController < ApplicationController
 
   def show
     @courses = @subject.courses
-    @tasks = @subject.tasks
+    @lessons = @subject.lessons
   end
 
   def update
@@ -85,7 +85,7 @@ class Admin::SubjectsController < ApplicationController
   end
 
   def export_subject
-    @tasks = @subject.tasks
+    @lessons = @subject.lessons
     @links = @subject.links
     respond_to do |format|
       format.xls
@@ -98,8 +98,8 @@ class Admin::SubjectsController < ApplicationController
     redirect_back fallback_location: root_path
   end
 
-  def import_task
-    Subject.import_task params[:file]
+  def import_lesson
+    Subject.import_lesson params[:file]
     flash[:success] = "Nhập chương cho môn học từ file thành công"
     redirect_back fallback_location: root_path
   end
@@ -122,14 +122,14 @@ class Admin::SubjectsController < ApplicationController
   def params_subject
     params.require(:subject).permit( :id, :name, :description, :day_on_learn, :avatar,
       links_attributes: [:id, :name, :link, :description,:subject_id, :_destroy],
-      tasks_attributes: [:id, :name, :description, :subject_id, :_destroy, :youtube_url])
+      lessons_attributes: [:id, :name, :description, :subject_id, :_destroy, :youtube_url])
   end
 
-  def add_course_user_task
-    @subject.tasks.each do |task|
-      if task.id_previously_changed?
+  def add_course_user_lesson
+    @subject.lessons.each do |lesson|
+      if lesson.id_previously_changed?
         @subject.course_users.each do |cu|
-          cu.course_user_tasks.create! task_id: task.id
+          cu.course_user_lessons.create! lesson_id: lesson.id
         end
       end
     end

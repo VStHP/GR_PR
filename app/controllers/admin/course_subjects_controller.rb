@@ -6,7 +6,7 @@ class Admin::CourseSubjectsController < ApplicationController
   def show
     authorize! :show, @course_subject
     @subject = @course_subject.subject
-    @tasks = @subject.tasks
+    @lessons = @subject.lessons
   end
 
   def update

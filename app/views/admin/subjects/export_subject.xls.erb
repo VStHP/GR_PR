@@ -30,20 +30,20 @@
         <Cell></Cell>
         <Cell></Cell>
         <Cell></Cell>
-        <Cell><Data ss:Type="String">Tổng số: <%= @tasks.length %> chương</Data></Cell>
+        <Cell><Data ss:Type="String">Tổng số: <%= @lessons.length %> chương</Data></Cell>
       </Row>
       <Row>
-        <Cell><Data ss:Type="String">ID TASK</Data></Cell>
-        <Cell><Data ss:Type="String">NAME TASK</Data></Cell>
+        <Cell><Data ss:Type="String">ID lesson</Data></Cell>
+        <Cell><Data ss:Type="String">NAME lesson</Data></Cell>
         <Cell><Data ss:Type="String">YOUTUBE URL</Data></Cell>
         <Cell><Data ss:Type="String">DESCRIPTION</Data></Cell>
       </Row>
-      <% @tasks.each do |task| %>
+      <% @lessons.each do |lesson| %>
         <Row>
-          <Cell><Data ss:Type="String"><%= task.id %></Data></Cell>
-          <Cell><Data ss:Type="String"><%= task.name %></Data></Cell>
-          <Cell><Data ss:Type="String"><%= task.youtube_url %></Data></Cell>
-          <Cell><Data ss:Type="String"><%= task.description %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= lesson.id %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= lesson.name %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= lesson.youtube_url %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= lesson.description %></Data></Cell>
         </Row>
       <% end %>
       <Row></Row>

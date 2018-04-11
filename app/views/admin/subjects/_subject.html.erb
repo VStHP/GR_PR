@@ -7,7 +7,7 @@
   </td>
   <td><%= link_to subject.name, admin_subject_path(subject) %></td>
   <td><%= subject.day_on_learn %></td>
-  <td><%= subject.tasks.count %></td>
+  <td><%= subject.lessons.count %></td>
   <td class="status_banner">
     <span class="label label-<%= @class %> " style="text-transform: capitalize;"><%= t "subjects.status.#{subject.status}" %></span>
   </td>

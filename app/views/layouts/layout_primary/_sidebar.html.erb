@@ -156,6 +156,23 @@
             </li>
            <% end %>
         <% end %>
+        <% if can? :manage, Survey %>
+          <li>
+            <a href="#" class="sidebar-nav-menu">
+              <i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+              <i class="gi gi-book sidebar-nav-icon"></i>
+              <span class="sidebar-nav-mini-hide">Quản lý câu hỏi</span>
+            </a>
+            <ul>
+              <li>
+                <%= link_to "Danh sách câu hỏi", admin_surveys_path %>
+              </li>
+              <li>
+                <%= link_to "Tạo bài kiểm tra", new_admin_survey_path %>
+              </li>
+            </ul>
+          </li>
+        <% end %>
       </ul>
       <!-- END Sidebar Navigation -->
     </div>

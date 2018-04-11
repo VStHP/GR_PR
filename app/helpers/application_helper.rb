@@ -29,25 +29,25 @@ module ApplicationHelper
     end
   end
 
-  def define_course_user_task task, course_id
-    @course_user_task = current_user.course_users.find_by(course_id: course_id).course_user_tasks.of_task(task)[0]
-    case @course_user_task.status
+  def define_course_user_lesson lesson, course_id
+    @course_user_lesson = current_user.course_users.find_by(course_id: course_id).course_user_lessons.of_lesson(lesson)[0]
+    case @course_user_lesson.status
     when "init"
       @cll = ""
-      @url = report_progress_path(id: @course_user_task.id, status: "in_progress")
+      @url = report_progress_path(id: @course_user_lesson.id, status: "in_progress")
       @class = "btn btn-xs btn-info"
       @tt = "Nhấn để nhận chương"
       @icon = "fa fa-play"
       @text = " Bắt đầu"
     when "in_progress"
-      @cll = "task-active"
-      @url = report_progress_path(id: @course_user_task.id, status: "finish")
+      @cll = "lesson-active"
+      @url = report_progress_path(id: @course_user_lesson.id, status: "finish")
       @class = "btn btn-xs btn-danger"
       @tt = "Nhấn để kết thúc chương"
       @icon = "fa fa-flag"
       @text = " Kết thúc"
     else
-      @cll = "task-finish"
+      @cll = "lesson-finish"
       @url = "#"
       @class = "btn btn-xs btn-success"
       @tt = "Hoàn thành!"

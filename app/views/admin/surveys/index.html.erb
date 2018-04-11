@@ -1,0 +1,54 @@
+<% provide :title, "Khóa Học" %>
+<div class="content-header">
+  <div class="header-section">
+    <h1>
+      <i class="fa fa-table"></i>Danh sách đề thi
+    </h1>
+  </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+  <li>Đề thi</li>
+  <li><a href="">Danh sách</a></li>
+</ul>
+<div class="block full">
+  <div class="block-title" id="btn-filter-container">
+    <h2><strong>Danh sách</strong></h2>
+    <div class="btn-group btn-group-sm pull-right">
+      <%= link_to "Sẵn sàng", admin_surveys_path,
+        class: "btn btn-primary btn-filter active", remote: true %>
+      <%= link_to "Đã khóa", admin_surveys_path(type: "block"),
+        class: "btn btn-primary btn-filter", remote: true %>
+    </div>
+  </div>
+  <div class="table-responsive" id="table-content">
+    <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+      <thead>
+        <tr>
+          <th class="text-center">ID</th>
+          <th>Tên</th>
+          <th>Môn học</th>
+          <th>Bài học</th>
+          <th>Thời gian</th>
+          <th>Số câu hỏi</th>
+          <th>Trạng thái</th>
+          <th class="text-center">##</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: "survey", collection: @surveys, as: :survey %>
+      </tbody>
+    </table>
+  </div>
+  <div class="table-responsive">
+    <div style="float: left;">
+      Download CSV:
+      <%= link_to "Tất cả", admin_course_export_path(format: "csv", type: "all") %> |
+      <%= link_to "Đã khóa", admin_course_export_path(format: "xls", type: "block") %>
+    </div>
+  </div>
+</div>
+<script>
+  $(function(){ TablesSurveys.init(); });
+  $(function(){ btnFilterClick.init(); });
+</script>
+

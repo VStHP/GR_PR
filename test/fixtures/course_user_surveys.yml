@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  courseusers: one
+  surveys: one
+  score: 1.5
+  result: 1
+  time: 1.5
+
+two:
+  courseusers: two
+  surveys: two
+  score: 1.5
+  result: 1
+  time: 1.5

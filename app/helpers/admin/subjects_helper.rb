@@ -2,6 +2,7 @@ module Admin::SubjectsHelper
   def define_color_status_subject sb
     case sb.status
     when "active"
+      @color ="default"
       @class = "info"
       @icon = "unlock"
       @title = "CLICK để khóa khóa học"

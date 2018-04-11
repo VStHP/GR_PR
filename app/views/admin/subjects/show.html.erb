@@ -3,7 +3,7 @@
   <div class="header-section">
     <h1>
       <i class="fa fa-globe"></i><%= @subject.name.upcase %><br>
-      <small><%= @subject.tasks.length %> Chương</small>
+      <small><%= @subject.lessons.length %> Chương</small>
     </h1>
   </div>
 </div>
@@ -53,7 +53,7 @@
             </tbody>
           </table>
           <hr>
-          <%= render partial: "task", collection: @tasks, as: :task %>
+          <%= render partial: "lesson", collection: @lessons, as: :lesson %>
         </div>
       </div>
     </div>
@@ -105,7 +105,7 @@
               <td>
                 <text class="text-info"><strong>ID: </strong><%= @subject.id %></text><br>
                 <text class="text-info"><strong>Số ngày học: </strong><%= @subject.day_on_learn %></text><br>
-                <text class="text-success"><strong>Số chương: </strong><%= @tasks.count %></text><br>
+                <text class="text-success"><strong>Số chương: </strong><%= @lessons.count %></text><br>
                 <text class="text-danger"><strong>Số liên kết: </strong><%= @subject.links.count %></text>
               </td>
             </tr>
@@ -140,7 +140,7 @@
   </div>
   <div class="main" scrolltop="0" scrollleft="0">
     <br><br>
-    <%= form_tag admin_subject_import_task_path, multipart: true do %>
+    <%= form_tag admin_subject_import_lesson_path, multipart: true do %>
       <table>
         <tr>
           <td>

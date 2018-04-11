@@ -1,6 +1,6 @@
 class Subject < ApplicationRecord
-  has_many :tasks, dependent: :destroy
-  has_many :course_user_tasks, through: :tasks
+  has_many :lessons, dependent: :destroy
+  has_many :course_user_lessons, through: :lessons
   has_many :links, dependent: :destroy
   has_many :course_subjects, dependent: :destroy
   has_many :courses, through: :course_subjects
@@ -15,7 +15,7 @@ class Subject < ApplicationRecord
   scope :filter_block, ->{where status: "block"}
   scope :filter_active, ->{where status: "active"}
 
-  accepts_nested_attributes_for :tasks, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :lessons, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :links, reject_if: :all_blank, allow_destroy: true
 
   mount_uploader :avatar, AvatarSubjectUploader
@@ -46,14 +46,14 @@ class Subject < ApplicationRecord
     end
   end
 
-  def self.import_task(file)
+  def self.import_lesson(file)
     spreadsheet = Subject.open_spreadsheet(file)
     header = spreadsheet.row(1).map(&:downcase)
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      task = Task.find_by(id: row["id"]) || Task.new()
-      task.attributes = row.to_hash
-      task.save!
+      lesson = Lesson.find_by(id: row["id"]) || Lesson.new()
+      lesson.attributes = row.to_hash
+      lesson.save!
     end
   end
 

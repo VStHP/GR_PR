@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180321153800) do
+ActiveRecord::Schema.define(version: 20180411035125) do
+
+  create_table "answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "text"
+    t.integer "correct"
+    t.bigint "question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
+  end
 
   create_table "course_subjects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "course_id"
@@ -25,17 +34,29 @@ ActiveRecord::Schema.define(version: 20180321153800) do
     t.index ["subject_id"], name: "index_course_subjects_on_subject_id"
   end
 
-  create_table "course_user_tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "course_user_lessons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "course_user_id"
-    t.bigint "task_id"
+    t.bigint "lesson_id"
     t.integer "status", default: 0
     t.datetime "date_start"
     t.datetime "date_end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["course_user_id", "task_id"], name: "index_course_user_tasks_on_course_user_id_and_task_id", unique: true
-    t.index ["course_user_id"], name: "index_course_user_tasks_on_course_user_id"
-    t.index ["task_id"], name: "index_course_user_tasks_on_task_id"
+    t.index ["course_user_id", "lesson_id"], name: "index_course_user_lessons_on_course_user_id_and_lesson_id", unique: true
+    t.index ["course_user_id"], name: "index_course_user_lessons_on_course_user_id"
+    t.index ["lesson_id"], name: "index_course_user_lessons_on_lesson_id"
+  end
+
+  create_table "course_user_surveys", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "course_user_id"
+    t.bigint "survey_id"
+    t.float "score", limit: 24
+    t.integer "result"
+    t.float "time", limit: 24
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_user_id"], name: "index_course_user_surveys_on_course_user_id"
+    t.index ["survey_id"], name: "index_course_user_surveys_on_survey_id"
   end
 
   create_table "course_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -65,18 +86,36 @@ ActiveRecord::Schema.define(version: 20180321153800) do
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
+  create_table "lessons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.text "description"
+    t.string "youtube_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "subject_id"
+    t.index ["subject_id"], name: "index_lessons_on_subject_id"
+  end
+
   create_table "links", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.string "link"
     t.text "description"
-    t.bigint "task_id"
+    t.bigint "lesson_id"
     t.string "subject_id"
     t.string "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_links_on_course_id"
+    t.index ["lesson_id"], name: "index_links_on_lesson_id"
     t.index ["subject_id"], name: "index_links_on_subject_id"
-    t.index ["task_id"], name: "index_links_on_task_id"
+  end
+
+  create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "text"
+    t.bigint "survey_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["survey_id"], name: "index_questions_on_survey_id"
   end
 
   create_table "subjects", id: :string, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -89,14 +128,18 @@ ActiveRecord::Schema.define(version: 20180321153800) do
     t.string "avatar"
   end
 
-  create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "surveys", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.text "description"
-    t.string "youtube_url"
+    t.string "subject_id"
+    t.bigint "lesson_id"
+    t.integer "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "subject_id"
-    t.index ["subject_id"], name: "index_tasks_on_subject_id"
+    t.integer "type_test", default: 0
+    t.integer "status", default: 0
+    t.index ["lesson_id"], name: "index_surveys_on_lesson_id"
+    t.index ["subject_id"], name: "index_surveys_on_subject_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -125,15 +168,21 @@ ActiveRecord::Schema.define(version: 20180321153800) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "answers", "questions"
   add_foreign_key "course_subjects", "courses"
   add_foreign_key "course_subjects", "subjects"
-  add_foreign_key "course_user_tasks", "course_users", on_delete: :cascade
-  add_foreign_key "course_user_tasks", "tasks", on_delete: :cascade
+  add_foreign_key "course_user_lessons", "course_users", on_delete: :cascade
+  add_foreign_key "course_user_lessons", "lessons", on_delete: :cascade
+  add_foreign_key "course_user_surveys", "course_users"
+  add_foreign_key "course_user_surveys", "surveys"
   add_foreign_key "course_users", "courses"
   add_foreign_key "course_users", "users"
   add_foreign_key "courses", "users"
+  add_foreign_key "lessons", "subjects"
   add_foreign_key "links", "courses"
+  add_foreign_key "links", "lessons"
   add_foreign_key "links", "subjects"
-  add_foreign_key "links", "tasks"
-  add_foreign_key "tasks", "subjects"
+  add_foreign_key "questions", "surveys"
+  add_foreign_key "surveys", "lessons"
+  add_foreign_key "surveys", "subjects"
 end

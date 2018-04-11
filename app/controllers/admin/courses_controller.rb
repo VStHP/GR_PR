@@ -2,7 +2,7 @@ class Admin::CoursesController < ApplicationController
   load_and_authorize_resource param_method: :params_course
   before_action :allow_admin, only: :index
   before_action :set_course, only: %i(change_status export_course)
-  after_action :modify_course_user_task, only: :update
+  after_action :modify_course_user_lesson, only: :update
   after_action :check_and_active_course, only: %i(create update)
 
   def new
@@ -13,11 +13,11 @@ class Admin::CoursesController < ApplicationController
 
   def create
     if @course.save
-      flash[:success] = "Tạo khóa học thành công!"
-      add_course_user_task
+      flash[:success] = "Tạo khóa học thành công"
+      add_course_user_lesson
       redirect_to admin_course_path @course
     else
-      flash[:danger] = "CẢNH BÁO! Thất bại, hãy thử lại."
+      flash[:danger] = "Tạo khóa học thất bại"
       @trainers = User.filter_by "trainer"
       @trainees = User.trainees
       @subjects = Subject.all
@@ -136,34 +136,34 @@ class Admin::CoursesController < ApplicationController
     end
   end
 
-  def add_course_user_task
+  def add_course_user_lesson
     @course.course_users.each do |course_user|
-      Task.in_subject_ids(params[:course][:subject_ids]).each do |task|
-        course_user.course_user_tasks.create task_id: task.id
+      Lesson.in_subject_ids(params[:course][:subject_ids]).each do |lesson|
+        course_user.course_user_lessons.create lesson_id: lesson.id
       end
     end
   end
 
-  def modify_course_user_task
+  def modify_course_user_lesson
     @subject_ids_new = @course.subject_ids
     if @course.course_subjects.present?
-      @subject_ids_old = @course.course_users.first.tasks.pluck(:subject_id)
+      @subject_ids_old = @course.course_users.first.lessons.pluck(:subject_id)
     else
       @subject_ids_old = []
     end
     if (@subject_ids_new-@subject_ids_old).present?
       (@subject_ids_new-@subject_ids_old).each do |subject_id|
-        Subject.find(subject_id).tasks.each do |task|
+        Subject.find(subject_id).lessons.each do |lesson|
           @course.course_users.each do |cu|
-            cu.course_user_tasks.create! task_id: task.id
+            cu.course_user_lessons.create! lesson_id: lesson.id
           end
         end
       end
     end
     if (@subject_ids_old-@subject_ids_new).present?
       (@subject_ids_old-@subject_ids_new).each do |subject_id|
-        Subject.find(subject_id).tasks.each do |task|
-          task.course_user_tasks.delete_all
+        Subject.find(subject_id).lessons.each do |lesson|
+          lesson.course_user_lessons.delete_all
         end
       end
     end
@@ -171,8 +171,8 @@ class Admin::CoursesController < ApplicationController
       if cu.id_previously_changed?
         if (@subject_ids_old&@subject_ids_new).present?
           (@subject_ids_old&@subject_ids_new).each do |subject_id|
-            Subject.find(subject_id).tasks.each do |task|
-              cu.course_user_tasks.create! task_id: task.id
+            Subject.find(subject_id).lessons.each do |lesson|
+              cu.course_user_lessons.create! lesson_id: lesson.id
             end
           end
         end

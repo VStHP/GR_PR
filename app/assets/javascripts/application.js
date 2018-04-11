@@ -20,6 +20,7 @@
 //= require frame_youtube
 //= require highcharts
 //= require chartkick
+//= require cocoon_js
 
 var btnFilterClick = function() {
   return {
@@ -162,3 +163,27 @@ $(document).on('click','.form-title .task', function(){
 $(document).on('click', '.load-spinner', function(){
   $('.spinner').delay(500).show(0);
 });
+$(document).on('click', '#survey_type_test', function(){
+  if( $('#survey_type_test').is(':checked') ){
+    $('.selections-task').hide(500);
+  }
+  else{
+    $('.selections-task').show(500);
+  }
+});
+
+$(document).on('click', '#survey_subject_id_chosen .chosen-drop .chosen-results li', function(){
+    $('.spinner').show();
+    var name = $(this).text();
+    $.ajax({
+      url: "/admin/surveys/reload/lessons/"+name
+    });
+  });
+  $(document).ready(function(){
+    if( $('#survey_type_test').is(':checked') ){
+      $('.selections-task').hide(500);
+    }
+    else{
+      $('.selections-task').show(500);
+    }
+  });

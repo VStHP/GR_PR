@@ -47,7 +47,7 @@ module Admin::CourseSubjectsHelper
   end
 
   def define_data_chart subject, course
-    @data = course.course_user_tasks.of_task_ids(subject.task_ids).finish.chart_data
+    @data = course.course_user_lessons.of_lesson_ids(subject.lesson_ids).finish.chart_data
     course_users = course.course_users.trainees
     course_users.each do |course_user|
       exist = :false

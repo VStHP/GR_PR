@@ -161,6 +161,10 @@ img {
 /* finish CSS profile */
 
 /* form CSS */
+.form-custom {
+  padding: 15px 15px;
+
+}
 .nested-fields {
   position: relative;
 }
@@ -477,6 +481,12 @@ td{
 }
 .task-finish {
   box-shadow: 0 1px 2px 0px #1dc322 !important;
+}
+.btn-remove-df {
+  position: relative !important;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #333;
 }
 /* Lien quan toi trang thai*/
 .init-background-color {

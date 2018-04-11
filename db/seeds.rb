@@ -10,7 +10,7 @@
   CourseSubject.delete_all
   CourseUser.delete_all
   Link.delete_all
-  Task.delete_all
+  Lesson.delete_all
   Subject.delete_all
   Course.delete_all
   User.delete_all

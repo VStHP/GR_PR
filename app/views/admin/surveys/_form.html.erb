@@ -1,0 +1,110 @@
+<div class="block-title">
+  <h2>
+    <strong>Bài kiểm tra</strong>
+  </h2>
+</div>
+<%= form_for @survey, url: yield(:url_path),
+  html: {class: "form-horizontal form-bordered ui-formwizard", id:"clickable-wizard"} do |f| %>
+  <div id="clickable-first" class="step ui-formwizard-content">
+    <div class="form-group">
+      <div class="col-xs-12">
+        <ul class="nav nav-pills nav-justified clickable-steps">
+          <li class="active">
+            <a href="javascript:void(0)" data-gotostep="clickable-first">
+              <strong>1. Thông tin cần thiết</strong>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" data-gotostep="clickable-second">
+              <strong>2. Câu hỏi & Đáp án</strong>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="form-group <%= check_errors @survey, :name %>">
+      <label class="col-md-4 control-label"
+        for="survey_name">Tên bài kiểm tra <small class="text-danger">*</small></label>
+      <div class="col-md-5">
+        <%= f.text_field :name, class: "form-control ui-wizard-content",
+          placeholder: "Nhập tên bài kiểm tra .." %>
+        <span class="help-block"><%= show_errors @survey, :name, "name" %></span>
+      </div>
+    </div>
+    <div class="form-group <%= check_errors @survey, :time %>">
+      <label class="col-md-4 control-label "
+        for="survey_time">Thời gian thực hiện <small>(Phút)</small> <small class="text-danger">*</small></label>
+      <div class="col-md-5">
+        <%= f.text_field :time, class: "form-control ui-wizard-content",
+          placeholder: "Nhập thời gian làm kiểm tra .." %>
+        <span class="help-block"><%= show_errors @survey, :time, "time" %></span>
+      </div>
+    </div>
+    <div class="form-group <%= check_errors @survey, :description %>">
+      <label class="col-md-4 control-label "
+        for="survey_description">Mô tả</label>
+      <div class="col-md-5">
+        <%= f.text_area :description, class: "form-control ui-wizard-content",
+          placeholder: "Nhập mô tả cho bài kiểm tra .." %>
+        <span class="help-block"><%= show_errors @survey, :description, "description" %></span>
+      </div>
+    </div>
+  </div>
+  <div id="clickable-second" class="step ui-formwizard-content">
+    <div class="form-group">
+      <div class="col-xs-12">
+        <ul class="nav nav-pills nav-justified clickable-steps">
+          <li>
+            <a href="javascript:void(0)" data-gotostep="clickable-first">
+              <strong>1. Thông tin cần thiết</strong>
+            </a>
+          </li>
+          <li class="active">
+            <a href="javascript:void(0)" data-gotostep="clickable-second">
+              <strong>2. Câu hỏi & Đáp án</strong>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="form-group <%= check_errors @survey, :subject_id %>">
+      <label class="col-md-4 control-label"
+        for="survey_time">Chọn môn học <small class="text-danger">*</small></label>
+      <div class="col-md-5">
+        <%= select "survey", "subject_id", @subjects.map{|subject| [subject.name, subject.id]}, {},
+            class: "select-chosen" %>
+        <span class="help-block"><%= show_errors @survey, :subject_id, "subject_id" %></span>
+      </div>
+      <div class="col-md-3">
+        <label class="switch switch-primary" data-toggle="tooltip"
+          data-original-title="Tạo bài kiểm tra cho môn học">
+          <%= f.check_box :type_test, {}, "subject_test", "lesson_test" %>
+          <span></span>
+        </label>
+      </div>
+    </div>
+    <div class="form-group selections-task <%= check_errors @survey, :lesson_id %>">
+      <label class="col-md-4 control-label"
+        for="survey_time">Chọn bài học của môn <small class="text-danger">*</small></label>
+      <div class="col-md-5">
+        <%= select "survey", "lesson_id",@lessons.map{|lesson| [lesson.name, lesson.id]}, {},
+          class: "select-chosen" %>
+        <span class="help-block"><%= show_errors @survey, :lesson_id, "lesson_id" %></span>
+      </div>
+    </div>
+    <div class="form-group" id="questions">
+      <%= f.fields_for :questions do |question| %>
+      <%= render 'question_fields', f: question %>
+      <% end %>
+      <div class="col-md-4 control-label question_fields">
+        <%= link_to_add_association 'Thêm câu hỏi', f, :questions,class: "btn btn-default" %>
+      </div>
+    </div>
+  </div>
+  <div class="form-group form-actions">
+    <div class="col-md-8 col-md-offset-4">
+      <input type="reset" class="btn btn-sm btn-warning ui-wizard-content ui-formwizard-button" id="back" value="Back">
+      <input type="submit" class="btn btn-sm btn-primary ui-wizard-content ui-formwizard-button" id="next" value="Submit">
+    </div>
+  </div>
+<% end %>

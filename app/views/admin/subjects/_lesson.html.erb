@@ -1,0 +1,19 @@
+<table class="table table-vcenter assignment-item">
+  <thead>
+    <tr class="active">
+      <th colspan="2"><%= lesson.name.capitalize %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= lesson.description %></td>
+      <td class="text-right">
+        <% if lesson.youtube_url.present? %>
+          <button class="btn btn-xs btn-danger open_y" data-toggle="tooltip" title=""
+            data-original-title="View video!" value="<%= lesson.youtube_url %>">
+            <i class="fa fa-caret-square-o-right"></i></button>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>

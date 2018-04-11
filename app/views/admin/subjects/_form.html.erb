@@ -104,11 +104,11 @@
         <i class="fa fa-plus-square"></i> Danh sách chương của môn học
       </a>
     </div>
-    <%= f.fields_for :tasks do |task| %>
-      <%= render 'task_fields', f: task %>
+    <%= f.fields_for :lessons do |lesson| %>
+      <%= render 'lesson_fields', f: lesson %>
     <% end %>
-    <div class="form-group form-actions text-right task_fields">
-      <%= link_to_add_association 'Thêm chương', f, :tasks, class: "btn btn-sm btn-success " %>
+    <div class="form-group form-actions text-right lesson_fields">
+      <%= link_to_add_association 'Thêm chương', f, :lessons, class: "btn btn-sm btn-success " %>
     </div>
   </div>
   <!-- Form Buttons -->
