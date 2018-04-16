@@ -1,0 +1,7 @@
+<% if @mes_error.present? %>
+  alertify.error("<%= @mes_error %>");
+  location.reload();
+<% else %>
+  $('.selections-task').html('<label class="col-md-4 control-label" for="survey_time">Chọn bài học của môn</label><div class="col-md-5"><%= j select "survey", "lesson_id", @lessons.map{|lesson| [lesson.name, lesson.id]}, {}, class: "form-control" %></div>');
+<% end %>
+$('.spinner').delay(1000).hide(0);

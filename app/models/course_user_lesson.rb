@@ -10,7 +10,7 @@ class CourseUserLesson < ApplicationRecord
   scope :in_progress, ->{where status: "in_progress"}
   scope :finish, ->{where status: "finish"}
 
-  enum status: [:init, :in_progress, :finish]
+  enum status: [:init, :in_progress, :finish, :finish_fail]
 
   def self.chart_data
     group("`course_user_id`")

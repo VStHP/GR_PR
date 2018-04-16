@@ -6,7 +6,7 @@
       <th class="name"><%= lesson.name.capitalize %></th>
       <th class="action text-right">
         <% if current_user.trainee? %>
-          <%= link_to @url, class: @class, title: @tt do %>
+          <%= link_to @url, class: @class, title: @tt, remote: true do %>
             <i class="<%= @icon %>"></i><%= @text %>
           <% end %>
         <% end %>

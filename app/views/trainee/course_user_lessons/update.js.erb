@@ -1,4 +1,6 @@
-<% if @mes_success.present? %>
+<% if @redirect.present? %>
+  alertify.confirm('Thông báo', 'Bạn cần làm bài kiểm tra để xác thực hoàn thành bài học, nhấn Ok để chuyển trang kiểm tra nào!', function(){ window.location.href = "/trainee/exam_lessons/new/<%= @course_user_lesson.id %>" }, function(){ alertify.error('Cancel')});
+<% elsif @mes_success.present? %>
   <% if @course_user_lesson.in_progress? %>
     $('#<%= @course_user_lesson.id %>').addClass('task-active');
     $('#<%= @course_user_lesson.id %> thead tr .name').addClass('name-active');

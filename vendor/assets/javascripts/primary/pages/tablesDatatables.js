@@ -61,7 +61,7 @@ var TablesCourses = function() {
         }
     };
 }();
-var TablesSurveys = function() {
+var TablesLessons = function() {
 
     return {
         init: function() {
@@ -70,7 +70,7 @@ var TablesSurveys = function() {
 
             /* Initialize Datatables */
             $('#example-datatable').dataTable({
-                columnDefs: [ { orderable: false, targets: [ 7 ] } ],
+                columnDefs: [ { orderable: false, targets: [ 5 ] } ],
                 pageLength: 10,
                 lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'All']]
             });

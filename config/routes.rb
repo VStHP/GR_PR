@@ -37,9 +37,8 @@ Rails.application.routes.draw do
     get "course/:course_id/subject/:subject_id", to: "course_subjects#show", as: :show_subject_course
     get "course/:course_id/subject/:subject_id/:status", to: "course_subjects#update", as: :update_status_cs
     resources :course_users
-    resources :surveys
-    get "surveys/reload/lessons/:name", to: "surveys#reload_lesson", as: :reload_lesson
-    patch "survey/status/:id", to: "surveys#change_status", as: :change_status_survey
+    resources :lessons, except: %i(new create destroy)
+    get "lessons/export/exam/:id", to: "lessons#export_lesson_exam", as: :export_lesson_exam
   end
 
   namespace :trainer do
@@ -47,6 +46,10 @@ Rails.application.routes.draw do
     resources :courses, only: :index
   end
 
+  namespace :trainee do
+    get "exam_lessons/new/:course_user_lesson_id", to: "exam_lessons#new", as: :new_exam_lesson
+    resources :exam_lessons, except: :new
+  end
   get "course/:id", to: "admin/courses#show", as: :course
   get "course/:course_id/subject/:subject_id", to: "admin/course_subjects#show", as: :trainer_course_subject
 

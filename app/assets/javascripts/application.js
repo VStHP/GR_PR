@@ -96,6 +96,15 @@ $(document).ready(function(){
 
     reader.readAsDataURL(selectedFile);
   });
+  $('.btn-upload-task').on('click',function(){
+    $('.pop-task').show();
+  });
+  $('.btn-upload-link').on('click',function(){
+    $('.pop-link').show();
+  });
+  $(document).on('click', '.close-popup', function(){
+    $('.popup-upload').hide();
+  });
 });
 
 $(document).on('click', '.show-trainer', function(){
@@ -187,3 +196,4 @@ $(document).on('click', '#survey_subject_id_chosen .chosen-drop .chosen-results 
       $('.selections-task').show(500);
     }
   });
+

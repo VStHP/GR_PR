@@ -1,0 +1,38 @@
+<% provide :title, "Khóa Học" %>
+<div class="content-header">
+  <div class="header-section">
+    <h1>
+      <i class="fa fa-table"></i>Danh sách câu hỏi theo bài học
+    </h1>
+  </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+  <li>Trang Chủ</li>
+  <li><a href="">Danh sách câu hỏi</a></li>
+</ul>
+<div class="block full">
+  <div class="block-title" id="btn-filter-container">
+    <h2><strong>Danh sách</strong></h2>
+  </div>
+  <div class="table-responsive" id="table-content">
+    <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+      <thead>
+        <tr>
+          <th class="text-center">ID</th>
+          <th>Bài học</th>
+          <th>Môn học</th>
+          <th>Thời gian làm bài</th>
+          <th>Số câu hỏi</th>
+          <th class="text-center">##</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: "lesson", collection: @lessons, as: :lesson %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script>
+  $(function(){ TablesLessons.init(); });
+</script>
+

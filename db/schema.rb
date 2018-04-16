@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180411035125) do
+ActiveRecord::Schema.define(version: 20180416044540) do
 
   create_table "answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "text"
@@ -47,18 +47,6 @@ ActiveRecord::Schema.define(version: 20180411035125) do
     t.index ["lesson_id"], name: "index_course_user_lessons_on_lesson_id"
   end
 
-  create_table "course_user_surveys", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "course_user_id"
-    t.bigint "survey_id"
-    t.float "score", limit: 24
-    t.integer "result"
-    t.float "time", limit: 24
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["course_user_id"], name: "index_course_user_surveys_on_course_user_id"
-    t.index ["survey_id"], name: "index_course_user_surveys_on_survey_id"
-  end
-
   create_table "course_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "course_id"
     t.bigint "user_id"
@@ -86,6 +74,28 @@ ActiveRecord::Schema.define(version: 20180411035125) do
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
+  create_table "exam_lessons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.float "score", limit: 24
+    t.integer "result"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "course_user_id"
+    t.bigint "lesson_id"
+    t.index ["course_user_id"], name: "index_exam_lessons_on_course_user_id"
+    t.index ["lesson_id"], name: "index_exam_lessons_on_lesson_id"
+  end
+
+  create_table "exam_subjects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "subject_id"
+    t.float "score", limit: 24
+    t.integer "result"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "course_user_id"
+    t.index ["course_user_id"], name: "index_exam_subjects_on_course_user_id"
+    t.index ["subject_id"], name: "index_exam_subjects_on_subject_id"
+  end
+
   create_table "lessons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.text "description"
@@ -93,6 +103,7 @@ ActiveRecord::Schema.define(version: 20180411035125) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "subject_id"
+    t.integer "test_time"
     t.index ["subject_id"], name: "index_lessons_on_subject_id"
   end
 
@@ -110,12 +121,25 @@ ActiveRecord::Schema.define(version: 20180411035125) do
     t.index ["subject_id"], name: "index_links_on_subject_id"
   end
 
-  create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "text"
-    t.bigint "survey_id"
+  create_table "list_question_answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "answer_ids"
+    t.integer "chosen_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["survey_id"], name: "index_questions_on_survey_id"
+    t.bigint "exam_subject_id"
+    t.bigint "exam_lesson_id"
+    t.bigint "question_id"
+    t.index ["exam_lesson_id"], name: "index_list_question_answers_on_exam_lesson_id"
+    t.index ["exam_subject_id"], name: "index_list_question_answers_on_exam_subject_id"
+    t.index ["question_id"], name: "index_list_question_answers_on_question_id"
+  end
+
+  create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "lesson_id"
+    t.index ["lesson_id"], name: "index_questions_on_lesson_id"
   end
 
   create_table "subjects", id: :string, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -126,20 +150,7 @@ ActiveRecord::Schema.define(version: 20180411035125) do
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
     t.string "avatar"
-  end
-
-  create_table "surveys", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name"
-    t.text "description"
-    t.string "subject_id"
-    t.bigint "lesson_id"
-    t.integer "time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "type_test", default: 0
-    t.integer "status", default: 0
-    t.index ["lesson_id"], name: "index_surveys_on_lesson_id"
-    t.index ["subject_id"], name: "index_surveys_on_subject_id"
+    t.integer "test_time"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -173,16 +184,19 @@ ActiveRecord::Schema.define(version: 20180411035125) do
   add_foreign_key "course_subjects", "subjects"
   add_foreign_key "course_user_lessons", "course_users", on_delete: :cascade
   add_foreign_key "course_user_lessons", "lessons", on_delete: :cascade
-  add_foreign_key "course_user_surveys", "course_users"
-  add_foreign_key "course_user_surveys", "surveys"
   add_foreign_key "course_users", "courses"
   add_foreign_key "course_users", "users"
   add_foreign_key "courses", "users"
+  add_foreign_key "exam_lessons", "course_users"
+  add_foreign_key "exam_lessons", "lessons"
+  add_foreign_key "exam_subjects", "course_users"
+  add_foreign_key "exam_subjects", "subjects"
   add_foreign_key "lessons", "subjects"
   add_foreign_key "links", "courses"
   add_foreign_key "links", "lessons"
   add_foreign_key "links", "subjects"
-  add_foreign_key "questions", "surveys"
-  add_foreign_key "surveys", "lessons"
-  add_foreign_key "surveys", "subjects"
+  add_foreign_key "list_question_answers", "exam_lessons"
+  add_foreign_key "list_question_answers", "exam_subjects"
+  add_foreign_key "list_question_answers", "questions"
+  add_foreign_key "questions", "lessons"
 end

@@ -501,3 +501,54 @@ td{
 .block-background-color {
     background-color: #999 !important;
 }
+/* ------------------------ */
+  .EditRecord_Buttons {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    vertical-align: baseline;
+}
+.popup-upload{
+  display: none;
+  z-index: 4012;
+  outline: 0px;
+  height: 176px;
+  width: 311px;
+  top: 265px;
+  left: 486.5px;
+  box-shadow: rgba(0, 0, 0, 0.5) 4px 4px 2px;
+  position: absolute;
+}
+.popup-upload .header {
+  background: #888;
+  height: 28px;
+}
+.header-title{
+  margin-left: 5px;
+  color: white;
+  font-weight: bold;
+  position: relative;
+  top: 7px;
+  left: 4px
+}
+.header-close {
+  position: absolute;
+  top: 4px;
+  right: 7px;
+}
+.popup-upload .main {
+  text-align: center;
+  width: auto;
+  min-height: 0px;
+  height: 148px;
+  background: #fff;
+}
+.question-div .right{
+  font-weight: 600;
+  background: #ffff00;
+}
+.question-title{
+  font-size: 20px;
+}
+.answer-content{
+  margin-left: 40px;
+}

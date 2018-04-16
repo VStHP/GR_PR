@@ -1,0 +1,56 @@
+.page-content{
+    background: #f1f1f1;
+    min-height: 768px;
+}
+.exam-test{
+    max-width: 75%;
+    margin: 30px auto;
+    background: #fff;
+    padding: 15px 20px 15px 20px;
+    box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.35);
+}
+.title h1 {
+    border-left: 4px solid #4CAF50;
+    margin: 15px 0 20px;
+    padding: 16px 0 15px 10px;
+    text-transform: uppercase;
+    text-align: center;
+    background: none repeat scroll 0 0 #f1f1f1;
+    font-size: 19px;
+    color: #4CAF50;
+}
+#countTime{
+    position: fixed;
+    top: 4%;
+    right: 10%;
+    background: #4CAF50;
+    padding: 15px;
+    min-width: 90px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+#countTime:before {
+    content: "\f017";
+    display: block;
+    font-family: FontAwesome;
+    font-size: 30px;
+    font-weight: normal;
+    border-bottom: 1px solid;
+    text-align: center;
+}
+#submit_test{
+  text-align: center;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    border: unset;
+    color: white;
+    margin-top: 30px;
+    font-size: 16px;
+}
+.btnsubmit{
+  text-align: center;
+}
+.mark-chosen {
+    background: yellow;
+}

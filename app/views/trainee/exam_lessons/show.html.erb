@@ -1,0 +1,19 @@
+<div class="exam-test">
+  <div class="row title">
+    <div class="col-xs-12">
+      <h1><%= @exam_lesson.lesson.name %> TEST</h1>
+    </div>
+  </div>
+  <div>
+    <div class="col-xs-12">
+      <p>Tổng số câu hỏi: <%= @list_question_answers.length %></p>
+      <p>Số câu đúng: <%= (@exam_lesson.score/100*@list_question_answers.length).to_i %>  </p>
+      <p>Điểm: <%= @exam_lesson.score %> </p>
+      <p>Kết quả: <%= @exam_lesson.result %> </p>
+    </div>
+  </div>
+  <div class="row question">
+    <% @qs_stt = 1 %>
+    <%= render partial: 'list_question_answer', collection: @list_question_answers, as: :lqa %>
+  </div>
+</div>

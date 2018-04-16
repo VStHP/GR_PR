@@ -1,0 +1,15 @@
+<tr>
+  <td class="text-center"><%= lesson.id %></td>
+  <td><%= link_to lesson.name, admin_lesson_path(lesson) %></td>
+  <td><%= link_to lesson.subject.name, admin_subject_path(lesson.subject) %></td>
+  <td><%= lesson.test_time %></td>
+  <td><%= lesson.questions.length %></td>
+  <td class="text-center">
+    <div class="btn-group">
+      <%= link_to edit_admin_lesson_path(lesson), class: "btn btn-xs btn-default",
+        data: {toggle: "tooltip"}, title: "Chỉnh sửa" do %>
+        <i class="fa fa-pencil"></i>
+      <% end %>
+    </div>
+  </td>
+</tr>

@@ -23,7 +23,7 @@ class Ability
   end
 
   def permission_trainer user
-    can :manage, [ Subject, lesson, Link, Survey, Question, Answer, CourseUserSurvey ]
+    can :manage, [ Subject, Lesson, Link, Survey, Question, Answer, CourseUserSurvey ]
     can :manage, CourseSubject, course_id: user.courses.pluck(:id)
     can :read, CourseSubject, course_id: user.courses_join.pluck(:id)
     can :read, User
@@ -38,6 +38,7 @@ class Ability
     can :read, Course, id: user.courses_join.pluck(:id)
     can :read, CourseSubject, course_id: user.courses_join.pluck(:id)
     can :update, CourseUserLesson, id: user.course_user_lessons.pluck(:id)
+    can :manage, ExamLesson
   end
   # def undefine_user
   #   can :create, Apply
