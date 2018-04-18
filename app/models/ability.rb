@@ -38,7 +38,9 @@ class Ability
     can :read, Course, id: user.courses_join.pluck(:id)
     can :read, CourseSubject, course_id: user.courses_join.pluck(:id)
     can :update, CourseUserLesson, id: user.course_user_lessons.pluck(:id)
-    can :manage, ExamLesson
+    can :new, ExamLesson
+    can :create, ExamLesson, course_user_id: user.course_users.pluck(:id)
+    can :manage, ExamLesson, course_user_id: user.course_users.pluck(:id)
   end
   # def undefine_user
   #   can :create, Apply

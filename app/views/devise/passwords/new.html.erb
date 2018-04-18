@@ -2,15 +2,15 @@
 <div class="wrapper-login" id="login-prime" style="display: block;">
   <div class="container-login">
     <%= link_to root_path, class: "cancel-login" do %><i class="fa fa-close"></i><% end %>
-    <h1>Forgot your password?</h1>
+    <h1>Bạn quên mật khẩu?</h1>
     <%= form_for resource, as: resource_name, url: password_path(resource_name),
       html: {method: :post, class: "form-login"} do |f| %>
       <%= devise_error_messages! %>
 
-      <%= f.email_field :email, placeholder: "Your email ..", class: "input-login" %>
-      <%= f.submit "Reset password", class: "button-login" %>
+      <%= f.email_field :email, placeholder: "Đia chỉ email tài khoản ..", class: "input-login" %>
+      <%= f.submit "Đặt lại mật khẩu", class: "button-login" %>
       <br>
-      <%= link_to "Log in", new_session_path(resource_name) %><br />
+      <%= link_to "Đăng nhập", new_session_path(resource_name) %><br />
     <% end %>
   </div>
 

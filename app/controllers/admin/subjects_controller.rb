@@ -20,7 +20,7 @@ class Admin::SubjectsController < ApplicationController
   def create
     if @subject.save
       flash[:success] = "Tạo môn học thành công"
-      redirect_to admin_subjects_path
+      redirect_to admin_subject_path(@subject)
     else
       flash[:danger] = "Tạo môn học thất bại"
       render :new
@@ -33,10 +33,10 @@ class Admin::SubjectsController < ApplicationController
         if @subject.destroy
           format.js{@mes_success = "Xóa môn học thành công"}
         else
-          format.js{@mes_danger = "CẢNH BÁO! Xóa môn học thất bại"}
+          format.js{@mes_danger = "Xóa môn học thất bại"}
         end
       else
-        format.js{@mes_danger = "CẢNH BÁO! Không thể xóa môn học đã tồn tại trong khóa học"}
+        format.js{@mes_danger = "Không thể xóa môn học đã tồn tại trong khóa thực tập"}
       end
     end
   end
@@ -53,7 +53,7 @@ class Admin::SubjectsController < ApplicationController
       flash[:success] = "Cập nhật môn học thành công"
       redirect_to admin_subjects_path
     else
-      flash[:danger] = "CẢNH BÁO! Cập nhật môn học thất bại"
+      flash[:danger] = "Không thể cập nhật môn học"
       render :edit
     end
   end
@@ -64,13 +64,13 @@ class Admin::SubjectsController < ApplicationController
         if @subject.update_attribute :status, "active"
           format.js{@mes_success = "#{@subject.name} đã được mở khóa"}
         else
-          format.js{@mes_danger = "CẢNH BÁO! Không thể thay đổi trạng thái khóa học"}
+          format.js{@mes_danger = "Không thể thay đổi trạng thái môn học"}
         end
       else
         if @subject.update_attribute :status, "block"
           format.js{@mes_success = "#{@subject.name} đã bị khóa"}
         else
-          format.js{@mes_danger = "CẢNH BÁO! Không thể thay đổi trạng thái khóa học"}
+          format.js{@mes_danger = "Không thể thay đổi trạng thái môn học"}
         end
       end
     end
@@ -94,7 +94,7 @@ class Admin::SubjectsController < ApplicationController
 
   def import
     Subject.import params[:file]
-    flash[:success] = "Nhập môn học từ file thành công"
+    flash[:success] = "Nhập danh sách môn học từ file thành công"
     redirect_back fallback_location: root_path
   end
 

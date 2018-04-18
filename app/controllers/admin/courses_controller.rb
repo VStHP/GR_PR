@@ -1,7 +1,6 @@
 class Admin::CoursesController < ApplicationController
   load_and_authorize_resource param_method: :params_course
   before_action :allow_admin, only: :index
-  before_action :set_course, only: %i(change_status export_course)
   after_action :modify_course_user_lesson, only: :update
   after_action :check_and_active_course, only: %i(create update)
 
@@ -13,11 +12,11 @@ class Admin::CoursesController < ApplicationController
 
   def create
     if @course.save
-      flash[:success] = "Tạo khóa học thành công"
+      flash[:success] = "Tạo khóa thực tập thành công"
       add_course_user_lesson
       redirect_to admin_course_path @course
     else
-      flash[:danger] = "Tạo khóa học thất bại"
+      flash[:danger] = "Tạo khóa thực tập thất bại"
       @trainers = User.filter_by "trainer"
       @trainees = User.trainees
       @subjects = Subject.all
@@ -45,12 +44,12 @@ class Admin::CoursesController < ApplicationController
     respond_to do |format|
       if @course.init?
         if @course.destroy
-          format.js{@mes_success = "Xóa khóa học thành công"}
+          format.js{@mes_success = "Xóa khóa thực tập thành công"}
         else
-          format.js{@mes_danger = "CẢNH BÁO! Xóa khóa học thất bại"}
+          format.js{@mes_danger = "Xóa khóa thực tập thất bại"}
         end
       else
-        format.js{@mes_danger = "CẢNH BÁO! Không thể xóa khóa học đã bắt đầu"}
+        format.js{@mes_danger = "Không thể xóa khóa thực tập đã bắt đầu"}
       end
     end
   end
@@ -63,10 +62,10 @@ class Admin::CoursesController < ApplicationController
 
   def update
     if @course.update_attributes params_course
-      flash[:success] = "Cập nhật khóa học thành công"
+      flash[:success] = "Cập nhật khóa thực tập thành công"
       redirect_to root_path
     else
-      flash[:danger] = "CẢNH BÁO! Không thể cập nhật khóa học"
+      flash[:danger] = "Không thể cập nhật khóa thực tập"
       @trainers = User.filter_by "trainer"
       render :edit
     end
@@ -103,7 +102,7 @@ class Admin::CoursesController < ApplicationController
 
   def import
     Course.import params[:file]
-    flash[:success] = "Nhập khóa học từ file thành công"
+    flash[:success] = "Nhập khóa thực tập từ file thành công"
     redirect_back fallback_location: root_path
   end
 
@@ -112,7 +111,7 @@ class Admin::CoursesController < ApplicationController
   def set_course
     @course = Course.find_by id: params[:id]
     return if @course
-    flash[:danger] = "Không tìm thấy khóa học phù hợp"
+    flash[:danger] = "Không tìm thấy khóa thực tập phù hợp"
     redirect_to root_path
   end
 
@@ -131,7 +130,7 @@ class Admin::CoursesController < ApplicationController
           format.js{@mes_success = "#{course.name} đã được mở khóa"}
         end
       else
-        format.js{@mes_danger = "CẢNH BÁO! Không thể thay đổi trạng thái khóa học"}
+        format.js{@mes_danger = "Không thể thay đổi trạng thái khóa thực tập"}
       end
     end
   end
@@ -184,9 +183,9 @@ class Admin::CoursesController < ApplicationController
     return if @course.errors.details.present?
     if @course.init? and @course.date_start.to_date == Time.zone.today
       if @course.update_attributes status: "in_progress"
-        flash[:success] = "Kích hoạt khóa học #{@course.name} thành công."
+        flash[:success] = "Kích hoạt khóa thực tập #{@course.name} thành công."
       else
-        flash[:danger] = "Kích hoạt khóa học #{@course.name} thất bại."
+        flash[:danger] = "Kích hoạt khóa thực tập #{@course.name} thất bại."
       end
     end
   end

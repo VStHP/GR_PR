@@ -1,19 +1,34 @@
-<div class="exam-test">
-  <div class="row title">
-    <div class="col-xs-12">
+<div class="row exam-test" style="position: relative;">
+  <!-- profile -->
+  <div class="col-sm-3">
+    <div class="profile">
+      <div class="title pro">
+        <h1>Thông tin</h1>
+      </div>
+      <p><span>Họ tên:</span> <%= current_user.name %></p>
+      <p><span>Khóa học:</span> <%= @exam_lesson.course_user.course.name %></p>
+      <p><span>Môn học:</span> <%= @exam_lesson.lesson.subject.name %></p>
+      <p><span>Thời gian:</span><%= @exam_lesson.lesson.test_time %> phút</p>
+      <p class="alert alert-warning">Bạn phải đạt 60/100 điểm để hoàn thành bài học!</p>
+      <hr>
+      <div class="title pro">
+        <h1 class="<%= define_class @exam_lesson %>"><%= t "exam.result.#{@exam_lesson.result}" %></h1>
+      </div>
+      <p><span>Tổng số câu hỏi:</span> <%= @list_question_answers.length %></p>
+      <p><span>Số câu đúng:</span> <%= (@exam_lesson.score/100*@list_question_answers.length).to_i %>  </p>
+      <p><span>Điểm:</span> <%= @exam_lesson.score.to_i %> / 100 </p>
+    </div>
+  </div>
+  <div class="content-test col-sm-9">
+    <div class="title">
       <h1><%= @exam_lesson.lesson.name %> TEST</h1>
     </div>
-  </div>
-  <div>
-    <div class="col-xs-12">
-      <p>Tổng số câu hỏi: <%= @list_question_answers.length %></p>
-      <p>Số câu đúng: <%= (@exam_lesson.score/100*@list_question_answers.length).to_i %>  </p>
-      <p>Điểm: <%= @exam_lesson.score %> </p>
-      <p>Kết quả: <%= @exam_lesson.result %> </p>
+    <div class="row question">
+      <% @qs_stt = 1 %>
+      <%= render partial: 'list_question_answer', collection: @list_question_answers, as: :lqa %>
     </div>
   </div>
-  <div class="row question">
-    <% @qs_stt = 1 %>
-    <%= render partial: 'list_question_answer', collection: @list_question_answers, as: :lqa %>
-  </div>
+  <%= link_to "Về khóa thực tập >>",
+      course_subject_path(course_id: @exam_lesson.course_user.course, subject_id: @exam_lesson.lesson.subject),
+      class: "bottom-right btn btn-sm btn-success" %>
 </div>

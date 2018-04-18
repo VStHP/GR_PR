@@ -1,21 +1,36 @@
-<div class="exam-test">
-  <div class="row title">
-    <div class="col-xs-12">
-      <h1><%= @exam_lesson.lesson.name %> TEST</h1>
+<div class="row exam-test">
+  <!-- profile -->
+  <div class="col-sm-3">
+    <div class="profile">
+      <div class="title pro">
+        <h1>Thông tin</h1>
+      </div>
+      <p><span>Họ tên :</span> <%= current_user.name %></p>
+      <p><span>Khóa học :</span> <%= @exam_lesson.course_user.course.name %></p>
+      <p><span>Môn học :</span> <%= @exam_lesson.lesson.subject.name %></p>
+      <p><span>Thời gian làm bài :</span><%= @exam_lesson.lesson.test_time %> phút</p>
+      <p class="alert alert-warning">Bạn phải đạt 60/100 điểm để hoàn thành bài học!</p>
     </div>
   </div>
-  <div class="row question">
-    <%= form_for @exam_lesson, url: trainee_exam_lessons_path(@exam_lesson) do |f| %>
-      <% @qs_stt = 1 %>
-      <%= f.hidden_field :lesson_id, value: @exam_lesson.lesson_id %>
-      <%= f.hidden_field :course_user_id, value: @exam_lesson.course_user_id %>
-      <%= f.fields_for :list_question_answers, @list_question_answers do |lqa| %>
-        <%= render 'list_question_answer_fields', f: lqa, question: lqa.object.question %>
+  <div class="content-test col-sm-9">
+    <div class="title">
+      <h1><%= @exam_lesson.lesson.name %> TEST</h1>
+    </div>
+    <div class="row question">
+      <%= form_for @exam_lesson, url: trainee_exam_lessons_path(@exam_lesson) do |f| %>
+        <% @qs_stt = 1 %>
+        <%= f.hidden_field :lesson_id, value: @exam_lesson.lesson_id %>
+        <%= f.hidden_field :course_user_id, value: @exam_lesson.course_user_id %>
+        <%= f.fields_for :list_question_answers, @list_question_answers do |lqa| %>
+          <%= render 'list_question_answer_fields', f: lqa, question: lqa.object.question %>
+        <% end %>
+        <div class="btnsubmit">
+          <!-- <input type="submit" value ="Submit" > -->
+          <input type="submit" name="submit_test" id="submit_test" class="btn btn-info btn-lg">
+        </div>
       <% end %>
-      <div class="col-xs-12 btnsubmit">
-        <%= f.submit "Submit" %>
-      </div>
-    <% end %>
+    </div>
   </div>
 </div>
+<%= hidden_field_tag :remaining_time, @exam_lesson.lesson.test_time*60 %>
 <div id="countTime"></div>

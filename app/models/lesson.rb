@@ -9,6 +9,7 @@ class Lesson < ApplicationRecord
   validates :name, length: {maximum: 250}, presence: true
   validates :description, length: {maximum: 5000}
   validates :youtube_url, length: {maximum: 250}
+  validate :test_time_presence
 
   scope :in_subject_ids, ->(ids){where("subject_id in (?)", ids)}
 
@@ -17,4 +18,8 @@ class Lesson < ApplicationRecord
   accepts_nested_attributes_for :questions, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :answers, reject_if: :all_blank, allow_destroy: true
 
+  def test_time_presence
+    return if self.questions.blank?
+    errors.add :test_time, "Thời gian làm bài không thể để trống" unless test_time?
+  end
 end

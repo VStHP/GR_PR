@@ -161,11 +161,11 @@ $(document).on('click','.form-title .link', function(){
   }
 });
 $(document).on('click','.form-title .task', function(){
-  if($('.task_fields').css('display') == 'none'){
-    $('.task_fields').show(1000);
+  if($('.lesson_fields').css('display') == 'none'){
+    $('.lesson_fields').show(1000);
     $('.form-title .task').html('<i class="fa fa-minus-square"></i> Danh sách chương của môn học');
   }else{
-    $('.task_fields').hide(1000);
+    $('.lesson_fields').hide(1000);
     $('.form-title .task').html('<i class="fa fa-plus-square"></i> Danh sách chương của môn học');
   }
 });

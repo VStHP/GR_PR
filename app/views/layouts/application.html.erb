@@ -19,7 +19,7 @@
        <% elsif message_type == "danger" %>
           alertify.error('<%= message %>');
         <% else %>
-          alertify.notice('<%= message %>');
+          alertify.notify('<%= message %>');
         <% end %>
       <% end %>
     </script>

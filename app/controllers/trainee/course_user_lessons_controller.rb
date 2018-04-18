@@ -9,11 +9,20 @@ class Trainee::CourseUserLessonsController < ApplicationController
   def update
     return if @redirect
     respond_to do |format|
-      if @course_user_lesson.update_attributes status: params[:status]
-        @course_user_lesson.update_attributes date_start: Time.zone.now
-        format.js{@mes_success = "Kích hoạt bài học thành công! Bắt đầu học thôi nào"}
-      else
-        format.js{@mes_error = "Thay đổi trạng thái bài học thất bại"}
+      if params[:status] == "in_progress"
+        if @course_user_lesson.update_attributes status: params[:status]
+          @course_user_lesson.update_attributes date_start: Time.zone.now
+          format.js{@mes_success = "Kích hoạt bài học thành công! Bắt đầu học thôi nào"}
+        else
+          format.js{@mes_error = "Thay đổi trạng thái bài học thất bại"}
+        end
+      elsif params[:status] == "finish"
+        if @course_user_lesson.update_attributes status: params[:status]
+          @course_user_lesson.update_attributes date_end: Time.zone.now
+          format.js{@mes_success = "Chúc mừng bạn đã hoàn thành bài học! Bài học này không có kiểm tra"}
+        else
+          format.js{@mes_error = "Thay đổi trạng thái bài học thất bại"}
+        end
       end
     end
   end
@@ -21,20 +30,20 @@ class Trainee::CourseUserLessonsController < ApplicationController
   private
 
   def redirect_to_test_page
-    @redirect = :true if params[:status] == "finish"
+    @redirect = :true if params[:status] == "finish" && @course_user_lesson.lesson.questions.present?
   end
 
   def check_allow_update_status
     @list = @subject.course_user_lessons.of_course_user(@course_user_lesson.course_user_id).in_progress
     return if @course.in_progress? && @course_subject.in_progress? && @list.blank?
     return if @course.in_progress? && @course_subject.in_progress? && @list.include?(@course_user_lesson)
-    @mes_error = "CẢNH BÁO! Khóa học và môn học phải đang triển khai và phải hoàn thành các bài học đang thực hiện"
+    @mes_error = "Khóa thực tập và môn học phải đang triển khai và phải hoàn thành các bài học đang thực hiện"
   end
 
   def load_course
     @course = @course_user_lesson.course_user.course
     return if @course.present?
-    @mes_error = "Không tìm thấy khóa học phù hợp!"
+    @mes_error = "Không tìm thấy khóa thực tập phù hợp!"
   end
 
   def load_subject

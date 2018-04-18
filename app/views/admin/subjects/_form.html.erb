@@ -1,39 +1,47 @@
-<%= form_for @subject, url: yield(:url_path), html: {id: "basic-wizard",
-  class: "form-horizontal form-bordered" } do |f| %>
-  <div id="first" class="step <%= yield :class_class %>">
-    <div class="wizard-steps">
-      <div class="row">
-        <div class="col-xs-4 active">
-          <span>1. Quan trọng</span>
-        </div>
-        <div class="col-xs-4">
-          <span>2. Bổ sung</span>
-        </div>
-        <div class="col-xs-4">
-          <span>3. Liên kết</span>
-        </div>
+<%= form_for @subject, url: yield(:url_path), html: {id: "clickable-wizard",
+  class: "form-horizontal form-bordered ui-formwizard" } do |f| %>
+  <div id="clickable-first" class="step ui-formwizard-content <%= yield :class_class %>">
+    <div class="form-group">
+      <div class="col-xs-12">
+        <ul class="nav nav-pills nav-justified clickable-steps">
+          <li class="active">
+            <a href="javascript:void(0)" data-gotostep="clickable-first">
+              <strong>1. Thông tin Quan trọng</strong>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" data-gotostep="clickable-second">
+              <strong>2. Thông tin Bổ sung</strong>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" data-gotostep="clickable-third">
+              <strong>3. Thông tin Liên kết</strong>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
     <%= render "shared/error_messages", object: @subject %>
     <div class="form-group <%= check_errors @subject, :id %>">
-      <label class="col-md-3 control-label" for="subject_id">ID môn học <span class="text-danger">*</span></label>
-      <div class="col-md-9">
-        <%= f.text_field :id, class: "form-control", data: {toggle: "tooltip"},
+      <label class="col-md-4 control-label" for="subject_id">ID môn học <span class="text-danger">*</span></label>
+      <div class="col-md-5">
+        <%= f.text_field :id, class: "form-control ui-wizard-content", data: {toggle: "tooltip"},
             title: "ID môn học quy định từ 4-20 kí tự", placeholder: "Nhập ID môn học..", autofocus: true %>
         <span class="text-danger"><%= show_errors @subject, :id, "id" %></span>
       </div>
     </div>
     <div class="form-group <%= check_errors @subject, :name %>">
-      <label class="col-md-3 control-label" for="subject_name">Tên môn học <span class="text-danger">*</span></label>
-      <div class="col-md-9">
-      <%= f.text_field :name, class: "form-control", placeholder: "Nhập tên môn học.." %>
+      <label class="col-md-4 control-label" for="subject_name">Tên môn học <span class="text-danger">*</span></label>
+      <div class="col-md-5">
+      <%= f.text_field :name, class: "form-control ui-wizard-content", placeholder: "Nhập tên môn học.." %>
       <span class="text-danger"><%= show_errors @subject, :name, "name" %></span>
       </div>
     </div>
     <div class="form-group <%= check_errors @subject, :day_on_learn %>">
-      <label class="col-md-3 control-label" for="subject_language">Số ngày học <span class="text-danger">*</span></label>
-      <div class="col-md-9">
-      <%= f.number_field :day_on_learn, class: "form-control", min: 1, data: {toggle: "tooltip"},
+      <label class="col-md-4 control-label" for="subject_language">Số ngày học <span class="text-danger">*</span></label>
+      <div class="col-md-5">
+      <%= f.number_field :day_on_learn, class: "form-control ui-wizard-content", min: 1, data: {toggle: "tooltip"},
             title: "Số ngày học tối thiểu là 1", placeholder: "Nhập sô ngày học.." %>
       <span class="text-danger"><%= show_errors @subject, :day_on_learn, "day_on_learn" %></span>
       </div>
@@ -43,30 +51,38 @@
       <label class="control-label "><%= yield :warning %></label>
     </div>
   </div>
-  <div id="second" class="step">
-    <div class="wizard-steps">
-      <div class="row">
-        <div class="col-xs-4 done">
-          <span><i class="fa fa-check"></i></span>
-        </div>
-        <div class="col-xs-4 active">
-          <span>2. Bổ sung</span>
-        </div>
-        <div class="col-xs-4">
-          <span>3. Liên kết</span>
-        </div>
+  <div id="clickable-second" class="step ui-formwizard-content">
+    <div class="form-group">
+      <div class="col-xs-12">
+        <ul class="nav nav-pills nav-justified clickable-steps">
+          <li>
+            <a href="javascript:void(0)" data-gotostep="clickable-first">
+              <strong>1. Thông tin Quan trọng</strong>
+            </a>
+          </li>
+          <li class="active">
+            <a href="javascript:void(0)" data-gotostep="clickable-second">
+              <strong>2. Thông tin Bổ sung</strong>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" data-gotostep="clickable-third">
+              <strong>3. Thông tin Liên kết</strong>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
     <div class="form-group <%= check_errors @subject, :description %>">
-      <label class="col-md-3 control-label" for="subject_program">Mô tả</label>
-      <div class="col-md-9">
-      <%= f.text_area :description, rows: 6, class: "form-control", placeholder: "" %>
+      <label class="col-md-4 control-label" for="subject_program">Mô tả</label>
+      <div class="col-md-5">
+      <%= f.text_area :description, rows: 6, class: "form-control ui-wizard-content", placeholder: "" %>
       <span class="text-danger"><%= show_errors @subject, :description, "program" %></span>
       </div>
     </div>
     <div class="form-group <%= check_errors @subject, :avatar %>">
-      <label class="col-md-3 control-label" for="val_avatar">Avatar </label>
-      <div class="col-md-9">
+      <label class="col-md-4 control-label" for="val_avatar">Avatar </label>
+      <div class="col-md-5">
         <%= f.file_field :avatar, id: "avatarSubject" %>
         <%= image_tag(@subject.avatar.url, class: "img-responsive", style: "height: 100px;", id: "avatar_image_subject") %>
         <span class="text-danger"><%= show_errors @subject, :avatar, "avatar" %></span>
@@ -74,18 +90,26 @@
       </div>
     </div>
   </div>
-  <div id="third" class="step">
-    <div class="wizard-steps">
-      <div class="row">
-        <div class="col-xs-4 done">
-          <span><i class="fa fa-check"></i></span>
-        </div>
-        <div class="col-xs-4 done">
-          <span><i class="fa fa-check"></i></span>
-        </div>
-        <div class="col-xs-4 active">
-          <span>3. Liên kết</span>
-        </div>
+  <div id="clickable-third" class="step ui-formwizard-content">
+    <div class="form-group">
+      <div class="col-xs-12">
+        <ul class="nav nav-pills nav-justified clickable-steps">
+          <li>
+            <a href="javascript:void(0)" data-gotostep="clickable-first">
+              <strong>1. Thông tin Quan trọng</strong>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" data-gotostep="clickable-second">
+              <strong>2. Thông tin Bổ sung</strong>
+            </a>
+          </li>
+          <li class="active">
+            <a href="javascript:void(0)" data-gotostep="clickable-third">
+              <strong>3. Thông tin Liên kết</strong>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
     <div class="form-title">
@@ -93,29 +117,33 @@
         <i class="fa fa-plus-square"></i> Danh sách liên kết bổ sung
       </a>
     </div>
-    <%= f.fields_for :links do |link| %>
-      <%= render 'link_fields', f: link %>
-    <% end %>
-    <div class="form-group form-actions text-right link_fields">
-      <%= link_to_add_association 'Thêm liên kết mô tả', f, :links, class: "btn btn-sm btn-success " %>
+    <div class="form-group" id="nested-attr">
+      <%= f.fields_for :links do |link| %>
+        <%= render 'link_fields', f: link %>
+      <% end %>
+      <div class="form-group form-actions text-right link_fields">
+        <%= link_to_add_association 'Thêm liên kết mô tả', f, :links, class: "btn btn-sm btn-success " %>
+      </div>
     </div>
     <div class="form-title">
       <a class="btn btn-sm btn-default btn-title task">
         <i class="fa fa-plus-square"></i> Danh sách chương của môn học
       </a>
     </div>
-    <%= f.fields_for :lessons do |lesson| %>
-      <%= render 'lesson_fields', f: lesson %>
-    <% end %>
-    <div class="form-group form-actions text-right lesson_fields">
-      <%= link_to_add_association 'Thêm chương', f, :lessons, class: "btn btn-sm btn-success " %>
+    <div class="form-group" id="nested-attr-sub">
+      <%= f.fields_for :lessons do |lesson| %>
+        <%= render 'lesson_fields', f: lesson %>
+      <% end %>
+      <div class="form-group form-actions text-right lesson_fields">
+        <%= link_to_add_association 'Thêm chương', f, :lessons, class: "btn btn-sm btn-success " %>
+      </div>
     </div>
   </div>
   <!-- Form Buttons -->
   <div class="form-group form-actions">
     <div class="col-md-8 col-md-offset-4">
-      <input type="reset" class="btn btn-sm btn-warning" id="back" value="Back">
-      <input type="submit" class="btn btn-sm btn-primary load-spinner" id="next" value="Next">
+      <input type="reset" class="btn btn-sm btn-warning ui-wizard-content ui-formwizard-button" id="back" value="Back">
+      <input type="submit" class="btn btn-sm btn-primary load-spinner ui-wizard-content ui-formwizard-button" id="next" value="Submit">
     </div>
   </div>
   <!-- END Form Buttons -->

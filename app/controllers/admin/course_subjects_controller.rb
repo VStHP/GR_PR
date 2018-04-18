@@ -32,20 +32,18 @@ class Admin::CourseSubjectsController < ApplicationController
   def load_course
     @course = Course.find_by id: params[:course_id]
     return if @course
-    flash[:danger] = "Đã có lỗi xảy ra với khóa học, hãy thử lại."
-    redirect_to root_path
+    flash[:danger] = "Đã có lỗi xảy ra với khóa thực tập, hãy thử lại."
   end
 
   def load_course_subject
     @course_subject = @course.course_subjects.find_by subject_id: params[:subject_id]
     return if @course_subject
-    flash[:danger] = "Đã có lỗi xảy ra với khóa học, hãy thử lại."
-    redirect_to root_path
+    flash[:danger] = "Đã có lỗi xảy ra với khóa thực tập, hãy thử lại."
   end
 
   def check_allow_update_status
     return if @course.in_progress? && @course.course_subjects.in_progress.blank?
     return if @course.in_progress? && @course_subject.in_progress?
-    @mes_error = "Chỉ áp dụng khi khóa học đang bắt đầu và không có môn học nào đang tiến hành."
+    @mes_error = "Chỉ áp dụng khi khóa thực tập đang bắt đầu và không có môn học nào đang tiến hành."
   end
 end

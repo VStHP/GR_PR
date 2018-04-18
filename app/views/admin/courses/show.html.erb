@@ -8,7 +8,7 @@
   </div>
 </div>
 <ul class="breadcrumb breadcrumb-top">
-  <li>Khóa học</li>
+  <li>Khóa thực tập</li>
   <li><a href=""><%= @course.name.capitalize %></a></li>
 </ul>
 <div class="row">
@@ -66,7 +66,7 @@
             <% end %>
           </div>
         <% end %>
-        <h2><strong>Khóa học</strong> Thông tin</h2>
+        <h2><strong>Khóa thực tập</strong> Thông tin</h2>
       </div>
       <div class="block-section">
         <table class="table table-borderless table-striped table-vcenter table-fixed">
@@ -79,10 +79,10 @@
               <td>
                 <%= link_to profiles_path(@owner) do %>
                   <strong><%= @owner.name %></strong>
-                <% end %><br><em>Chủ nhiệm khóa học</em></td>
+                <% end %><br><em>Chủ nhiệm khóa thực tập</em></td>
             </tr>
             <tr>
-              <td class="text-right">Khóa học</td>
+              <td class="text-right">Khóa thực tập</td>
               <td>
                 <text class="text-info"><strong>ID: </strong><%= @course.id %></text><br>
                 <text class="text-warning"><strong>Ngôn ngữ: </strong><%= @course.language %></text><br>

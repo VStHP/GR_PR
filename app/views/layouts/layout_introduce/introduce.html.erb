@@ -13,6 +13,17 @@
     <![endif]-->
   </head>
   <body>
+    <script type="text/javascript">
+      <% flash.each do |message_type, message| %>
+        <% if message_type == "success" %>
+          alertify.success('<%= message %>');
+       <% elsif message_type == "danger" %>
+          alertify.error('<%= message %>');
+        <% else %>
+          alertify.success('<%= message %>');
+        <% end %>
+      <% end %>
+    </script>
     <div id="page-container">
       <%= render "layouts/layout_introduce/header" %>
       <%= yield %>

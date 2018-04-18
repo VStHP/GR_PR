@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem "jquery-countdown-rails"
 gem "whenever", :require => false
 gem "chartkick"
 gem "highcharts-rails"

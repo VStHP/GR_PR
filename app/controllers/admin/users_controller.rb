@@ -24,8 +24,8 @@ class Admin::UsersController < ApplicationController
     set_password_default
     @user = User.new user_params
     if @user.save
-      flash[:success] = "Tạo thành công tài khoản #{@user.permission}:#{@user.name}"
-      redirect_to admin_users_path
+      flash[:success] = "Tạo tài khoản thành công"
+      redirect_to profiles_path(@user)
     else
       flash[:danger] = "Tạo tài khoản thất bại"
       render :new
@@ -37,7 +37,7 @@ class Admin::UsersController < ApplicationController
       if @user.update_attributes user_params
         format.js{@mes_success = "Cập nhật hồ sơ thành công"}
       else
-        format.js{@mes_danger = "CẢNH BÁO! Cập nhật hồ sơ thất bại"}
+        format.js{@mes_danger = "Cập nhật hồ sơ thất bại"}
       end
     end
   end
@@ -96,7 +96,7 @@ class Admin::UsersController < ApplicationController
           format.js{@mes_success = "#{user.name} đã được mở khóa"}
         end
       else
-        format.js{@mes_danger = "CẢNH BÁO! Không thể thay đổi trạng thái tài khoản"}
+        format.js{@mes_danger = "Không thể thay đổi trạng thái tài khoản"}
       end
     end
   end

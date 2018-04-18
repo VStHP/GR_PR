@@ -1,6 +1,6 @@
 module ApplicationHelper
   def full_title page_title = ""
-    base_title = "Hệ thống quản lý khóa học trực tuyến"
+    base_title = "Hệ thống quản lý khóa thực tập trực tuyến"
     if page_title.blank?
       base_title
     else
@@ -46,12 +46,19 @@ module ApplicationHelper
       @tt = "Nhấn để kết thúc chương"
       @icon = "fa fa-flag"
       @text = " Kết thúc"
-    else
+    when "finish"
       @cll = "lesson-finish"
       @url = "#"
       @class = "btn btn-xs btn-success"
       @tt = "Hoàn thành!"
       @icon = "fa fa-check"
+      @text = ""
+    else
+      @cll = "lesson-finish"
+      @url = "#"
+      @class = "btn btn-xs btn-warning"
+      @tt = "Thất bại!"
+      @icon = "fa fa-exclamation-triangle"
       @text = ""
     end
   end

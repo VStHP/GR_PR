@@ -1,27 +1,19 @@
 class UsersController < ApplicationController
   load_and_authorize_resource
-  before_action :set_user, only: :change_avatar
 
   def show; end
 
   def change_avatar
     respond_to do |format|
       if @user.update_attributes avatar_params
-        format.js{@mes_success = "Update avatar successfully!"}
+        format.js{@mes_success = "Thay đổi ảnh đại diện thành công"}
       else
-        format.js{@mes_danger = "Update avatar failed!"}
+        format.js{@mes_danger = "Thay đổi ảnh đại diện thất bại"}
       end
     end
   end
 
   private
-
-  def set_user
-    @user = User.find_by id: params[:id]
-    return if @user
-    flash[:danger] = "Không tìm thấy tài khoản phù hợp"
-    redirect_to root_path
-  end
 
   def avatar_params
     params.require(:user).permit :avatar

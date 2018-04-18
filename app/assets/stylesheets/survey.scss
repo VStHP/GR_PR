@@ -1,13 +1,24 @@
+.alertify-notifier.ajs-bottom {
+    top: 40px;
+    font-size: 15px;
+}
 .page-content{
     background: #f1f1f1;
     min-height: 768px;
 }
 .exam-test{
-    max-width: 75%;
-    margin: 30px auto;
+    margin: 30px 0;
     background: #fff;
-    padding: 15px 20px 15px 20px;
+    padding: 0 20px 0 20px;
     box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.35);
+}
+.bg-failed{
+    background: #ff0000 !important;
+    color: #ffff00 !important;
+}
+.bg-success{
+    background: #008000 !important;
+    color: #ffff00 !important;
 }
 .title h1 {
     border-left: 4px solid #4CAF50;
@@ -21,8 +32,8 @@
 }
 #countTime{
     position: fixed;
-    top: 4%;
-    right: 10%;
+    top: 12%;
+    right: 0%;
     background: #4CAF50;
     padding: 15px;
     min-width: 90px;
@@ -47,10 +58,25 @@
     color: white;
     margin-top: 30px;
     font-size: 16px;
+    margin-bottom: 30px;
 }
 .btnsubmit{
   text-align: center;
 }
-.mark-chosen {
+.content-test{
+    border-left: 1px solid #f1f1f1;
+}
+.title.pro h1{
+    border: unset;
+}
+.profile span{
+    font-weight: bold;
+}
+.mark-chosen{
     background: yellow;
+}
+.bottom-right{
+    position: absolute;
+    right: 0;
+    bottom: 0px;
 }

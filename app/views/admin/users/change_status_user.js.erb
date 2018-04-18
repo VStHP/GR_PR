@@ -5,7 +5,7 @@
     $('.row_user_<%= @user.id %>').addClass('danger');
     alertify.error('<%= @mes_success %>');
     <% if @user.courses.filter_by("init").present? or @user.courses.filter_by("in_progress").present? %>
-       alertify.warning("Cảnh báo! Tài khoản này là chủ nhiệm của 1 khóa học đang chờ hoặc đang thực hiện");
+       alertify.warning("Cảnh báo! Tài khoản này là chủ nhiệm của 1 khóa thực tập đang chờ hoặc đang thực hiện");
     <% end %>
   <% else %>
     $('.row_user_<%= @user.id %>').removeClass('danger');

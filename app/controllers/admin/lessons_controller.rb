@@ -12,11 +12,11 @@ class Admin::LessonsController < ApplicationController
   end
 
   def update
-    if @lesson.update_attributes! params_lesson
-      flash[:success] = "Chỉnh sửa câu hỏi cho bài học thành công"
+    if @lesson.update_attributes params_lesson
+      flash[:success] = "Thao tác câu hỏi trên bài học thành công"
       redirect_to admin_lesson_path(@lesson)
     else
-      flash[:danger] = "Chỉnh sửa câu hỏi cho bài học thất bại"
+      flash[:danger] = "Thao tác câu hỏi trên bài học thất bại"
       render :edit
     end
   end

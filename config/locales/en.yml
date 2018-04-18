@@ -52,6 +52,10 @@ en:
       in_progress: "Đang thực hiện"
       finish: "Kết thúc"
       block: "Bị khóa"
+  exam:
+    result:
+      pass: "Đạt"
+      fail: "Không đạt"
   activerecord:
     errors:
       models:
@@ -68,6 +72,10 @@ en:
               blank: "Mật khẩu không thể để trống"
               too_long: "Mật khẩu không quá 50 kí tự"
               too_short: "Mật khẩu ít nhất 6 kí tự"
+            pasword_confirmation:
+              confirmation: "Mật khẩu xác thực không trùng với mật khẩu"
+            curent_pasword:
+              invalid: "Mật khẩu hiện tại không chính xác"
             university:
               too_long: "Đại học không quá 250 kí tự"
             program:
@@ -80,14 +88,14 @@ en:
         course:
           attributes:
             id:
-              blank: "ID khóa học không thể để trống"
-              too_short: "ID khóa học ít nhất 4 kí từ"
-              too_long: "ID khóa học không quá 20 kí tự"
-              taken: "ID khóa học đã tồn tại"
+              blank: "ID khóa thực tập không thể để trống"
+              too_short: "ID khóa thực tập ít nhất 4 kí từ"
+              too_long: "ID khóa thực tập không quá 20 kí tự"
+              taken: "ID khóa thực tập đã tồn tại"
             name:
-              blank: "Tên khóa học không thể để trống"
-              too_long: "Tên khóa học không quá 250 kí tự"
-              taken: "Tên khóa học đã tồn tại"
+              blank: "Tên khóa thực tập không thể để trống"
+              too_long: "Tên khóa thực tập không quá 250 kí tự"
+              taken: "Tên khóa thực tập đã tồn tại"
             program:
               blank: "Chương trình không thể để trống"
               too_long: "Chương trình không quá 250 kí tự"
@@ -95,9 +103,9 @@ en:
               blank: "Ngôn ngữ thực tập không thể để trống"
               too_long: "Ngôn ngữ thực tập không quá 250 kí tự"
             date_start:
-              blank: "Ngày bắt đầu khóa học không thể để trống"
+              blank: "Ngày bắt đầu khóa thực tập không thể để trống"
             description:
-              too_long: "Mô tả khóa học không quá 5000 kí tự"
+              too_long: "Mô tả khóa thực tập không quá 5000 kí tự"
             banner:
               too_long: "Tên hình banner không quá 250 kí tự"
             avatar:
@@ -142,15 +150,15 @@ en:
         course_subject:
           attributes:
             course_id:
-              taken: "Mối quan hệ giữa môn học và khóa học đã tồn tại"
+              taken: "Mối quan hệ giữa môn học và khóa thực tập đã tồn tại"
         course_user:
           attributes:
             course_id:
-              taken: "Mối quan hệ giữa tài khoản và khóa học đã tồn tại"
+              taken: "Mối quan hệ giữa tài khoản và khóa thực tập đã tồn tại"
         course_user_lesson:
           attributes:
             course_user_id:
-              taken: "Mối quan hệ giữa tài khoản trong khóa học và chương môn học đã tồn tại"
+              taken: "Mối quan hệ giữa tài khoản trong khóa thực tập và chương môn học đã tồn tại"
         candidate:
           attributes:
             name:

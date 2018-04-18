@@ -1,14 +1,14 @@
-<% provide :title, "Khóa thực tập" %>
+<% provide :title, "Bài kiểm tra" %>
 <div class="content-header">
   <div class="header-section">
     <h1>
-      <i class="fa fa-table"></i>Danh sách câu hỏi theo bài học
+      <i class="fa fa-table"></i>Danh sách bài kiểm tra đã làm
     </h1>
   </div>
 </div>
 <ul class="breadcrumb breadcrumb-top">
   <li>Trang Chủ</li>
-  <li><a href="">Danh sách câu hỏi</a></li>
+  <li><a href="">Danh sách bài kiểm tra</a></li>
 </ul>
 <div class="block full">
   <div class="block-title" id="btn-filter-container">
@@ -19,20 +19,19 @@
       <thead>
         <tr>
           <th class="text-center">ID</th>
-          <th>Bài học</th>
-          <th>Môn học</th>
-          <th>Thời gian làm bài</th>
-          <th>Số câu hỏi</th>
-          <th class="text-center">##</th>
+          <th>Bài kiểm tra</th>
+          <th>Khóa thực tập</th>
+          <th>Điểm</th>
+          <th>Kết quả</th>
         </tr>
       </thead>
       <tbody>
-        <%= render partial: "lesson", collection: @lessons, as: :lesson %>
+        <%= render @exam_lessons %>
       </tbody>
     </table>
   </div>
 </div>
 <script>
-  $(function(){ TablesLessons.init(); });
+  $(function(){ TablesExamLessons.init(); });
 </script>
 

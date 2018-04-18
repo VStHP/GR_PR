@@ -2,7 +2,7 @@ module Admin::CoursesHelper
   def define_color_status_course course
     @class = "info"
     @icon = "unlock"
-    @title = "CLICK để khóa khóa học"
+    @title = "CLICK để khóa khóa thực tập"
     case course.status
     when "init"
       @color = "info"
@@ -14,7 +14,7 @@ module Admin::CoursesHelper
       @color = "danger"
       @class = "danger"
       @icon = "lock"
-      @title = "CLICK để mở khóa học"
+      @title = "CLICK để mở khóa thực tập"
     end
   end
 
@@ -23,7 +23,7 @@ module Admin::CoursesHelper
   end
 
   def warning_edit_message course
-    "Lưu ý: Khóa học đã được kích hoạt, hãy cẩn thận khi chỉnh sửa!" unless course.init?
+    "Lưu ý: khóa thực tập đã được kích hoạt, hãy cẩn thận khi chỉnh sửa!" unless course.init?
   end
 
   def define_time_course subject

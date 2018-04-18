@@ -1,5 +1,5 @@
 class Trainee::ExamLessonsController < ApplicationController
-  layout "exam"
+  layout "exam", except: :index
   load_and_authorize_resource param_method: :params_exam_lesson
   before_action :load_course_user_and_lesson, only: :new
 
@@ -12,13 +12,16 @@ class Trainee::ExamLessonsController < ApplicationController
     end
   end
 
+  def index
+  end
+
   def create
     if @exam_lesson.save
       cal_score
       def_result @score
-      binding.pry
       @exam_lesson.update_attributes score: @score, result: @result
-      flash[:success]= "ok ok ok"
+      do_change_status_course_user_lesson(@exam_lesson)
+      flash[:success]= "Chúc mừng bạn đã hoàn thành bài kiểm tra"
       redirect_to trainee_exam_lesson_path(@exam_lesson)
     else
       flash[:danger] = "Không thể hoàn thành bài kiểm tra"
@@ -53,7 +56,7 @@ class Trainee::ExamLessonsController < ApplicationController
     @count_true = 0
     answers.each do |answer|
       ans = Answer.find_by(id: answer[1]["chosen_id"])
-      continue if ans.nil?
+      next if ans.nil?
       if ans.true?
         @count_true+=1
       end
@@ -62,6 +65,23 @@ class Trainee::ExamLessonsController < ApplicationController
   end
 
   def def_result score
-    @result = "fail" || @result = "pass" if score < 60
+    if score >= 60
+      @result = "pass"
+    else
+      @result = "fail"
+    end
+  end
+
+  def do_change_status_course_user_lesson exam_lesson
+    cu = exam_lesson.course_user
+    ls = exam_lesson.lesson
+    course_user_lesson = CourseUserLesson.find_by course_user_id: cu.id, lesson_id: ls.id
+    if exam_lesson.pass?
+      course_user_lesson.update_attributes status: "finish", date_end: Time.zone.now
+    else
+      if cu.exam_lessons.of_lesson(ls.id).length >=3
+        course_user_lesson.update_attributes status: "finish_fail", date_end: Time.zone.now
+      end
+    end
   end
 end

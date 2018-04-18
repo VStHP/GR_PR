@@ -17,13 +17,13 @@
         </ul>
       </div>
     </div>
-    <div class="form-group <%= check_errors @lesson, :time %>">
+    <div class="form-group <%= check_errors @lesson, :test_time %>">
       <label class="col-md-4 control-label " for="lesson_test_time">Thời gian thực hiện
         <small>(Phút)</small> <small class="text-danger">*</small></label>
       <div class="col-md-5">
-        <%= f.text_field :test_time, class: "form-control ui-wizard-content",
+        <%= f.number_field :test_time, class: "form-control ui-wizard-content",
           placeholder: "Nhập thời gian làm kiểm tra .." %>
-        <span class="help-block"><%= show_errors @lesson, :time, "time" %></span>
+        <span class="help-block"><%= show_errors @lesson, :test_time, "test_time" %></span>
       </div>
     </div>
     <div class="form-group" id="questions">

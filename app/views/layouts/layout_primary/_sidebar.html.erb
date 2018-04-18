@@ -93,14 +93,14 @@
               <a href="#" class="sidebar-nav-menu">
                 <i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
                 <i class="fa fa-graduation-cap sidebar-nav-icon"></i>
-                <span class="sidebar-nav-mini-hide">Quản lý khóa học</span>
+                <span class="sidebar-nav-mini-hide">Quản lý KTT</span>
               </a>
               <ul>
                 <li>
-                  <%= link_to "Danh sách khóa học", admin_courses_path %>
+                  <%= link_to "Danh sách khóa thực tập", admin_courses_path %>
                 </li>
                 <li>
-                  <%= link_to "Tạo khóa học", new_admin_course_path %>
+                  <%= link_to "Tạo khóa thực tập", new_admin_course_path %>
                 </li>
               </ul>
             </li>
@@ -108,7 +108,7 @@
             <li>
               <%= link_to @link_courses do %>
                 <i class="gi gi-leaf sidebar-nav-icon"></i>
-                <span class="sidebar-nav-mini-hide">Khóa học</span>
+                <span class="sidebar-nav-mini-hide">Khóa thực tập</span>
               <% end %>
             </li>
           <% end %>
@@ -164,6 +164,12 @@
             <% end %>
           </li>
         <% end %>
+        <li>
+          <%= link_to trainee_exam_lessons_path do %>
+            <i class="gi gi-share_alt sidebar-nav-icon"></i>
+            <span class="sidebar-nav-mini-hide">Bài kiểm tra</span>
+          <% end %>
+        </li>
       </ul>
       <!-- END Sidebar Navigation -->
     </div>

@@ -1,0 +1,7 @@
+<tr>
+  <td class="text-center"><%= exam_lesson.id %></td>
+  <td><%= link_to exam_lesson.lesson.name, trainee_exam_lesson_path(exam_lesson) %></td>
+  <td><%= link_to exam_lesson.course_user.course.name, mycourse_path(exam_lesson.course_user.course) %></td>
+  <td><%= exam_lesson.score.to_i %>/100</td>
+  <td><%= t"exam.result.#{exam_lesson.result}" %></td>
+</tr>

@@ -14,6 +14,9 @@
  *= require_tree ../../../node_modules/alertify/themes
  *= require bootstrap.min
  *= require introduces/custom
+ *= require alertify
+ *= require alertify/default
+ *= require alertify/bootstrap
  */
 .animation-fadeIn {
   animation-name: fadeIn;

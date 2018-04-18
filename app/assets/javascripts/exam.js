@@ -14,3 +14,20 @@
 //= require jquery.turbolinks
 //= require rails-ujs
 //= require alertify
+//= require jquery.countdown
+jQuery(function(){
+    var countdown = $('#remaining_time').val()*1000;
+    var timerId = setInterval(function(){
+      countdown -= 1000;
+      var min = Math.floor(countdown / (60 * 1000));
+      var sec = Math.floor((countdown - (min * 60 * 1000)) / 1000);
+
+      if (countdown <= 0) {
+        alertify.alert("Hết thời gian làm bài");
+        setTimeout(function() { $("#new_exam_lesson").submit(); }, 3000);
+        clearInterval(timerId);
+      } else {
+         $("#countTime").html(min + " : " + sec);
+      }
+}, 1000);
+});
