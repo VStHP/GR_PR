@@ -11,12 +11,21 @@
       <p><span>Thời gian:</span><%= @exam_lesson.course_user_lesson.lesson.test_time %> phút</p>
       <p class="alert alert-warning">Bạn phải đạt 60/100 điểm để hoàn thành bài học!</p>
       <hr>
-      <div class="title pro">
-        <h1 class="<%= define_class @exam_lesson %>"><%= t "exam.result.#{@exam_lesson.result}" %></h1>
+      <div class="result">
+        <div class="title pro">
+          <h1 class="<%= define_class @exam_lesson %>"><%= t "exam.result.#{@exam_lesson.result}" %></h1>
+        </div>
+        <p><span>Tổng số câu hỏi:</span> <%= @list_question_answers.length %></p>
+        <p><span>Số câu đúng:</span> <%= (@exam_lesson.score/100*@list_question_answers.length).to_i %>  </p>
+        <p><span>Điểm:</span> <%= @exam_lesson.score.to_i %> / 100 </p>
       </div>
-      <p><span>Tổng số câu hỏi:</span> <%= @list_question_answers.length %></p>
-      <p><span>Số câu đúng:</span> <%= (@exam_lesson.score/100*@list_question_answers.length).to_i %>  </p>
-      <p><span>Điểm:</span> <%= @exam_lesson.score.to_i %> / 100 </p>
+    </div>
+    <div class="select-left-vert">
+      <% num = 0 %>
+      <% @exam_lessons.each do %>
+        <%= link_to "#{num+=1}", trainee_show_test_of_lesson_path(course_user_lesson_id: @exam_lesson.course_user_lesson.id, num: num-1),
+          class: "btn btn-default vert-left-item", remote: true %><br>
+      <% end %>
     </div>
   </div>
   <div class="content-test col-sm-9">

@@ -56,6 +56,7 @@ en:
     result:
       pass: "Đạt"
       fail: "Không đạt"
+      nil: "Chưa làm"
   activerecord:
     errors:
       models:

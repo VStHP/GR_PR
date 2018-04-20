@@ -62,4 +62,15 @@ module Admin::CourseSubjectsHelper
       end
     end
   end
+
+  def define_path course
+    case current_user.permission
+      when "admin"
+        admin_course_path course
+      when "trainer"
+        trainer_course_path course
+      else
+        mycourse_path course
+      end
+  end
 end

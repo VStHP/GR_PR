@@ -49,6 +49,7 @@ Rails.application.routes.draw do
   namespace :trainee do
     get "exam_lessons/new/:course_user_lesson_id", to: "exam_lessons#new", as: :new_exam_lesson
     resources :exam_lessons, except: :new
+    get "exam_lessons/course_user_lesson/:course_user_lesson_id", to: "exam_lessons#show_test_of_lesson", as: :show_test_of_lesson
   end
   get "course/:id", to: "admin/courses#show", as: :course
   get "course/:course_id/subject/:subject_id", to: "admin/course_subjects#show", as: :trainer_course_subject

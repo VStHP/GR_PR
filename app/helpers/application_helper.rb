@@ -62,4 +62,19 @@ module ApplicationHelper
       @text = ""
     end
   end
+
+  def get_exam_lessons lesson, course_id
+    course = Course.find_by id: course_id
+    course_user_lessons = course.course_user_lessons.of_lesson lesson
+    @exam_lessons = Array.new
+    course_user_lessons.each do |x|
+      next unless x.course_user.user.trainee?
+      name = x.course_user.user.name
+      length = x.exam_lessons.length
+      best_exam = x.exam_lessons.score_desc.first
+      max_score = best_exam.score if best_exam
+      result = best_exam.result if best_exam
+      @exam_lessons << [name,length,max_score||=0,result||="nil"]
+    end
+  end
 end

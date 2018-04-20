@@ -9,7 +9,7 @@
 </div>
 <ul class="breadcrumb breadcrumb-top">
   <li>Khóa thực tập</li>
-  <li><%= @course_subject.course.name.capitalize %></li>
+  <li><%= link_to @course_subject.course.name.capitalize, define_path(@course_subject.course) %></li>
   <li><a href=""><%= @subject.name.capitalize %></a></li>
 </ul>
 <%= render partial: "component/course_component/show_subject",

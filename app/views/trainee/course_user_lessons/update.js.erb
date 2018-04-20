@@ -1,5 +1,5 @@
 <% if @redirect.present? %>
-  alertify.confirm('Thông báo', 'Bạn cần làm bài kiểm tra để xác thực hoàn thành bài học, nhấn Ok để chuyển trang kiểm tra nào! Số lần làm còn lại của bạn là: <%= 3 - @course_user_lesson.course_user.exam_lessons.of_lesson(@course_user_lesson.lesson_id).length %>/3', function(){ window.location.href = "/trainee/exam_lessons/new/<%= @course_user_lesson.id %>" }, function(){ alertify.error('Bạn chưa thể hoàn thành bài học')});
+  alertify.confirm('Thông báo', 'Bạn cần làm bài kiểm tra để xác thực hoàn thành bài học, nhấn Ok để chuyển trang kiểm tra nào! Số lần làm còn lại của bạn là: <%= 3 - @course_user_lesson.exam_lessons.length %>/3', function(){ window.location.href = "/trainee/exam_lessons/new/<%= @course_user_lesson.id %>" }, function(){ alertify.error('Bạn chưa thể hoàn thành bài học')});
 <% elsif @mes_success.present? %>
   <% if @course_user_lesson.in_progress? %>
     $('#<%= @course_user_lesson.id %>').addClass('task-active');
@@ -15,5 +15,5 @@
   <% end %>
   alertify.success('<%= @mes_success %>');
 <% else %>
-  alertify.error('<%= @mes_danger %>');
+  alertify.error('<%= @mes_error %>');
 <% end %>

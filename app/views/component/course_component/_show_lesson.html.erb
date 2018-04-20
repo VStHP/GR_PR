@@ -1,4 +1,5 @@
 <% define_course_user_lesson(lesson, params[:course_id]) if current_user.trainee? %>
+<% get_exam_lessons lesson, params[:course_id] %>
 <table class="table table-vcenter assignment-item <%= @cll %>"
   id="<%= @course_user_lesson.id if @course_user_lesson.present? %>">
   <thead>
@@ -17,6 +18,15 @@
     <tr>
       <td><%= lesson.description.capitalize if lesson.description.present? %></td>
       <td class="text-right">
+        <% if current_user.trainee? and @course_user_lesson.exam_lessons.present? %>
+          <%= link_to trainee_show_test_of_lesson_path(course_user_lesson_id: @course_user_lesson.id, num: 0),
+            class: "btn btn-xs btn-success", data: {toggle: "tooltip"}, title: "Xem bài kiểm tra" do %>
+            <i class="fa fa-book"></i></button>
+          <% end %>
+        <% end %>
+        <button class="btn btn-xs btn-warning open_exam" data-toggle="tooltip" title=""
+          data-original-title="Xem xếp hạng bài kiểm tra!" value="<%= lesson.id %>">
+          <i class="fa fa-eye"></i></button>
         <% if lesson.youtube_url.present? %>
           <button class="btn btn-xs btn-danger open_y" data-toggle="tooltip" title=""
             data-original-title="Xem video!" value="<%= lesson.youtube_url %>">
@@ -36,5 +46,21 @@
         </td>
       </tr>
     <% end %>
+    <tr class="exam" id="exam_<%= lesson.id %>">
+      <td colspan="3">
+        <table>
+          <tr>
+            <th>STT</th>
+            <th>Họ tên</th>
+            <th>Số lần làm bài</th>
+            <th>Điểm cao nhất</th>
+            <th>Kết quả cuối cùng</th>
+          </tr>
+          <% @stt = 0 %>
+          <%= render partial: "component/course_component/exam.html.erb",
+            collection: @exam_lessons.sort! {|x,y| y[2]<=>x[2]}, as: :exam %>
+        </table>
+      </td>
+    </tr>
   </tbody>
 </table>

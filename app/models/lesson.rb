@@ -3,6 +3,7 @@ class Lesson < ApplicationRecord
   has_many :links, dependent: :destroy
   has_many :course_user_lessons, dependent: :destroy
   has_many :course_users, through: :course_user_lessons
+  has_many :exam_lesson, through: :course_user_lessons
   has_many :questions, dependent: :destroy
   has_many :answers, through: :questions
 

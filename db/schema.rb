@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180416044540) do
+ActiveRecord::Schema.define(version: 20180420024317) do
 
   create_table "answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "text"
@@ -79,10 +79,8 @@ ActiveRecord::Schema.define(version: 20180416044540) do
     t.integer "result"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "course_user_id"
-    t.bigint "lesson_id"
-    t.index ["course_user_id"], name: "index_exam_lessons_on_course_user_id"
-    t.index ["lesson_id"], name: "index_exam_lessons_on_lesson_id"
+    t.bigint "course_user_lesson_id"
+    t.index ["course_user_lesson_id"], name: "index_exam_lessons_on_course_user_lesson_id"
   end
 
   create_table "exam_subjects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -187,8 +185,7 @@ ActiveRecord::Schema.define(version: 20180416044540) do
   add_foreign_key "course_users", "courses"
   add_foreign_key "course_users", "users"
   add_foreign_key "courses", "users"
-  add_foreign_key "exam_lessons", "course_users"
-  add_foreign_key "exam_lessons", "lessons"
+  add_foreign_key "exam_lessons", "course_user_lessons"
   add_foreign_key "exam_subjects", "course_users"
   add_foreign_key "exam_subjects", "subjects"
   add_foreign_key "lessons", "subjects"

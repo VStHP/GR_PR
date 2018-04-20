@@ -6,7 +6,14 @@ class Admin::CoursesController < ApplicationController
 
   def new
     @trainers = User.filter_by "trainer"
-    @trainees = User.trainees
+    trainees = Array.new
+    Course.in_progress.each do |x|
+      trainees+= x.users.trainees
+    end
+    Course.init.each do |x|
+      trainees+= x.users.trainees
+    end
+    @trainees = User.trainees - trainees
     @subjects = Subject.all
   end
 
@@ -56,7 +63,14 @@ class Admin::CoursesController < ApplicationController
 
   def edit
     @trainers = User.filter_by "trainer"
-    @trainees = User.filter_by "trainee"
+    trainees = Array.new
+    Course.in_progress.each do |x|
+      trainees+= x.users.trainees
+    end
+    Course.init.each do |x|
+      trainees+= x.users.trainees
+    end
+    @trainees = User.trainees - trainees + @course.users.trainees
     @subjects = Subject.all
   end
 

@@ -1,6 +1,7 @@
 class CourseUserLesson < ApplicationRecord
   belongs_to :course_user
   belongs_to :lesson
+  has_many :exam_lessons, dependent: :destroy
 
   validates :course_user_id, uniqueness: { scope: :lesson_id }
 

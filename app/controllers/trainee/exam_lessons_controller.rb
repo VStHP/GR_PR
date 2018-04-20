@@ -1,10 +1,10 @@
 class Trainee::ExamLessonsController < ApplicationController
   layout "exam", except: :index
-  load_and_authorize_resource param_method: :params_exam_lesson
+  load_and_authorize_resource param_method: :params_exam_lesson, except: :show_test_of_lesson
   before_action :load_course_user_and_lesson, only: :new
 
   def new
-    @exam_lesson = ExamLesson.new course_user_id: @course_user.id, lesson_id: @lesson.id
+    @exam_lesson = ExamLesson.new course_user_lesson_id: params[:course_user_lesson_id]
     questions = @lesson.questions.get_random.limit 20
     @list_question_answers = Array.new
     questions.each do |qs|
@@ -33,12 +33,21 @@ class Trainee::ExamLessonsController < ApplicationController
     @list_question_answers = @exam_lesson.list_question_answers
   end
 
+  def show_test_of_lesson
+    @exam_lessons = CourseUserLesson.find_by(id: params[:course_user_lesson_id]).exam_lessons
+    @exam_lesson = @exam_lessons[params[:num].to_i]
+    @list_question_answers = @exam_lesson.list_question_answers if @exam_lesson.present?
+    return if @exam_lesson
+    flash[:danger] = "Không tìm thấy đường dẫn"
+    redirect_to root_path
+  end
+
   private
 
   def load_course_user_and_lesson
     cul = CourseUserLesson.find_by id: params[:course_user_lesson_id]
     if cul
-      @course_user = cul.course_user
+      # @course_user = cul.course_user
       @lesson = cul.lesson
     else
       flash[:danger] = "Không tìm thấy liên kết"
@@ -47,7 +56,7 @@ class Trainee::ExamLessonsController < ApplicationController
   end
 
   def params_exam_lesson
-    params.require(:exam_lesson).permit :lesson_id, :course_user_id,
+    params.require(:exam_lesson).permit :course_user_lesson_id,
       list_question_answers_attributes: [:question_id, {:answer_ids => []}, :chosen_id, :exam_lesson_id]
   end
 
@@ -73,13 +82,11 @@ class Trainee::ExamLessonsController < ApplicationController
   end
 
   def do_change_status_course_user_lesson exam_lesson
-    cu = exam_lesson.course_user
-    ls = exam_lesson.lesson
-    course_user_lesson = CourseUserLesson.find_by course_user_id: cu.id, lesson_id: ls.id
+    course_user_lesson = exam_lesson.course_user_lesson
     if exam_lesson.pass?
       course_user_lesson.update_attributes status: "finish", date_end: Time.zone.now
     else
-      if cu.exam_lessons.of_lesson(ls.id).length >=3
+      if course_user_lesson.exam_lessons.length >=3
         course_user_lesson.update_attributes status: "finish_fail", date_end: Time.zone.now
       end
     end

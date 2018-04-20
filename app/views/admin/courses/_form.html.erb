@@ -234,6 +234,9 @@
         <%= select_tag "course[user_ids][]",
           options_from_collection_for_select( @trainees, :id, :name, @course.users.trainees.ids ),
           multiple: true, class: "select-chosen", id: "example-chosen-multiple", data: {id: @course.id} %>
+        <span class="help-block">
+          Danh sách thực tập sinh không bao gồm các TTS đang tham gia vào các khóa học khác đang tiến hành
+          hoặc chuẩn bị tiến hành</span>
       </div>
     </div>
   </div>

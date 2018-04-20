@@ -1,0 +1,2 @@
+$('.result').html('<div class="title pro"><h1 class="<%= define_class @exam_lesson %>"><%= t "exam.result.#{@exam_lesson.result}" %></h1></div><p><span>Tổng số câu hỏi:</span><%= @list_question_answers.length %></p><p><span>Số câu đúng:</span><%= (@exam_lesson.score/100*@list_question_answers.length).to_i %></p><p><span>Điểm:</span><%= @exam_lesson.score.to_i %> / 100 </p>');
+$('.question').html('<% @qs_stt = 1 %><%= j render partial: "list_question_answer", collection: @list_question_answers, as: :lqa %></div>')

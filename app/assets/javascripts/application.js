@@ -102,11 +102,18 @@ $(document).ready(function(){
   $('.btn-upload-link').on('click',function(){
     $('.pop-link').show();
   });
-  $(document).on('click', '.close-popup', function(){
-    $('.popup-upload').hide();
+  $('.open_exam').on('click', function(){
+    var code = $(this).val();
+    if($('#exam_'+code).css('display') == 'none'){
+      $('#exam_'+code).show(700);
+    }else{
+      $('#exam_'+code).hide(200);
+    }
   });
 });
-
+$(document).on('click', '.close-popup', function(){
+  $('.popup-upload').hide();
+});
 $(document).on('click', '.show-trainer', function(){
   if($('.table-trainer tbody tr:nth-child(5)').css('display') == 'none')
   {

@@ -7,7 +7,7 @@ class Trainee::CourseUserLessonsController < ApplicationController
   before_action :redirect_to_test_page
 
   def update
-    return if @redirect
+    return if @redirect || @mes_error
     respond_to do |format|
       if params[:status] == "in_progress"
         if @course_user_lesson.update_attributes status: params[:status]
