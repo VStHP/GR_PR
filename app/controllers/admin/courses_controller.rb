@@ -5,14 +5,10 @@ class Admin::CoursesController < ApplicationController
   after_action :check_and_active_course, only: %i(create update)
 
   def new
-    @trainers = User.filter_by "trainer"
+    @trainers = User.trainer
     trainees = Array.new
-    Course.in_progress.each do |x|
-      trainees+= x.users.trainees
-    end
-    Course.init.each do |x|
-      trainees+= x.users.trainees
-    end
+    Course.in_progress.each { |x| trainees+= x.users.trainees }
+    Course.init.each { |x| trainees+= x.users.trainees }
     @trainees = User.trainees - trainees
     @subjects = Subject.all
   end
@@ -24,8 +20,11 @@ class Admin::CoursesController < ApplicationController
       redirect_to admin_course_path @course
     else
       flash[:danger] = "Tạo khóa thực tập thất bại"
-      @trainers = User.filter_by "trainer"
-      @trainees = User.trainees
+      @trainers = User.trainer
+      trainees = Array.new
+      Course.in_progress.each { |x| trainees+= x.users.trainees }
+      Course.init.each { |x| trainees+= x.users.trainees }
+      @trainees = User.trainees - trainees
       @subjects = Subject.all
       render :new
     end
@@ -62,25 +61,31 @@ class Admin::CoursesController < ApplicationController
   end
 
   def edit
-    @trainers = User.filter_by "trainer"
+    @trainers = User.trainer
     trainees = Array.new
-    Course.in_progress.each do |x|
-      trainees+= x.users.trainees
-    end
-    Course.init.each do |x|
-      trainees+= x.users.trainees
-    end
-    @trainees = User.trainees - trainees + @course.users.trainees
+    Course.in_progress.each { |x| trainees+= x.users.trainee }
+    Course.init.each { |x| trainees+= x.users.trainee }
+    @trainees = User.trainee - trainees + @course.users.trainee
     @subjects = Subject.all
   end
 
   def update
-    if @course.update_attributes params_course
+    @course.update_attributes params_course
+    if @course.save
       flash[:success] = "Cập nhật khóa thực tập thành công"
-      redirect_to root_path
+      if current_user.admin?
+        redirect_to admin_course_path @course
+      else
+        redirect_to course_path @course
+      end
     else
       flash[:danger] = "Không thể cập nhật khóa thực tập"
       @trainers = User.filter_by "trainer"
+      trainees = Array.new
+      Course.in_progress.each { |x| trainees+= x.users.trainees }
+      Course.init.each { |x| trainees+= x.users.trainees }
+      @trainees = User.trainees - trainees + @course.users.trainees
+      @subjects = Subject.all
       render :edit
     end
   end
@@ -150,7 +155,7 @@ class Admin::CoursesController < ApplicationController
   end
 
   def add_course_user_lesson
-    @course.course_users.each do |course_user|
+    @course.course_users.trainees.each do |course_user|
       Lesson.in_subject_ids(params[:course][:subject_ids]).each do |lesson|
         course_user.course_user_lessons.create lesson_id: lesson.id
       end
@@ -158,36 +163,42 @@ class Admin::CoursesController < ApplicationController
   end
 
   def modify_course_user_lesson
-    @subject_ids_new = @course.subject_ids
-    if @course.course_subjects.present?
-      @subject_ids_old = @course.course_users.first.lessons.pluck(:subject_id)
-    else
-      @subject_ids_old = []
+    #lay danh sach mon hoc moi them vao va cu
+    subjects_added = []
+    subjects_exist = []
+    @course.course_subjects.each do |cs|
+      if cs.id_previously_changed?
+        subjects_added << cs.subject
+      else
+        subjects_exist << cs.subject
+      end
     end
-    if (@subject_ids_new-@subject_ids_old).present?
-      (@subject_ids_new-@subject_ids_old).each do |subject_id|
-        Subject.find(subject_id).lessons.each do |lesson|
-          @course.course_users.each do |cu|
+
+    #kiem tra cac thuc tap sinh moi them vao => course_user_lesson add
+    @course.course_users.each do |cu|
+      if cu.id_previously_changed? && cu.user.trainee?
+        subjects_exist.each do |subject|
+          subject.lessons.each do |lesson|
             cu.course_user_lessons.create! lesson_id: lesson.id
           end
         end
       end
     end
-    if (@subject_ids_old-@subject_ids_new).present?
-      (@subject_ids_old-@subject_ids_new).each do |subject_id|
-        Subject.find(subject_id).lessons.each do |lesson|
-          lesson.course_user_lessons.delete_all
-        end
+
+     #Neu co mon hoc cu bi xoa => course_user_lesson destroy
+    if @course.course_users.trainees.first
+      subjects_old = @course.course_users.trainees.first.lessons.pluck(:subject_id)
+    end
+    (subjects_old-subjects_exist.pluck(:id)).each do |subject_id|
+      Subject.find(subject_id).lessons.each do |lesson|
+        lesson.course_user_lessons.delete_all
       end
     end
-    @course.course_users.each do |cu|
-      if cu.id_previously_changed?
-        if (@subject_ids_old&@subject_ids_new).present?
-          (@subject_ids_old&@subject_ids_new).each do |subject_id|
-            Subject.find(subject_id).lessons.each do |lesson|
-              cu.course_user_lessons.create! lesson_id: lesson.id
-            end
-          end
+    #neu co mon hoc moi duoc them => course_user_lesson add
+    subjects_added.each do |subject|
+      subject.lessons.each do |lesson|
+        @course.course_users.trainees.each do |cu|
+          cu.course_user_lessons.create! lesson_id: lesson.id
         end
       end
     end

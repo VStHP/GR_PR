@@ -2,22 +2,24 @@
   <div>
     <div class="col-xs-6  <%= check_errors @subject, :"lessons.name" %>">
       <%= f.label :name, class: "control-label" do %>Tên chương <span class="text-danger">*</span><% end %>
-      <%= f.text_field :name, class: "form-control ui-wizard-content" %>
+      <%= f.text_field :name, class: "form-control ui-wizard-content", placeholder: "Nhập tên bài học" %>
     </div>
     <div class="col-xs-6  <%= check_errors @subject, :"lessons.youtube_url" %>">
       <%= f.label :youtube_url, "Mã video trên Youtube", class: "control-label" %>
       <a href="https://youtu.be/lRV4kuZEtAY" class="ship-info-ic"
         data-title="Click vào ĐÂY để xem cách lấy mã video trên Youtube" target="_blank"></a>
-      <%= f.text_field :youtube_url, class: "form-control ui-wizard-content" %>
+      <%= f.text_field :youtube_url, class: "form-control ui-wizard-content",
+        placeholder: "Nhập liên kết video trên youtube" %>
     </div>
-    <%= link_to_remove_association f do %>
+    <%= link_to_remove_association f, title: "Xóa bài học" do %>
       <i class="fa fa-trash-o"></i>
     <% end %>
   </div>
   <div>
     <div class="col-xs-12 <%= check_errors @subject, :"lessons.description" %>">
       <%= f.label :description, "Mô tả", class: "control-label" %>
-      <%= f.text_area :description, style: "max-width: 100%", class: "form-control ui-wizard-content" %>
+      <%= f.text_area :description, style: "max-width: 100%", class: "form-control ui-wizard-content",
+        placeholder: "Nhập mô tả cho bài học" %>
     </div>
   </div>
 </div>

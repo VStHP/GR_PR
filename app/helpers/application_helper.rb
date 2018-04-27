@@ -74,7 +74,7 @@ module ApplicationHelper
       best_exam = x.exam_lessons.score_desc.first
       max_score = best_exam.score if best_exam
       result = best_exam.result if best_exam
-      @exam_lessons << [name,length,max_score||=0,result||="nil"]
+      @exam_lessons << [name,length,max_score||=0,result||="nil", x.id]
     end
   end
 end

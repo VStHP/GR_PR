@@ -26,7 +26,7 @@
         </tr>
       </thead>
       <tbody>
-        <%= render @exam_lessons %>
+        <%= render partial: "exam_lesson", collection: @exam_lessons, as: :exam_lesson %>
       </tbody>
     </table>
   </div>

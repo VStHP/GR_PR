@@ -5,7 +5,7 @@
       <div class="title pro">
         <h1>Thông tin</h1>
       </div>
-      <p><span>Họ tên:</span> <%= current_user.name %></p>
+      <p><span>Họ tên:</span> <%= @user.name %></p>
       <p><span>Khóa học:</span> <%= @exam_lesson.course_user_lesson.course_user.course.name %></p>
       <p><span>Môn học:</span> <%= @exam_lesson.course_user_lesson.lesson.subject.name %></p>
       <p><span>Thời gian:</span><%= @exam_lesson.course_user_lesson.lesson.test_time %> phút</p>

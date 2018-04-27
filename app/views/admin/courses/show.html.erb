@@ -17,7 +17,6 @@
       <div class="widget-advanced">
         <div class="widget-header text-center">
           <%= image_tag @course.banner.url, class: "widget-background ", alt: "background" %>
-
           <h3 class="widget-content widget-content-image widget-content-light">
             <%= link_to @course.name.capitalize, "#", class: "main-title" %><br>
             <small><%= @course.program.capitalize %></small>
@@ -27,13 +26,41 @@
           <a href="javascript:void(0)" class="widget-image-container animation-fadeIn">
             <%= image_tag @course.avatar.url, class: "widget-image img-circle", alt: "background" %>
           </a>
-          <a href="javascript:void(0)" class="btn btn-sm btn-default pull-right">
+          <a class="btn btn-sm btn-default pull-right">
             <%= @subjects.count %> môn học, <i class="fa fa-clock-o"></i> <%= define_time_course @subjects %> ngày
           </a>
           <% define_color_status_course @course %>
-          <a href="javascript:void(0)" class="btn btn-sm btn-<%= @color %>">
+          <a class="btn btn-sm btn-<%= @color %>" id="course_status">
             <%= t "courses.status.#{@course.status}" %></a>
           <hr>
+          <table class="table table-vcenter">
+            <thead>
+              <tr class="info">
+                <td>Mô tả &amp; Tài liệu liên quan</td>
+                <td class="text-right">
+                  <a href="javascript:void(0)" class="btn btn-xs btn-default show-describe">Xem thêm..</a>
+                </td>
+              </tr>
+            </thead>
+            <tbody id="sb-describe" class="content-describe">
+              <tr>
+                <td colspan="2">
+                  <%= @course.description %>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <% @course.links.each do |x| %>
+                  <div>
+                    <strong><%= x.name %>: </strong><br>
+                    <a href="<%= x.link %>"><%= x.link %></a>
+                    <br><em><%= x.description %></em>
+                  </div>
+                  <% end %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
           <div class="course-container content-block active col-list-subjects">
             <ul class="timeline timeline-inverse timeline-subject">
               <%= render partial: "course_subject", collection: @course_subjects, as: :course_subject %>
@@ -41,6 +68,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </div>
   <div class="col-md-4">
