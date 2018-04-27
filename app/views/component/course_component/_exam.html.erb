@@ -4,4 +4,12 @@
   <td><%= exam[1] %></td>
   <td><%= exam[2].to_i %>/100</td>
   <td><%= t "exam.result.#{exam[3]}" %></td>
+  <% if !current_user.trainee? and ExamLesson.of_cul(exam[4]).present? %>
+    <td>
+      <%= link_to trainee_show_test_of_lesson_path(course_user_lesson_id: exam[4], num: 0),
+        class: "btn btn-xs btn-success", data: {toggle: "tooltip"}, title: "Xem bài kiểm tra" do %>
+        <i class="fa fa-book"></i></button>
+      <% end %>
+    </td>
+  <% end %>
 </tr>

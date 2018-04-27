@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180420024317) do
+ActiveRecord::Schema.define(version: 20180423092525) do
 
   create_table "answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "text"
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 20180420024317) do
     t.datetime "updated_at", null: false
     t.string "subject_id"
     t.integer "test_time"
+    t.integer "num_question_test", default: 20
     t.index ["subject_id"], name: "index_lessons_on_subject_id"
   end
 

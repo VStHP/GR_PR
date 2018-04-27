@@ -25,9 +25,18 @@ class Admin::CourseSubjectsController < ApplicationController
         format.js{@mes_error = "Thay đổi trạng thái môn học thất bại"}
       end
     end
+    check_finish_course
   end
 
   private
+
+  def check_finish_course
+    return if @course_subject.in_progress?
+    if @course.course_subjects.length == @course.course_subjects.finish.length
+      @course.update_attributes status: "finish", date_end: Time.zone.now
+      @mes_success2 = "Khóa học kết thúc sau khi tất cả môn học đã hoàn thành"
+    end
+  end
 
   def load_course
     @course = Course.find_by id: params[:course_id]

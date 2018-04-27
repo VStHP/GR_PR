@@ -68,7 +68,7 @@ module Admin::CourseSubjectsHelper
       when "admin"
         admin_course_path course
       when "trainer"
-        trainer_course_path course
+        course_path course
       else
         mycourse_path course
       end

@@ -164,12 +164,14 @@
             <% end %>
           </li>
         <% end %>
-        <li>
-          <%= link_to trainee_exam_lessons_path do %>
-            <i class="gi gi-share_alt sidebar-nav-icon"></i>
-            <span class="sidebar-nav-mini-hide">Bài kiểm tra</span>
-          <% end %>
-        </li>
+        <% if current_user.trainee? %>
+          <li>
+            <%= link_to myexams_path do %>
+              <i class="gi gi-share_alt sidebar-nav-icon"></i>
+              <span class="sidebar-nav-mini-hide">Bài kiểm tra</span>
+            <% end %>
+          </li>
+        <% end %>
       </ul>
       <!-- END Sidebar Navigation -->
     </div>

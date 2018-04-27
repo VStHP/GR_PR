@@ -24,9 +24,11 @@
             <i class="fa fa-book"></i></button>
           <% end %>
         <% end %>
-        <button class="btn btn-xs btn-warning open_exam" data-toggle="tooltip" title=""
-          data-original-title="Xem xếp hạng bài kiểm tra!" value="<%= lesson.id %>">
-          <i class="fa fa-eye"></i></button>
+        <% if lesson.questions.present? %>
+          <button class="btn btn-xs btn-warning open_exam" data-toggle="tooltip" title=""
+            data-original-title="Xem xếp hạng bài kiểm tra!" value="<%= lesson.id %>">
+            <i class="fa fa-eye"></i></button><br>
+        <% end %>
         <% if lesson.youtube_url.present? %>
           <button class="btn btn-xs btn-danger open_y" data-toggle="tooltip" title=""
             data-original-title="Xem video!" value="<%= lesson.youtube_url %>">
@@ -55,6 +57,9 @@
             <th>Số lần làm bài</th>
             <th>Điểm cao nhất</th>
             <th>Kết quả cuối cùng</th>
+            <% unless current_user.trainee? %>
+              <th>##</th>
+            <% end %>
           </tr>
           <% @stt = 0 %>
           <%= render partial: "component/course_component/exam.html.erb",

@@ -31,6 +31,6 @@ class BannerCourseUploader < CarrierWave::Uploader::Base
   end
 
   def default_url(*args)
-    ActionController::Base.helpers.asset_path([version_name, "banner_course.png"].compact.join('_'))
+    ActionController::Base.helpers.asset_path([version_name, "banner.jpg"].compact.join('_'))
   end
 end

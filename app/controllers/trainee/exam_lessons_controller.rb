@@ -1,18 +1,15 @@
-class Trainee::ExamLessonsController < ApplicationController
+  class Trainee::ExamLessonsController < ApplicationController
   layout "exam", except: :index
   load_and_authorize_resource param_method: :params_exam_lesson, except: :show_test_of_lesson
   before_action :load_course_user_and_lesson, only: :new
 
   def new
     @exam_lesson = ExamLesson.new course_user_lesson_id: params[:course_user_lesson_id]
-    questions = @lesson.questions.get_random.limit 20
+    questions = @lesson.questions.get_random.limit @lesson.num_question_test
     @list_question_answers = Array.new
     questions.each do |qs|
       @list_question_answers.push ListQuestionAnswer.new question_id: qs.id
     end
-  end
-
-  def index
   end
 
   def create
@@ -35,6 +32,7 @@ class Trainee::ExamLessonsController < ApplicationController
 
   def show_test_of_lesson
     @exam_lessons = CourseUserLesson.find_by(id: params[:course_user_lesson_id]).exam_lessons
+    @user = CourseUserLesson.find_by(id: params[:course_user_lesson_id]).course_user.user
     @exam_lesson = @exam_lessons[params[:num].to_i]
     @list_question_answers = @exam_lesson.list_question_answers if @exam_lesson.present?
     return if @exam_lesson
