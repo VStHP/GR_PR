@@ -1,0 +1,37 @@
+<% provide :title, "Bài kiểm tra" %>
+<div class="content-header">
+  <div class="header-section">
+    <h1>
+      <i class="fa fa-table"></i>Danh sách bài kiểm tra đã làm
+    </h1>
+  </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+  <li>Trang Chủ</li>
+  <li><a href="">Danh sách bài kiểm tra</a></li>
+</ul>
+<div class="block full">
+  <div class="block-title" id="btn-filter-container">
+    <h2><strong>Danh sách</strong></h2>
+  </div>
+  <div class="table-responsive" id="table-content">
+    <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+      <thead>
+        <tr>
+          <th class="text-center">ID</th>
+          <th>Bài kiểm tra</th>
+          <th>Khóa thực tập</th>
+          <th>Điểm</th>
+          <th>Kết quả</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: "exam_lesson", collection: @exam_lessons, as: :exam_lesson %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script>
+  $(function(){ TablesExamLessons.init(); });
+</script>
+

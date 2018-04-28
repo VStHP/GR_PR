@@ -1214,6 +1214,7 @@ a.sidebar-title:focus {
     top: 0;
     left: 0;
     height: 150px;
+    width: 100%;
 }
 
 .widget-advanced .widget-background-map {
@@ -2189,7 +2190,7 @@ textarea.form-control {
     margin: 0;
     border: none;
     padding: 15px;
-    border-bottom: 1px dashed #eaedf1;
+    border-bottom: 1px dashed #c5cad0;
 }
 
 .form-bordered .form-group.form-actions {

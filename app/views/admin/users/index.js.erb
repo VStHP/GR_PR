@@ -1,2 +1,2 @@
-$("#table-content").html("<table id='example-datatable' class='table table-vcenter table-condensed table-bordered'><thead><tr><th class='text-center'>#</th><th class='text-center'><i class='gi gi-user'></i></th><th>Name</th><th>Email</th><th>Program</th><th>Permission</th></tr></thead><tbody><%= j render partial: 'user', collection: @users, as: :user %></tbody></table>");
-$(function(){ TablesDatatables.init(); });
+$("#table-content").html("<table id='example-datatable' class='table table-vcenter table-condensed table-bordered'><thead><tr><th class='text-center'>#</th><th class='text-center'><i class='gi gi-user'></i></th><th>Họ tên</th><th>Email</th><th>Chương trình</th><th>Phân quyền</th><th class='text-center'>##</th></tr></thead><tbody><%= j render partial: 'user', collection: @users, as: :user %></tbody></table>");
+$(function(){ TablesUsers.init(); });

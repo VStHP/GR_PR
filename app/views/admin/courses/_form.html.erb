@@ -1,0 +1,259 @@
+<%= form_for @course, url: yield(:url_path),
+  html: {id: "clickable-wizard", class: "form-horizontal form-bordered ui-formwizard" } do |f| %>
+  <div id="clickable-first" class="step ui-formwizard-content <%= yield :class_class %>">
+    <div class="form-group">
+      <div class="col-xs-12">
+        <ul class="nav nav-pills nav-justified clickable-steps">
+          <li class="active">
+            <a href="javascript:void(0)" data-gotostep="clickable-first">
+              <strong>1. Thông tin Quan trọng</strong>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" data-gotostep="clickable-second">
+              <strong>2. Thông tin Bổ sung</strong>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" data-gotostep="clickable-third">
+              <strong>3. Thông tin Liên kết</strong>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <% if @course.init? %>
+      <div class="form-group <%= check_errors @course, :id %>">
+        <label class="col-md-4 control-label" for="course_id">ID khóa thực tập <span class="text-danger">*</span></label>
+        <div class="col-md-5">
+          <% if @course.id? %>
+            <%= f.label :id, class: "form-control ui-wizard-content", value: @course.id %>
+            <span class="help-block">ID không thể thay đổi</span>
+          <% else %>
+            <%= f.text_field :id, class: "form-control ui-wizard-content", data: {toggle: "tooltip"},
+              title: "ID khóa thực tập quy định từ 4-20 kí tự", placeholder: "Nhập ID khóa thực tập", autofocus: true %>
+            <span class="text-danger"><%= show_errors @course, :id, "id" %></span>
+          <% end %>
+        </div>
+      </div>
+      <div class="form-group <%= check_errors @course, :name %>">
+        <label class="col-md-4 control-label" for="course_name">Tên <span class="text-danger">*</span></label>
+        <div class="col-md-5">
+        <%= f.text_field :name, class: "form-control ui-wizard-content", placeholder: "Nhập tên của khóa thực tập" %>
+        <span class="text-danger"><%= show_errors @course, :name, "name" %></span>
+        </div>
+      </div>
+      <div class="form-group <%= check_errors @course, :program %>">
+        <label class="col-md-4 control-label" for="course_program">Chương trình <span class="text-danger">*</span></label>
+        <div class="col-md-5">
+        <%= f.text_field :program, class: "form-control ui-wizard-content",
+          placeholder: "Nhập chương trình của khóa thực tập", disabled: true %>
+        <span class="text-danger"><%= show_errors @course, :program, "program" %></span>
+        </div>
+      </div>
+      <div class="form-group <%= check_errors @course, :language %>">
+        <label class="col-md-4 control-label" for="course_language">Ngôn ngữ <span class="text-danger">*</span></label>
+        <div class="col-md-5">
+        <%= f.text_field :language, class: "form-control ui-wizard-content",
+          placeholder: "Nhập ngôn ngữ được dạy trong khóa thực tập",disabled: true %>
+        <span class="text-danger"><%= show_errors @course, :language, "language" %></span>
+        </div>
+      </div>
+      <div class="form-group <%= check_errors @course, :date_start %>">
+        <label class="col-md-4 control-label" for="course_date_start">Ngày bắt đầu <span class="text-danger">*</span></label>
+        <div class="col-md-5">
+          <% if @course.date_start %>
+            <%= f.text_field :date_start, data: {provide: "datepicker"},
+              class: "datepick form-control ui-wizard-content", value: @course.date_start.strftime(t "date_format") %>
+          <% else %>
+            <%= f.text_field :date_start, data: {provide: "datepicker"},
+              class: "datepick form-control ui-wizard-content", placeholder: "Nhập ngày bắt đầu khóa thực tập" %>
+          <% end %>
+        <span class="text-danger"><%= show_errors @course, :date_start, "date_start" %></span>
+        </div>
+      </div>
+      <div class="form-group <%= check_errors @course, :user_id %>">
+        <label class="col-md-4 control-label" for="course_user_id">Chủ nhiệm <span class="text-danger">*</span>
+        </label>
+        <div class="col-md-5">
+          <%= select "course", "user_id", @trainers.map {|trainer| [trainer.name, trainer.id]}, {}, class: "select-chosen" %>
+          <span class="text-danger"><%= show_errors @course, :user_id, "user_id" %></span>
+        </div>
+      </div>
+    <% else %>
+      <div class="form-group <%= check_errors @course, :id %>">
+        <label class="col-md-4 control-label" for="course_id">ID khóa thực tập <span class="text-danger">*</span></label>
+        <div class="col-md-5">
+          <%= f.label :id, class: "form-control ui-wizard-content", value: @course.id %>
+          <span class="help-block">Chỉ có thể chỉnh sửa khi khóa thực tập chưa bắt đầu</span>
+        </div>
+      </div>
+      <div class="form-group <%= check_errors @course, :name %>">
+        <label class="col-md-4 control-label" for="course_name">Tên <span class="text-danger">*</span></label>
+        <div class="col-md-5">
+        <%= f.label :name, class: "form-control ui-wizard-content", value: @course.name %>
+        <span class="help-block">Chỉ có thể chỉnh sửa khi khóa thực tập chưa bắt đầu</span>
+        </div>
+      </div>
+      <div class="form-group <%= check_errors @course, :program %>">
+        <label class="col-md-4 control-label" for="course_program">Chương trình <span class="text-danger">*</span></label>
+        <div class="col-md-5">
+        <%= f.label :program, class: "form-control ui-wizard-content", value: @course.program %>
+        <span class="help-block">Chỉ có thể chỉnh sửa khi khóa thực tập chưa bắt đầu</span>
+        </div>
+      </div>
+      <div class="form-group <%= check_errors @course, :language %>">
+        <label class="col-md-4 control-label" for="course_language">Ngôn ngữ <span class="text-danger">*</span></label>
+        <div class="col-md-5">
+        <%= f.label :language, class: "form-control ui-wizard-content", value: @course.language %>
+        <span class="help-block">Chỉ có thể chỉnh sửa khi khóa thực tập chưa bắt đầu</span>
+        </div>
+      </div>
+      <div class="form-group <%= check_errors @course, :date_start %>">
+        <label class="col-md-4 control-label" for="course_date_start">Ngày bắt đầu <span class="text-danger">*</span></label>
+        <div class="col-md-5">
+        <%= f.label :date_start, class: "form-control ui-wizard-content", value: @course.date_start %>
+        <span class="help-block">Chỉ có thể chỉnh sửa khi khóa thực tập chưa bắt đầu</span>
+        </div>
+      </div>
+      <div class="form-group <%= check_errors @course, :user_id %>">
+        <label class="col-md-4 control-label" for="course_user_id">Chủ nhiệm <span class="text-danger">*</span>
+        </label>
+        <div class="col-md-5">
+          <% if can? :manage, @course %>
+            <%= select "course", "user_id", @trainers.map {|trainer| [trainer.name, trainer.id]}, {},
+              class: "select-chosen" %>
+            <span class="text-danger"><%= show_errors @course, :user_id, "user_id" %></span>
+          <% else %>
+            <%= f.label :user_id, class: "form-control ui-wizard-content", value: @course.user.name %>
+            <span class="help-block">Chỉ có thể chỉnh sửa khi khóa thực tập chưa bắt đầu</span>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    <div class="text-right" style="padding-right: 20px">
+      <label class="control-label "><span class="text-danger">*</span> Thuộc tính bắt buộc</label><br>
+      <label class="control-label "><%= yield :warning %></label>
+    </div>
+  </div>
+  <div id="clickable-second" class="step ui-formwizard-content">
+    <div class="form-group">
+      <div class="col-xs-12">
+        <ul class="nav nav-pills nav-justified clickable-steps">
+          <li>
+            <a href="javascript:void(0)" data-gotostep="clickable-first">
+              <strong>1. Thông tin Quan trọng</strong>
+            </a>
+          </li>
+          <li class="active">
+            <a href="javascript:void(0)" data-gotostep="clickable-second">
+              <strong>2. Thông tin Bổ sung</strong>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" data-gotostep="clickable-third">
+              <strong>3. Thông tin Liên kết</strong>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="form-group <%= check_errors @course, :description %>">
+      <label class="col-md-4 control-label" for="course_description">Mô tả</label>
+      <div class="col-md-5">
+      <%= f.text_area :description, class: "form-control ui-wizard-content",
+        placeholder: "Nhập mô tả cho khóa thực tập", rows: 9 %>
+      <span class="text-danger"><%= show_errors @course, :description, "description" %></span>
+      </div>
+    </div>
+    <div class="form-group <%= check_errors @course, :banner %>">
+      <label class="col-md-4 control-label" for="val_banner">Banner </label>
+      <div class="col-md-5">
+        <%= f.file_field :banner, id: "bannerCourse" %>
+        <%= image_tag(@course.banner.url, class: "img-responsive", id: "banner_image_course") %>
+        <span class="text-danger"><%= show_errors @course, :banner, "banner" %></span>
+        <span class="help-block">Đề xuất sử dụng ảnh kích thước 1000x150 để có trải nghiệm tốt nhất</span>
+      </div>
+    </div>
+    <div class="form-group <%= check_errors @course, :avatar %>">
+      <label class="col-md-4 control-label" for="val_avatar">Avatar </label>
+      <div class="col-md-5">
+        <%= f.file_field :avatar, id: "avatarCourse" %>
+        <%= image_tag(@course.avatar.url, class: "img-responsive", style: "height: 100px;", id: "avatar_image_course") %>
+        <span class="text-danger"><%= show_errors @course, :avatar, "avatar" %></span>
+        <span class="help-block">Đề xuất sử dụng ảnh kích thước 64x64 để có trải nghiệm tốt nhất</span>
+      </div>
+    </div>
+  </div>
+  <div id="clickable-third" class="step ui-formwizard-content">
+    <div class="form-group">
+      <div class="col-xs-12">
+        <ul class="nav nav-pills nav-justified clickable-steps">
+          <li>
+            <a href="javascript:void(0)" data-gotostep="clickable-first">
+              <strong>1. Thông tin Quan trọng</strong>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" data-gotostep="clickable-second">
+              <strong>2. Thông tin Bổ sung</strong>
+            </a>
+          </li>
+          <li class="active">
+            <a href="javascript:void(0)" data-gotostep="clickable-third">
+              <strong>3. Thông tin Liên kết</strong>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="form-title">
+      <a class="btn btn-sm btn-default btn-title link">
+        <i class="fa fa-plus-square"></i> Danh sách liên kết bổ sung
+      </a>
+    </div>
+    <div class="form-group" id="nested-attr">
+      <%= f.fields_for :links do |link| %>
+        <%= render 'link_fields', f: link %>
+      <% end %>
+      <div class="form-group form-actions text-right link_fields">
+        <%= link_to_add_association 'Thêm liên kết mô tả', f, :links, class: "btn btn-sm btn-success " %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="course_subject_subject_id">Môn học trong khóa </label>
+      <div class="col-md-5">
+        <%= select_tag "course[subject_ids][]",
+          options_from_collection_for_select( @subjects, :id, :name, @course.subjects.ids ),
+          multiple: true, class: "select-chosen", id: "example-chosen-multiple", data: {id: @course.id} %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="course_subject_subject_id">Người hướng dẫn của khóa </label>
+      <div class="col-md-5">
+        <%= select_tag "course[user_ids][]",
+          options_from_collection_for_select( @trainers, :id, :name, @course.users.trainers.ids ),
+          multiple: true, class: "select-chosen", id: "example-chosen-multiple", data: {id: @course.id} %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="course_subject_subject_id">Thực tập sinh của khóa </label>
+      <div class="col-md-5">
+        <%= select_tag "course[user_ids][]",
+          options_from_collection_for_select( @trainees, :id, :name, @course.users.trainees.ids ),
+          multiple: true, class: "select-chosen", id: "example-chosen-multiple", data: {id: @course.id} %>
+        <span class="help-block">
+          Danh sách thực tập sinh không bao gồm các TTS đang tham gia vào các khóa học khác đang tiến hành
+          hoặc chuẩn bị tiến hành</span>
+      </div>
+    </div>
+  </div>
+  <!-- Form Buttons -->
+  <div class="form-group form-actions">
+    <div class="col-md-8 col-md-offset-4">
+      <input type="reset" class="btn btn-sm btn-warning ui-wizard-content ui-formwizard-button" id="back" value="Back">
+      <input type="submit" class="btn btn-sm btn-primary load-spinner ui-wizard-content ui-formwizard-button" id="next" value="Submit">
+    </div>
+  </div>
+  <!-- END Form Buttons -->
+<% end %>

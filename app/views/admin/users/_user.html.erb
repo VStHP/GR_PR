@@ -1,22 +1,24 @@
 <tr class="row_user_<%= user.id %> <%= "danger" if user.block? %>">
-  <td class="text-center status_user_<%= user.id %>">
-    <% unless current_user_here? user %>
-      <% define_title_status user %>
-      <%= link_to admin_change_status_user_path(user), method: :patch, title: @title,
-        class: @a_class, remote: true do%>
-        <i class="fa fa-<%= @i_class %>"></i>
-      <% end %>
-    <% end %>
-  </td>
+  <td class="text-center"><%= user.id %></td>
   <td class="text-center">
-    <img src="/avatar.jpg" alt="avatar" class="img-circle">
+    <%= image_tag user.avatar.url, class: "image_tag",
+      style: "width: 64px; hight: 64px;     border-radius: 32px;" %>
   </td>
   <td>
-    <%= link_to user.name, admin_profiles_path(user) %>
+    <%= link_to user.name, profiles_path(user) %>
   </td>
   <td><%= user.email %></td>
   <td><%= user.program %></td>
   <td class="<%= user.permission %>">
     <span class="label label-<%= define_color_permission user %> " style="text-transform: capitalize;"><%= user.permission %></span>
+  </td>
+  <td class="text-center status_user_<%= user.id %>">
+    <% unless current_user_here? user %>
+      <% define_title_status user %>
+      <%= link_to admin_change_status_user_path(user), method: :patch, title: @title,
+        class: @a_class, data: {confirm: "Bạn chắc chắn muốn khóa/mỏ khóa tài khoản này?"}, remote: true do%>
+        <i class="fa fa-<%= @i_class %>"></i>
+      <% end %>
+    <% end %>
   </td>
 </tr>

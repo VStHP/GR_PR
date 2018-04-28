@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">ID</Data></Cell>
+        <Cell><Data ss:Type="String">NAME</Data></Cell>
+        <Cell><Data ss:Type="String">STATUS</Data></Cell>
+        <Cell><Data ss:Type="String">DAY_ON_LEARN</Data></Cell>
+        <Cell><Data ss:Type="String">DESCRIPTION</Data></Cell>
+      </Row>
+      <% @subjects.each do |subject| %>
+        <Row>
+          <Cell><Data ss:Type="String"><%= subject.id %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= subject.name %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= subject.status %></Data></Cell>
+          <Cell><Data ss:Type="Number"><%= subject.day_on_learn %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= subject.description %></Data></Cell>
+        </Row>
+      <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

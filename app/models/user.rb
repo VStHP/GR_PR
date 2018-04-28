@@ -4,6 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :courses
+  has_many :course_users, dependent: :destroy
+  has_many :course_user_lessons, through: :course_users
+  has_many :exam_lessons, through: :course_user_lessons
+  has_many :courses_join, through: :course_users, source: 'course'
+  has_many :course_subjects, through: :courses
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: {maximum: 250},
     format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
@@ -13,11 +20,14 @@ class User < ApplicationRecord
   validates :program, length: {maximum: 250}
   validates :password, presence: true, length: {minimum: 6, maximum: 50}, allow_nil: true
   validate :birthdate_less_than_today, if: :birthday?
+  validate :file_name_avatar_less_than_250, if: :avatar?
 
 
   scope :filter_by, ->(type){where permission: type if type}
   scope :filter_by_active, -> {where status: "active"}
   scope :filter_by_block, -> {where status: "block"}
+  scope :trainers, -> {where permission: "trainer"}
+  scope :trainees,-> {where permission: "trainee"}
   enum permission: [:trainee, :trainer, :admin]
   enum gender: [:male, :female]
   enum status: [:active, :block]
@@ -28,8 +38,12 @@ class User < ApplicationRecord
 
   def birthdate_less_than_today
     if birthday.present?
-      errors.add :birthday, "Ngày sinh không hợp lệ" if birthday > Time.zone.today-365
+      errors.add :birthday, "Năm sinh phải nằm trong khoảng 1900 - 2010" if birthday.year < 1900 or birthday.year > 2010
     end
+  end
+
+  def active_for_authentication?
+    super && self.active?
   end
 
   private
@@ -62,5 +76,9 @@ class User < ApplicationRecord
     when ".xlsx" then Roo::Excelx.new(file.path, file_warning: :ignore)
     else raise "Unknown file"
     end
+  end
+
+  def file_name_avatar_less_than_250
+    errors.add :avatar, "Tên tệp avatar không quá 250 kí tự" if File.basename(avatar.path).length > 100
   end
 end

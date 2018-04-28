@@ -1,7 +1,8 @@
+<% provide :title, "Đăng nhập" %>
 <div class="wrapper-login animation-fadeIn" id="login-prime" style="display: block;">
   <div class="container-login">
     <%= link_to root_path, class: "cancel-login" do %><i class="fa fa-close"></i><% end %>
-    <h1>Welcome</h1>
+    <h1>Chào Mừng</h1>
     <%= form_for resource, as: resource_name, url: session_path(resource_name),
       :html => {:class => "form-login"} do |f| %>
       <% flash.each do |message_type, message| %>
@@ -14,17 +15,17 @@
         </div>
       <% end %>
 
-      <%= f.email_field :email, placeholder: "Username/Email", class: "input-login" %>
-      <%= f.password_field :password, placeholder: "Password", class: "input-login" %>
+      <%= f.email_field :email, placeholder: "Tên đăng nhập / Email", class: "input-login"%>
+      <%= f.password_field :password, placeholder: "Mật khẩu", class: "input-login" %>
       <% if devise_mapping.rememberable? -%>
         <div class="field">
           <%= f.check_box :remember_me %>
-          <%= f.label :remember_me %>
+          <%= f.label :remember_me, "Ghi nhớ đăng nhập" %>
         </div>
       <% end -%>
-      <%= f.submit "Login", class: "button-login" %>
+      <%= f.submit "Đăng Nhập", class: "button-login" %>
       <br>
-      <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+      <%= link_to "Bạn quên mật khẩu?", new_password_path(resource_name) %><br />
     <% end %>
   </div>
 
@@ -41,14 +42,3 @@
     <li></li>
   </ul>
 </div>
-<style type="text/css">
-  .animation-fadeIn {
-    animation-name: fadeIn;
-    -webkit-animation-name: fadeIn;
-    animation-duration: 1.0s;
-    -webkit-animation-duration: 1.0s;
-    animation-timing-function: ease-in-out;
-    -webkit-animation-timing-function: ease-in-out;
-    visibility: visible !important;
-}
-</style>

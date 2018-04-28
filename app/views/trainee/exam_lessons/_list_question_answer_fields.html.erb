@@ -1,0 +1,15 @@
+<% @answers = question.answers.wrong.get_random.limit 3 %>
+<% @answers += question.answers.right.get_random.limit(1) %>
+<div class="col-xs-12">
+  <label><%= @qs_stt %>. <%= question.text.capitalize %></label>
+  <%= f.hidden_field :question_id, value: question.id %>
+  <% @answers.each do |x| %>
+    <%= f.hidden_field :answer_ids, :multiple => true, value: x.id %>
+  <% end %>
+  <%= f.collection_radio_buttons('chosen_id', @answers.shuffle, :id, :text) do |b| %>
+    <div class="radio">
+      <%= b.label { b.radio_button + b.text } %>
+    </div>
+  <% end %>
+</div>
+<% @qs_stt+=1 %>

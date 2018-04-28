@@ -1,0 +1,7 @@
+<% define_object_show_exam_lesson lqa %>
+<div class="col-xs-12">
+  <label><%= @qs_stt %>. <%= @question.text.capitalize %></label>
+  <% @answer_num = "a" %>
+  <%= render partial: "answer", collection: @answers, as: :answer, locals: {lqa: lqa }%>
+</div>
+<% @qs_stt+=1 %>

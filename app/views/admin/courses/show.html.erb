@@ -1,0 +1,166 @@
+<% provide :title, @course.name.capitalize %>
+<div class="content-header">
+  <div class="header-section">
+    <h1>
+      <i class="fa fa-globe"></i><strong><%= @course.name.upcase %></strong><br>
+      <small><%= @course.subjects.length %> Môn học</small>
+    </h1>
+  </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+  <li>Khóa thực tập</li>
+  <li><a href=""><%= @course.name.capitalize %></a></li>
+</ul>
+<div class="row">
+  <div class="col-md-8">
+    <div class="widget">
+      <div class="widget-advanced">
+        <div class="widget-header text-center">
+          <%= image_tag @course.banner.url, class: "widget-background ", alt: "background" %>
+          <h3 class="widget-content widget-content-image widget-content-light">
+            <%= link_to @course.name.capitalize, "#", class: "main-title" %><br>
+            <small><%= @course.program.capitalize %></small>
+          </h3>
+        </div>
+        <div class="widget-main">
+          <a href="javascript:void(0)" class="widget-image-container animation-fadeIn">
+            <%= image_tag @course.avatar.url, class: "widget-image img-circle", alt: "background" %>
+          </a>
+          <a class="btn btn-sm btn-default pull-right">
+            <%= @subjects.count %> môn học, <i class="fa fa-clock-o"></i> <%= define_time_course @subjects %> ngày
+          </a>
+          <% define_color_status_course @course %>
+          <a class="btn btn-sm btn-<%= @color %>" id="course_status">
+            <%= t "courses.status.#{@course.status}" %></a>
+          <hr>
+          <table class="table table-vcenter">
+            <thead>
+              <tr class="info">
+                <td>Mô tả &amp; Tài liệu liên quan</td>
+                <td class="text-right">
+                  <a href="javascript:void(0)" class="btn btn-xs btn-default show-describe">Xem thêm..</a>
+                </td>
+              </tr>
+            </thead>
+            <tbody id="sb-describe" class="content-describe">
+              <tr>
+                <td colspan="2">
+                  <%= @course.description %>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <% @course.links.each do |x| %>
+                  <div>
+                    <strong><%= x.name %>: </strong><br>
+                    <a href="<%= x.link %>"><%= x.link %></a>
+                    <br><em><%= x.description %></em>
+                  </div>
+                  <% end %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="course-container content-block active col-list-subjects">
+            <ul class="timeline timeline-inverse timeline-subject">
+              <%= render partial: "course_subject", collection: @course_subjects, as: :course_subject %>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="col-md-4">
+    <% if can? :update, @course %>
+      <div class="block">
+        <!-- About Content -->
+        <div class="block-section">
+          <%= link_to admin_course_export_course_path(format: "xls", id: @course.id),
+            class: "btn btn-lg btn-default btn-block" do %>
+            <i class="fa fa-download"></i> Download files
+          <% end %>
+        </div>
+        <!-- END About Content -->
+      </div>
+    <% end %>
+    <div class="block">
+      <div class="block-title">
+        <% if can? :update, @course %>
+          <div class="block-options pull-right">
+            <%= link_to edit_admin_course_path(@course), class: "btn btn-alt btn-sm btn-default",
+              data: {toggle: "tooltip"}, title: "Cài đặt!" do %>
+              <i class="fa fa-cog"></i>
+            <% end %>
+          </div>
+        <% end %>
+        <h2><strong>Khóa thực tập</strong> Thông tin</h2>
+      </div>
+      <div class="block-section">
+        <table class="table table-borderless table-striped table-vcenter table-fixed">
+          <tbody>
+            <tr>
+              <% @owner = User.find(@course.user_id) %>
+              <td class="text-right" style="width: 30%;">
+                <%= image_tag @owner.avatar.url, class: "img-circle", style: "width: 64px; height: 64px;" %>
+              </td>
+              <td>
+                <%= link_to profiles_path(@owner) do %>
+                  <strong><%= @owner.name %></strong>
+                <% end %><br><em>Chủ nhiệm khóa thực tập</em></td>
+            </tr>
+            <tr>
+              <td class="text-right">Khóa thực tập</td>
+              <td>
+                <text class="text-info"><strong>ID: </strong><%= @course.id %></text><br>
+                <text class="text-warning"><strong>Ngôn ngữ: </strong><%= @course.language %></text><br>
+                <text class="text-success"><strong>Ngày bắt đầu: </strong><%= @course.date_start %></text><br>
+                <text class="text-danger"><strong>Ngày kết thúc: </strong><%= @course.date_end %></text>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="block">
+      <div class="block-title">
+        <div class="block-options pull-right">
+          <em>số lượng: <%= @trainers.count %></em>
+        </div>
+        <h2><strong>Hướng dẫn</strong> danh sách</h2>
+      </div>
+      <table class="table table-striped table-vcenter table-trainer">
+        <tbody>
+          <%= render partial: "user", collection: @trainers, as: :user %>
+        </tbody>
+      </table>
+      <% if @trainers.count > 4 %>
+        <div class="text-center div-trainer">
+          <a href="javascript:void(0)" class="btn btn-xs btn-default show-trainer">Xem thêm..</a>
+        </div>
+      <% end %>
+    </div>
+    <div class="block">
+      <div class="block-title">
+        <div class="block-options pull-right">
+          <em>số lượng: <%= @trainees.count %></em>
+        </div>
+        <h2><strong>Thực tập sinh</strong> danh sách</h2>
+      </div>
+      <table class="table table-striped table-vcenter table-trainee">
+        <tbody>
+          <%= render partial: "user", collection: @trainees, as: :user %>
+        </tbody>
+      </table>
+      <% if @trainees.count > 4 %>
+        <div class="text-center">
+          <a href="javascript:void(0)" class="btn btn-xs btn-default show-trainee">Xem thêm..</a>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $('.table-trainer tbody tr:gt(3)').hide();
+  $('.table-trainee tbody tr:gt(3)').hide();
+</script>

@@ -1,0 +1,57 @@
+<% provide :title, "Môn học" %>
+<div class="content-header">
+  <div class="header-section">
+    <h1>
+      <i class="fa fa-table"></i>Dánh sách môn học
+    </h1>
+  </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+  <li>Môn học</li>
+  <li><a href="">Danh sách</a></li>
+</ul>
+<div class="block full">
+  <div class="block-title" id="btn-filter-container">
+    <h2><strong>Môn Học</strong></h2>
+    <div class="btn-group btn-group-sm pull-right">
+      <%= link_to "Kích hoạt", admin_subjects_path,class: "btn btn-primary btn-filter active", remote: true %>
+      <%= link_to "Đã khóa", admin_subjects_path(type: "block"),class: "btn btn-primary btn-filter", remote: true %>
+    </div>
+  </div>
+  <div class="table-responsive" id="table-content">
+    <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+      <thead>
+        <tr>
+          <th class="text-center">ID</th>
+          <th class="text-center">Avatar</th>
+          <th>Tên</th>
+          <th>Ngày học</th>
+          <th>Số chương</th>
+          <th>Trạng thái</th>
+          <th class="text-center">##</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: "subject", collection: @subjects, as: :subject %>
+      </tbody>
+    </table>
+  </div>
+  <div class="table-responsive">
+    <div style="float: left;">
+      Download:
+      <%= link_to "CSV", admin_subject_export_path(format: "csv") %> |
+      <%= link_to "Excel", admin_subject_export_path(format: "xls") %>
+    </div>
+    <div style="float: right;">
+      <%= form_tag admin_subject_import_path, style: "float: right;", multipart: true do %>
+        <%= file_field_tag :file, style: "float: left;", class: "btn" %>
+        <%= submit_tag "Import", style: "float: right;", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<script>
+  $(function(){ TablesSubjects.init(); });
+  $(function(){ btnFilterClick.init(); });
+</script>
+

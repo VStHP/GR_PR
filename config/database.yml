@@ -49,6 +49,4 @@ test:
 #
 production:
   <<: *default
-  database: graduation_project_production
-  username: graduation_project
-  password: <%= ENV['GRADUATION_PROJECT_DATABASE_PASSWORD'] %>
+  database: graduation_project_development

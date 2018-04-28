@@ -1,0 +1,16 @@
+<% provide :title, @subject.name %>
+<div class="content-header">
+  <div class="header-section">
+    <h1>
+      <i class="fa fa-globe"></i><%= @subject.name.upcase %><br>
+      <small><%= @subject.lessons.length %> Chương</small>
+    </h1>
+  </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+  <li>Khóa thực tập</li>
+  <li><%= link_to @course_subject.course.name.capitalize, define_path(@course_subject.course) %></li>
+  <li><a href=""><%= @subject.name.capitalize %></a></li>
+</ul>
+<%= render partial: "component/course_component/show_subject",
+  local: {subject: @subject, course_subject: @course_subject} %>

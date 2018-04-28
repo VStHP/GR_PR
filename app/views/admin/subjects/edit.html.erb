@@ -1,0 +1,28 @@
+<% provide :url_path, admin_subject_path %>
+<% provide :class_class, warning_edit_class(@subject) %>
+<% provide :warning, warning_edit_message(@subject) %>
+<% provide :title, @subject.name %>
+<div class="content-header">
+  <div class="header-section">
+    <h1>
+      <i class="gi gi-notes_2"></i><%= @subject.name.capitalize %>
+      <br>
+      <small>Chỉnh sửa môn học</small>
+    </h1>
+  </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+  <li>Môn học</li>
+  <li><%= link_to @subject.name.capitalize, admin_subject_path(@subject) %></li>
+  <li>
+    <a href="">Chỉnh sửa</a>
+  </li>
+</ul>
+<!-- END Forms General Header -->
+<div class="block">
+  <div class="block-title">
+    <h2><strong>Môn học</strong> Thành phần</h2>
+  </div>
+  <%= render "form" %>
+</div>
+<script>$(function(){ FormsWizard.init(); });</script>

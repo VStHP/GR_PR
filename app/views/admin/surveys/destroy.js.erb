@@ -1,0 +1,6 @@
+<% if @mes_success.present? %>
+  $('#survey_<%= @survey.id %>').remove();
+  alertify.success('<%= @mes_success %>');
+<% else %>
+  alertify.error('<%= @mes_danger %>');
+<% end %>

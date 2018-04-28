@@ -1,9 +1,10 @@
+<% provide :title, @user.name %>
 <div class="content-header">
   <div class="header-section">
     <h1>
-      <i class="fa fa-table"></i>Datatables
+      <i class="gi gi-notes"></i><%= @user.name.upcase %>
       <br>
-        <small>HTML tables can become fully dynamic with cool features!</small>
+        <small>Hồ sơ tài khoản</small>
     </h1>
   </div>
 </div>
@@ -16,8 +17,11 @@
     <div class="col-md-3" >
       <%= render "component/profile_component/avatar_box_profile" %>
     </div>
-    <div class="col-md-9 " id="profile-content">
+    <div class="col-md-5 " id="profile-content">
       <%= render "component/profile_component/main_box_profile" %>
+    </div>
+    <div class="col-md-4">
+      <%= render "component/profile_component/references_box_profile" %>
     </div>
   </div>
 </div>

@@ -11,6 +11,9 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree ../../../vendor/assets/stylesheets/primary
- *= require_tree ../../../node_modules/alertify/themes
+ *= require alertify
+ *= require alertify/default
+ *= require alertify/bootstrap
  *= require custom_application
+ *= require spinner
  */

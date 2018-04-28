@@ -1,0 +1,2 @@
+module Trainee::CoursesHelper
+end

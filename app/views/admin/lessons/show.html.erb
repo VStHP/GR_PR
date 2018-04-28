@@ -1,0 +1,87 @@
+<% provide :title, @lesson.name %>
+<div class="content-header">
+  <div class="header-section">
+    <h1>
+      <i class="fa fa-globe"></i><%= @lesson.name.upcase %><br>
+      <small>Câu hỏi kiểm tra</small>
+    </h1>
+  </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+  <li>Bài học</li>
+  <li><a href=""><%= @lesson.name.capitalize %></a></li>
+</ul>
+<div class="row">
+  <div class="col-md-8">
+    <div class="widget">
+      <div class="widget-advanced">
+
+        <div class="widget-main">
+          <% @question_num = 1 %>
+          <%= render partial: "question", collection: @questions, as: :question %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <% if can? :manage, @lesson %>
+      <div class="block">
+        <!-- About Content -->
+        <div class="block-section">
+          <%= link_to admin_export_lesson_exam_path(format: "xls", id: @lesson.id),
+            class: "btn btn-lg btn-default btn-block" do %>
+            <i class="fa fa-download"></i> Download files
+          <% end %>
+          <hr>
+        </div>
+        <!-- END About Content -->
+      </div>
+    <% end %>
+    <div class="block">
+      <div class="block-section" style="text-align: center;">
+        <h5>Thời gian</h5>
+        <h1 style="font-weight: 700"><%= @lesson.test_time %>:00 <small>Phút</small></h1>
+      </div>
+      <div class="block-section" style="text-align: center;">
+        <h5>Số lượng</h5>
+        <h1 style="font-weight: 700"><%= @lesson.num_question_test %><small> Câu</small></h1>
+      </div>
+    </div>
+    <div class="block">
+      <div class="block-title">
+        <div class="block-options pull-right">
+          <%= link_to edit_admin_lesson_path(@lesson), class: "btn btn-alt btn-sm btn-default",
+            data: {toggle: "tooltip"}, title: "Cài đặt!" do %>
+            <i class="fa fa-cog"></i>
+          <% end %>
+        </div>
+        <h2><strong>Bài học</strong> Thông tin</h2>
+      </div>
+      <div class="block-section">
+        <table class="table table-borderless table-striped table-vcenter">
+          <tbody>
+            <tr>
+              <td class="text-right" style="width: 30%;">
+                <%= image_tag @lesson.subject.avatar.url, class: "img-circle img-cs" %>
+              </td>
+              <td>
+                <%= link_to admin_lesson_path(@lesson) do %>
+                  <strong><%= @lesson.name.capitalize %></strong>
+                <% end %></td>
+            </tr>
+            <tr>
+              <td class="text-right">Bài học</td>
+              <td>
+                <text class="text-info"><strong>ID: </strong><%= @lesson.id %></text><br>
+                <text class="text-info"><strong>Môn học: </strong>
+                  <%= link_to @lesson.subject.name, admin_subject_path(@lesson.subject) %></text><br>
+                <text class="text-success"><strong>Số câu hỏi: </strong><%= @lesson.questions.count %></text>
+                <br>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

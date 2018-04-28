@@ -1,0 +1,47 @@
+<li>
+  <% define_from_course_subject course_subject %>
+    <span class="label timeline-label start_date_label start_<%= course_subject.id %>"
+      style="<%= @style_start %>">
+      <%= @label_start %>
+    </span>
+  <div class="subject-timeline subject">
+    <div class="subject-status-box <%= course_subject.status %>-background-color corner-ribbon"
+      id="bg-stt-<%= course_subject.id %>">
+      <%= t "course_subjects.status.#{course_subject.status}" %>
+    </div>
+    <div class="div-status em-stt<%= course_subject.id %>" title="<%= t "course_subjects.status.#{course_subject.status}" %>">
+      <em class="status status-<%= course_subject.status %>"></em>
+    </div>
+    <div class="subject-body clearfix">
+      <div class="subject-image">
+        <%= image_tag @subject.avatar.url, class: "dp-img-circle" %>
+      </div>
+      <div class="infor">
+        <div>
+          <%= link_to @link do %>
+            <span class="subject-name"><%= @subject.name %></span>
+          <% end %>
+          <br>
+          <span><i class="text-danger"><%= @subject.day_on_learn %> ngày</i></span>
+        </div>
+        <div class="td-subject-description">
+          <%= @subject.description %>
+          <hr>
+          <% if can? :manage, course_subject %>
+            <div id="status_<%= course_subject.id %>">
+              <% unless course_subject.finish? %>
+                <%= link_to admin_update_status_cs_path(course_id: params[:id],
+                subject_id: @subject.id, status: @next_status), class: @class_status, remote: true do %>
+                <i class="<%= @icon_status %>"></i><%= @text %><% end %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class="label timeline-label end_date_label end_<%= course_subject.id %>" style="<%= @style_end %>">
+    <%= @label_end %>
+  </span>
+  <div class="clearfix"></div>
+</li>

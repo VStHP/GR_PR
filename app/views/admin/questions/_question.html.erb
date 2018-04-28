@@ -1,0 +1,6 @@
+<li>
+  <p class="question"><%= question.text %> </p>
+  <ul class="answers">
+    <%= render partial: "answer", collection: question.answers, as: :answer %>
+  </ul>
+</li>
