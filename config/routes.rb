@@ -27,5 +27,6 @@ Rails.application.routes.draw do
   get "/form/course", to: "test_templatee2#form_course", as: "form_course"
   get "/form/course/edit", to: "test_templatee2#form_course_edit", as: "form_course_edit"
 
-
+  resources :registrations, only: :create
+  
 end

@@ -60,34 +60,42 @@
     </div>
   </div>
   <div class="body-section">
-    <form action="#" method="post">
+    <%= form_for @registration, remote: true do |f| %>
       <div class="row uniform">
         <div class="small">
-          <input type="text" name="name" placeholder="Name" class="form-control">
+          <%= f.text_field :name, placeholder: "Name", class: "form-control del_ip" %>
+          <span class="candidate-name-invalid error-message"></span>
         </div>
         <div class="small">
-          <input type="text" name="email" placeholder="Email" class="form-control">
+          <%= f.text_field :email, placeholder: "Email", class: "form-control del_ip" %>
+          <span class="candidate-email-invalid error-message"></span>
         </div>
         <div class="small">
-          <input type="text" name="phone" placeholder="Phone" class="form-control">
+          <%= f.text_field :phone, placeholder: "Phone", class: "form-control del_ip" %>
+          <span class="candidate-phone-invalid error-message"></span>
         </div>
         <div class="small">
-          <input type="text" name="expected_intern" placeholder="Internship's position" class="form-control">
+          <%= f.text_field :position, placeholder: "Position", class: "form-control del_ip" %>
+          <span class="candidate-position-invalid error-message"></span>
         </div>
         <div class="large">
-          <textarea placeholder="Message" rows="6" class="form-control"></textarea>
+          <%= f.text_area :message, placeholder: "Message", rows: "6", class: "del_ip" %>
+          <span class="candidate-name-message error-message"></span>
         </div>
         <div class="large">
           <label class="text-special">Curriculum Vitae</label>
-          <span><input type="file" name="cv_url" class="transparent absolute" style="color: #fff"></span>
+          <span><%= f.file_field :cv_url, class: "transparent absolute del_ip", style: "color: #fff" %></span>
+          <span class="candidate-cv_url-invalid error-message"></span>
         </div>
         <div>
           <ul class="actions">
-            <input value="Send Message" class="special-btn" type="submit">
+            <!-- <input value="Send Message" class="special-btn" type="submit"> -->
+            <%= f.submit "Send Message", class: "special-btn" %>
           </ul>
         </div>
       </div>
-    </form>
+    <% end %>
+    
   </div>
 </section>
 <!-- Contact section -->
@@ -174,3 +182,10 @@
     <li></li>
   </ul>
 </div>
+ <style type="text/css">
+   .error-message {
+    color: #ff4646;
+    float: left;
+    padding-top: 5px;
+}
+ </style>

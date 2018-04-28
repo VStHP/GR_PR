@@ -32,3 +32,25 @@
 en:
   hello: "Hello world"
   date_format: "%d/%m/%Y"
+  activerecord:
+    errors:
+      models:
+        registration:
+          attributes:
+            name:
+              blank: "Name can not be blank"
+              too_long: "Name must be less than 250 characters"
+            email:
+              blank: "Email can not be blank"
+              too_long: "Email must be less than 250 characters"
+              invalid: "Email is invalid format"
+            phone:
+              blank: "Phone can not be blank"
+              too_long: "Phone must be less than 12 characters"
+            position:
+              blank: "Position of internship can not be blank"
+              too_long: "Position of internship must be less than 250 characters"
+            message:
+              too_long: "Message must be less than 5000 characters"
+            cv_url:
+              blank: "CV can not be blank - CV must be a PDF, DOC or DOCX file"

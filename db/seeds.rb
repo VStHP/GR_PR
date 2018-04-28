@@ -16,3 +16,4 @@
      password_confirmation: "123123", gender: 'male', birthday: "30/09/1996", phone: "01202467914",
      university: "DUY TAN UNIVERSITY",program: "Manage of IT stCompany Education", permission: 'trainee')
 end
+

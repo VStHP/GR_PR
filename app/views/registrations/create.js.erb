@@ -1,0 +1,18 @@
+<% if @registration.errors.present? %>
+  alertify.error('<%= @mes_danger %>');
+  <% @registration.errors.messages.keys.each do |x| %>
+  $('.candidate-name-invalid').text('<%= @registration.errors[:name][0] %>');
+  $('.candidate-email-invalid').text('<%= @registration.errors[:email][0] %>');
+  $('.candidate-phone-invalid').text('<%= @registration.errors[:phone][0] %>');
+  $('.candidate-position-invalid').text('<%= @registration.errors[:position][0] %>');
+  $('.candidate-message-invalid').text('<%= @registration.errors[:message][0] %>');
+  $('.candidate-cv_url-invalid').text('<%= @registration.errors[:cv_url][0] %>');
+  <% end %>
+ <% else %>
+  <% if @mes_success.present? %>
+    alertify.success('<%= @mes_success %>');
+    $('.del_ip').val('');
+    var elmnt = document.getElementById("home-carousel");
+    elmnt.scrollIntoView({ behavior: 'smooth' });
+  <% end %>
+<% end %>
