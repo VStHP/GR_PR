@@ -58,7 +58,6 @@
     language: "Ruby", date_start: "15/4/2018", user_id: User.filter_by("trainer").sample.id
   Course.create! id: "PHP-B5-2018", name: "Thực tập lập trình Ruby on Rails khóa 4 - 2018", program: "Phát triển website",
     language: "Ruby", date_start: "2/6/2018", user_id: User.filter_by("trainer").sample.id
-
 #Subject database
   Subject.create! id: "GIT-BS", name: "Làm quen với Git và sử dụng Github", day_on_learn: 2, description: "Một cách hiểu đơn giản về Git đơn giản hơn đó là nó sẽ giúp bạn lưu lại các phiên bản của những lần thay đổi vào mã nguồn và có thể dễ dàng khôi phục lại dễ dàng mà không cần copy lại mã nguồn rồi cất vào đâu đó."
   Subject.create! id: "mySQL-BS", name: "Làm quen với MySQL", day_on_learn: 4, description: "MySQL là mã nguồn mở nên hoàn toàn miễn phí khi sử dụng. Đây là một hệ thống cơ sở dữ liệu được sử dụng rất nhiều trên các ứng dụng website hiện nay "
@@ -67,7 +66,6 @@
   Subject.create! id: "RAILS-Tutorial", name: "Xây dựng website bằng framwork Ruby on Rails", day_on_learn: 14, description: "Ruby on Rails hay thường được gọi là Rails là một web framework được thiết kế để làm việc bằng ngôn ngữ lập trình Ruby. Rails rất thú vị cho người mới bắt đầu là bởi vì nó thực sự rất mạnh mẽ và thực hiện RẤT NHIỀU công việc khó cho bạn."
   Subject.create! id: "PHP-BS", name: "Làm quen với ngôn ngữ lập trình PHP", day_on_learn: 7, description: 'PHP (viết tắt hồi quy "PHP: Hypertext Preprocessor") là một ngôn ngữ lập trình kịch bản hay một loại mã lệnh chủ yếu được dùng để phát triển các ứng dụng viết cho máy chủ, mã nguồn mở, dùng cho mục đích tổng quát'
   Subject.create! id: "LARAVEL-Tutorial", name: "Xây dựng website bằng framwork Laravel", day_on_learn: 14, description: "Laravel là một PHP framework  mã nguồn mở và miễn phí, được phát triển bởi Taylor Otwell và nhắm vào mục tiêu hỗ trợ phát triển các ứng dụng web theo kiếm trúc model-view-controller (MVC)"
-
 #Lesson Database
   Lesson.create! name: "Git và các khái niệm cơ bản", subject_id: "GIT-BS", test_time: "15", youtube_url: "6djid3t5XFU", description: ""
   Lesson.create! name: "Nhánh trên git", subject_id: "GIT-BS", test_time: "15", youtube_url: "JTE2Fn_sCZs", description: "Để có thể thực sử hiểu được cách phân nhánh của Git, chúng ta cần nhìn và xem xét lại cách Git lưu trữ dữ liệu. "

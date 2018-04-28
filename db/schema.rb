@@ -11,6 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20180428123835) do
 
   create_table "registrations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -24,6 +25,8 @@ ActiveRecord::Schema.define(version: 20180428123835) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
 =======
+=======
+>>>>>>> f29d777e1d25a395d17c50c0a1f8aae098d16205
 ActiveRecord::Schema.define(version: 20180423092525) do
 
   create_table "answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

@@ -155,7 +155,7 @@ class Admin::CoursesController < ApplicationController
   end
 
   def add_course_user_lesson
-    @course.course_users.each do |course_user|
+    @course.course_users.trainees.each do |course_user|
       Lesson.in_subject_ids(params[:course][:subject_ids]).each do |lesson|
         course_user.course_user_lessons.create lesson_id: lesson.id
       end
@@ -163,41 +163,42 @@ class Admin::CoursesController < ApplicationController
   end
 
   def modify_course_user_lesson
-    #danh sach id subject hien tai cua course
-    @subject_ids_new = @course.subject_ids
-    if @course.course_subjects.present?
-      #danh sach id subject truoc do cua course
-      @subject_ids_old = @course.course_users.first.lessons.pluck(:subject_id)
-    else
-      @subject_ids_old = []
+    #lay danh sach mon hoc moi them vao va cu
+    subjects_added = []
+    subjects_exist = []
+    @course.course_subjects.each do |cs|
+      if cs.id_previously_changed?
+        subjects_added << cs.subject
+      else
+        subjects_exist << cs.subject
+      end
     end
-    #neu co mon hoc moi duoc them => course_user_lesson add
-    if (@subject_ids_new-@subject_ids_old).present?
-      (@subject_ids_new-@subject_ids_old).each do |subject_id|
-        Subject.find(subject_id).lessons.each do |lesson|
-          @course.course_users.each do |cu|
+
+    #kiem tra cac thuc tap sinh moi them vao => course_user_lesson add
+    @course.course_users.each do |cu|
+      if cu.id_previously_changed? && cu.user.trainee?
+        subjects_exist.each do |subject|
+          subject.lessons.each do |lesson|
             cu.course_user_lessons.create! lesson_id: lesson.id
           end
         end
       end
     end
-    #Neu co mon hoc cu bi xoa => course_user_lesson destroy
-    if (@subject_ids_old-@subject_ids_new).present?
-      (@subject_ids_old-@subject_ids_new).each do |subject_id|
-        Subject.find(subject_id).lessons.each do |lesson|
-          lesson.course_user_lessons.delete_all
-        end
+
+     #Neu co mon hoc cu bi xoa => course_user_lesson destroy
+    if @course.course_users.trainees.first
+      subjects_old = @course.course_users.trainees.first.lessons.pluck(:subject_id)
+    end
+    (subjects_old-subjects_exist.pluck(:id)).each do |subject_id|
+      Subject.find(subject_id).lessons.each do |lesson|
+        lesson.course_user_lessons.delete_all
       end
     end
-    #kiem tra cac thuc tap sinh moi them vao => course_user_lesson add
-    @course.course_users.each do |cu|
-      if cu.id_previously_changed?
-        if (@subject_ids_old&@subject_ids_new).present?
-          (@subject_ids_old&@subject_ids_new).each do |subject_id|
-            Subject.find(subject_id).lessons.each do |lesson|
-              cu.course_user_lessons.create! lesson_id: lesson.id
-            end
-          end
+    #neu co mon hoc moi duoc them => course_user_lesson add
+    subjects_added.each do |subject|
+      subject.lessons.each do |lesson|
+        @course.course_users.trainees.each do |cu|
+          cu.course_user_lessons.create! lesson_id: lesson.id
         end
       end
     end
