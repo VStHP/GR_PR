@@ -49,15 +49,15 @@
 
 #Course database
   Course.create! id: "RB-B1-2018", name: "Thực tập lập trình Ruby on Rails khóa 1 - 2018", program: "Phát triển website",
-    language: "Ruby", date_start: "12/2/2018", date_end: "10/4/2018", user_id: User.filter_by("trainer").sample.id
+    language: "Ruby", date_start: "12/2/2019", date_end: "10/4/2019", user_id: User.filter_by("trainer").sample.id
   Course.create! id: "PHP-B2-2018", name: "Thực tập lập trình Laravel khóa 2 - 2018", program: "Phát triển website",
-    language: "PHP", date_start: "25/2/2018", date_end: "26/4/2018", user_id: User.filter_by("trainer").sample.id
+    language: "PHP", date_start: "25/2/2019", date_end: "26/4/2019", user_id: User.filter_by("trainer").sample.id
   Course.create! id: "ANDROID-B3-2018", name: "Thực tập lập trình Android khóa 3 - 2018", program: "Phát triển ứng dụng di động",
-    language: "Android", date_start: "01/4/2018", user_id: User.filter_by("trainer").sample.id
+    language: "Android", date_start: "01/4/2019", user_id: User.filter_by("trainer").sample.id
   Course.create! id: "RB-B4-2018", name: "Thực tập lập trình Ruby on Rails khóa 4 - 2018", program: "Phát triển website",
-    language: "Ruby", date_start: "15/4/2018", user_id: User.filter_by("trainer").sample.id
-  Course.create! id: "PHP-B5-2018", name: "Thực tập lập trình Ruby on Rails khóa 4 - 2018", program: "Phát triển website",
-    language: "Ruby", date_start: "2/6/2018", user_id: User.filter_by("trainer").sample.id
+    language: "Ruby", date_start: "15/4/2019", user_id: User.filter_by("trainer").sample.id
+  Course.create! id: "PHP-B5-2018", name: "Thực tập lập trình PHP khóa 5 - 2018", program: "Phát triển website",
+    language: "Ruby", date_start: "2/6/2019", user_id: User.filter_by("trainer").sample.id
 #Subject database
   Subject.create! id: "GIT-BS", name: "Làm quen với Git và sử dụng Github", day_on_learn: 2, description: "Một cách hiểu đơn giản về Git đơn giản hơn đó là nó sẽ giúp bạn lưu lại các phiên bản của những lần thay đổi vào mã nguồn và có thể dễ dàng khôi phục lại dễ dàng mà không cần copy lại mã nguồn rồi cất vào đâu đó."
   Subject.create! id: "mySQL-BS", name: "Làm quen với MySQL", day_on_learn: 4, description: "MySQL là mã nguồn mở nên hoàn toàn miễn phí khi sử dụng. Đây là một hệ thống cơ sở dữ liệu được sử dụng rất nhiều trên các ứng dụng website hiện nay "

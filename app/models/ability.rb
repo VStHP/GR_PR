@@ -12,6 +12,8 @@ class Ability
       else
         permission_user user
       end
+    else
+      can :create, Registration
     end
   end
 

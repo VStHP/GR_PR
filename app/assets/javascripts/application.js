@@ -204,3 +204,7 @@ $(document).on('click', '#survey_subject_id_chosen .chosen-drop .chosen-results 
     }
   });
 
+$(document).on('click', '.close_accept_form', function(){
+  $('#accept_form').remove();
+  $('.content').hide();
+});

@@ -1,0 +1,10 @@
+<% if @mes_success.present? %>
+	alertify.success('<%= @mes_success %>');
+	<% if @registration.accepted? %>
+		$('.content').show();
+		$('.content').append('<div class="ajs-dimmer"></div><%= form_for Registration.new, as: :patch, url: accept_action_path, html: { class: "ajs-modal", id: "accept_form" }, remote: true do |f| %><div class="ajs-dialog" tabindex="0" style=""><a class="close_accept_form"></a><div class="ajs-commands"><button class="ajs-pin"></button><button class="ajs-maximize"></button><a class="close_accept_form"></a></div><div class="ajs-header">Dang ky thuc tap thanh cong</div><div class="ajs-body"><div class="ajs-content"><input type="hidden" name="mail" value="<%= @registration.email %>"><p>Chao <%= @registration.name %>,</p><p>Chung toi da xem cv cua ban, va chuc ban da duoc chap nhan thuc tap</p><p>Chung toi xin moi ban vao luc <input type="time" name="time">, <input type="date" name="date">, toi dia diem Tang 6, toa nha saphia, 220 Le Duan</p><p>De tham gia <input type="text" name="purpose">.</p><p>Ban xac nhan lai mail nhe</p><p>Chao tam biet!</p></div></div><div class="ajs-footer"><div class="ajs-auxiliary ajs-buttons"></div><div class="ajs-primary ajs-buttons"><%= f.submit "Gui", class: "ajs-button ajs-ok load-spinner" %><a class="ajs-button close_accept_form">Huy mail</a></div></div><div class="ajs-handle"></div><button class="ajs-reset"></button></div><% end %>  <div class="spinner"><div class="sk-cube-grid" style="z-index: 3000"><div class="sk-cube sk-cube1"></div><div class="sk-cube sk-cube2"></div><div class="sk-cube sk-cube3"></div><div class="sk-cube sk-cube4"></div><div class="sk-cube sk-cube5"></div><div class="sk-cube sk-cube6"></div><div class="sk-cube sk-cube7"></div><div class="sk-cube sk-cube8"></div><div class="sk-cube sk-cube9"></div></div></div>');
+	<% end %>
+<% else %>
+	alertify.error('<%= @mes_danger %>');
+<% end %>
+$('.spinner').delay(500).hide(0);

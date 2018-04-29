@@ -15,6 +15,7 @@
  *= require bootstrap.min
  *= require introduces/custom
  *= require alertify
+ *= require spinner
  *= require alertify/default
  *= require alertify/bootstrap
  */

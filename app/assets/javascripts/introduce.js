@@ -54,3 +54,7 @@ $(document).on('click', '#login', function(){
 $(document).on('click', '#cancel-button', function(){
   $('#login-prime').fadeOut(400);
 });
+
+$(document).on('click', '.load-spinner', function(){
+  $('.spinner').show();
+});

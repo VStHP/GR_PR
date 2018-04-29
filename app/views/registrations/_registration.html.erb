@@ -1,0 +1,20 @@
+
+<tr class=" row_registration_<%= registration.id %>">
+  <td class="text-center"><%= registration.created_at.to_date %></td>
+  <td data-toggle="tooltip" data-title="<%= registration.message %>"><%= registration.name %></td>
+  <td><%= registration.email %></td>
+  <td><%= registration.phone %></td>
+  <td><%= registration.position %></td>
+  <td><%= link_to "View CV", registration.cv_url.url, target: "_blank" %></td>
+  <td class="text-center">
+    <div class="btn-group">
+       <%= form_for registration, remote: true do |f| %>
+        <div>
+          <%= f.select :status, Registration.statuses.map{|key, value| [t("#{key}"), key]}, {},
+            onchange: "javascript: this.form.commit.click();", class: "form-control" %>
+          <%= f.submit "save", class: "display-none load-spinner" %>
+        </div>
+      <% end %>
+    </div>
+  </td>
+</tr>
