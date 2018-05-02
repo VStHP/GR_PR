@@ -1,11 +1,11 @@
 class RegistrationsController < ApplicationController
 	load_and_authorize_resource param_method: :registration_params, only: %i(index create update)
 	def create
-		if @registration.save 
-			@mes_success = " create successfully"
+		if @registration.save
+			@mes_success = "Đăng ký thực tập thành công"
 			RegistrationMailer.send_mail(params).deliver_now
 		else
-			@mes_danger = "khong dc"
+			@mes_danger = "Đăng ký thực tập thất bại"
 		end
 	end
 
@@ -14,16 +14,16 @@ class RegistrationsController < ApplicationController
 
 	def update
 		if @registration.update_attributes status: params[:registration][:status]
-			@mes_success = "successfully"
+			@mes_success = "Cập nhật trạng thai bản đăng ký thành công"
 		else
-			@mes_danger = " KHong Thanh Cong"
+			@mes_danger = "Cập nhật trạng thai bản đăng ký thất bại"
 		end
 	end
 
 	def accept_action
 		RegistrationMailer.accept_mail(params).deliver_now
 	end
-	private 
+	private
 	def registration_params
 		params.require(:registration).permit :name, :email, :phone, :position, :message, :cv_url
 	end

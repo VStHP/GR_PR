@@ -69,6 +69,7 @@ en:
               blank: "Email không thể để trống"
               too_long: "Email không quá 250 kí tự"
               taken: "Email đã tồn tại"
+              invalid: "Email định dạng không hợp lệ"
             password:
               blank: "Mật khẩu không thể để trống"
               too_long: "Mật khẩu không quá 50 kí tự"
@@ -163,22 +164,19 @@ en:
         registration:
           attributes:
             name:
-              blank: "Name can not be blank"
-              too_long: "Name must be less than 250 characters"
+              blank: "Họ tên không thể để trống"
+              too_long: "Họ tên không quá 250 kí tự"
             email:
-              blank: "Email can not be blank"
-              too_long: "Email must be less than 250 characters"
-              invalid: "Email is invalid format"
+              blank: "Email không thể để trống"
+              too_long: "Email không quá 250 kí tự"
+              invalid: "Email định dạng không hợp lệ"
             phone:
-              blank: "Phone can not be blank"
-              too_long: "Phone must be less than 12 characters"
+              blank: "Số điện thoại không thể để trống"
+              too_long: "Số điện thoại không quá 12 số"
             position:
-              blank: "Position of internship can not be blank"
-              too_long: "Position of internship must be less than 250 characters"
+              blank: "Vị trí thực tập không thể để trống"
+              too_long: "Vị trí thực tập không quá 250 kí tự"
             message:
-              too_long: "Message must be less than 5000 characters"
+              too_long: "Tin nhắn không quá 5000 kí tự"
             cv_url:
-              blank: "CV can not be blank - CV must be a PDF, DOC or DOCX file"
-              too_long: "Phone must be less than 15 characters"
-            cv_url:
-              blank: "CV can not be blank - CV must be a PDF, DOC or DOCX file"
+              blank: "CV không thể để trống"

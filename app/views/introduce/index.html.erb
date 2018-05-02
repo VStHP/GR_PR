@@ -63,29 +63,30 @@
     <%= form_for @registration, remote: true do |f| %>
       <div class="row uniform">
         <div class="small">
-          <%= f.text_field :name, placeholder: "Name", class: "form-control del_ip" %>
+          <%= f.text_field :name, placeholder: "Họ tên người đăng ký", class: "form-control del_ip" %>
           <span class="candidate-name-invalid error-message"></span>
         </div>
         <div class="small">
-          <%= f.text_field :email, placeholder: "Email", class: "form-control del_ip" %>
+          <%= f.text_field :email, placeholder: "Địa chỉ email đăng ký", class: "form-control del_ip" %>
           <span class="candidate-email-invalid error-message"></span>
         </div>
         <div class="small">
-          <%= f.text_field :phone, placeholder: "Phone", class: "form-control del_ip" %>
+          <%= f.text_field :phone, placeholder: "Số điện thoại người đăng ký", class: "form-control del_ip" %>
           <span class="candidate-phone-invalid error-message"></span>
         </div>
         <div class="small">
-          <%= f.text_field :position, placeholder: "Position", class: "form-control del_ip" %>
+          <%= f.text_field :position, placeholder: "Vị trí đăng ký thực tập", class: "form-control del_ip" %>
           <span class="candidate-position-invalid error-message"></span>
         </div>
         <div class="large">
-          <%= f.text_area :message, placeholder: "Message", rows: "6", class: "del_ip" %>
+          <%= f.text_area :message, placeholder: "Tin nhắn", rows: "6", class: "del_ip" %>
           <span class="candidate-name-message error-message"></span>
         </div>
         <div class="large">
-          <label class="text-special">Curriculum Vitae</label>
+          <label class="text-special">Tệp CV</label>
           <span><%= f.file_field :cv_url, class: "transparent absolute del_ip", style: "color: #fff" %></span>
-          <span class="candidate-cv_url-invalid error-message"></span>
+          <span class="note-cv">Chỉ cho phép file PDF, DOC hoặc DOCX</span><br>
+          <span class="candidate-cv_url-invalid error-message" style="margin-left: 78px;"></span>
         </div>
         <div>
           <ul class="actions">
@@ -95,7 +96,7 @@
         </div>
       </div>
     <% end %>
-    
+
   </div>
 </section>
 <!-- Contact section -->
