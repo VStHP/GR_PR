@@ -1,4 +1,4 @@
-class User < ApplicationRecord
+  class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -15,7 +15,7 @@ class User < ApplicationRecord
   validates :email, presence: true, length: {maximum: 250},
     format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
   validates :name, presence: true, length: {maximum: 250}
-  validates :phone, length: {minimum: 10, maximum: 15}, if: :phone?
+  validates :phone, length: {maximum: 12},format: { with: /0+\d{8,12}/, message: "Số điện thoại định dạng không hợp lệ" }, if: :phone?
   validates :university, length: {maximum: 250}
   validates :program, length: {maximum: 250}
   validates :password, presence: true, length: {minimum: 6, maximum: 50}, allow_nil: true

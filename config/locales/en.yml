@@ -81,7 +81,7 @@ en:
             university:
               too_long: "Đại học không quá 250 kí tự"
             program:
-              too_long: "Chương trình đào tạo không quá 250 kí tự"
+              too_long: "Chương trình trình đào tạo không quá 250 kí tự"
             phone:
               too_short: "Số điện thoại ít nhất 10 số"
               too_long: "Số điện thoại không quá 15 số"
@@ -99,8 +99,8 @@ en:
               too_long: "Tên khóa thực tập không quá 250 kí tự"
               taken: "Tên khóa thực tập đã tồn tại"
             program:
-              blank: "Chương trình không thể để trống"
-              too_long: "Chương trình không quá 250 kí tự"
+              blank: "bài học trình không thể để trống"
+              too_long: "bài học trình không quá 250 kí tự"
             language:
               blank: "Ngôn ngữ thực tập không thể để trống"
               too_long: "Ngôn ngữ thực tập không quá 250 kí tự"
@@ -127,18 +127,31 @@ en:
               too_long: "Mô tả môn học không quá 5000 kí tự"
             day_on_learn:
               blank: "Ngày học không thể để trống"
-              other_than: "Ngày học phải lớn hơn 0"
+              greater_than: "Ngày học phải lớn hơn bằng 0"
             avatar:
               too_long: "Tên hình avatar không quá 250 kí tự"
         lesson:
           attributes:
             name:
-              blank: "Đã có lỗi khi thêm chương, hãy kiểm tra! Tên chương không thể để trống"
-              too_long: "Đã có lỗi khi thêm chương, hãy kiểm tra! Tên chương không quá 250 kí tự"
+              blank: "Đã có lỗi khi thêm bài học, hãy kiểm tra! Tên bài học không thể để trống"
+              too_long: "Đã có lỗi khi thêm bài học, hãy kiểm tra! Tên bài học không quá 250 kí tự"
             description:
-              too_long: "Đã có lỗi khi thêm chương, hãy kiểm tra! Mô tả chương không quá 5000 kí tự"
+              too_long: "Đã có lỗi khi thêm bài học, hãy kiểm tra! Mô tả bài học không quá 5000 kí tự"
             youtube_url:
-              too_long: "Đã có lỗi khi thêm chương, hãy kiểm tra! Link youtube không quá 250 kí tự"
+              too_long: "Đã có lỗi khi thêm bài học, hãy kiểm tra! Link youtube không quá 250 kí tự"
+            num_question_test:
+              greater_than: "Số câu hỏi trong một bài kiểm tra phải lớn hơn bằng 0"
+        question:
+          attributes:
+            text:
+              blank: "Đã có lỗi khi thêm câu hỏi. Tên câu hỏi không thể để trống"
+              too_long: "Đã có lỗi khi thêm câu hỏi. Tên câu hỏi không quá 250 kí tự"
+              too_short: "Đã có lỗi khi thêm câu hỏi. Tên câu hỏi ít nhất phải 4 kí tự"
+        answer:
+          attributes:
+            text:
+              blank: "Đã có lỗi khi thêm câu trả lời. Câu trả lời không thể để trống"
+              too_long: "Đã có lỗi khi thêm câu trả lời. Câu trả lời không quá 250 kí tự"
         link:
           attributes:
             name:
@@ -160,7 +173,7 @@ en:
         course_user_lesson:
           attributes:
             course_user_id:
-              taken: "Mối quan hệ giữa tài khoản trong khóa thực tập và chương môn học đã tồn tại"
+              taken: "Mối quan hệ giữa tài khoản trong khóa thực tập và bài học môn học đã tồn tại"
         registration:
           attributes:
             name:

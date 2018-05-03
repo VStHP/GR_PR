@@ -9,7 +9,7 @@ class Subject < ApplicationRecord
   validates :id, presence: true, uniqueness: {case_sensitive: false}, length: {minimum: 4, maximum: 20}
   validates :name, presence: true, uniqueness: {case_sensitive: false}, length: {maximum: 250}
   validates :description, length: {maximum: 5000}
-  validates :day_on_learn, presence: true, numericality: { other_than: 0 }
+  validates :day_on_learn, presence: true, numericality: { greater_than: 0 }
   validate :file_name_avatar_less_than_250, if: :avatar?
 
   scope :filter_block, ->{where status: "block"}

@@ -17,6 +17,7 @@
         </ul>
       </div>
     </div>
+    <%= render "shared/error_messages", object: @lesson %>
     <div class="form-group <%= check_errors @lesson, :test_time %>">
       <label class="col-md-4 control-label " for="lesson_test_time">Thời gian thực hiện
         <small>(Phút)</small> <small class="text-danger">*</small></label>

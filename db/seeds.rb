@@ -49,9 +49,9 @@
 
 #Course database
   Course.create! id: "RB-B1-2018", name: "Thực tập lập trình Ruby on Rails khóa 1 - 2018", program: "Phát triển website",
-    language: "Ruby", date_start: "12/2/2019", date_end: "10/4/2019", user_id: User.filter_by("trainer").sample.id
+    language: "Ruby", date_start: "12/2/2019", user_id: User.filter_by("trainer").sample.id
   Course.create! id: "PHP-B2-2018", name: "Thực tập lập trình Laravel khóa 2 - 2018", program: "Phát triển website",
-    language: "PHP", date_start: "25/2/2019", date_end: "26/4/2019", user_id: User.filter_by("trainer").sample.id
+    language: "PHP", date_start: "25/2/2019", user_id: User.filter_by("trainer").sample.id
   Course.create! id: "ANDROID-B3-2018", name: "Thực tập lập trình Android khóa 3 - 2018", program: "Phát triển ứng dụng di động",
     language: "Android", date_start: "01/4/2019", user_id: User.filter_by("trainer").sample.id
   Course.create! id: "RB-B4-2018", name: "Thực tập lập trình Ruby on Rails khóa 4 - 2018", program: "Phát triển website",

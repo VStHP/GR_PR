@@ -15,6 +15,9 @@ class RegistrationsController < ApplicationController
 	def update
 		if @registration.update_attributes status: params[:registration][:status]
 			@mes_success = "Cập nhật trạng thai bản đăng ký thành công"
+			if params[:registration][:status] == "excepted"
+				RegistrationMailer.except_mail(@registration).deliver_now
+			end
 		else
 			@mes_danger = "Cập nhật trạng thai bản đăng ký thất bại"
 		end
