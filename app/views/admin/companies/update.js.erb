@@ -1,0 +1,12 @@
+<% if @mes_danger.present? %>
+  alertify.error('<%= @mes_danger %>');
+  $('#name-error').text('<%= @company.errors[:name][0] %>');
+  $('#phone-error').text('<%= @company.errors[:phone][0] %>');
+  $('#address-error').text('<%= @company.errors[:address][0] %>');
+  $('#city-error').text('<%= @company.errors[:city][0] %>');
+  $('#description-error').text('<%= @company.errors[:description][0] %>');
+  $('#email-error').text('<%= @company.errors[:email][0] %>');
+<% else %>
+  $('#profile-content').html('<%= j render "admin/companies/content" %>');
+  alertify.success('<%= @mes_success %>');
+<% end %>

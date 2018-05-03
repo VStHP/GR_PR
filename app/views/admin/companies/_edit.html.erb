@@ -1,0 +1,87 @@
+<%= form_for @company, method: :patch, url: admin_company_path,
+  html: {class: "form-horizontal form-bordered", id: "edit_user_form"}, remote: true do |f| %>
+  <div class="form-group <%= check_errors @company, :name %>">
+    <label class="col-md-3 control-label" for="company_name">Tên công ty <span class="text-danger">*</span></label>
+    <div class="col-md-9">
+      <%= f.text_field :name, class: "form-control", placeholder: "Nhập tên công ty ..", required: true %>
+      <span class="text-danger" id="name-error"><%= show_errors @company, :name, "name" %></span>
+    </div>
+  </div>
+  <div class="form-group <%= check_errors @company, :email %>">
+    <label class="col-md-3 control-label" for="company_email">Email <span class="text-danger">*</span></label>
+    <div class="col-md-9">
+      <%= f.email_field :email, class: "form-control", placeholder: "Nhập email công ty ..", required: true %>
+      <span class="text-danger" id="email-error"><%= show_errors @company, :email, "email" %></span>
+    </div>
+  </div>
+  <div class="form-group <%= check_errors @company, :phone %>">
+    <label class="col-md-3 control-label" for="company_phone">Số điện thoại </label>
+    <div class="col-md-9">
+      <%= f.text_field :phone, class: "form-control", placeholder: "Nhập số điện thoại công ty..", required: true %>
+      <span class=" text-danger" id="phone-error"><%= show_errors @company, :phone, "phone" %></span>
+    </div>
+  </div>
+  <div class="form-group <%= check_errors @company, :address %>">
+    <label class="col-md-3 control-label" for="company_address">Địa chỉ công ty </label>
+    <div class="col-md-9">
+      <%= f.text_field :address, class: "form-control", placeholder: "Nhập địa chỉ công ty ..", required: true %>
+      <span class="text-danger" id="address-error"><%= show_errors @company, :address, "address" %></span>
+    </div>
+  </div>
+  <div class="form-group <%= check_errors @company, :city %>">
+    <label class="col-md-3 control-label" for="company_city">Thành phố </label>
+    <div class="col-md-9">
+      <%= f.text_field :city, class: "form-control", placeholder: "Nhập thành phố ..", required: true %>
+      <span class="text-danger" id="city-error"><%= show_errors @company, :city, "city" %></span>
+    </div>
+  </div>
+  <div class="form-group <%= check_errors @company, :description %>">
+    <label class="col-md-3 control-label" for="company_description">Mô tả </label>
+    <div class="col-md-9">
+      <%= f.text_area :description, class: "form-control", placeholder: "Nhập mô tả công ty ..", required: true, row: 6 %>
+      <span class="text-danger" id="description-error"><%= show_errors @company, :description, "description" %></span>
+    </div>
+  </div>
+  <div class="form-group <%= check_errors @company, :image_1 %>">
+    <label class="col-md-4 control-label" for="company_image_1">Hình 1 </label>
+    <div class="col-md-5">
+      <%= f.file_field :image_1, id: "image_1" %>
+      <%= image_tag(@company.image_1.url, class: "img-responsive", id: "com_img1") %>
+      <span class="text-danger"><%= show_errors @company, :image_1, "image_1" %></span>
+      <span class="help-block">Đề xuất sử dụng ảnh kích thước 1000x150 để có trải nghiệm tốt nhất</span>
+    </div>
+  </div>
+  <div class="form-group <%= check_errors @company, :image_2 %>">
+    <label class="col-md-4 control-label" for="company_image_2">Hình 2 </label>
+    <div class="col-md-5">
+      <%= f.file_field :image_2, id: "image_2" %>
+      <%= image_tag(@company.image_2.url, class: "img-responsive", id: "com_img2") %>
+      <span class="text-danger"><%= show_errors @company, :image_2, "image_2" %></span>
+      <span class="help-block">Đề xuất sử dụng ảnh kích thước 1000x150 để có trải nghiệm tốt nhất</span>
+    </div>
+  </div>
+  <div class="form-group <%= check_errors @company, :image_3 %>">
+    <label class="col-md-4 control-label" for="company_image_3">Hình 3 </label>
+    <div class="col-md-5">
+      <%= f.file_field :image_3, id: "image_3" %>
+      <%= image_tag(@company.image_3.url, class: "img-responsive", id: "com_img3") %>
+      <span class="text-danger"><%= show_errors @company, :image_3, "image_3" %></span>
+      <span class="help-block">Đề xuất sử dụng ảnh kích thước 1000x150 để có trải nghiệm tốt nhất</span>
+    </div>
+  </div>
+  <div class="form-group <%= check_errors @company, :image_4 %>">
+    <label class="col-md-4 control-label" for="company_image_4">Hình 4 </label>
+    <div class="col-md-5">
+      <%= f.file_field :image_4, id: "image_4" %>
+      <%= image_tag(@company.image_4.url, class: "img-responsive", id: "com_img4") %>
+      <span class="text-danger"><%= show_errors @company, :image_4, "image_4" %></span>
+      <span class="help-block">Đề xuất sử dụng ảnh kích thước 1000x150 để có trải nghiệm tốt nhất</span>
+    </div>
+  </div>
+  <div class="form-group form-actions">
+    <div class="col-md-9 col-md-oét-3">
+      <%= f.submit "Lưu thông tin", class: "btn btn-sm btn-primary" %>
+      <button type="button" class="btn btn-sm btn-danger" id="edit_profile_cancle">Hủy</button>
+    </div>
+  </div>
+<% end %>

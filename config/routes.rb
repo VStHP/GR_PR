@@ -39,6 +39,7 @@ Rails.application.routes.draw do
     resources :course_users
     resources :lessons, except: %i(new create destroy)
     get "lessons/export/exam/:id", to: "lessons#export_lesson_exam", as: :export_lesson_exam
+    resources :companies, only: %i(show edit update)
   end
 
   namespace :trainer do

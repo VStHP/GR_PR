@@ -193,3 +193,25 @@ en:
               too_long: "Tin nhắn không quá 5000 kí tự"
             cv_url:
               blank: "CV không thể để trống"
+        company:
+          attributes:
+            name:
+              blank: "Họ tên không thể để trống"
+              too_long: "Họ tên không quá 250 kí tự"
+            address:
+              blank: "Địa chỉ không thể để trống"
+              too_long: "Địa chỉ không quá 250 kí tự"
+            city:
+              blank: "Thành phố không thể để trống"
+              too_long: "Thành phố không quá 250 kí tự"
+            description:
+              blank: "Mô tả không thể để trống"
+              too_long: "Moo tar không quá 5000 kí tự"
+            email:
+              blank: "Email không thể để trống"
+              too_long: "Email không quá 250 kí tự"
+              invalid: "Email định dạng không hợp lệ"
+            phone:
+              blank: "Số điện thoại không thể để trống"
+              too_long: "Số điện thoại không quá 12 số"
+

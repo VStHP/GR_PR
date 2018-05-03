@@ -189,9 +189,11 @@ class Admin::CoursesController < ApplicationController
     if @course.course_users.trainees.first
       subjects_old = @course.course_users.trainees.first.lessons.pluck(:subject_id)
     end
-    (subjects_old-subjects_exist.pluck(:id)).each do |subject_id|
-      Subject.find(subject_id).lessons.each do |lesson|
-        lesson.course_user_lessons.delete_all
+    if subjects_old.present?
+      (subjects_old-subjects_exist.pluck(:id)).each do |subject_id|
+        Subject.find(subject_id).lessons.each do |lesson|
+          lesson.course_user_lessons.delete_all
+        end
       end
     end
     #neu co mon hoc moi duoc them => course_user_lesson add

@@ -1,25 +1,26 @@
 class IntroduceController < ApplicationController
-	
+
   layout "layout_introduce/introduce"
-  
+
   def index
   	@registration = Registration.new
+    @company = Company.first
   end
   def new
-  	
+
   end
   def show
-  	
+
   end
   def create
   	@registration = Registration.new(registration_params)
-    if @registration.save 
+    if @registration.save
       redirect_to root_path
     else
       render :index
     end
   end
-  private 
+  private
 
   def set_register
   	@register = Register.find(params[:id])

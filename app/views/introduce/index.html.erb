@@ -5,7 +5,7 @@
         <section class="site-section site-section-light themed-background-default">
           <div class="container">
             <p class="text-center animation-fadeIn">
-              <%= image_tag 'photo1.jpeg' %>
+              <%= image_tag @company.image_1.url %>
             </p>
           </div>
         </section>
@@ -14,7 +14,7 @@
         <section class="site-section site-section-light themed-background-fire">
           <div class="container">
             <p class="text-center animation-fadeInLeft">
-              <%= image_tag 'photo2.jpeg' %>
+              <%= image_tag @company.image_2.url %>
             </p>
           </div>
         </section>
@@ -23,7 +23,7 @@
         <section class="site-section site-section-light themed-background-amethyst">
           <div class="container">
             <p class="text-center animation-hatch">
-              <%= image_tag 'photo3.jpeg' %>
+              <%= image_tag @company.image_3.url %>
             </p>
           </div>
         </section>
@@ -32,7 +32,7 @@
         <section class="site-section site-section-light themed-background-modern">
           <div class="container">
             <p class="text-center animation-fadeIn360">
-              <%= image_tag 'photo4.jpeg' %>
+              <%= image_tag @company.image_4.url %>
             </p>
           </div>
         </section>
@@ -119,24 +119,23 @@
     <div class="row">
       <div class="col-sm-6 col-md-4 site-block">
         <div class="site-block">
-          <h3 class="h2 site-heading"><strong>Công ty</strong> Tập đoàn</h3>
+          <h3 class="h2 site-heading"><strong><%= @company.name.capitalize %></strong></h3>
           <address>
-            Địa chỉ<br>
-            Thị trấn/ Thành phố<br>
-            Khu vực, mã Zip/mã bưu điện<br><br>
-            <i class="fa fa-phone"></i> (000) 000-0000<br>
-            <i class="fa fa-envelope-o"></i> <a href="javascript:void(0)">example@example.com</a>
+            Địa chỉ: <%= @company.address %><br>
+            Thị trấn/ Thành phố: <%= @company.city %><br>
+            <i class="fa fa-phone"></i> <%= @company.phone %><br>
+            <i class="fa fa-envelope-o"></i> <a href="javascript:void(0)"><%= @company.email %></a>
           </address>
         </div>
         <div class="site-block">
-          <h3 class="h2 site-heading"><strong>Về</strong> Chúng tôi</h3>
+          <h3 class="h2 site-heading"><strong>Giới thiêu</strong></h3>
           <p class="remove-margin">
-            In hac habitasse platea dictumst. Proin ac nibh rutrum lectus rhoncus eleifend. Sed porttitor pretium venenatis. Suspendisse potenti. Aliquam quis ligula elit. Aliquam at orci ac neque semper dictum. Sed tincidunt scelerisque ligula, et facilisis nulla hendrerit non. Suspendisse potenti.
+            <%= @company.description %>
           </p>
         </div>
       </div>
       <div class="col-sm-6 col-md-8 site-block">
-        <h3 class="h2 site-heading"><strong>Liên hệ</strong> Biểu mẫu</h3>
+        <h3 class="h2 site-heading"><strong>Liên hệ</strong></h3>
         <form action="contact.html#form-contact" method="post" id="form-contact">
           <div class="form-group">
             <label for="contact-name">Tên của bạn</label>
