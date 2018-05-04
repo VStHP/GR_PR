@@ -22,7 +22,8 @@
       <label class="col-md-4 control-label " for="lesson_test_time">Thời gian thực hiện
         <small>(Phút)</small> <small class="text-danger">*</small></label>
       <div class="col-md-5">
-        <%= f.number_field :test_time, class: "form-control ui-wizard-content",
+        <%= f.number_field :test_time, min: 1, class: "form-control ui-wizard-content",
+          data: {toggle: "tooltip"}, title: "Thời gian làm bài tối thiếu là 1",
           placeholder: "Nhập thời gian làm kiểm tra .." %>
         <span class="help-block"><%= show_errors @lesson, :test_time, "test_time" %></span>
       </div>
@@ -31,8 +32,9 @@
       <label class="col-md-4 control-label " for="lesson_test_time">Số câu hỏi trong bài kiểm tra
         <small class="text-danger">*</small></label>
       <div class="col-md-5">
-        <%= f.number_field :num_question_test, class: "form-control ui-wizard-content", min: 0, data: {toggle: "tooltip"},
-            title: "Số câu hỏi tối thiếu là 0", placeholder: "Nhập số câu trong bài kiểm tra .." %>
+        <%= f.number_field :num_question_test, class: "form-control ui-wizard-content", min: 0,
+          data: {toggle: "tooltip"}, title: "Số câu hỏi tối thiếu là 0",
+          placeholder: "Nhập số câu trong bài kiểm tra .." %>
         <span class="help-block"><%= show_errors @lesson, :num_question_test, "num_question_test" %></span>
       </div>
     </div>

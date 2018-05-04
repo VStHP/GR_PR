@@ -5,12 +5,12 @@ module Admin::SubjectsHelper
       @color ="default"
       @class = "info"
       @icon = "unlock"
-      @title = "CLICK để khóa khóa thực tập"
+      @title = "CLICK để khóa môn học"
     else
       @color = "danger"
       @class = "danger"
       @icon = "lock"
-      @title = "CLICK để mở khóa thực tập"
+      @title = "CLICK để mở khóa môn học"
     end
   end
 

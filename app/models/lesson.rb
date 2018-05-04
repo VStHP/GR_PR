@@ -10,7 +10,8 @@ class Lesson < ApplicationRecord
   validates :name, length: {maximum: 250}, presence: true
   validates :description, length: {maximum: 5000}
   validates :youtube_url, length: {maximum: 250}
-  validates :num_question_test, numericality: { greater_than: 0  }, if: :num_question_test?
+  validates :num_question_test, numericality: { greater_than: 0  },length: {maximum: 10}, if: :num_question_test?
+  validates :test_time, numericality: {greater_than: 0}, length: {maximum: 10}, if: :test_time?
   validate :test_time_presence
   validate :num_question_test_presence
 

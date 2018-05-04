@@ -26,7 +26,7 @@
       <div class="form-group <%= check_errors @course, :id %>">
         <label class="col-md-4 control-label" for="course_id">ID khóa thực tập <span class="text-danger">*</span></label>
         <div class="col-md-5">
-          <% if @course.id? %>
+          <% if yield(:edit_action) == @course.id %>
             <%= f.label :id, class: "form-control ui-wizard-content", value: @course.id %>
             <span class="help-block">ID không thể thay đổi</span>
           <% else %>

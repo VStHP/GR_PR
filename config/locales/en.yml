@@ -91,7 +91,7 @@ en:
           attributes:
             id:
               blank: "ID khóa thực tập không thể để trống"
-              too_short: "ID khóa thực tập ít nhất 4 kí từ"
+              too_short: "ID khóa thực tập ít nhất 4 kí tự"
               too_long: "ID khóa thực tập không quá 20 kí tự"
               taken: "ID khóa thực tập đã tồn tại"
             name:
@@ -127,7 +127,9 @@ en:
               too_long: "Mô tả môn học không quá 5000 kí tự"
             day_on_learn:
               blank: "Ngày học không thể để trống"
-              greater_than: "Ngày học phải lớn hơn bằng 0"
+              greater_than: "Ngày học phải lớn hơn bằng 1"
+              too_long: "Ngày học không quá 10 số"
+              not_a_number: "Ngày học phải là kiểu số"
             avatar:
               too_long: "Tên hình avatar không quá 250 kí tự"
         lesson:
@@ -141,6 +143,12 @@ en:
               too_long: "Đã có lỗi khi thêm bài học, hãy kiểm tra! Link youtube không quá 250 kí tự"
             num_question_test:
               greater_than: "Số câu hỏi trong một bài kiểm tra phải lớn hơn bằng 0"
+              too_long: "Số câu hỏi trong một bài kiểm tra không quá 10 số"
+              not_a_number: "Số câu hỏi trong một bài kiểm tra phải là kiểu số"
+            test_time:
+              greater_than: "Thời gian làm một bài kiểm tra phải lớn hơn bằng 1 phút"
+              too_long: "Thời gian làm một bài kiểm tra không quá 10 số"
+              not_a_number: "Thời gian làm bài kiểm tra phải là kiểu số"
         question:
           attributes:
             text:
