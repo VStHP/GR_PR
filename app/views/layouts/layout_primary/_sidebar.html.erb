@@ -159,7 +159,7 @@
         <% if can? :manage, Lesson %>
           <li>
             <%= link_to admin_lessons_path do %>
-              <i class="gi gi-share_alt sidebar-nav-icon"></i>
+              <i class="fa fa-clipboard sidebar-nav-icon"></i>
               <span class="sidebar-nav-mini-hide">Câu hỏi - Bài học</span>
             <% end %>
           </li>
@@ -167,8 +167,8 @@
         <% if can? :manage, Registration %>
           <li>
             <%= link_to registrations_path do %>
-              <i class="gi gi-share_alt sidebar-nav-icon"></i>
-              <span class="sidebar-nav-mini-hide">Danh Sach Dang Ky</span>
+              <i class="fa fa-list-alt sidebar-nav-icon"></i>
+              <span class="sidebar-nav-mini-hide">Danh sách đăng ký</span>
             <% end %>
           </li>
         <% end %>
@@ -183,7 +183,7 @@
         <% if can? :manage, Company %>
           <li>
             <%= link_to admin_company_path(Company.first) do %>
-              <i class="gi gi-share_alt sidebar-nav-icon"></i>
+              <i class="fa fa-credit-card sidebar-nav-icon"></i>
               <span class="sidebar-nav-mini-hide">Thông tin công ty</span>
             <% end %>
           </li>

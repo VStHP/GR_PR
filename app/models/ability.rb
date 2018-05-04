@@ -25,7 +25,7 @@ class Ability
   end
 
   def permission_trainer user
-    can :manage, [ Subject, Lesson, Link, Survey, Question, Answer, CourseUserSurvey ]
+    can :manage, [ Subject, Lesson, Link, Question, Answer ]
     can :manage, CourseSubject, course_id: user.courses.pluck(:id)
     can :read, CourseSubject, course_id: user.courses_join.pluck(:id)
     can :read, User

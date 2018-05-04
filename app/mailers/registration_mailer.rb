@@ -7,7 +7,7 @@ class RegistrationMailer < ApplicationMailer
   end
 
   def accept_mail params
-  	@params = params
+  	@params = paramshotel
   	mail(to: params[:mail], subject: "PHẢN HỒI THỰC TẬP - IT stCompany")
   end
 
