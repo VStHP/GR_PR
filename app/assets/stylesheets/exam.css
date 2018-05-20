@@ -16,3 +16,16 @@
  *= require survey
  *= require bootstrap.min
  */
+.clock-img{
+  position: fixed;
+  top: 12%;
+  right: 18px;
+  background: #4CAF50;
+  /* padding: 15px; */
+  /* min-width: 90px; */
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  width: 53px;
+  z-index: 1
+}
