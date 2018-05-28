@@ -1,0 +1,14 @@
+<div class="row nested-fields">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-6">
+    <%= f.text_field :text, class: "form-control" %>
+  </div>
+  <div class="checkbox col-xs-3">
+    <label>
+      <%= f.check_box :correct,{}, "true", "false" %>Đáp án đúng
+    </label>
+  </div>
+  <div class="col-xs-2">
+    <%= link_to_remove_association "Xóa", f, class: "btn btn-default btn-remove-df" %>
+  </div>
+</div>

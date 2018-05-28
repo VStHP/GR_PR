@@ -1,0 +1,22 @@
+<div class="form-group nested-fields link_fields">
+  <div>
+    <div class="col-xs-6 <%= check_errors @subject, :"links.name" %>">
+      <%= f.label :name, class: "control-label" do %>Tên liên kết <span class="text-danger">*</span><% end %>
+      <%= f.text_field :name, class: "form-control ui-wizard-content", placeholder: "Nhập tên liên kết" %>
+    </div>
+    <div class="col-xs-6 <%= check_errors @subject, :"links.link" %>">
+      <%= f.label :link, class: "control-label" do %>Liên kết <span class="text-danger">*</span><% end %>
+      <%= f.text_field :link, class: "form-control ui-wizard-content", placeholder: "Nhập liên kết" %>
+    </div>
+    <%= link_to_remove_association f, title: "Xóa liên kết" do %>
+      <i class="fa fa-trash-o"></i>
+    <% end %>
+  </div>
+  <div>
+    <div class="col-xs-12 <%= check_errors @subject, :"links.description" %>">
+      <%= f.label :description, "Mô tả", class: "control-label" %>
+      <%= f.text_area :description, style: "max-width: 100%", class: "form-control ui-wizard-content",
+        placeholder: "Nhập mô tả cho liên kết" %>
+    </div>
+  </div>
+</div>

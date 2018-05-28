@@ -15,7 +15,7 @@
 //= require jquery.turbolinks
 //= require_tree ../../../vendor/assets/javascripts/introduce
 //= require_tree ../../../node_modules/alertify/src
-
+//= require alertify
 
 
 $(document).on('click', '#registry', function(){
@@ -53,4 +53,12 @@ $(document).on('click', '#login', function(){
 });
 $(document).on('click', '#cancel-button', function(){
   $('#login-prime').fadeOut(400);
+});
+
+$(document).on('click', '.load-spinner', function(){
+  $('.spinner').show();
+});
+
+$(document).on('click', '#noon', function(){
+  alertify.confirm("Chức năng này chưa được cho vào sử dụng, xin thông cảm!");
 });

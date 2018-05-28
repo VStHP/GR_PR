@@ -1,0 +1,14 @@
+<% if @mes_success %>
+  <% define_color_status_survey @survey %>
+  $('#survey_<%= @survey.id %> .status_banner').html('<span class="label label-<%= @class %>"><%= t "surveys.status.#{@survey.status}" %></span>');
+  $('#survey_<%= @survey.id %> .btn-group').html('<%= link_to edit_admin_survey_path(@survey), class: "btn btn-xs btn-default", data: {toggle: "tooltip"}, title: "Chỉnh sửa" do %><i class="fa fa-pencil"></i><% end %><%= link_to admin_change_status_survey_path(@survey), method: :patch, class: "btn btn-xs btn-#{@class}", data: {confirm: "Bạn chắc chắn muốn khóa / mở khóa bài kiểm tra này?"}, title: @title, remote: true do %><i class="fa fa-<%= @icon %>"></i><% end %>');
+  <% if @survey.block? %>
+    $('#survey_<%= @survey.id %>').addClass('danger');
+    alertify.error('<%= @mes_success %>');
+  <% else %>
+    $('#survey_<%= @survey.id %>').removeClass('danger');
+    alertify.success('<%= @mes_success %>');
+  <% end %>
+<% elsif @mes_danger %>
+  alertify.error('<%= @mes_danger %>');
+<% end %>

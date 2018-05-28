@@ -1,0 +1,12 @@
+<% if object.errors.present? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      Bản đăng ký có <%= object.errors.size %> lỗi.
+      <ul>
+        <% object.errors.messages.values.each do |errors| %>
+          <li><%= errors[0] %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>

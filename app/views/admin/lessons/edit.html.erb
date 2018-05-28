@@ -1,0 +1,22 @@
+<% provide :title, @lesson.name %>
+<div class="content-header">
+  <div class="header-section">
+    <h1>
+      <i class="gi gi-notes_2"></i><%= @lesson.name.capitalize %>
+      <br>
+      <small>Chỉnh sửa câu hỏi bài học</small>
+    </h1>
+  </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+  <li>Bài học</li>
+  <li><%= link_to @lesson.name.capitalize, admin_lesson_path(@lesson) %></li>
+  <li>
+    <a href="">Chỉnh sửa câu hỏi</a>
+  </li>
+</ul>
+<!-- END Forms General Header -->
+<div class="block">
+  <%= render "form" %>
+</div>
+<script>$(function(){ FormsWizard.init(); });</script>

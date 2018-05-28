@@ -1,0 +1,2 @@
+$('#table-content').html("<table id='example-datatable' class='table table-vcenter table-condensed table-bordered'><thead><tr><th class='text-center'>ID</th><th>Tên</th><th>Môn học</th><th>Bài học</th><th>Thời gian</th><th>Số câu hỏi</th><th>Trạng thái</th><th class='text-center'>##</th></tr></thead><tbody><%= j render partial: 'survey', collection: @surveys, as: :survey %></tbody></table>");
+$(function(){ TablesSurveys.init(); });

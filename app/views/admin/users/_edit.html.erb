@@ -2,7 +2,7 @@
 <%= form_for @user, method: :patch, url: admin_user_path,
   html: {class: "form-horizontal form-bordered", id: "edit_user_form"}, remote: true do |f| %>
   <div class="form-group <%= check_errors @user, :name %>">
-    <label class="col-md-3 control-label" for="user_name">Name <span class="text-danger">*</span></label>
+    <label class="col-md-3 control-label" for="user_name">Họ tên <span class="text-danger">*</span></label>
     <div class="col-md-9">
       <%= f.text_field :name, class: "form-control", placeholder: "Nhập tên người dùng ..", required: true %>
       <span class="text-danger" id="name-error"><%= show_errors @user, :name, "name" %></span>
@@ -16,7 +16,7 @@
     </div>
   </div>
   <div class="form-group <%= check_errors @user, :gender %>">
-    <label class="col-md-3 control-label">Gender</label>
+    <label class="col-md-3 control-label">Giới tính</label>
       <div class="col-md-9">
         <label class="radio-inline" for="user_gender_male">
           <%= f.radio_button :gender, "male", :checked => true %> Nam
@@ -27,14 +27,14 @@
       </div>
   </div>
   <div class="form-group <%= check_errors @user, :phone %>">
-    <label class="col-md-3 control-label" for="user_phone">Phone </label>
+    <label class="col-md-3 control-label" for="user_phone">Số điện thoại </label>
     <div class="col-md-9">
       <%= f.number_field :phone, class: "form-control", placeholder: "Nhập số điện thoại .." %>
       <span class=" text-danger" id="phone-error"><%= show_errors @user, :phone, "phone" %></span>
     </div>
   </div>
   <div class="form-group <%= check_errors @user, :birthday %>">
-    <label class="col-md-3 control-label" for="user_birthday">Birthday </label>
+    <label class="col-md-3 control-label" for="user_birthday">Ngày sinh </label>
     <div class="col-md-9">
       <% if @user.birthday %>
         <%= f.text_field :birthday, data: {provide: "datepicker"}, class: "datepick form-control",
@@ -46,14 +46,14 @@
     </div>
   </div>
   <div class="form-group <%= check_errors @user, :university %>">
-    <label class="col-md-3 control-label" for="user_university">University </label>
+    <label class="col-md-3 control-label" for="user_university">Học tại </label>
     <div class="col-md-9">
       <%= f.text_field :university, class: "form-control", placeholder: "Nhập trường đại học .." %>
       <span class="text-danger" id="university-error"><%= show_errors @user, :university, "university" %></span>
     </div>
   </div>
   <div class="form-group <%= check_errors @user, :program %>">
-    <label class="col-md-3 control-label" for="user_program">Program </label>
+    <label class="col-md-3 control-label" for="user_program">Chương trình </label>
     <div class="col-md-9">
       <%= f.text_field :program, class: "form-control", placeholder: "Nhập chương trình tham gia .." %>
       <span class="text-danger" id="program-error"><%= show_errors @user, :program, "program" %></span>
@@ -61,9 +61,8 @@
   </div>
   <div class="form-group form-actions">
     <div class="col-md-9 col-md-oét-3">
-      <%= f.submit "Submit", class: "btn btn-sm btn-primary" %>
-      <%= submit_tag("Reset", {name: "reset", id: "reset", type: "reset", class: "btn btn-sm btn-warning"}) %>
-      <button type="button" class="btn btn-sm btn-danger" id="edit_profile_cancle">Cancle</button>
+      <%= f.submit "Lưu thông tin", class: "btn btn-sm btn-primary" %>
+      <button type="button" class="btn btn-sm btn-danger" id="edit_profile_cancle">Hủy</button>
     </div>
   </div>
 <% end %>

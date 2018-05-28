@@ -1,0 +1,26 @@
+<div class="nested-fields">
+  <div class="row">
+    <label class="col-md-4 control-label" for="survey_name">Câu hỏi</label>
+    <div class="col-md-5">
+      <%= f.text_field :text, class: "form-control ui-wizard-content", placeholder: "Nhập câu hỏi .." %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 control-label">
+    </div>
+    <div class="col-md-8">
+      <%= f.fields_for :answers do |answer| %>
+      <%= render 'answer_fields', f: answer %>
+      <% end %>
+      <div class=" question_fields">
+        <%= link_to_add_association 'Thêm đáp án', f, :answers,class: "btn btn-default" %>
+        <%= link_to_remove_association "Xóa câu hỏi", f, class: "btn btn-default btn-remove-df" %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 control-label">
+    </div>
+    <div class="col-md-5"><hr></div>
+  </div>
+</div>

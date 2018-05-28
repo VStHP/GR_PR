@@ -593,7 +593,6 @@ var App = function() {
 
         optMainStyle.click(function() {
             page.removeClass('style-alt');
-            alert('aca');
             $(this).addClass('active');
             optMainStyleAlt.removeClass('active');
         });

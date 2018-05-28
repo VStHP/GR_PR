@@ -1,0 +1,41 @@
+<% provide :title, "Môn học" %>
+<div class="content-header">
+  <div class="header-section">
+    <h1>
+      <i class="fa fa-table"></i>Danh sách môn học
+    </h1>
+  </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+  <li>Môn học</li>
+  <li><a href="">Danh sách</a></li>
+</ul>
+<div class="block full">
+  <div class="block-title" id="btn-filter-container">
+    <h2><strong>Môn Học</strong></h2>
+    <div class="btn-group btn-group-sm pull-right">
+      <%= link_to "Kích hoạt", registrations_path,class: "btn btn-primary btn-filter active", remote: true %>
+      <%= link_to "Đã khóa", registrations_path(type: "block"),class: "btn btn-primary btn-filter", remote: true %>
+    </div>
+  </div>
+  <div class="table-responsive" id="table-content">
+    <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+      <thead>
+        <tr>
+          <th class="text-center">Ngày Dang ky</th>
+          <th class="text-center">Tên</th>
+          <th>Email</th>
+          <th>So Dien Thoai</th>
+          <th>Vi Tri</th>
+          <th>CV</th>
+          <th class="text-center">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: "registration", collection: @registrations, as: :registration %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="alertify  ajs-movable ajs-closable ajs-pinnable ajs-pulse content">
+</div>

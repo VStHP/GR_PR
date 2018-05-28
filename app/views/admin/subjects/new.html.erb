@@ -1,0 +1,23 @@
+<% provide :url_path, admin_subjects_path %>
+<% provide :title, "Tạo môn học" %>
+<div class="content-header">
+  <div class="header-section">
+    <h1>
+      <i class="gi gi-notes_2"></i>Khởi tạo môn học
+    </h1>
+  </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+  <li>Môn học</li>
+  <li>
+    <a href="">Tạo mới</a>
+  </li>
+</ul>
+<!-- END Forms General Header -->
+<div class="block">
+  <div class="block-title">
+    <h2><strong>MÔN HỌC</strong> Thành phần</h2>
+  </div>
+  <%= render "form" %>
+</div>
+<script>$(function(){ FormsWizard.init(); });</script>

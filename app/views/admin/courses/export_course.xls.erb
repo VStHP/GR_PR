@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Chi tiết khóa thực tập</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">ID</Data></Cell>
+        <Cell><Data ss:Type="String">NAME</Data></Cell>
+        <Cell><Data ss:Type="String">OWNER</Data></Cell>
+        <Cell><Data ss:Type="String">PROGRAM</Data></Cell>
+        <Cell><Data ss:Type="String">LANGUAGE</Data></Cell>
+        <Cell><Data ss:Type="String">STATUS</Data></Cell>
+        <Cell><Data ss:Type="String">DATE_START</Data></Cell>
+        <Cell><Data ss:Type="String">DATE_END</Data></Cell>
+        <Cell><Data ss:Type="String">DESCRIPTION</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String"><%= @course.id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= @course.name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= @course.user.name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= @course.program %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= @course.language %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= @course.status %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= @course.date_start %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= @course.date_end %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= @course.description %></Data></Cell>
+      </Row>
+      <Row></Row>
+      <Row>
+        <Cell><Data ss:Type="String">Danh sách môn học của khóa thực tập</Data></Cell>
+        <Cell></Cell>
+        <Cell></Cell>
+        <Cell></Cell>
+        <Cell><Data ss:Type="String">Tổng số: <%= @subjects.length %> môn học</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">ID SUBJECT</Data></Cell>
+        <Cell><Data ss:Type="String">NAME SUBJECT</Data></Cell>
+        <Cell><Data ss:Type="String">STATUS</Data></Cell>
+        <Cell><Data ss:Type="String">DAY ON LEARN</Data></Cell>
+        <Cell><Data ss:Type="String">TOTAL lESSONS</Data></Cell>
+        <Cell><Data ss:Type="String">DESCRIPTION</Data></Cell>
+      </Row>
+      <% @subjects.each do |subject| %>
+        <Row>
+          <Cell><Data ss:Type="String"><%= subject.id %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= subject.name %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= subject.status %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= subject.day_on_learn %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= subject.lessons.length %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= subject.description %></Data></Cell>
+        </Row>
+      <% end %>
+      <Row></Row>
+      <Row>
+        <Cell><Data ss:Type="String">Danh sách tài khoản tham gia khóa thực tập</Data></Cell>
+        <Cell></Cell>
+        <Cell></Cell>
+        <Cell></Cell>
+        <Cell>
+          <Data ss:Type="String">Tổng số: <%= @trainers.length %> hướng dẫn, <%= @trainees.length %> thực tập sinh</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">ID</Data></Cell>
+        <Cell><Data ss:Type="String">NAME</Data></Cell>
+        <Cell><Data ss:Type="String">EMAIL</Data></Cell>
+        <Cell><Data ss:Type="String">PERMISSION</Data></Cell>
+        <Cell><Data ss:Type="String">GENDER</Data></Cell>
+        <Cell><Data ss:Type="String">BIRTHDAY</Data></Cell>
+        <Cell><Data ss:Type="String">PHONE</Data></Cell>
+        <Cell><Data ss:Type="String">UNIVERSITY</Data></Cell>
+        <Cell><Data ss:Type="String">PROGRAM</Data></Cell>
+        <Cell><Data ss:Type="String">CREATED_AT</Data></Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">Danh sách người hướng dẫn</Data>
+        </Cell>
+      </Row>
+      <% @trainers.each do |user| %>
+        <Row>
+          <Cell><Data ss:Type="Number"><%= user.id %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= user.name %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= user.email %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= user.permission %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= user.gender %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= user.birthday %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= user.phone %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= user.university %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= user.program %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= user.created_at %></Data></Cell>
+        </Row>
+      <% end %>
+      <Row>
+        <Cell><Data ss:Type="String">Danh sách thực tập sinh</Data></Cell>
+      </Row>
+      <% @trainees.each do |user| %>
+        <Row>
+          <Cell><Data ss:Type="Number"><%= user.id %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= user.name %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= user.email %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= user.permission %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= user.gender %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= user.birthday %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= user.phone %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= user.university %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= user.program %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= user.created_at %></Data></Cell>
+        </Row>
+      <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

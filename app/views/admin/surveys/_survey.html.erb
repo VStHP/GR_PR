@@ -1,0 +1,34 @@
+<% define_color_status_survey survey %>
+<tr id="survey_<%= survey.id %>" class="<%= @color %>">
+  <td class="text-center"><%= survey.id %></td>
+  <td><%= link_to survey.name, admin_survey_path(survey), data: {toggle: "tooltip"},
+    title: survey.description %></td>
+  <td><%= link_to survey.subject.name, admin_survey_path(survey.subject) %></td>
+  <td><%= survey.lesson.name if survey.lesson.present? %></td>
+  <td><%= survey.time %></td>
+  <td><%= survey.questions.count %></td>
+  <td class="status_banner">
+    <span class="label label-<%= @class %>"><%= t "surveys.status.#{survey.status}" %></span>
+  </td>
+  <td class="text-center">
+    <div class="btn-group">
+      <%= link_to edit_admin_survey_path(survey), class: "btn btn-xs btn-default",
+        data: {toggle: "tooltip"}, title: "Chỉnh sửa" do %>
+        <i class="fa fa-pencil"></i>
+      <% end %>
+      <% if survey.course_user_surveys.length == 0 %>
+        <%= link_to admin_survey_path(survey), method: :delete, class: "btn btn-xs btn-danger",
+          data: {toggle: "tooltip", confirm: "Bạn chắc chắn muốn xóa ?"},
+          title: "Xóa", remote: true do %>
+          <i class="fa fa-times"></i>
+        <% end %>
+      <% else %>
+        <%= link_to admin_change_status_survey_path(survey), method: :patch, class: "btn btn-xs btn-#{@class}",
+          data: {toggle: "tooltip", confirm: "Bạn chắc chắn muốn khóa / mở khóa bài thi này?"},
+          title: @title, remote: true do %>
+          <i class="fa fa-<%= @icon %>"></i>
+        <% end %>
+      <% end %>
+    </div>
+  </td>
+</tr>

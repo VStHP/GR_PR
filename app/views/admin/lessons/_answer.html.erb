@@ -1,0 +1,6 @@
+<% if answer.true? %>
+  <p class="answer-content right"><%= @answer_num %>) <%= answer.text.capitalize %></p>
+<% else %>
+  <p class="answer-content"><%= @answer_num %>) <%= answer.text.capitalize %></p>
+<% end %>
+<% @answer_num.next! %>

@@ -5,6 +5,12 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem "jquery-countdown-rails"
+gem "whenever", :require => false
+gem "chartkick"
+gem "highcharts-rails"
+gem "alertifyjs-rails"
+gem "cocoon"
 gem "cancancan", "~> 2.0"
 gem "roo-xls"
 gem "roo"
@@ -44,6 +50,7 @@ gem "jbuilder", "~> 2.5"
 
 # Use Capistrano for deployment
 # gem "capistrano-rails", group: :development
+
 
 group :development, :test do
   # Call "byebug" anywhere in the code to stop execution and get a debugger console

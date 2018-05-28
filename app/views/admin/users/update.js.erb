@@ -9,7 +9,7 @@
   <% if @mes_success %>
     $('#profile-content').html('<%= j render "component/profile_component/main_box_profile" %>');
     $('.profile-username').text('<%= @user.name %>');
-    $('.text-muted').html('<p class="text-muted text-center"><b>Email </b><%= @user.email %><br><b>Phone </b><%= @user.phone %><br></p>');
+    $('.text-muted').html('<p class="text-muted text-center"><b>Email </b><br><%= @user.email %><br><b>Phone </b><br><%= @user.phone %><br></p>');
     alertify.success('<%= @mes_success %>');
   <% end %>
 <% end %>

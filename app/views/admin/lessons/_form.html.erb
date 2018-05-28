@@ -1,0 +1,56 @@
+<div class="block-title">
+  <h2>
+    <strong>Bài kiểm tra</strong>
+  </h2>
+</div>
+<%= form_for @lesson, url: admin_lesson_path,
+  html: {class: "form-horizontal form-bordered ui-formwizard", id:"clickable-wizard"} do |f| %>
+  <div id="clickable-first" class="step ui-formwizard-content">
+    <div class="form-group">
+      <div class="col-xs-12">
+        <ul class="nav nav-pills nav-justified clickable-steps">
+          <li class="active">
+            <a href="javascript:void(0)" data-gotostep="clickable-first">
+              <strong>1. Thông tin cần thiết</strong>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <%= render "shared/error_messages", object: @lesson %>
+    <div class="form-group <%= check_errors @lesson, :test_time %>">
+      <label class="col-md-4 control-label " for="lesson_test_time">Thời gian thực hiện
+        <small>(Phút)</small> <small class="text-danger">*</small></label>
+      <div class="col-md-5">
+        <%= f.number_field :test_time, min: 1, class: "form-control ui-wizard-content",
+          data: {toggle: "tooltip"}, title: "Thời gian làm bài tối thiếu là 1",
+          placeholder: "Nhập thời gian làm kiểm tra .." %>
+        <span class="help-block"><%= show_errors @lesson, :test_time, "test_time" %></span>
+      </div>
+    </div>
+    <div class="form-group <%= check_errors @lesson, :num_question_test %>">
+      <label class="col-md-4 control-label " for="lesson_test_time">Số câu hỏi trong bài kiểm tra
+        <small class="text-danger">*</small></label>
+      <div class="col-md-5">
+        <%= f.number_field :num_question_test, class: "form-control ui-wizard-content", min: 0,
+          data: {toggle: "tooltip"}, title: "Số câu hỏi tối thiếu là 0",
+          placeholder: "Nhập số câu trong bài kiểm tra .." %>
+        <span class="help-block"><%= show_errors @lesson, :num_question_test, "num_question_test" %></span>
+      </div>
+    </div>
+    <div class="form-group" id="questions">
+      <%= f.fields_for :questions do |question| %>
+      <%= render 'question_fields', f: question %>
+      <% end %>
+      <div class="col-md-4 control-label question_fields">
+        <%= link_to_add_association 'Thêm câu hỏi', f, :questions,class: "btn btn-default" %>
+      </div>
+    </div>
+  </div>
+  <div class="form-group form-actions">
+    <div class="col-md-8 col-md-offset-4">
+      <input type="reset" class="btn btn-sm btn-warning ui-wizard-content ui-formwizard-button" id="back" value="Back">
+      <input type="submit" class="btn btn-sm btn-primary ui-wizard-content ui-formwizard-button" id="next" value="Submit">
+    </div>
+  </div>
+<% end %>

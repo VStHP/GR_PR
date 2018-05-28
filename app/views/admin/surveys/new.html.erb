@@ -1,0 +1,19 @@
+<% provide :url_path, admin_surveys_path %>
+<% provide :title, "Tạo bài kiểm tra" %>
+<div class="content-header">
+  <div class="header-section">
+    <h1>
+      <i class="gi gi-notes_2"></i>Khởi tạo bài kiểm tra
+    </h1>
+  </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+  <li>Bài kiểm tra</li>
+  <li>
+    <a href="">Tạo mới</a>
+  </li>
+</ul>
+<div class="block">
+  <%= render "form" %>
+</div>
+<script>$(function(){ FormsWizard.init(); });</script>

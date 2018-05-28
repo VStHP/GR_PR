@@ -1,0 +1,27 @@
+<% provide :title, @user.name %>
+<div class="content-header">
+  <div class="header-section">
+    <h1>
+      <i class="gi gi-notes"></i><%= @user.name.upcase %>
+      <br>
+        <small>Hồ sơ tài khoản</small>
+    </h1>
+  </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+  <li>Home</li>
+  <li><a href=""><%= @user.name %></a></li>
+</ul>
+<div class="row">
+  <div class="col-md-12 user-profile-content">
+    <div class="col-md-3" >
+      <%= render "component/profile_component/avatar_box_profile" %>
+    </div>
+    <div class="col-md-5 " id="profile-content">
+      <%= render "component/profile_component/main_box_profile" %>
+    </div>
+    <div class="col-md-4">
+      <%= render "component/profile_component/references_box_profile" %>
+    </div>
+  </div>
+</div>

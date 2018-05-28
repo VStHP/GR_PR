@@ -1,0 +1,60 @@
+<div class="nav-tabs-custom">
+  <div class="nav nav-tabs nav-user">
+    <li class="active"><a href="#profile" data-toggle="tab">Hồ sơ công ty</a></li>
+  </div>
+  <div class="tab-content">
+    <div class=" profile-container clearfix active">
+      <div class="col-md-12">
+        <div class="box" id="main-profile-1">
+          <%= link_to edit_admin_company_path(@company), class: "btn btn-xs btn-default cog-profile", remote: true do %>
+            <i class="fa fa-cog"></i>
+          <% end %>
+          <table class="table table-user-information">
+            <tbody>
+              <tr>
+                <td class="td-title">Tên công ty</td>
+                <td><%= @company.name %></td>
+              </tr>
+              <tr>
+                <td class="td-title">Email</td>
+                <td><%= @company.email %></td>
+              </tr>
+              <tr>
+                <td class="td-title">Số điện thoại</td>
+                <td><%= @company.phone %></td>
+              </tr>
+              <tr>
+                <td class="td-title">Địa chỉ</td>
+                <td><%= @company.address %></td>
+              </tr>
+              <tr>
+                <td class="td-title">Thành phố</td>
+                <td><%= @company.city %></td>
+              </tr>
+              <tr>
+                <td class="td-title">Mô tả</td>
+                <td><%= @company.description %></td>
+              </tr>
+              <tr>
+                <td class="td-title">Ảnh 1</td>
+                <td><%= image_tag @company.image_1.url, class: "img-responsive", alt: "image 1" %></td>
+              </tr>
+              <tr>
+                <td class="td-title">Ảnh 2</td>
+                <td><%= image_tag @company.image_2.url, class: "img-responsive", alt: "image 2" %></td>
+              </tr>
+              <tr>
+                <td class="td-title">Ảnh 3</td>
+                <td><%= image_tag @company.image_3.url, class: "img-responsive", alt: "image 3" %></td>
+              </tr>
+              <tr>
+                <td class="td-title">Ảnh 4</td>
+                <td><%= image_tag @company.image_4.url, class: "img-responsive", alt: "image 4" %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

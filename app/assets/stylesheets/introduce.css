@@ -14,4 +14,17 @@
  *= require_tree ../../../node_modules/alertify/themes
  *= require bootstrap.min
  *= require introduces/custom
+ *= require alertify
+ *= require spinner
+ *= require alertify/default
+ *= require alertify/bootstrap
  */
+.animation-fadeIn {
+  animation-name: fadeIn;
+  -webkit-animation-name: fadeIn;
+  animation-duration: 1.0s;
+  -webkit-animation-duration: 1.0s;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
+  visibility: visible !important;
+}

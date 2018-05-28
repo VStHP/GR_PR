@@ -1,0 +1,33 @@
+<% define_color_status_course course %>
+<tr class="<%= @color %> row_course_<%= course.id %>">
+  <td class="text-center"><%= course.id %></td>
+  <td><%= link_to course.name, admin_course_path(course) %></td>
+  <td><%= course.program %></td>
+  <td><%= course.language %></td>
+  <td><%= course.date_start.to_date %></td>
+  <td><%= course.date_end.to_date if course.date_end? %></td>
+  <td class="status_banner">
+    <span class="label label-<%= @color %>"><%= t "courses.status.#{course.status}" %></span>
+  </td>
+  <td><%= link_to course.user.name, profiles_path(course.user) %></td>
+  <td class="text-center">
+    <div class="btn-group">
+      <%= link_to edit_admin_course_path(course), class: "btn btn-xs btn-default",
+        data: {toggle: "tooltip"}, title: "Edit" do %>
+        <i class="fa fa-pencil"></i>
+      <% end %>
+      <% if course.init? %>
+        <%= link_to admin_course_path(course), method: :delete, class: "btn btn-xs btn-danger",
+          data: {toggle: "tooltip", confirm: "Bạn chắc chắn muốn xóa khóa thực tập này?"}, title: "Delete", remote: true do %>
+          <i class="fa fa-times"></i>
+        <% end %>
+      <% elsif !course.finish? %>
+        <%= link_to admin_change_status_course_path(course), method: :patch,
+          class: "btn btn-xs btn-#{@class}",
+          data: {confirm: "Bạn chắc chắn muốn khóa / mở khóa khóa thực tập này?"}, title: @title, remote: true do %>
+          <i class="fa fa-<%= @icon %>"></i>
+        <% end %>
+      <% end %>
+    </div>
+  </td>
+</tr>

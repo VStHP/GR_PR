@@ -1,0 +1,35 @@
+<% define_color_status_subject subject %>
+<tr class="<%= @color %> row_subject_<%= subject.id %>">
+  <td class="text-center"><%= subject.id %></td>
+  <td class="text-center">
+    <%= image_tag subject.avatar.url, class: "image_tag",
+      style: "width: 64px; hight: 64px; border-radius: 32px;" %>
+  </td>
+  <td><%= link_to subject.name, admin_subject_path(subject) %></td>
+  <td><%= subject.day_on_learn %></td>
+  <td><%= subject.lessons.count %></td>
+  <td class="status_banner">
+    <span class="label label-<%= @class %> " style="text-transform: capitalize;"><%= t "subjects.status.#{subject.status}" %></span>
+  </td>
+  <td class="text-center">
+    <div class="btn-group">
+      <%= link_to edit_admin_subject_path(subject), class: "btn btn-xs btn-default",
+        data: {toggle: "tooltip"}, title: "Chỉnh sửa" do %>
+        <i class="fa fa-pencil"></i>
+      <% end %>
+      <% if subject.course_subjects.length == 0 %>
+        <%= link_to admin_subject_path(subject), method: :delete, class: "btn btn-xs btn-danger",
+          data: {toggle: "tooltip", confirm: "Bạn chắc chắn muốn xóa môn học này?"},
+          title: "Xóa", remote: true do %>
+          <i class="fa fa-times"></i>
+        <% end %>
+      <% else %>
+        <%= link_to admin_change_status_subject_path(subject), method: :patch, class: "btn btn-xs btn-#{@class}",
+          data: {toggle: "tooltip", confirm: "Bạn chắc chắn muốn khóa / mở khóa môn học này?"},
+          title: @title, remote: true do %>
+          <i class="fa fa-<%= @icon %>"></i>
+        <% end %>
+      <% end %>
+    </div>
+  </td>
+</tr>

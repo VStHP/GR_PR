@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Thông tin bài học</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">ID</Data></Cell>
+        <Cell><Data ss:Type="String">Tên bài học</Data></Cell>
+        <Cell><Data ss:Type="String">Thuộc môn học</Data></Cell>
+        <Cell><Data ss:Type="String">Liên kết youtube</Data></Cell>
+        <Cell><Data ss:Type="String">Thời gian bài kiểm tra</Data></Cell>
+        <Cell><Data ss:Type="String">Số câu hỏi</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String"><%= @lesson.id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= @lesson.name.capitalize %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= @lesson.subject.name.capitalize %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= @lesson.youtube_url %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= @lesson.test_time %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= @questions.length %></Data></Cell>
+      </Row>
+      <Row></Row>
+      <Row>
+        <Cell><Data ss:Type="String">Danh sách câu hỏi và đáp án</Data></Cell>
+      </Row>
+      <Row></Row>
+      <Row></Row>
+      <% question_num = 1 %>
+      <% @questions.each do |question| %>
+        <Row>
+          <Cell><Data ss:Type="Number"><%= question_num %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= question.text.capitalize %></Data></Cell>
+        </Row>
+        <% answer_num = "a" %>
+        <% question.answers.each do |answer| %>
+          <Row>
+            <Cell></Cell>
+            <% if answer.true? %>
+              <Cell><Data ss:Type="String">Đúng</Data></Cell>
+            <% else %>
+              <Cell></Cell>
+            <% end %>
+            <Cell><Data ss:Type="String"><%= answer_num %>)</Data></Cell>
+            <Cell><Data ss:Type="String"><%= answer.text %></Data></Cell>
+            <Cell></Cell>
+            <% answer_num.next! %>
+          </Row>
+        <% end %>
+        <% question_num += 1 %>
+      <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

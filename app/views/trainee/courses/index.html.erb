@@ -1,0 +1,21 @@
+<% provide :title, "Khóa thực tập của tôi" %>
+<div class="content-header">
+  <div class="header-section">
+    <h1>
+      <i class="gi gi-share_alt"></i>Danh sách khóa thực tập
+    </h1>
+  </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+  <li>Khóa thực tập</li>
+  <li><a href="">Danh sách</a></li>
+</ul>
+<div class="block full">
+  <div class="row" id="course-content">
+    <%= render @courses %>
+  </div>
+</div>
+
+<script>
+  $(function(){ btnFilterClick.init(); });
+</script>

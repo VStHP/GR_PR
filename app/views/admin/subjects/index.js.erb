@@ -1,0 +1,2 @@
+$("#table-content").html("<table id='example-datatable' class='table table-vcenter table-condensed table-bordered'><thead><tr><th class='text-center'>ID</th><th class='text-center'>Avatar</th><th>Tên</th><th>Ngày học</th><th>Số chương</th><th>Trạng thái</th><th class='text-center'>##</th></tr></thead><tbody><%= j render partial: 'subject', collection: @subjects, as: :subject %></tbody></table>");
+$(function(){ TablesSubjects.init(); });

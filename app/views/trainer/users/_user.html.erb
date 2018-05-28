@@ -1,0 +1,16 @@
+<tr class="row_user_<%= user.id %> <%= "danger" if user.block? %>">
+  <td class="text-center"><%= user.id %></td>
+  <td class="text-center">
+    <%= image_tag user.avatar.url, class: "image_tag",
+      style: "width: 64px; hight: 64px; border-radius: 32px;" %>
+  </td>
+  <td>
+    <%= link_to user.name, profiles_path(user) %>
+  </td>
+  <td><%= user.email %></td>
+  <td><%= user.program %></td>
+  <td><%= user.created_at.to_date %></td>
+  <td class="<%= user.permission %>">
+    <span class="label label-<%= define_color_permission user %> " style="text-transform: capitalize;"><%= user.permission %></span>
+  </td>
+</tr>

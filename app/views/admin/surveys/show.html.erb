@@ -1,0 +1,18 @@
+<% provide :title, @survey.name %>
+<div class="content-header">
+  <div class="header-section">
+    <h1>
+      <i class="fa fa-globe"></i><%= @survey.name.upcase %><br>
+      <small><%= @survey.description %></small>
+    </h1>
+  </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+  <li>Bài kiểm tra</li>
+  <li><a href=""><%= @survey.name.capitalize %></a></li>
+</ul>
+<div class="row">
+  <ol class="questions">
+    <%= render partial: "question", collection: @questions, as: :question %>
+  <ol>
+</div>

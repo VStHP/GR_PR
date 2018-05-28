@@ -1,0 +1,6 @@
+<% if answer.id == lqa.chosen_id %>
+  <p class="mark-chosen"><%= @answer_num %>) <%= answer.text.capitalize %></p>
+<% else %>
+  <p><%= @answer_num %>) <%= answer.text.capitalize %></p>
+<% end %>
+<% @answer_num.next! %>

@@ -1,0 +1,2 @@
+module Trainer::UsersHelper
+end

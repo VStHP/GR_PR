@@ -1,0 +1,14 @@
+<% if @mes_success %>
+  <% define_color_status_course @course %>
+  $('.row_course_<%= @course.id %> .status_banner').html('<span class="label label-<%= @color %>"><%= t "courses.status.#{@course.status}" %></span>');
+  $('.row_course_<%= @course.id %> .btn-group').html('<%= link_to edit_admin_course_path(@course), class: "btn btn-xs btn-default", data: {toggle: "tooltip"}, title: "Edit" do %><i class="fa fa-pencil"></i><% end %><%= link_to admin_change_status_course_path(@course), method: :patch, class: "btn btn-xs btn-#{@class}", data: {confirm: "Bạn chắc chắn muốn khóa / mở khóa khóa thực tập này?"}, title: @title, remote: true do %><i class="fa fa-<%= @icon %>"></i><% end %>');
+  <% if @course.block? %>
+    $('.row_course_<%= @course.id %>').addClass('danger');
+    alertify.error('<%= @mes_success %>');
+  <% else %>
+    $('.row_course_<%= @course.id %>').removeClass('danger').addClass('warning');
+    alertify.success('<%= @mes_success %>');
+  <% end %>
+<% elsif @mes_danger %>
+  alertify.error('<%= @mes_danger %>');
+<% end %>

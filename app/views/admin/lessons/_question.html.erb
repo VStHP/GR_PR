@@ -1,0 +1,7 @@
+<div class="question-div">
+  <h3 class="question-title"><%= @question_num %>. <%= question.text.capitalize %></h3>
+  <% @answer_num = "a" %>
+  <%= render partial: "answer", collection: question.answers, as: :answer %>
+  <% @question_num+=1 %>
+</div>
+<hr>
