@@ -1,7 +1,7 @@
 class Admin::CourseSubjectsController < ApplicationController
   before_action :load_course
   before_action :load_course_subject
-  before_action :check_allow_update_status, only: :update
+  # before_action :check_allow_update_status, only: :update
 
   def show
     authorize! :show, @course_subject

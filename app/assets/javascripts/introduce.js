@@ -58,3 +58,7 @@ $(document).on('click', '#cancel-button', function(){
 $(document).on('click', '.load-spinner', function(){
   $('.spinner').show();
 });
+
+$(document).on('click', '#noon', function(){
+  alertify.confirm("Chức năng này chưa được cho vào sử dụng, xin thông cảm!");
+});
